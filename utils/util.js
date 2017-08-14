@@ -89,27 +89,35 @@ function isLogin() {
 /**
  * 是否登录提示
  */
-function isLoginModal() {
-    wx.showModal({
-        title: '友情提示',
-        content: "登录收收,体验更完善功能",
-        showCancel: true,
-        confirmColor: "#00ACFF",
-        confirmText: "登录",
-        success: function (res) {
-            if (res.confirm) {
-                wx.navigateTo({
-                    url: '/pages/account/login'
-                })
-                console.log('用户点击确定');
-            } else if (res.cancel) {
-                //返回上一页
-                wx.navigateBack({
-                    delta: 1
-                })
-            }
+function isLoginModal(isShow) {
+    if (!wx.getStorageSync("userid")) {
+        if (isShow) {
+            wx.showModal({
+                title: '收收提示',
+                content: "登录收收,体验更完善功能",
+                showCancel: true,
+                confirmColor: "#00ACFF",
+                confirmText: "登录",
+                success: function (res) {
+                    if (res.confirm) {
+                        wx.navigateTo({
+                            url: '/pages/account/login'
+                        })
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        //返回上一页
+                        wx.navigateBack({
+                            delta: 1
+                        })
+                    }
+                }
+            })
+        } else {
+            wx.navigateTo({
+                url: '/pages/account/login'
+            })
         }
-    })
+    }
 }
 
 

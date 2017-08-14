@@ -1,5 +1,4 @@
-// pages/account/account.js
-//获取应用实例
+// pages/wallet/wallet.js
 var app = getApp();
 var util = require('../../utils/util.js');
 Page({
@@ -15,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      util.isLoginModal();
+  
   },
 
   /**

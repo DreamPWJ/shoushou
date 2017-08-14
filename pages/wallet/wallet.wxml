@@ -1,4 +1,4 @@
-<!--pages/referenceprice/referenceprice.wxml-->
+<!--pages/wallet/wallet.wxml-->
 <view class="text-center  padding">
     <view class="isNotDataHint">
         <view class="iconfont icon-mark"></view>

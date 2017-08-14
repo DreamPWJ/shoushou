@@ -1,18 +1,21 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/referenceprice/referenceprice",
     "pages/order/order",
+    "pages/wallet/wallet",
     "pages/news/news",
     "pages/account/account",
+    "pages/account/login",
+    "pages/account/register",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00ACFF",
     "navigationBarTitleText": "收收",
-    "navigationBarTextStyle":"white",
-    "backgroundColor":"#f8f8f8"
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f8f8f8"
   },
   "tabBar": {
     "color": "#707070",
@@ -33,10 +36,10 @@
         "text": "参考价"
       },
       {
-        "pagePath": "pages/order/order",
-        "iconPath": "images/tabs/order-off.png",
-        "selectedIconPath": "images/tabs/order-on.png",
-        "text": "订单"
+        "pagePath": "pages/wallet/wallet",
+        "iconPath": "images/tabs/money_bag.png",
+        "selectedIconPath": "images/tabs/money_bag_fill.png",
+        "text": "钱包"
       },
       {
         "pagePath": "pages/news/news",
