@@ -23,7 +23,7 @@ function https(url, type, data, callBack, header) {
         data: data,
         header: header ? header : ( {
             "Content-Type": "json",
-            "authorization":"Bearer " +wx.getStorageSync('token')
+            "authorization": "Bearer " + wx.getStorageSync('token')
         }),
         success: function (res) {
             console.log(res);
@@ -57,17 +57,24 @@ function https(url, type, data, callBack, header) {
 /**
  * 接口API授权 type 1.是公共授权  2.登录授权
  */
-function authorization(type) {
+function authorization(type, callback) {
     if (type == 1) {
-        this.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials'},
-            function (data) {
-                wx.setStorageSync('token', data.access_token);//公共接口授权token
-                wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
-            }, {
-                'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        )
+        //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
+        if (!wx.getStorageSync("userid") && (!wx.getStorageSync("token") || wx.getStorageSync == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
+            this.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials'},
+                function (data) {
+                    if (data.access_token) {
+                        wx.setStorageSync('token', data.access_token);//公共接口授权token
+                        wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
+                    }
+                    callback.call(this)
+
+                }, {
+                    'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            )
+        }
     }
 
 }
