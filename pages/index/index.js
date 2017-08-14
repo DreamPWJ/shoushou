@@ -42,7 +42,32 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        //调用接口获取登录凭证（code）进而换取用户登录态信息，包括用户的唯一标识（openid）
+        if (!wx.getStorageSync("openid")) { //初次授权登录 获取openid
+            wx.login({
+                success: function (res) {
+                    if (res.code) {
+                        //根据微信Code获取对应的openId
+                        util.https(app.globalData.api + "/api/wc/GetOpenid", "GET", {
+                                code: res.code,
+                                UserLogID: wx.getStorageSync("userid") || ""
+                            },
+                            function (data) {
+                                console.log(data);
+                                if (data.code == 1001) {
+                                    wx.setStorageSync("openid", data.data.OpenId);//微信openid
+                                    wx.setStorageSync("userid", data.data.UserLogID);
+                                    wx.setStorageSync("usersecret", data.data.usersecret);
+                                }
 
+                            })
+
+                    } else {
+                        console.log('获取用户登录状态失败！' + res.errMsg);
+                    }
+                }
+            });
+        }
     },
 
     /**

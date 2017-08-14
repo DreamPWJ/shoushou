@@ -22,7 +22,8 @@ function https(url, type, data, callBack, header) {
         method: type,
         data: data,
         header: header ? header : ( {
-            "Content-Type": "json"
+            "Content-Type": "json",
+            "authorization":"Bearer " +wx.getStorageSync('token')
         }),
         success: function (res) {
             console.log(res);
