@@ -164,3 +164,30 @@ page {
   white-space: normal !important;
 }
 
+.swiper-tab {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  text-align: center;
+  background-color: #fff;
+}
+
+.swiper-tab-list {
+  font-size: 16px;
+  box-sizing: border-box;
+  display: inline-block;
+  color: #777777;
+  padding: 0.5rem;
+}
+
+.on {
+  color: #00ACFF;
+  border-bottom: 2px solid #00ACFF;
+}
+
+.swiper-box {
+  display: block;
+  margin-top: 50px;
+  width: 100%;
+  overflow: hidden;
+}

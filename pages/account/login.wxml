@@ -1,21 +1,49 @@
 <!--pages/account/login.wxml-->
 <form bindsubmit="loginSubmit">
     <view class="list card margin-top">
-        <view class="item item-input">
-            <text class=" iconfont icon-my placeholder-icon"> </text>
-            <input type="number" bindchange="bindChange" id="user" name="user" placeholder="手机号码"/>
+
+        <view class="header row row-horizontal-around row-no-padding">
+            <view class="col-35 header-tab {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+                账号密码登录
+            </view>
+            <view class="col-35 header-tab {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+                手机验证登录
+            </view>
         </view>
 
-        <view class="item item-input">
-            <text class=" iconfont  icon-lock placeholder-icon"> </text>
-            <input type="text" bindchange="bindChange" password="true" id="password" name="password" placeholder="密码"/>
+
+        <!-- 账号密码登录 -->
+        <view wx:if="{{currentTab==0}}">
+            <view class="item item-input">
+                <text class=" iconfont icon-my placeholder-icon"></text>
+                <input type="number" bindchange="bindChange" id="user" name="user" placeholder="手机号码" focus="true"/>
+            </view>
+
+            <view class="item item-input">
+                <text class=" iconfont  icon-lock placeholder-icon"></text>
+                <input type="text" bindchange="bindChange" password="true" id="password" name="password"
+                       placeholder="密码"/>
+            </view>
+        </view>
+
+        <!-- 手机验证登录 -->
+        <view wx:if="{{currentTab==1}}">
+            <view class="item item-input">
+                <text class=" iconfont icon-my placeholder-icon"></text>
+                <input type="number" bindchange="bindChange" name="user" placeholder="手机号码" focus="true"/>
+            </view>
+
+            <view class="item item-input">
+                <text class=" iconfont  icon-lock placeholder-icon"></text>
+                <input type="number" bindchange="bindChange" name="password" placeholder="验证码"/>
+            </view>
         </view>
 
 
     </view>
 
     <view class="padding-horizontal">
-        <button formType="submit"  class="positive-bg light " >登录
+        <button formType="submit" class="positive-bg light ">登录
         </button>
     </view>
 </form>

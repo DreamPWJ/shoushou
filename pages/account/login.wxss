@@ -1,1 +1,12 @@
 /* pages/account/login.wxss */
+.header {
+    border-bottom: 2px solid rgba(221, 221, 221, 0.3)
+}
+
+.header-tab {
+    font-size: 1rem;
+    color: #00ACFF;
+    text-align: center;
+    background-color: #fff;
+    padding: 0.5rem 0.2rem;
+}
