@@ -218,3 +218,8 @@ page {
 button::after {
     border: none;
 }
+
+.button-hover {
+    background-color: #00ACFF;
+    opacity: 0.7;
+}
