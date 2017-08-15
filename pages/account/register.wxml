@@ -1,7 +1,37 @@
 <!--pages/account/register.wxml-->
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<form bindsubmit="loginSubmit">
+    <view class="list card margin-top" style="margin-bottom: 5px;">
+        <view class="item item-input">
+            <text class=" iconfont icon-my placeholder-icon"></text>
+            <input type="number" bindchange="bindChange" id="user" name="user" placeholder="手机号码" focus="true"/>
+        </view>
+
+        <view class="item item-input">
+            <text class=" iconfont  icon-lock placeholder-icon"></text>
+            <input type="text" bindchange="bindChange" password="true" id="password" name="password"
+                   placeholder="密码 (请输入6~18位字母或数字)"/>
+        </view>
+        <view class="item item-input">
+            <text class=" iconfont  icon-lock placeholder-icon"></text>
+            <input type="text" bindchange="bindChange" password="true" id="confirmpassword" name="confirmpassword"
+                   placeholder="确认密码 (请保持与上面的密码一致)"/>
+        </view>
+        <view class="item item-input">
+            <text class=" iconfont  icon-unlock placeholder-icon"></text>
+            <input type="number" bindchange="bindChange" name="password" placeholder="验证码"/>
+            <button class="positive-bg light verify-code col-30 button-small">获取验证码</button>
+        </view>
     </view>
-</view>
+    <view class="row">
+        <navigator url="register" open-type="navigate" hover-class="none"
+                   class="col positive " style="font-size: 0.8rem">什么是用户类型?
+        </navigator>
+
+    </view>
+    <view class="padding-horizontal">
+        <button formType="submit" class="positive-bg light ">注册
+        </button>
+    </view>
+
+</form>
+

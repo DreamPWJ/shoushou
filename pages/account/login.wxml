@@ -35,8 +35,9 @@
             </view>
 
             <view class="item item-input">
-                <text class=" iconfont  icon-lock placeholder-icon"></text>
+                <text class=" iconfont  icon-unlock placeholder-icon"></text>
                 <input type="number" bindchange="bindChange" name="password" placeholder="验证码"/>
+                <button class="positive-bg light verify-code col-30 button-small">获取验证码</button>
             </view>
         </view>
 

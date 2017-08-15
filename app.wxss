@@ -210,3 +210,11 @@ page {
 .placeholder-icon {
     margin-right: 0.2rem;
 }
+
+.verify-code {
+    margin-right: 0.5rem;
+}
+
+button::after {
+    border: none;
+}
