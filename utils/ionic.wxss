@@ -54,7 +54,7 @@
 .card {
     padding-top: 1px;
     padding-bottom: 1px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .card .item {
@@ -213,8 +213,8 @@
 }
 
 .item.item-positive {
-    border-color: #ff609c;
-    background-color: #ff93bc;
+    border-color: #008acc;
+    background-color: #00ACFF;
     color: #fff;
 }
 
@@ -321,8 +321,8 @@
 .item-complex.activated .item-content.item-positive,
 .item .item-content.active.item-positive,
 .item .item-content.activated.item-positive {
-    border-color: #ff609c;
-    background-color: #ff609c;
+    border-color: #008acc;
+    background-color: #008acc;
 }
 
 .item.active.item-positive.item-complex > .item-content,
@@ -331,8 +331,8 @@
 .item-complex.activated .item-content.item-positive.item-complex > .item-content,
 .item .item-content.active.item-positive.item-complex > .item-content,
 .item .item-content.activated.item-positive.item-complex > .item-content {
-    border-color: #ff609c;
-    background-color: #ff609c;
+    border-color: #008acc;
+    background-color: #008acc;
 }
 
 .item.active.item-calm, .item.activated.item-calm,
@@ -1313,15 +1313,15 @@ a.item:hover, a.item:focus {
 }
 
 .positive, a.positive {
-    color: #ff93bc;
+    color: #00ACFF;
 }
 
 .positive-bg {
-    background-color: #ff93bc;
+    background-color: #00ACFF;
 }
 
 .positive-border {
-    border-color: #ff609c;
+    border-color: #008acc;
 }
 
 .calm, a.calm {
@@ -1819,7 +1819,7 @@ input[type="color"] {
 
 .button.button-positive {
     border-color: transparent;
-    background-color: #ff93bc;
+    background-color: #00ACFF;
     color: #fff;
 }
 
@@ -1830,14 +1830,14 @@ input[type="color"] {
 
 .button.button-positive.active, .button.button-positive.activated {
     border-color: #a2a2a2;
-    background-color: #ff609c;
+    background-color: #008acc;
 }
 
 .button.button-positive.button-clear {
     border-color: transparent;
     background: none;
     box-shadow: none;
-    color: #ff93bc;
+    color: #00ACFF;
 }
 
 .button.button-positive.button-icon {
@@ -1846,14 +1846,14 @@ input[type="color"] {
 }
 
 .button.button-positive.button-outline {
-    border-color: #ff93bc;
+    border-color: #00ACFF;
     background: transparent;
-    color: #ff93bc;
+    color: #00ACFF;
 }
 
 .button.button-positive.button-outline.active,
 .button.button-positive.button-outline.activated {
-    background-color: #ff93bc;
+    background-color: #00ACFF;
     box-shadow: none;
     color: #fff;
 }

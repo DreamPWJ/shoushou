@@ -1,4 +1,23 @@
 <!--pages/account/login.wxml-->
-<view>
+<form bindsubmit="loginSubmit">
+    <view class="list card margin-top">
+        <view class="item item-input">
+            <text class=" iconfont icon-my placeholder-icon"> </text>
+            <input type="number" bindchange="bindChange" id="user" name="user" placeholder="手机号码"/>
+        </view>
 
-</view>
+        <view class="item item-input">
+            <text class=" iconfont  icon-lock placeholder-icon"> </text>
+            <input type="text" bindchange="bindChange" password="true" id="password" name="password" placeholder="密码"/>
+        </view>
+
+
+    </view>
+
+    <view class="padding-horizontal">
+        <button formType="submit"  class="positive-bg light " >登录
+        </button>
+    </view>
+</form>
+<!--<navigator url="login" open-type="navigate" hover-class="none" class="text-right  forgetPassword">忘记密码
+</navigator>-->
