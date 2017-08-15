@@ -1,6 +1,6 @@
 /* pages/account/login.wxss */
 .header {
-    border-bottom: 2px solid rgba(221, 221, 221, 0.3)
+    border-bottom: 2px solid rgba(221, 221, 221, 0.5)
 }
 
 .header-tab {
@@ -8,5 +8,9 @@
     color: #00ACFF;
     text-align: center;
     background-color: #fff;
-    padding: 0.5rem 0.2rem;
+    padding: 0.8rem 0.2rem;
+}
+
+.header .border-r {
+    margin: 0.5rem 0;
 }

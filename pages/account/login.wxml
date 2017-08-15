@@ -6,6 +6,7 @@
             <view class="col-35 header-tab {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
                 账号密码登录
             </view>
+            <text class="border-r"></text>
             <view class="col-35 header-tab {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
                 手机验证登录
             </view>
