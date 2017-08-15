@@ -47,6 +47,11 @@
         <button formType="submit" class="positive-bg light ">登录
         </button>
     </view>
+    <view class="row row-horizontal-center  margin-top" >
+        <navigator url="register" open-type="navigate" hover-class="none" class="col-30 positive text-right padding-right  border-r">注册收收
+        </navigator>
+        <navigator url="register" open-type="navigate" hover-class="none" class="col-30 padding-left">忘记密码
+        </navigator>
+    </view>
 </form>
-<!--<navigator url="login" open-type="navigate" hover-class="none" class="text-right  forgetPassword">忘记密码
-</navigator>-->
+

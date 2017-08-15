@@ -206,3 +206,7 @@ page {
 .border-b {
     border-bottom: 1px solid rgba(221, 221, 221, 0.3) !important;
 }
+
+.placeholder-icon {
+    margin-right: 0.2rem;
+}
