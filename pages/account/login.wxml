@@ -17,7 +17,7 @@
         <view wx:if="{{currentTab==0}}">
             <view class="item item-input">
                 <text class=" iconfont icon-my placeholder-icon"></text>
-                <input type="number" bindchange="bindChange" id="user" name="user" placeholder="手机号码" focus="true"/>
+                <input type="number" bindchange="bindChange" id="account" name="account" placeholder="手机号码" focus="true"/>
             </view>
 
             <view class="item item-input">

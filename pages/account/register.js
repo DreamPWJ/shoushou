@@ -2,6 +2,8 @@
 //获取应用实例
 var app = getApp();
 var util = require('../../utils/util.js');
+import WxValidate from '../../utils/validate';
+var inputContent = {};//输入内容
 Page({
 
   /**
