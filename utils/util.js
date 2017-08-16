@@ -1,5 +1,6 @@
 var app = getApp();
 import WxValidate from 'validate';
+
 /**
  * 公共微信https请求封装
  * @param url
@@ -9,14 +10,6 @@ import WxValidate from 'validate';
  */
 function https(url, type, data, callBack, header) {
 
-    /*    wx.showToast({
-            title: '收收',
-            icon: 'loading',
-            duration: 500
-        })*/
-    /*    wx.showLoading({
-            title: '加载中',
-        })*/
     wx.request({
         url: url,
         method: type,
@@ -28,31 +21,20 @@ function https(url, type, data, callBack, header) {
         success: function (res) {
             console.log(res);
             if (res.data.code != 1001) {
-                /*        wx.hideLoading()
-                        wx.hideToast();*/
-                if(res.data.message){
-                    wx.showToast({
-                        title: res.data.message,
-                        icon: 'success',
-                        duration: 2000
-                    })
+                if (res.data.message) {
+                    showToast(res.data.message)
                 }
 
             }
             callBack(res.data);
         },
         fail: function (error) {
-            /*            wx.hideLoading()
-             wx.hideToast();*/
-            wx.showToast({
-                title: "请求失败:" + JSON.stringify(error),
-                icon: 'success',
-                duration: 2000
-            })
             console.log(error)
+            showToast("请求失败:" + JSON.stringify(error))
+
         },
         complete: function () {
-            /*  wx.hideToast();*/
+
         }
     })
 }
@@ -131,19 +113,20 @@ function showToast(title, icon, duration) {
     wx.showToast({
         title: title || "",
         icon: icon || 'success',
-        duration: duration || 1500
+        duration: duration || 2000
     })
 }
 
 /**
  * 调用验证表单方法
  */
-function wxValidate(e,wxvalidate) {
+function wxValidate(e, wxvalidate,callback) {
     const params = e.detail.value
     console.log(params);
     if (!wxvalidate.checkForm(e)) {
         const error = wxvalidate.errorList
-        wx.showModal({
+        showToast(error[0].msg);
+/*        wx.showModal({
             title: '收收提示',
             content: error[0].msg,
             showCancel: false,
@@ -153,18 +136,35 @@ function wxValidate(e,wxvalidate) {
                     console.log('用户点击确定');
                 }
             }
-        })
+        })*/
         console.log(error)
 
         return false
+    }else {
+        callback.call(this)
     }
 }
+
+/**
+ * 获取验证码公共方法
+ */
+function getVerifyCode(account) {
+    this.https(app.globalData.api + "/api/util/send_sms_validcode/" + account, "GET", {},
+        function (data) {
+            if (data.code == 1001) {
+                return data.data;
+            }
+        }
+    )
+}
+
 module.exports = {
     https: https,
     authorization: authorization,
     isLogin: isLogin,
     isLoginModal: isLoginModal,
     showToast: showToast,
-    wxValidate:wxValidate
+    wxValidate: wxValidate,
+    getVerifyCode: getVerifyCode
 
 }

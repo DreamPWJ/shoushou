@@ -11,7 +11,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        currentTab: 0    // tab切换
+        currentTab: 0,   // tab切换
+        vcdisabled: true,//验证码按钮状态
     },
 
     /**
@@ -55,28 +56,6 @@ Page({
                         }*/
         });
 
-        //验证表单
-        this.WxValidate = new WxValidate({
-                account: {  //验证规则 input name值
-                    required: true,
-                    tel: true
-                },
-                password: {
-                    required: true,
-                    minlength: 6,
-                    maxlength: 18
-                },
-            },
-            {
-                account: { //提示信息
-                    required: "请填写真实手机号码",
-                },
-                password: { //提示信息
-                    required: "请填写密码",
-                    minlength: "密码至少输入6个字符",
-                    maxlength: "密码最多输入18个字符"
-                }
-            })
     },
 
     /**
@@ -134,22 +113,72 @@ Page({
         inputContent[e.currentTarget.id] = e.detail.value
     },
     /**
+     * 获取验证码
+     */
+    getVerifyCode: function (e) {
+        var verifycode = util.getVerifyCode(inputContent['user']);
+        console.log(verifycode);
+    },
+    /**
      * 登录提交
      */
     loginSubmit: function (e) {
-        util.wxValidate(e, this.WxValidate);
-        /*     console.log(wx.getSystemInfoSync().platform);*/
-        //用户登录
-        util.https(app.globalData.api + "/api/user/login", "POST", {
-                account: inputContent.account,
-                password: inputContent.password,
-                client: 0,
-                openID: wx.getStorageSync("openid")
-            },
-            function (data) {
-                console.log(data);
-            }
-        )
+        if (this.data.currentTab == 0) {
+            //验证表单
+            this.WxValidate = new WxValidate({
+                    user: {  //验证规则 input name值
+                        required: true,
+                        tel: true
+                    }
+                },
+                {
+                    user: { //提示信息
+                        required: "请填写真实手机号码",
+                    }
+                })
+
+        } else if (this.data.currentTab == 1) {
+            //验证表单
+            this.WxValidate = new WxValidate({
+                    account: {  //验证规则 input name值
+                        required: true,
+                        tel: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 18
+                    },
+                },
+                {
+                    account: { //提示信息
+                        required: "请填写真实手机号码",
+                    },
+                    password: { //提示信息
+                        required: "请填写密码",
+                        minlength: "密码至少输入6个字符",
+                        maxlength: "密码最多输入18个字符"
+                    }
+                })
+
+        }
+
+        util.wxValidate(e, this.WxValidate, function () {
+            /*     console.log(wx.getSystemInfoSync().platform);*/
+            //用户登录
+            util.https(app.globalData.api + "/api/user/login", "POST", {
+                    account: inputContent.account,
+                    password: inputContent.password,
+                    client: 0,
+                    openID: wx.getStorageSync("openid"),
+                    invitecode: ""
+                },
+                function (data) {
+
+                }
+            )
+        });
+
     },
     /**
      * 点击tab切换

@@ -3,8 +3,9 @@
  *
  * @param {Object} rules 验证字段的规则
  * @param {Object} messages 验证字段的提示信息
- * https://github.com/skyvow/m-mall
+ * https://github.com/skyvow
  */
+
 class WxValidate {
     constructor(rules = {}, messages = {}) {
         Object.assign(this, {
@@ -20,13 +21,14 @@ class WxValidate {
     __init() {
         this.__initMethods()
         this.__initDefaults()
-        this.__initErrorList()
+        this.__initData()
     }
 
     /**
-     * 初始化错误信息
+     * 初始化数据
      */
-    __initErrorList() {
+    __initData() {
+        this.form = {}
         this.errorList = []
     }
 
@@ -69,7 +71,12 @@ class WxValidate {
             required(value, param) {
                 if (!that.depend(param)) {
                     return 'dependency-mismatch'
+                } else if (typeof value === 'number') {
+                    value = value.toString()
+                } else if (typeof value === 'boolean') {
+                    return !0
                 }
+
                 return value.length > 0
             },
             /**
@@ -187,7 +194,7 @@ class WxValidate {
      */
     isValidMethod(value) {
         let methods = []
-        for(let method in this.methods) {
+        for (let method in this.methods) {
             if (method && typeof this.methods[method] === 'function') {
                 methods.push(method)
             }
@@ -214,7 +221,7 @@ class WxValidate {
             params = Array.from(arguments).slice(1)
         }
         if (params.constructor !== Array) {
-            params = [ params ]
+            params = [params]
         }
         params.forEach(function(n, i) {
             source = source.replace(new RegExp("\\{" + i + "\\}", "g"), function() {
@@ -228,7 +235,7 @@ class WxValidate {
      * 判断规则依赖是否存在
      */
     depend(param) {
-        switch(typeof param) {
+        switch (typeof param) {
             case 'boolean':
                 param = param
                 break
@@ -308,10 +315,10 @@ class WxValidate {
 
         // 缓存字段对应的值
         const data = event.detail.value
-        const value = data[param] || ''
+        const value = data[param] !== null && data[param] !== undefined ? data[param] : ''
 
         // 遍历某个指定字段的所有规则，依次验证规则，否则缓存错误信息
-        for(let method in rules) {
+        for (let method in rules) {
 
             // 判断验证方法是否存在
             if (this.isValidMethod(method)) {
@@ -330,6 +337,8 @@ class WxValidate {
                     continue
                 }
 
+                this.setValue(param, method, result, value)
+
                 // 判断是否通过验证，否则缓存错误信息，跳出循环
                 if (!result) {
                     this.formatTplAndAdd(param, rule, value)
@@ -340,13 +349,45 @@ class WxValidate {
     }
 
     /**
+     * 设置字段的默认验证值
+     * @param {String} param 字段名
+     */
+    setView(param) {
+        this.form[param] = {
+            $name: param,
+            $valid: true,
+            $invalid: false,
+            $error: {},
+            $success: {},
+            $viewValue: ``,
+        }
+    }
+
+    /**
+     * 设置字段的验证值
+     * @param {String} param 字段名
+     * @param {String} method 字段的方法
+     * @param {Boolean} result 是否通过验证
+     * @param {String} value 字段的值
+     */
+    setValue(param, method, result, value) {
+        const params = this.form[param]
+        params.$valid = result
+        params.$invalid = !result
+        params.$error[method] = !result
+        params.$success[method] = result
+        params.$viewValue = value
+    }
+
+    /**
      * 验证所有字段的规则，返回验证是否通过
      * @param {Object} event 表单数据对象
      */
     checkForm(event) {
-        this.errorList = []
+        this.__initData()
 
         for (let param in this.rules) {
+            this.setView(param)
             this.checkParam(param, this.rules[param], event)
         }
 
