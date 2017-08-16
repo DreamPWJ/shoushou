@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view >
+<view id="index">
 <!--  <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
@@ -7,4 +7,10 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>-->
+    <view class="text-center  padding">
+        <view class="isNotDataHint">
+            <view class="iconfont icon-mark"></view>
+            <text>收收小程序版正在开发中</text>
+        </view>
+    </view>
 </view>
