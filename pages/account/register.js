@@ -11,7 +11,9 @@ Page({
      * 页面的初始数据
      */
     data: {
+        paracont: "获取验证码",//验证码文字
         vcdisabled: true,//验证码按钮状态
+        verifycode: ""//返回的验证码
     },
 
     /**
@@ -73,6 +75,19 @@ Page({
      * 获取用户输入
      */
     bindChange: function (e) {
-        inputContent[e.currentTarget.id] = e.detail.value
+        inputContent[e.currentTarget.id] = e.detail.value;
+        util.verifyCodeBtn(e, this);
+    },
+    /**
+     * 获取验证码
+     */
+    getVerifyCode: function (e) {
+        var that = this;
+        util.getVerifyCode(inputContent['user'], this, function (data) {
+            that.setData({
+                verifycode: data.data
+            })
+        })
+
     },
 })

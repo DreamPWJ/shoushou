@@ -120,42 +120,90 @@ function showToast(title, icon, duration) {
 /**
  * 调用验证表单方法
  */
-function wxValidate(e, wxvalidate,callback) {
+function wxValidate(e, wxvalidate, callback) {
     const params = e.detail.value
     console.log(params);
     if (!wxvalidate.checkForm(e)) {
         const error = wxvalidate.errorList
         showToast(error[0].msg);
-/*        wx.showModal({
-            title: '收收提示',
-            content: error[0].msg,
-            showCancel: false,
-            confirmColor: "#00ACFF",
-            success: function (res) {
-                if (res.confirm) {
-                    console.log('用户点击确定');
-                }
-            }
-        })*/
+        /*        wx.showModal({
+                    title: '收收提示',
+                    content: error[0].msg,
+                    showCancel: false,
+                    confirmColor: "#00ACFF",
+                    success: function (res) {
+                        if (res.confirm) {
+                            console.log('用户点击确定');
+                        }
+                    }
+                })*/
         console.log(error)
 
         return false
-    }else {
+    } else {
         callback.call(this)
+    }
+}
+
+/**
+ * 改变验证码按钮状态
+ */
+function verifyCodeBtn(e, that) {
+    if (e.currentTarget.id == 'user' && (/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
+        that.setData({
+            vcdisabled: false
+        })
+    } else if (e.currentTarget.id == 'user' && !(/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
+        that.setData({
+            vcdisabled: true
+        })
     }
 }
 
 /**
  * 获取验证码公共方法
  */
-function getVerifyCode(account) {
+function getVerifyCode(account, that, callback) {
+    var second = 120,
+        timePromise = undefined;
+    timePromise = setInterval(function () {
+        if (second <= 0) {
+            clearInterval(timePromise);
+            that.setData({
+                paracont: "重发验证码",
+                vcdisabled: false
+
+            })
+        } else {
+            that.setData({
+                paracont: second + "秒后重试",
+                vcdisabled: true
+
+            })
+            second--;
+        }
+    }, 1000, 122);
+
     this.https(app.globalData.api + "/api/util/send_sms_validcode/" + account, "GET", {},
         function (data) {
             if (data.code == 1001) {
-                return data.data;
+                callback.call(this, data)
             }
         }
     )
+}
+
+/**
+ * 点击tab切换
+ */
+function swichNav(e, that) {
+    if (that.data.currentTab === e.target.dataset.current) {
+        return false;
+    } else {
+        that.setData({
+            currentTab: e.target.dataset.current
+        })
+    }
 }
 
 module.exports = {
@@ -165,6 +213,7 @@ module.exports = {
     isLoginModal: isLoginModal,
     showToast: showToast,
     wxValidate: wxValidate,
-    getVerifyCode: getVerifyCode
-
+    verifyCodeBtn: verifyCodeBtn,
+    getVerifyCode: getVerifyCode,
+    swichNav: swichNav
 }

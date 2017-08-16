@@ -12,7 +12,9 @@ Page({
      */
     data: {
         currentTab: 0,   // tab切换
+        paracont: "获取验证码",//验证码文字
         vcdisabled: true,//验证码按钮状态
+        verifycode: ""//返回的验证码
     },
 
     /**
@@ -110,22 +112,29 @@ Page({
      * 获取用户输入
      */
     bindChange: function (e) {
-        inputContent[e.currentTarget.id] = e.detail.value
+        inputContent[e.currentTarget.id] = e.detail.value;
+        util.verifyCodeBtn(e, this);
     },
     /**
      * 获取验证码
      */
     getVerifyCode: function (e) {
-        var verifycode = util.getVerifyCode(inputContent['user']);
-        console.log(verifycode);
+        var that = this;
+        util.getVerifyCode(inputContent['user'], this, function (data) {
+            that.setData({
+                verifycode: data.data
+            })
+        })
+
     },
     /**
      * 登录提交
      */
     loginSubmit: function (e) {
-        if (this.data.currentTab == 0) {
+        var that = this;
+        if (that.data.currentTab == 0) {
             //验证表单
-            this.WxValidate = new WxValidate({
+            that.WxValidate = new WxValidate({
                     user: {  //验证规则 input name值
                         required: true,
                         tel: true
@@ -137,9 +146,9 @@ Page({
                     }
                 })
 
-        } else if (this.data.currentTab == 1) {
+        } else if (that.data.currentTab == 1) {
             //验证表单
-            this.WxValidate = new WxValidate({
+            that.WxValidate = new WxValidate({
                     account: {  //验证规则 input name值
                         required: true,
                         tel: true
@@ -163,20 +172,39 @@ Page({
 
         }
 
-        util.wxValidate(e, this.WxValidate, function () {
+        util.wxValidate(e, that.WxValidate, function () {
             /*     console.log(wx.getSystemInfoSync().platform);*/
-            //用户登录
-            util.https(app.globalData.api + "/api/user/login", "POST", {
-                    account: inputContent.account,
-                    password: inputContent.password,
-                    client: 0,
-                    openID: wx.getStorageSync("openid"),
-                    invitecode: ""
-                },
-                function (data) {
-
+            //用户手机登录
+            if (that.data.currentTab == 0) {
+                if (that.data.verifycode != inputContent.verifycode) {
+                    util.showToast("验证码输入不正确")
+                    return;
                 }
-            )
+                util.https(app.globalData.api + "/api/user/login_mobile", "POST", {
+                        mobile: inputContent.user,
+                        code: inputContent.verifycode,
+                        client: 0,
+                        openID: wx.getStorageSync("openid"),
+                        invitecode: ""
+                    },
+                    function (data) {
+
+                    }
+                )
+            } else if (that.data.currentTab == 1) { //用户名密码登录
+                util.https(app.globalData.api + "/api/user/login", "POST", {
+                        account: inputContent.account,
+                        password: inputContent.password,
+                        client: 0,
+                        openID: wx.getStorageSync("openid"),
+                        invitecode: ""
+                    },
+                    function (data) {
+
+                    }
+                )
+            }
+
         });
 
     },
@@ -184,13 +212,6 @@ Page({
      * 点击tab切换
      */
     swichNav: function (e) {
-        var that = this;
-        if (this.data.currentTab === e.target.dataset.current) {
-            return false;
-        } else {
-            that.setData({
-                currentTab: e.target.dataset.current
-            })
-        }
+        util.swichNav(e, this)
     }
 })
