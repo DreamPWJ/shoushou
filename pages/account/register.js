@@ -13,7 +13,16 @@ Page({
     data: {
         paracont: "获取验证码",//验证码文字
         vcdisabled: true,//验证码按钮状态
-        verifycode: ""//返回的验证码
+        verifycode: "",//返回的验证码
+        usertype: [  //用户类型
+            {value: 1, name: '信息供应者', checked: 'true'},
+   /*         {value: 2, name: '回收商'}*/
+        ],
+        utitem: [ //用户类型数组
+            {value: 2, name: '上门回收者'},
+            {value: 3, name: '货场'},
+            {value: 4, name: '二手商家'},
+        ]
     },
 
     /**
@@ -70,6 +79,16 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    /**
+     * radio发生change事件
+     */
+    radioChange: function (e) {
+        if (e.target.dataset.current == 0) {
+            console.log('用户类型radio发生change事件，携带value值为：', e.detail.value)
+        } else if (e.target.dataset.current == 1) {
+            console.log('回收商类型radio发生change事件，携带value值为：', e.detail.value)
+        }
     },
     /**
      * 获取用户输入

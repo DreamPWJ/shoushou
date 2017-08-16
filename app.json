@@ -8,6 +8,7 @@
     "pages/account/account",
     "pages/account/login",
     "pages/account/register",
+    "pages/util/help",
     "pages/logs/logs"
   ],
   "window": {
