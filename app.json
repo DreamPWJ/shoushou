@@ -8,6 +8,8 @@
     "pages/account/account",
     "pages/account/login",
     "pages/account/register",
+    "pages/account/organizingdata",
+    "pages/account/findpassword",
     "pages/util/help",
     "pages/logs/logs"
   ],

@@ -52,7 +52,7 @@
         <navigator url="register" open-type="navigate" hover-class="none"
                    class="col-30 positive text-right padding-right  border-r">注册收收
         </navigator>
-        <navigator url="register" open-type="navigate" hover-class="none" class="col-30 padding-left">忘记密码
+        <navigator url="findpassword" open-type="navigate" hover-class="none" class="col-30 padding-left">忘记密码
         </navigator>
     </view>
 </form>
