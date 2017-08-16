@@ -1,5 +1,4 @@
 var app = getApp();
-import WxValidate from 'validate';
 
 /**
  * 公共微信https请求封装
@@ -43,7 +42,7 @@ function https(url, type, data, callBack, header) {
  * 接口API授权 type 1.是公共授权  2.登录授权
  */
 function authorization(type, callback) {
-    if (type == 1) {
+    if (type == 1) { //1.是公共授权
         //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
         if (!wx.getStorageSync("userid") && (!wx.getStorageSync("token") || wx.getStorageSync == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
             this.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials'},
@@ -60,6 +59,8 @@ function authorization(type, callback) {
                 }
             )
         }
+    } else if (type == 2) {  //2.登录授权
+
     }
 
 }
