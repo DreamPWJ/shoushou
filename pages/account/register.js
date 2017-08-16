@@ -16,7 +16,7 @@ Page({
         verifycode: "",//返回的验证码
         usertype: [  //用户类型
             {value: 1, name: '信息供应者', checked: 'true'},
-   /*         {value: 2, name: '回收商'}*/
+            /*         {value: 2, name: '回收商'}*/
         ],
         utitem: [ //用户类型数组
             {value: 2, name: '上门回收者'},
@@ -109,4 +109,74 @@ Page({
         })
 
     },
+    /**
+     * 注册提交
+     */
+    registerSubmit: function (e) {
+        var that = this;
+        //验证表单
+        that.WxValidate = new WxValidate({
+                user: {  //验证规则 input name值
+                    required: true,
+                    tel: true
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+                confirmpassword: {
+                    required: true,
+                    minlength: 6
+                },
+                verifycode: {
+                    required: true,
+                },
+                invitecode: {
+                    required: true,
+                }
+            },
+            {
+                user: { //提示信息
+                    required: "请填写真实手机号码",
+                },
+                password: { //提示信息
+                    required: "请填写密码",
+                    minlength: "密码至少输入6个字符"
+                },
+                confirmpassword: { //提示信息
+                    required: "请填写确认密码",
+                    minlength: "确认密码至少输入6个字符"
+                }
+            })
+
+
+        util.wxValidate(e, that, function () {
+            /*     console.log(wx.getSystemInfoSync().platform);*/
+            if (inputContent.confirmpassword != inputContent.password) {
+                util.showToast("两次输入的密码不一致")
+                return;
+            }
+            if (that.data.verifycode != inputContent.verifycode) {
+                util.showToast("验证码输入不正确")
+                return;
+            }
+            util.https(app.globalData.api + "/api/user/regnew", "POST", {
+                    account: inputContent.user,
+                    password: inputContent.password,
+                    confirmpassword: inputContent.confirmpassword,
+                    code: inputContent.verifycode,
+                    client: 0,
+                    openID: wx.getStorageSync("openid"),
+                    invitecode: inputContent.invitecode,
+                    services: [1]
+                },
+                function (data) {
+
+                }
+            )
+        })
+
+
+
+    }
 })

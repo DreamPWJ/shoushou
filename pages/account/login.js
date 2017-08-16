@@ -155,8 +155,7 @@ Page({
                     },
                     password: {
                         required: true,
-                        minlength: 6,
-                        maxlength: 18
+                        minlength: 6
                     },
                 },
                 {
@@ -165,14 +164,13 @@ Page({
                     },
                     password: { //提示信息
                         required: "请填写密码",
-                        minlength: "密码至少输入6个字符",
-                        maxlength: "密码最多输入18个字符"
+                        minlength: "密码至少输入6个字符"
                     }
                 })
 
         }
 
-        util.wxValidate(e, that.WxValidate, function () {
+        util.wxValidate(e, that, function () {
             /*     console.log(wx.getSystemInfoSync().platform);*/
             //用户手机登录
             if (that.data.currentTab == 0) {

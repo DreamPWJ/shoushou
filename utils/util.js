@@ -120,11 +120,11 @@ function showToast(title, icon, duration) {
 /**
  * 调用验证表单方法
  */
-function wxValidate(e, wxvalidate, callback) {
+function wxValidate(e, that, callback) {
     const params = e.detail.value
-    console.log(params);
-    if (!wxvalidate.checkForm(e)) {
-        const error = wxvalidate.errorList
+    /*    console.log(params);*/
+    if (!that.WxValidate.checkForm(e)) {
+        const error = that.WxValidate.errorList
         showToast(error[0].msg);
         /*        wx.showModal({
                     title: '收收提示',
@@ -137,7 +137,7 @@ function wxValidate(e, wxvalidate, callback) {
                         }
                     }
                 })*/
-        console.log(error)
+        /*      console.log(error)*/
 
         return false
     } else {

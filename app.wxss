@@ -223,3 +223,9 @@ button::after {
     background-color: #00ACFF;
     opacity: 0.7;
 }
+
+.positive-disabled-bg {
+    color: #ffffff!important;
+    background-color: #00ACFF!important;
+    opacity: 0.5!important;
+}
