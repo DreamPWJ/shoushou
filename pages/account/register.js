@@ -146,6 +146,12 @@ Page({
                 confirmpassword: { //提示信息
                     required: "请填写确认密码",
                     minlength: "确认密码至少输入6个字符"
+                },
+                verifycode: { //提示信息
+                    required: "请填写验证码"
+                },
+                invitecode: { //提示信息
+                    required: "请填写邀请码"
                 }
             })
 
@@ -175,7 +181,6 @@ Page({
                 }
             )
         })
-
 
 
     }
