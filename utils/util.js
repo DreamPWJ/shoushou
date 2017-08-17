@@ -23,17 +23,11 @@ function https(url, type, data, callBack, header) {
         }),
         success: function (res) {
             console.log(res);
-            if (res.data.code != 1001) {
-                if (res.data.message) {
-                    showToast(res.data.message)
-                }
-
-            }
             callBack(res.data);
         },
         fail: function (error) {
             console.log(error)
-            showToast("请求失败:" + JSON.stringify(error))
+            showToast("收收请求失败")
 
         },
         complete: function () {
@@ -167,24 +161,29 @@ function showModal(title, content, confirmText, cancelText, callback, showCancel
 }
 
 /**
+ * toolTip方法
+ */
+function toolTip(that, msg, type) {
+    //提示字段值
+    that.setData(
+        {
+            popMsg: msg,
+            popType: type || "tool-tip-message"
+        }
+    );
+}
+
+/**
  * 调用验证表单方法
  */
 function wxValidate(e, that, callback) {
-    that.setData( //提示字段值清空
-        {popMsg: ""}
-    );
+    toolTip(that,"")
     const params = e.detail.value
     /*    console.log(params);*/
     if (!that.WxValidate.checkForm(e)) {
         const error = that.WxValidate.errorList
         //提示字段值
-        that.setData(
-            {
-                popMsg: error[0].msg,
-                popType: "tool-tip-message"
-            }
-        );
-        /*  showToast(error[0].msg);*/
+        toolTip(that,error[0].msg)
         /*      console.log(error)*/
 
         return false
@@ -323,6 +322,7 @@ module.exports = {
     isLoginModal: isLoginModal,
     showToast: showToast,
     showModal: showModal,
+    toolTip:toolTip,
     wxValidate: wxValidate,
     verifyCodeBtn: verifyCodeBtn,
     getVerifyCode: getVerifyCode,

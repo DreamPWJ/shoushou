@@ -152,7 +152,7 @@ Page({
             //用户手机登录
             if (that.data.currentTab == 0) {
                 if (that.data.verifycode != inputContent.verifycode) {
-                    util.showToast("验证码输入不正确")
+                    util.toolTip(that,"验证码输入不正确")
                     return;
                 }
                 util.https(app.globalData.api + "/api/user/login_mobile", "POST", {
@@ -163,7 +163,12 @@ Page({
                         invitecode: ""
                     },
                     function (data) {
-                        that.loginSucess(data);
+                        if(data.code==1001){
+                            that.loginSucess(data);
+                        }else {
+                            util.toolTip(that,data.message)
+                        }
+
 
                     }
                 )
@@ -176,7 +181,12 @@ Page({
                         invitecode: ""
                     },
                     function (data) {
-                        that.loginSucess(data);
+                        if(data.code==1001){
+                            that.loginSucess(data);
+                        }else {
+                            util.toolTip(that,data.message)
+                        }
+
                     }
                 )
             }

@@ -159,11 +159,11 @@ Page({
         util.wxValidate(e, that, function () {
             /*     console.log(wx.getSystemInfoSync().platform);*/
             if (inputContent.confirmpassword != inputContent.password) {
-                util.showToast("两次输入的密码不一致")
+                util.toolTip(that,"两次输入的密码不一致")
                 return;
             }
             if (that.data.verifycode != inputContent.verifycode) {
-                util.showToast("验证码输入不正确")
+                util.toolTip(that,"验证码输入不正确")
                 return;
             }
             util.https(app.globalData.api + "/api/user/regnew", "POST", {
@@ -177,7 +177,11 @@ Page({
                     services: [1]
                 },
                 function (data) {
+                    if (data.code == 1001) {
 
+                    } else {
+                        util.toolTip(that, data.message);
+                    }
                 }
             )
         })
