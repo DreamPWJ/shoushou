@@ -1,0 +1,6 @@
+<!--pages/util/addresstemplate.wxml-->
+<template name="address">
+    <view>
+地址
+    </view>
+</template>

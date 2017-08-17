@@ -1,7 +1,9 @@
 <!--pages/account/organizingdata.wxml-->
+<import src="../util/addresstemplate.wxml" />
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
+<template wx:if="{{false}}" is="address" />
 <form bindsubmit="organizingdataSubmit">
     <view class="list  ">
 
