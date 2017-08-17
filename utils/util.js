@@ -8,7 +8,7 @@ var app = getApp();
  * @param callBack
  */
 function https(url, type, data, callBack, header) {
-    if(!data.isShowLoad){
+    if (!data.isShowLoad) {
         wx.showLoading({
             title: '加载中',
         })
@@ -50,7 +50,7 @@ function authorization(type, callback) {
     if (type == 1) { //1.是公共授权
         //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
         if (!wx.getStorageSync("userid") && (!wx.getStorageSync("token") || wx.getStorageSync == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
-            this.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials',},
+            this.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials'},
                 function (data) {
                     if (data.access_token) {
                         wx.setStorageSync('token', data.access_token);//公共接口授权token
@@ -65,7 +65,26 @@ function authorization(type, callback) {
             )
         }
     } else if (type == 2) {  //2.登录授权
+        //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
+        if (wx.getStorageSync("userid") && ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199) {
+            this.https(app.globalData.api + "/token", "POST", {
+                    grant_type: 'password',
+                    username: wx.getStorageSync("userid"),
+                    password: wx.getStorageSync("usersecret")
+                },
+                function (data) {
+                    if (data.access_token) {
+                        wx.setStorageSync('token', data.access_token);//登录接口授权token
+                        wx.setStorageSync('expires_in', new Date());//登录接口授权token 有效时间
+                    }
+                    callback.call(this)
 
+                }, {
+                    'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            )
+        }
     }
 
 }
@@ -124,6 +143,30 @@ function showToast(title, icon, duration) {
 }
 
 /**
+ * ​Modal显示模态弹窗
+ */
+function showModal(title, content, confirmText, cancelText, callback, showCancel) {
+    var that=this;
+    wx.showModal({
+        title: title,
+        content: content,
+        confirmText: confirmText,
+        cancelText: cancelText,
+        showCancel: showCancel||true,
+        confirmColor: "#00ACFF",
+        cancelColor: "#33cd5f",
+        success: function (res) {
+            callback.call(that, res)
+            /*          if (res.confirm) {
+                          console.log('用户点击确定')
+                      } else if (res.cancel) {
+                          console.log('用户点击取消')
+                      }*/
+        }
+    })
+}
+
+/**
  * 调用验证表单方法
  */
 function wxValidate(e, that, callback) {
@@ -132,17 +175,6 @@ function wxValidate(e, that, callback) {
     if (!that.WxValidate.checkForm(e)) {
         const error = that.WxValidate.errorList
         showToast(error[0].msg);
-        /*        wx.showModal({
-                    title: '收收提示',
-                    content: error[0].msg,
-                    showCancel: false,
-                    confirmColor: "#00ACFF",
-                    success: function (res) {
-                        if (res.confirm) {
-                            console.log('用户点击确定');
-                        }
-                    }
-                })*/
         /*      console.log(error)*/
 
         return false
@@ -212,14 +244,79 @@ function swichNav(e, that) {
     }
 }
 
+/**
+ * 微信授权登录
+ */
+function wxLogin() {
+    var that = this;
+    //调用接口获取登录凭证（code）进而换取用户登录态信息，包括用户的唯一标识（openid）
+    if (!wx.getStorageSync("openid")) { //初次授权登录 获取openid
+        wx.login({
+            success: function (res) {
+                if (res.code) {
+                    //根据微信Code获取对应的openId
+                    that.https(app.globalData.api + "/api/wc/GetOpenid", "GET", {
+                            code: res.code,
+                            UserLogID: wx.getStorageSync("userid") || ""
+                        },
+                        function (data) {
+                            if (data.code == 1001) {
+                                wx.setStorageSync("openid", data.data.OpenId);//微信openid
+                                wx.setStorageSync("userid", data.data.UserLogID);
+                                wx.setStorageSync("usersecret", data.data.usersecret);
+                                //根据会员ID获取会员账号基本信息
+                                that.getUserInfo(function () {
+                                    
+                                });
+                            }
+
+                        })
+
+                } else {
+                    console.log('获取微信用户登录状态失败！' + res.errMsg);
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 根据会员ID获取会员账号基本信息
+ */
+function getUserInfo(callback) {
+    var that = this;
+    this.https(app.globalData.api + "/api/user/get/" + wx.getStorageSync("userid"), "GET", {},
+        function (data) {
+            if (data.code == 1001) {
+                wx.setStorageSync("user", data.data);
+                var services = data.data.services;
+                //用户会员类型  0 无 1信息提供者  2回收者
+                wx.setStorageSync("usertype", (services == null || services.length == 0) ? 0 : (services.length == 1 && services.indexOf('1') != -1) ? 1 : 2);
+                /*           if (services == null || services.length == 0) {//旧会员 完善信息*/
+                that.showModal('收收提示', '尊敬的用户,您好！旧会员需完善资料后才能进行更多的操作！', '完善资料', '暂不完善', function (res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定')
+                    }
+                })
+
+                /*   }*/
+                callback.call(this, data)
+            }
+        }
+    )
+}
+
 module.exports = {
     https: https,
     authorization: authorization,
     isLogin: isLogin,
     isLoginModal: isLoginModal,
     showToast: showToast,
+    showModal: showModal,
     wxValidate: wxValidate,
     verifyCodeBtn: verifyCodeBtn,
     getVerifyCode: getVerifyCode,
-    swichNav: swichNav
+    swichNav: swichNav,
+    wxLogin: wxLogin,
+    getUserInfo: getUserInfo
 }

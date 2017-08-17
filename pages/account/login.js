@@ -29,34 +29,11 @@ Page({
         wx.removeStorageSync("user");
         wx.removeStorageSync("token");
         wx.removeStorageSync("expires_in");
+        //接口API授权 type 1.是公共授权  2.登录授权
         util.authorization(1, function () {
-            //调用接口获取登录凭证（code）进而换取用户登录态信息，包括用户的唯一标识（openid）
-            /*            if (!wx.getStorageSync("openid")) { //初次授权登录 获取openid
-                            wx.login({
-                                success: function (res) {
-                                    if (res.code) {
-                                        //根据微信Code获取对应的openId
-                                        util.https(app.globalData.api + "/api/wc/GetOpenid", "GET", {
-                                                code: res.code,
-                                                UserLogID: wx.getStorageSync("userid") || ""
-                                            },
-                                            function (data) {
-                                                console.log(data);
-                                                if (data.code == 1001) {
-                                                    wx.setStorageSync("openid", data.data.OpenId);//微信openid
-                                                    wx.setStorageSync("userid", data.data.UserLogID);
-                                                    wx.setStorageSync("usersecret", data.data.usersecret);
-                                                }
-
-                                            })
-
-                                    } else {
-                                        console.log('获取用户登录状态失败！' + res.errMsg);
-                                    }
-                                }
-                            });
-                        }*/
-        });
+            //微信授权登录
+            util.wxLogin();
+        })
 
     },
 
@@ -186,6 +163,7 @@ Page({
                         invitecode: ""
                     },
                     function (data) {
+                        that.loginSucess(data);
 
                     }
                 )
@@ -198,12 +176,28 @@ Page({
                         invitecode: ""
                     },
                     function (data) {
-
+                        that.loginSucess(data);
                     }
                 )
             }
 
         });
+
+    },
+    /**
+     * 登录成功后
+     */
+    loginSucess: function (data) {
+        wx.setStorageSync("userid", data.data.userid);
+        wx.setStorageSync("usersecret", data.data.usersecret);
+        //根据会员ID获取会员账号基本信息
+        util.getUserInfo(function (data) {
+            //返回上一页
+            wx.navigateBack({
+                delta: 1
+            })
+
+        })
 
     },
     /**
