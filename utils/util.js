@@ -46,10 +46,10 @@ function https(url, type, data, callBack, header) {
 /**
  * 接口API授权 type 1.是公共授权  2.登录授权  immediately立刻执行授权
  */
-function authorization(type, callback,immediately) {
+function authorization(type, callback, immediately) {
     if (type == 1) { //1.是公共授权
         //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
-        if (!wx.getStorageSync("userid") && (immediately||(!wx.getStorageSync("token") || wx.getStorageSync("token") == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
+        if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || wx.getStorageSync("token") == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
             this.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials'},
                 function (data) {
                     if (data.access_token) {
@@ -66,7 +66,7 @@ function authorization(type, callback,immediately) {
         }
     } else if (type == 2) {  //2.登录授权
         //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
-        if (wx.getStorageSync("userid") && (immediately||((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
+        if (wx.getStorageSync("userid") && (immediately || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
             this.https(app.globalData.api + "/token", "POST", {
                     grant_type: 'password',
                     username: wx.getStorageSync("userid"),
@@ -170,11 +170,21 @@ function showModal(title, content, confirmText, cancelText, callback, showCancel
  * 调用验证表单方法
  */
 function wxValidate(e, that, callback) {
+    that.setData( //提示字段值清空
+        {popMsg: ""}
+    );
     const params = e.detail.value
     /*    console.log(params);*/
     if (!that.WxValidate.checkForm(e)) {
         const error = that.WxValidate.errorList
-        showToast(error[0].msg);
+        //提示字段值
+        that.setData(
+            {
+                popMsg: error[0].msg,
+                popType: "tool-tip-message"
+            }
+        );
+        /*  showToast(error[0].msg);*/
         /*      console.log(error)*/
 
         return false

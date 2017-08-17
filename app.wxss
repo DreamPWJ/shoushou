@@ -225,7 +225,84 @@ button::after {
 }
 
 .positive-disabled-bg {
-    color: #ffffff!important;
-    background-color: #00ACFF!important;
-    opacity: 0.5!important;
+    color: #ffffff !important;
+    background-color: #00ACFF !important;
+    opacity: 0.5 !important;
+}
+
+.tool-tip {
+    position: fixed;
+    z-index: 10000;
+    top: 15px;
+    width: 100%;
+    text-align: center;
+    animation: tooltipmessage 3s;
+    -moz-animation: tooltipmessage 3s; /* Firefox */
+    -webkit-animation: tooltipmessage 3s; /* Safari 和 Chrome */
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+.tool-tip-message {
+    background-color: #ef473a;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1.2rem;
+    -webkit-box-shadow: 1px 1px 2px rgba(136, 136, 136, 0.5);
+    box-shadow: 1px 1px 2px rgba(136, 136, 136, 0.5);
+}
+
+.tool-tip-message-success {
+    background-color: #00ACFF;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1.2rem;
+    -webkit-box-shadow: 1px 1px 2px rgba(136, 136, 136, 0.5);
+    box-shadow: 1px 1px 2px rgba(136, 136, 136, 0.5);
+}
+@-webkit-keyframes tooltipmessage {
+    0% {
+        -webkit-transform: translate(0, -1em);
+        transform: translate(0, -1em);
+    }
+    10% {
+        -webkit-transform: translate(0, 0em);
+        transform: translate(0, 0em);
+        opacity: 1;
+    }
+    90% {
+        -webkit-transform: translate(0, 0em);
+        transform: translate(0, 0em);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translate(0, -1em);
+        transform: translate(0, -1em);
+        opacity: 0;
+    }
+}
+
+@keyframes tooltipmessage {
+    0% {
+        -webkit-transform: translate(0, -1em);
+        transform: translate(0, -1em);
+    }
+    10% {
+        -webkit-transform: translate(0, 0em);
+        transform: translate(0, 0em);
+        opacity: 1;
+    }
+    90% {
+        -webkit-transform: translate(0, 0em);
+        transform: translate(0, 0em);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translate(0, -1em);
+        transform: translate(0, -1em);
+        opacity: 0;
+    }
 }

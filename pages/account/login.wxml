@@ -1,4 +1,7 @@
 <!--pages/account/login.wxml-->
+<view class="tool-tip " wx:if="{{popMsg}}">
+    <text class="{{popType}}">{{popMsg}}</text>
+</view>
 <form bindsubmit="loginSubmit">
     <view class="list card margin-top">
 
@@ -16,13 +19,16 @@
         <view wx:if="{{currentTab==0}}">
             <view class="item item-input">
                 <text class=" iconfont icon-my placeholder-icon"></text>
-                <input type="number" bindinput="bindChange" id="user" name="user" maxlength="11" placeholder="手机号码" focus="true"/>
+                <input type="number" bindinput="bindChange" id="user" name="user" maxlength="11" placeholder="手机号码"
+                       />
             </view>
 
             <view class="item item-input">
                 <text class=" iconfont  icon-unlock placeholder-icon"></text>
                 <input type="number" bindinput="bindChange" id="verifycode" name="verifycode" placeholder="验证码"/>
-                <button bindtap="getVerifyCode" disabled="{{vcdisabled}}" class="positive-bg light verify-code col-30 button-small" hover-class="button-hover">{{paracont}}
+                <button bindtap="getVerifyCode" disabled="{{vcdisabled}}"
+                        class="positive-bg light verify-code col-30 button-small" hover-class="button-hover">
+                    {{paracont}}
                 </button>
             </view>
         </view>
@@ -31,8 +37,9 @@
         <view wx:if="{{currentTab==1}}">
             <view class="item item-input">
                 <text class=" iconfont icon-my placeholder-icon"></text>
-                <input type="number" bindinput="bindChange" id="account" maxlength="11" name="account" placeholder="手机号码"
-                       focus="true"/>
+                <input type="number" bindinput="bindChange" id="account" maxlength="11" name="account"
+                       placeholder="手机号码"
+                       />
             </view>
 
             <view class="item item-input">
