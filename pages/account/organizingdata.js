@@ -106,7 +106,15 @@ Page({
 
 
         util.wxValidate(e, that, function () {
-            util.https(app.globalData.api + "/api/user/set_info", "POST", {},
+            util.https(app.globalData.api + "/api/user/set_info", "POST", {
+                    services: [1],
+                    userid: wx.getStorageSync("userid"),
+                    mobile: wx.getStorageSync("user").mobile,
+                    shopname: inputContent.shopname,
+                    addrdetail:inputContent.addrdetail,
+                    addrcode:"",
+                    img:"",
+                },
                 function (data) {
                     if (data.code == 1001) {
 

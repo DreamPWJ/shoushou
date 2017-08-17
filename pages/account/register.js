@@ -159,11 +159,11 @@ Page({
         util.wxValidate(e, that, function () {
             /*     console.log(wx.getSystemInfoSync().platform);*/
             if (inputContent.confirmpassword != inputContent.password) {
-                util.toolTip(that,"两次输入的密码不一致")
+                util.toolTip(that, "两次输入的密码不一致")
                 return;
             }
             if (that.data.verifycode != inputContent.verifycode) {
-                util.toolTip(that,"验证码输入不正确")
+                util.toolTip(that, "验证码输入不正确")
                 return;
             }
             util.https(app.globalData.api + "/api/user/regnew", "POST", {
@@ -178,6 +178,17 @@ Page({
                 },
                 function (data) {
                     if (data.code == 1001) {
+                        wx.setStorageSync("userid", data.data.userid);
+                        wx.setStorageSync("usersecret", data.data.usersecret);
+                        //接口API授权 type 1.是公共授权  2.登录授权
+                        util.authorization(2, function () {
+                            //根据会员ID获取会员账号基本信息
+                            util.getUserInfo(function (data) {
+                                wx.navigateTo({ //完善资料
+                                    url: 'organizingdata'
+                                })
+                            })
+                        }, true);
 
                     } else {
                         util.toolTip(that, data.message);
