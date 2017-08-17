@@ -29,10 +29,16 @@ Page({
      */
     onLoad: function (options) {
         //接口API授权 type 1.是公共授权  2.登录授权
-        util.authorization(1, function () {
-            //微信授权登录
-            util.wxLogin();
-        });
+        if (!wx.getStorageSync("userid")) {
+            util.authorization(1, function () {
+                //微信授权登录
+                util.wxLogin();
+            });
+        } else if (wx.getStorageSync("userid")) {
+            util.authorization(2, function () {
+            });
+        }
+
     },
 
     /**

@@ -44,12 +44,12 @@ function https(url, type, data, callBack, header) {
 }
 
 /**
- * 接口API授权 type 1.是公共授权  2.登录授权
+ * 接口API授权 type 1.是公共授权  2.登录授权  immediately立刻执行授权
  */
-function authorization(type, callback) {
+function authorization(type, callback,immediately) {
     if (type == 1) { //1.是公共授权
         //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
-        if (!wx.getStorageSync("userid") && (!wx.getStorageSync("token") || wx.getStorageSync == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
+        if (!wx.getStorageSync("userid") && (immediately||(!wx.getStorageSync("token") || wx.getStorageSync("token") == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
             this.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials'},
                 function (data) {
                     if (data.access_token) {
@@ -66,7 +66,7 @@ function authorization(type, callback) {
         }
     } else if (type == 2) {  //2.登录授权
         //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
-        if (wx.getStorageSync("userid") && ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199) {
+        if (wx.getStorageSync("userid") && (immediately||((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
             this.https(app.globalData.api + "/token", "POST", {
                     grant_type: 'password',
                     username: wx.getStorageSync("userid"),
@@ -146,13 +146,13 @@ function showToast(title, icon, duration) {
  * ​Modal显示模态弹窗
  */
 function showModal(title, content, confirmText, cancelText, callback, showCancel) {
-    var that=this;
+    var that = this;
     wx.showModal({
         title: title,
         content: content,
         confirmText: confirmText,
         cancelText: cancelText,
-        showCancel: showCancel||true,
+        showCancel: showCancel || true,
         confirmColor: "#00ACFF",
         cancelColor: "#33cd5f",
         success: function (res) {
@@ -266,7 +266,7 @@ function wxLogin() {
                                 wx.setStorageSync("usersecret", data.data.usersecret);
                                 //根据会员ID获取会员账号基本信息
                                 that.getUserInfo(function () {
-                                    
+
                                 });
                             }
 
@@ -292,14 +292,14 @@ function getUserInfo(callback) {
                 var services = data.data.services;
                 //用户会员类型  0 无 1信息提供者  2回收者
                 wx.setStorageSync("usertype", (services == null || services.length == 0) ? 0 : (services.length == 1 && services.indexOf('1') != -1) ? 1 : 2);
-                /*           if (services == null || services.length == 0) {//旧会员 完善信息*/
-                that.showModal('收收提示', '尊敬的用户,您好！旧会员需完善资料后才能进行更多的操作！', '完善资料', '暂不完善', function (res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定')
-                    }
-                })
+                if (services == null || services.length == 0) {//旧会员 完善信息
+                    that.showModal('收收提示', '尊敬的用户,您好！旧会员需完善资料后才能进行更多的操作！', '完善资料', '暂不完善', function (res) {
+                        if (res.confirm) {
+                            console.log('用户点击确定')
+                        }
+                    })
 
-                /*   }*/
+                }
                 callback.call(this, data)
             }
         }

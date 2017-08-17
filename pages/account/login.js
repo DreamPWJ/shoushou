@@ -190,14 +190,18 @@ Page({
     loginSucess: function (data) {
         wx.setStorageSync("userid", data.data.userid);
         wx.setStorageSync("usersecret", data.data.usersecret);
-        //根据会员ID获取会员账号基本信息
-        util.getUserInfo(function (data) {
-            //返回上一页
-            wx.navigateBack({
-                delta: 1
-            })
+        //接口API授权 type 1.是公共授权  2.登录授权
+        util.authorization(2, function () {
+            //根据会员ID获取会员账号基本信息
+            util.getUserInfo(function (data) {
+                //返回上一页
+                wx.navigateBack({
+                    delta: 1
+                })
 
-        })
+            })
+        },true);
+
 
     },
     /**
