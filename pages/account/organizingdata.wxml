@@ -3,16 +3,16 @@
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
-<template wx:if="{{false}}" is="address" />
-<form bindsubmit="organizingdataSubmit">
-    <view class="list  ">
+<template wx:if="{{isShowPCC}}" is="address" data="{{addressinfo}}" />
+<form bindsubmit="organizingdataSubmit" wx:if="{{!isShowPCC}}">
+    <view class="list" >
 
         <view class="item item-input">
             <text class=" iconfont  icon-changshang placeholder-icon"></text>
             <input type="text" bindinput="bindChange" id="shopname" name="shopname"
                    placeholder="工作单位" maxlength="15"/>
         </view>
-        <view class="item item-input">
+        <view class="item item-input" bindtap="getAddressPCCList">
             <text class=" iconfont  icon-location placeholder-icon"></text>
             <input type="text"  disabled value=""
                    placeholder="单位地址(省市县)"/>

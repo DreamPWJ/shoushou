@@ -177,13 +177,13 @@ function toolTip(that, msg, type) {
  * 调用验证表单方法
  */
 function wxValidate(e, that, callback) {
-    toolTip(that,"")
+    toolTip(that, "")
     const params = e.detail.value
     /*    console.log(params);*/
     if (!that.WxValidate.checkForm(e)) {
         const error = that.WxValidate.errorList
         //提示字段值
-        toolTip(that,error[0].msg)
+        toolTip(that, error[0].msg)
         /*      console.log(error)*/
 
         return false
@@ -315,6 +315,25 @@ function getUserInfo(callback) {
     )
 }
 
+/**
+ * 获取省市县数据
+ */
+function getAddressPCCList(that,callback) {
+    this.https(app.globalData.api + "/api/addr/getplist", "GET", {},
+        function (data) {
+            if(data.code==1001){
+                that.setData({
+                    isShowPCC:true,
+                    addressinfo :data.data
+                })
+            }else {
+                toolTip(this,data.message)
+            }
+
+        }
+    )
+}
+
 module.exports = {
     https: https,
     authorization: authorization,
@@ -322,11 +341,12 @@ module.exports = {
     isLoginModal: isLoginModal,
     showToast: showToast,
     showModal: showModal,
-    toolTip:toolTip,
+    toolTip: toolTip,
     wxValidate: wxValidate,
     verifyCodeBtn: verifyCodeBtn,
     getVerifyCode: getVerifyCode,
     swichNav: swichNav,
     wxLogin: wxLogin,
-    getUserInfo: getUserInfo
+    getUserInfo: getUserInfo,
+    getAddressPCCList:getAddressPCCList
 }

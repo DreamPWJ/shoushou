@@ -72,7 +72,23 @@ Page({
     bindChange: function (e) {
         inputContent[e.currentTarget.id] = e.detail.value;
     },
+    /**
+     * 获取省市县数据
+     */
+    getAddressPCCList: function () {
+        util.getAddressPCCList(this, function () {
 
+        })
+    },
+    /**
+     * 选择省市县数据
+     */
+    selectAddressPCC: function () {
+        this.setData({
+            isShowPCC:false,
+            addressinfo: false
+        })
+    },
     /**
      * 完善资料提交
      */
@@ -111,9 +127,9 @@ Page({
                     userid: wx.getStorageSync("userid"),
                     mobile: wx.getStorageSync("user").mobile,
                     shopname: inputContent.shopname,
-                    addrdetail:inputContent.addrdetail,
-                    addrcode:"",
-                    img:"",
+                    addrdetail: inputContent.addrdetail,
+                    addrcode: "",
+                    img: "",
                 },
                 function (data) {
                     if (data.code == 1001) {
