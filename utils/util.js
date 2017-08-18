@@ -465,7 +465,7 @@ function uploadActionSheet(that, callback) {
                     sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
                         //上传文件
-                        uploadFile(res,that)
+                        uploadFile(res, that)
                     }
                 })
             } else if (res.tapIndex == 1) { //拍照
@@ -474,7 +474,7 @@ function uploadActionSheet(that, callback) {
                     sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
                         //上传文件
-                        uploadFile(res,that)
+                        uploadFile(res, that)
                     }
                 })
             }
@@ -489,21 +489,23 @@ function uploadActionSheet(that, callback) {
 /**
  * 上传文件
  */
-function uploadFile(res,that) {
+function uploadFile(res, that) {
     // // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
     var tempFilePaths = res.tempFilePaths
     wx.uploadFile({
-        url: app.globalData.api + "/api/util/uploadimg/"+that.data.filename, //仅为示例，非真实的接口地址
+        url: app.globalData.api + "/api/util/uploadimg/" + that.data.filename, //仅为示例，非真实的接口地址
         filePath: tempFilePaths[0],//要上传文件资源的路径
         name: 'file',//文件对应的 key , 开发者在服务器端通过这个 key 可以获取到文件二进制内容
         formData: {//HTTP 请求中其他额外的 form data
         },
-        headers: {authorization: "Bearer " + wx.getStorageSync('token')}, //授权
+        header: {authorization: "Bearer " + wx.getStorageSync('token')}, //授权
         success: function (res) {
             console.log(res);
             var data = res.data
             //do something
-            toolTip(that,"上传成功")
+            toolTip(that, "上传成功")
+        }, fail: function (res) {
+            toolTip(that, "上传失败")
         }
     })
 }
