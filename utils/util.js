@@ -33,6 +33,7 @@ function https(url, type, data, callBack, header) {
         complete: function () {
             wx.hideLoading();
             wx.stopPullDownRefresh();
+            wx.hideNavigationBarLoading();
         }
     })
 }
