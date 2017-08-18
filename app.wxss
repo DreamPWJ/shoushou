@@ -138,6 +138,10 @@ page {
     border-color: rgba(221, 221, 221, 0.3) !important;
 }
 
+.item-avatar {
+    min-height: 0;
+}
+
 .fixed-bottom {
     position: fixed;
     bottom: 0;
@@ -263,6 +267,7 @@ button::after {
     -webkit-box-shadow: 0px 1px 2px #00ACFF;
     box-shadow: 0px 1px 2px #00ACFF;
 }
+
 @-webkit-keyframes tooltipmessage {
     0% {
         -webkit-transform: translate(0, -1em);

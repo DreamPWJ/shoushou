@@ -17,6 +17,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        util.isLoginModal();
         //获取消息列表
         this.getNewsList(this.data.page);
     },

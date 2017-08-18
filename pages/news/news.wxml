@@ -1,4 +1,7 @@
 <!--pages/news/news.wxml-->
+<view class="tool-tip " wx:if="{{popMsg}}">
+    <text class="{{popType}}">{{popMsg}}</text>
+</view>
 <view>
     <view wx:if="{{isNotData}}" class="isNotDataHint">
         <view class="iconfont icon-xiaoxi"></view>

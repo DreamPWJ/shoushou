@@ -1,8 +1,17 @@
 <!--pages/account/account.wxml-->
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<view class="tool-tip " wx:if="{{popMsg}}">
+    <text class="{{popType}}">{{popMsg}}</text>
+</view>
+<view>
+    <view class="list">
+        <navigator url="register" open-type="navigate" class="item item-positive item-avatar item-icon-right user">
+            <image src="{{userdata.userfigure||'../../images/head.jpg'}}"  alt=""></image>
+            <view class="h2 {{(userdata.username==null&&userdata.nickname==null)?'padding-top':''}}">
+                {{userdata.username||userdata.nickname}}
+            </view>
+            <view class="p">{{userdata.mobile}}</view>
+            <text class="icon-accessory iconfont icon-right "></text>
+        </navigator>
     </view>
 </view>
 

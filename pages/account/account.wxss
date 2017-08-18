@@ -1,1 +1,16 @@
 /* pages/account/account.wxss */
+
+.icon, .iconfont {
+    color: #585858;
+    font-size: 1.5rem;
+}
+
+
+.user .h2, .user .p, .user .icon-right {
+    color: #fff !important;
+}
+
+.user image {
+    border: 1px solid #fff;
+}
+
