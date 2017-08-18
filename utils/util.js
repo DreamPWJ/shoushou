@@ -337,11 +337,14 @@ function getAddressPCCList(that, item, level, callback) {
         this.https(app.globalData.api + "/api/addr/getplist", "GET", {},
             function (data) {
                 if (data.code == 1001) {
+                    wx.pageScrollTo({
+                        scrollTop: 0
+                    })
                     that.setData({
                         isShowPCC: true,
-                        scrollTop: 0,
                         addressinfo: data.data
                     })
+
                 } else {
                     toolTip(that, data.message)
                 }
@@ -355,10 +358,13 @@ function getAddressPCCList(that, item, level, callback) {
         this.https(app.globalData.api + "/api/addr/getclist", "GET", {pid: item.ID},
             function (data) {
                 if (data.code == 1001) {
+                    wx.pageScrollTo({
+                        scrollTop: 0
+                    })
                     that.setData({
-                        scrollTop: 0,
                         addressinfo: data.data
                     })
+
                 } else {
                     toolTip(that, data.message)
                 }
@@ -371,10 +377,13 @@ function getAddressPCCList(that, item, level, callback) {
         this.https(app.globalData.api + "/api/addr/getdlist", "GET", {cid: item.ID},
             function (data) {
                 if (data.code == 1001) {
+                    wx.pageScrollTo({
+                        scrollTop: 0
+                    })
                     that.setData({
-                        scrollTop: 0,
                         addressinfo: data.data
                     })
+
                 } else {
                     toolTip(that, data.message)
                 }
@@ -400,8 +409,10 @@ function getAddressPCCList(that, item, level, callback) {
 /**
  * 获取当前位置 省市县数据
  */
-function getCurrentCity(that, item, level, callback) {
-
+function getCurrentCity(that, level, callback) {
+    that.setData({
+        isShowSearch: true
+    })
     this.https("https://restapi.amap.com/v3/geocode/regeo", "GET", {
             key: app.globalData.gaoDeKey,
             location: Number(that.data.handlongitude || wx.getStorageSync("longitude")).toFixed(6) + "," + Number(that.data.handlatitude || wx.getStorageSync("latitude")).toFixed(6),
@@ -426,9 +437,6 @@ function getCurrentCity(that, item, level, callback) {
  * 获取通过用POI的关键字进行条件搜索数据
  */
 function getSearchAddress(that, addrname, callback) {
-    that.setData({
-        isShowSearch: true
-    })
     this.https("https://restapi.amap.com/v3/place/text", "GET", {
             key: app.globalData.gaoDeKey,
             keywords: addrname,//查询关键词
@@ -442,6 +450,62 @@ function getSearchAddress(that, addrname, callback) {
             })
         }
     )
+}
+
+/**
+ * 打开相机或者相册
+ */
+function uploadActionSheet(that, callback) {
+    wx.showActionSheet({
+        itemList: ['从手机相册选择', '拍照'],
+        success: function (res) {
+            if (res.tapIndex == 0) { //从手机相册选择
+                wx.chooseImage({
+                    count: 1, // 默认9
+                    sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
+                    success: function (res) {
+                        //上传文件
+                        uploadFile(res,that)
+                    }
+                })
+            } else if (res.tapIndex == 1) { //拍照
+                wx.chooseImage({
+                    count: 1, // 默认9
+                    sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    success: function (res) {
+                        //上传文件
+                        uploadFile(res,that)
+                    }
+                })
+            }
+            console.log(res.tapIndex)
+        },
+        fail: function (res) {
+            console.log(res.errMsg)
+        }
+    })
+}
+
+/**
+ * 上传文件
+ */
+function uploadFile(res,that) {
+    // // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+    var tempFilePaths = res.tempFilePaths
+    wx.uploadFile({
+        url: app.globalData.api + "/api/util/uploadimg/"+that.data.filename, //仅为示例，非真实的接口地址
+        filePath: tempFilePaths[0],//要上传文件资源的路径
+        name: 'file',//文件对应的 key , 开发者在服务器端通过这个 key 可以获取到文件二进制内容
+        formData: {//HTTP 请求中其他额外的 form data
+        },
+        headers: {authorization: "Bearer " + wx.getStorageSync('token')}, //授权
+        success: function (res) {
+            console.log(res);
+            var data = res.data
+            //do something
+            toolTip(that,"上传成功")
+        }
+    })
 }
 
 module.exports = {
@@ -459,5 +523,8 @@ module.exports = {
     wxLogin: wxLogin,
     getUserInfo: getUserInfo,
     getAddressPCCList: getAddressPCCList,
-    getSearchAddress: getSearchAddress
+    getCurrentCity: getCurrentCity,
+    getSearchAddress: getSearchAddress,
+    uploadActionSheet: uploadActionSheet,
+    uploadFile: uploadFile
 }

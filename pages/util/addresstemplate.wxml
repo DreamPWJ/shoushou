@@ -1,6 +1,6 @@
 <!--pages/util/addresstemplate.wxml-->
 <template name="address">
-    <scroll-view id="address" scroll-y enable-back-to-top scroll-top="{{scrollTop}}">
+    <scroll-view id="address" scroll-y enable-back-to-top >
         <view class=" list">
             <view wx:if="{{false}}" class="isNotDataHint">
                 <view class="iconfont icon-xiaoxi"></view>

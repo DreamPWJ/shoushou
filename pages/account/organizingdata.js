@@ -9,7 +9,12 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        filename: 'User',
+        imageList: [],//本地路径
+        imgsPicAddr: [],//真实服务器图片信息数组
+        uploadtype: 4,//上传媒体操作类型 1.卖货单 2 供货单 3 买货单 4身份证 5 头像
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -71,6 +76,12 @@ Page({
      */
     bindChange: function (e) {
         inputContent[e.currentTarget.id] = e.detail.value;
+        //附近搜索
+        if (e.currentTarget.id == 'serachcontent') {
+            util.getSearchAddress(this, e.detail.value, function () {
+
+            })
+        }
     },
     /**
      * 获取省市县数据
@@ -83,8 +94,8 @@ Page({
     /**
      * 获取附近地址数据
      */
-    getSearchAddress: function (e) {
-        util.getSearchAddress(this, "", function () {
+    getCurrentCity: function (e) {
+        util.getCurrentCity(this, 3, function () {
 
         })
     },
@@ -94,7 +105,15 @@ Page({
     getAddressPois: function (e) {
         this.setData({
             isShowSearch: false,
-            addressname: e.target.dataset.items.name
+            addressname: e.currentTarget.dataset.items.name
+        })
+    },
+    /**
+     * 上传图片
+     */
+    uploadActionSheet: function (e) {
+        util.uploadActionSheet(this, function () {
+
         })
     },
     /**
