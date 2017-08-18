@@ -41,44 +41,57 @@ function https(url, type, data, callBack, header) {
  * 接口API授权 type 1.是公共授权  2.登录授权  immediately立刻执行授权
  */
 function authorization(type, callback, immediately) {
+    var timePromise1 = undefined;
+    var timePromise2 = undefined;
+    var that = this;
     if (type == 1) { //1.是公共授权
-        //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
-        if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || wx.getStorageSync("token") == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
-            this.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials'},
-                function (data) {
-                    if (data.access_token) {
-                        wx.setStorageSync('token', data.access_token);//公共接口授权token
-                        wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
-                    }
-                    callback.call(this)
+        var auth1 = function () {
+            //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
+            if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || wx.getStorageSync("token") == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
+                clearInterval(timePromise2);
+                that.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials'},
+                    function (data) {
+                        if (data.access_token) {
+                            wx.setStorageSync('token', data.access_token);//公共接口授权token
+                            wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
+                        }
+                        callback.call(that)
 
-                }, {
-                    'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            )
+                    }, {
+                        'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                )
+            }
         }
+        auth1();
+        timePromise1 = setInterval(auth1, 7199000);
     } else if (type == 2) {  //2.登录授权
-        //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
-        if (wx.getStorageSync("userid") && (immediately || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
-            this.https(app.globalData.api + "/token", "POST", {
-                    grant_type: 'password',
-                    username: wx.getStorageSync("userid"),
-                    password: wx.getStorageSync("usersecret")
-                },
-                function (data) {
-                    if (data.access_token) {
-                        wx.setStorageSync('token', data.access_token);//登录接口授权token
-                        wx.setStorageSync('expires_in', new Date());//登录接口授权token 有效时间
-                    }
-                    callback.call(this)
+        var auth2 = function () {
+            //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
+            if (wx.getStorageSync("userid") && (immediately || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
+                clearInterval(timePromise1);
+                that.https(app.globalData.api + "/token", "POST", {
+                        grant_type: 'password',
+                        username: wx.getStorageSync("userid"),
+                        password: wx.getStorageSync("usersecret")
+                    },
+                    function (data) {
+                        if (data.access_token) {
+                            wx.setStorageSync('token', data.access_token);//登录接口授权token
+                            wx.setStorageSync('expires_in', new Date());//登录接口授权token 有效时间
+                        }
+                        callback.call(that)
 
-                }, {
-                    'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            )
+                    }, {
+                        'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                )
+            }
         }
+        auth2();
+        timePromise2 = setInterval(auth2, 7199000);
     }
 
 }
@@ -384,6 +397,53 @@ function getAddressPCCList(that, item, level, callback) {
     }
 }
 
+/**
+ * 获取当前位置 省市县数据
+ */
+function getCurrentCity(that, item, level, callback) {
+
+    this.https("https://restapi.amap.com/v3/geocode/regeo", "GET", {
+            key: app.globalData.gaoDeKey,
+            location: Number(that.data.handlongitude || wx.getStorageSync("longitude")).toFixed(6) + "," + Number(that.data.handlatitude || wx.getStorageSync("latitude")).toFixed(6),
+            radius: 3000,//	查询POI的半径范围。取值范围：0~3000,单位：米
+            extensions: 'all',//返回结果控制
+            batch: false, //batch=true为批量查询。batch=false为单点查询
+            roadlevel: 0 //可选值：1，当roadlevel=1时，过滤非主干道路，仅输出主干道路数据
+        },
+        function (data) {
+            var addressComponent = data.regeocode.addressComponent;
+            that.setData({
+                city: addressComponent.city,
+                addresspois: data.regeocode.pois,
+                ssx: (addressComponent.province + addressComponent.city + (level == 2 ? "" : addressComponent.district)),//省市县
+                addrdetail: addressComponent.township + addressComponent.streetNumber.street
+            })
+        }
+    )
+}
+
+/**
+ * 获取通过用POI的关键字进行条件搜索数据
+ */
+function getSearchAddress(that, addrname, callback) {
+    that.setData({
+        isShowSearch: true
+    })
+    this.https("https://restapi.amap.com/v3/place/text", "GET", {
+            key: app.globalData.gaoDeKey,
+            keywords: addrname,//查询关键词
+            city: that.data.city || "深圳",
+            extensions: 'all'//返回结果控制
+        },
+        function (data) {
+            that.setData({
+                addresspois: data.pois
+
+            })
+        }
+    )
+}
+
 module.exports = {
     https: https,
     authorization: authorization,
@@ -398,5 +458,6 @@ module.exports = {
     swichNav: swichNav,
     wxLogin: wxLogin,
     getUserInfo: getUserInfo,
-    getAddressPCCList: getAddressPCCList
+    getAddressPCCList: getAddressPCCList,
+    getSearchAddress: getSearchAddress
 }

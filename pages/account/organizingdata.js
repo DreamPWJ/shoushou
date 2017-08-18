@@ -9,8 +9,7 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {
-    },
+    data: {},
 
     /**
      * 生命周期函数--监听页面加载
@@ -77,7 +76,7 @@ Page({
      * 获取省市县数据
      */
     getAddressPCCList: function (e) {
-        util.getAddressPCCList(this,e.target.dataset.item,3, function () {
+        util.getAddressPCCList(this, e.target.dataset.item, 3, function () {
 
         })
     },
@@ -85,11 +84,19 @@ Page({
      * 获取附近地址数据
      */
     getSearchAddress: function (e) {
-        util.getAddressPCCList(this,e.target.dataset.item,3, function () {
+        util.getSearchAddress(this, "", function () {
 
         })
     },
-
+    /**
+     * 选择打开附近地址
+     */
+    getAddressPois: function (e) {
+        this.setData({
+            isShowSearch: false,
+            addressname: e.target.dataset.items.name
+        })
+    },
     /**
      * 完善资料提交
      */

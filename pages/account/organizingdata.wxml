@@ -5,8 +5,8 @@
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <template wx:if="{{isShowPCC}}" is="address" data="{{addressinfo}}"/>
-<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addressinfo}}"/>
-<form bindsubmit="organizingdataSubmit" wx:if="{{!isShowPCC}}">
+<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>
+<form bindsubmit="organizingdataSubmit" wx:if="{{!(isShowPCC||isShowSearch)}}">
     <view class="list">
 
         <view class="item item-input">
@@ -22,7 +22,7 @@
         <view class="item item-input">
             <text class=" iconfont  icon-location placeholder-icon"></text>
             <input type="text" bindinput="bindChange" id="addrdetail" name="addrdetail"
-                   placeholder="详细地址(街道 门牌号等)"/>
+                   placeholder="详细地址(街道 门牌号等)" value="{{addressname}}"/>
             <view bindtap="getSearchAddress" class="positive padding-horizontal">
                 <text
                         class="iconfont icon-locationfill"></text>
