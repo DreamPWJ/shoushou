@@ -11,7 +11,6 @@
     "pages/account/organizingdata",
     "pages/account/findpassword",
     "pages/util/help",
-    "pages/util/addresstemplate",
     "pages/logs/logs"
   ],
   "window": {

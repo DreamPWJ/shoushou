@@ -81,6 +81,14 @@ Page({
 
         })
     },
+    /**
+     * 获取附近地址数据
+     */
+    getSearchAddress: function (e) {
+        util.getAddressPCCList(this,e.target.dataset.item,3, function () {
+
+        })
+    },
 
     /**
      * 完善资料提交
