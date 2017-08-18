@@ -318,20 +318,70 @@ function getUserInfo(callback) {
 /**
  * 获取省市县数据
  */
-function getAddressPCCList(that,callback) {
-    this.https(app.globalData.api + "/api/addr/getplist", "GET", {},
-        function (data) {
-            if(data.code==1001){
-                that.setData({
-                    isShowPCC:true,
-                    addressinfo :data.data
-                })
-            }else {
-                toolTip(this,data.message)
-            }
+function getAddressPCCList(that, item, level, callback) {
+    //获取省份信息
+    if (!item) {
+        this.https(app.globalData.api + "/api/addr/getplist", "GET", {},
+            function (data) {
+                if (data.code == 1001) {
+                    that.setData({
+                        isShowPCC: true,
+                        scrollTop: 0,
+                        addressinfo: data.data
+                    })
+                } else {
+                    toolTip(that, data.message)
+                }
 
-        }
-    )
+            }
+        )
+        return;
+    }
+    //获取市信息
+    if (item.Level == 1) {
+        this.https(app.globalData.api + "/api/addr/getclist", "GET", {pid: item.ID},
+            function (data) {
+                if (data.code == 1001) {
+                    that.setData({
+                        scrollTop: 0,
+                        addressinfo: data.data
+                    })
+                } else {
+                    toolTip(that, data.message)
+                }
+
+            }
+        )
+    }
+    //获取县或地区信息
+    if (item.Level == 2) {
+        this.https(app.globalData.api + "/api/addr/getdlist", "GET", {cid: item.ID},
+            function (data) {
+                if (data.code == 1001) {
+                    that.setData({
+                        scrollTop: 0,
+                        addressinfo: data.data
+                    })
+                } else {
+                    toolTip(that, data.message)
+                }
+
+            }
+        )
+    }
+
+    //获取最后一级地址信息 关闭modal
+    if (level == item.Level || item.Level == 3) {
+        that.setData({
+            isShowPCC: false,
+            addresspcd: item.MergerName,
+            addressone: item,
+            longitude: null,//自动详情经度
+            latitude: null,//自动详情纬度
+            handlongitude: item.Lng,//手动经度
+            handlatitude: item.Lat//手动纬度
+        })
+    }
 }
 
 module.exports = {
@@ -348,5 +398,5 @@ module.exports = {
     swichNav: swichNav,
     wxLogin: wxLogin,
     getUserInfo: getUserInfo,
-    getAddressPCCList:getAddressPCCList
+    getAddressPCCList: getAddressPCCList
 }

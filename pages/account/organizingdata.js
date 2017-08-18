@@ -9,7 +9,8 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -75,20 +76,12 @@ Page({
     /**
      * 获取省市县数据
      */
-    getAddressPCCList: function () {
-        util.getAddressPCCList(this, function () {
+    getAddressPCCList: function (e) {
+        util.getAddressPCCList(this,e.target.dataset.item,3, function () {
 
         })
     },
-    /**
-     * 选择省市县数据
-     */
-    selectAddressPCC: function () {
-        this.setData({
-            isShowPCC:false,
-            addressinfo: false
-        })
-    },
+
     /**
      * 完善资料提交
      */

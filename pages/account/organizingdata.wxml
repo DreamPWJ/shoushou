@@ -14,7 +14,7 @@
         </view>
         <view class="item item-input" bindtap="getAddressPCCList">
             <text class=" iconfont  icon-location placeholder-icon"></text>
-            <input type="text"  disabled value=""
+            <input type="text"  disabled value="{{addresspcd}}"
                    placeholder="单位地址(省市县)"/>
         </view>
         <view class="item item-input">
