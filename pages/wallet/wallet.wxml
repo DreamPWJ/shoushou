@@ -24,10 +24,7 @@
         <view class="padding-top"></view>
         <navigator url="register" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-yinxingqia" style="color: #FFD700"></text>
-            <view class="h2">银行卡
-                <view class="item-note">0张
-                </view>
-            </view>
+            <view class="h2">银行卡<text class="item-note">0张</text></view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
         <navigator url="register" open-type="navigate" class="item item-icon-left item-icon-right">
