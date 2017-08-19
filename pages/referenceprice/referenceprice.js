@@ -76,12 +76,12 @@ Page({
         wx.pageScrollTo({
             scrollTop: 0
         })
-        var index = e.currentTarget.dataset.index;
+        var index = e.currentTarget.dataset.index||0;
         this.setData({
-            classifyIndex: index || 0,
+            classifyIndex: index,
             classifyDetails: this.data.productLists[index].details
         })
-        console.log(this.data.classifyDetails);
+
     },
     /**
      * 获取参考价格数据
@@ -100,13 +100,14 @@ Page({
                     })
                     //根据产品品类及是否统货取产品列表
                     util.getProductListIsth(that, function (datas) {
+                        console.log(datas.data);
                         if (datas.code == 1001) {
-                            var items = data.data;
+                            var  items = data.data[index];
                             items.details = datas.data;
-                            that.data.productLists.push(items)
+                            that.data.productLists.push(items);
                         }
                         if (index == 0) {
-                            that.getClassifyDetails(that.data.classifyIndex)
+                            that.getClassifyDetails()
                         }
                     })
                 }

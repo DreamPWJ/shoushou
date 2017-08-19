@@ -4,22 +4,24 @@
         <view class="col-25 stable-bg">
             <view class="list list-borderless ">
                 <view class="item {{classifyIndex==index?'classify-selected':'stable-bg'}}"
-                      bindtap="getClassifyDetails" data-index="{{index}}" wx:for="{{productList}}" wx:for-item="item" wx:key="*this" wx:for-index="index">
+                      bindtap="getClassifyDetails" data-index="{{index}}" wx:for="{{productList}}" wx:for-item="item"
+                      wx:key="*this" wx:for-index="index">
                     <text class="icon iconfont {{item.imgurl}}"></text>
                     <view class="h2 text-wrap"> {{item.name}}</view>
                 </view>
             </view>
         </view>
         <view class="col-75">
-            <scroll-view i scroll-y enable-back-to-top>
+            <scroll-view scroll-y enable-back-to-top>
                 <view class="list list-borderless ">
-                    <view class="item" wx:for="{{classifyDetails}}" wx:for-item="item" wx:key="*this"  wx:if="{{item.name!='电池'}}">
+                    <view class="item" wx:for="{{classifyDetails}}" wx:for-item="item" wx:key="*this"
+                          wx:if="{{item.name!='电池'}}">
                         <view class="p text-wrap">
                             {{item.grpid==1?item.name:(item.type=="不限"||item.type==null?"":item.type)+(item.size=="不限"||item.size==null?"":item.size)+(item.other=="不限"||item.other==null?"":item.other)}}
-                            <text class=" nowrap" style="position: absolute;right: 0.3rem;">
+                            <view class="nowrap" style="position: absolute;right: 0.3rem;top: 0.3rem">
                                 <text style="font-size: 1rem;" class="energized ">{{item.hsprice}}</text>
                                 元/台
-                            </text>
+                            </view>
                         </view>
                     </view>
                 </view>
