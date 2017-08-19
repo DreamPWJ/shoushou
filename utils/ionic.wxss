@@ -1,4 +1,3 @@
-
 /**
  * Lists
  * --------------------------------------------------
@@ -143,23 +142,23 @@
     font-size: 16px;
 }
 
-.item h2 ,.item .h2{
+.item h2, .item .h2 {
     margin: 0 0 2px 0;
     font-size: 16px;
     font-weight: normal;
 }
 
-.item h3 ,.item .h3{
+.item h3, .item .h3 {
     margin: 0 0 4px 0;
     font-size: 14px;
 }
 
-.item h4 ,.item .h4{
+.item h4, .item .h4 {
     margin: 0 0 4px 0;
     font-size: 12px;
 }
 
-.item h5, .item h6,.item .h5,.item .h6 {
+.item h5, .item h6, .item .h5, .item .h6 {
     margin: 0 0 3px 0;
     font-size: 10px;
 }
@@ -892,6 +891,9 @@ a.item:hover, a.item:focus {
 }
 
 /* Column Offsets */
+.col-offset-5 {
+    margin-left: 5%;
+}
 
 .col-offset-10 {
     margin-left: 10%;
