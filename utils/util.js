@@ -517,6 +517,28 @@ function uploadFile(res, that) {
     })
 }
 
+/**
+ * 获取产品品类
+ */
+function getProductList(that, callback) {
+    this.https(app.globalData.api + "/api/product/getgrplist", "GET", {},
+        function (data) {
+            callback.call(this, data)
+        }
+    )
+}
+
+/**
+ * 根据产品品类及是否统货取产品列表
+ */
+function getProductListIsth(that, callback) {
+    this.https(app.globalData.api + "/api/product/getpronew", "GET", {grpid:that.data.grpid,isth:that.data.isth},
+        function (data) {
+            callback.call(this, data)
+        }
+    )
+}
+
 module.exports = {
     https: https,
     authorization: authorization,
@@ -535,5 +557,7 @@ module.exports = {
     getCurrentCity: getCurrentCity,
     getSearchAddress: getSearchAddress,
     uploadActionSheet: uploadActionSheet,
-    uploadFile: uploadFile
+    uploadFile: uploadFile,
+    getProductList: getProductList,
+    getProductListIsth: getProductListIsth
 }
