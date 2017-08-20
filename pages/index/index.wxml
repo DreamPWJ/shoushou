@@ -48,7 +48,7 @@
                 <navigator url="" open-type="navigate" class="col">
                     <text class="icon iconfont icon-yijiedingdan royal"></text>
                     <view>
-                        <view>已接订单</view>
+                        <view class="h5">已接订单</view>
                         <view class="p">记得及时和货主联系</view>
                     </view>
                 </navigator>
