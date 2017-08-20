@@ -9,7 +9,7 @@
     background-color: #00ACFF;
     background-size: cover;
     height: 16rem;
-    padding-top: 1rem;
+    padding-top: 0.8rem;
 }
 
 .total {
@@ -48,7 +48,7 @@
 }
 
 .main-list navigator {
-    padding: 2rem 0.2rem 1rem 0.2rem;
+    padding: 1rem 0.2rem 1rem 0.2rem;
 }
 
 .main-list navigator .h5,  .main-list navigator .p {

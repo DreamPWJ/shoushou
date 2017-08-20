@@ -19,7 +19,7 @@
             </view>
         </view>
     </view>
-    <view style="margin-top: -2rem;">
+    <view style="margin-top: -2.2rem;">
         <view class="card">
             <view class="row  light-bg row-center main-list">
                 <navigator url="" open-type="navigate" class="col border-rb">
@@ -57,12 +57,12 @@
     </view>
     <view class="card">
         <view class="row text-center light-bg row-center sub-menu border-b">
-            <navigator url="" open-type="navigate" class="col border-r ">
+            <navigator url="../util/help" open-type="navigate" class="col border-r ">
                 <text class="icon iconfont icon-wenti balanced"></text>
                 <view class="p" class="inline dark"> 我能做什么?</view>
             </navigator>
 
-            <navigator navigator url="" open-type="navigate" class="col">
+            <navigator navigator url="../util/help" open-type="navigate" class="col">
                 <text class="icon iconfont icon-question1 balanced"></text>
                 <view class="p" class="inline dark"> 我要做什么?</view>
             </navigator>
