@@ -3,17 +3,20 @@
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <view id="index">
-<!--  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>-->
-    <view class="text-center  padding">
-        <view class="isNotDataHint">
-            <view class="iconfont icon-mark"></view>
-            <text>收收小程序版正在开发中</text>
+    <view class="topbj light text-center">
+        <view class="total ">
+            <view class="p num">{{cargoQuantity.num||0}}</view>
+            <view class="p">总回收量(台)</view>
+        </view>
+        <view class="row sub-total row-no-padding">
+            <view class="col">
+                <view class="p">{{cargoQuantity?cargoQuantity.informatenum :0| number}}</view>
+                <view class="p">信息总量(单)</view>
+            </view>
+            <view class="col">
+                <view class="p">{{cargoQuantity?cargoQuantity.goodsnum:0 | number}}</view>
+                <view class="p">总货源量(单)</view>
+            </view>
         </view>
     </view>
 </view>

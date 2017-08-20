@@ -32,6 +32,11 @@ page {
     color: #f26604;
 }
 
+view, text {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 .isNotDataHint {
     width: 100%;
     height: 100%;

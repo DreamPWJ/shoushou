@@ -1,5 +1,44 @@
 /**index.wxss**/
 #index {
-  width: 100%;
-  overflow: hidden;
+    width: 100%;
+    overflow: hidden;
+}
+
+.topbj {
+    /*    background: url(../../images/topbj.png) 100% 100%;*/
+    background-color: #00ACFF;
+    background-size: cover;
+    height: 15rem;
+    padding-top: 1rem;
+}
+
+.total {
+    margin: auto;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    padding-top: 3rem;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    -webkit-box-shadow: 0px 1px 2px rgba(136, 136, 136, 0.5);
+    box-shadow: 0px 1px 2px rgba(136, 136, 136, 0.5);
+}
+
+.total .num {
+    font-size: 1.8rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sub-total {
+    margin-top: 1rem;
+}
+
+.sub-total .p:first-child {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    margin: 0 0 0.1rem 0;
+    height: 1.6rem;
 }
