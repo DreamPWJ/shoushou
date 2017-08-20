@@ -32,3 +32,13 @@
     border-left: 3px solid #00ACFF !important;
     color: #00ACFF;
 }
+
+.yuan {
+    position: absolute;
+    right: 0.3rem;
+    top: 0.3rem;
+}
+
+.yuan text {
+    font-size: 1rem;
+}

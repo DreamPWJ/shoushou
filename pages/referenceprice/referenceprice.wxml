@@ -18,8 +18,8 @@
                           wx:if="{{item.name!='电池'}}">
                         <view class="p text-wrap">
                             {{item.grpid==1?item.name:(item.type=="不限"||item.type==null?"":item.type)+(item.size=="不限"||item.size==null?"":item.size)+(item.other=="不限"||item.other==null?"":item.other)}}
-                            <view class="nowrap" style="position: absolute;right: 0.3rem;top: 0.3rem">
-                                <text style="font-size: 1rem;" class="energized ">{{item.hsprice}}</text>
+                            <view class="nowrap yuan">
+                                <text class="energized ">{{item.hsprice}}</text>
                                 元/台
                             </view>
                         </view>
