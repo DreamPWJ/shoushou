@@ -62,8 +62,21 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
-
+    onShareAppMessage: function (res) {
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: '收收分享',
+            path: '/pages/account/account',
+            success: function(res) {
+                // 转发成功
+            },
+            fail: function(res) {
+                // 转发失败
+            }
+        }
     },
     /**
      * 获取我的数据

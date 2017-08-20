@@ -38,3 +38,8 @@
     min-height: 23px;
     line-height: 23px;
 }
+
+button.item {
+    text-align: left;
+    line-height: 20px;
+}
