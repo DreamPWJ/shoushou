@@ -19,4 +19,58 @@
             </view>
         </view>
     </view>
+    <view style="margin-top: -2rem;">
+        <view class="card">
+            <view class="row  light-bg row-center main-list">
+                <navigator url="" open-type="navigate" class="col border-rb">
+                    <text class="icon iconfont icon-dengjixinxi energized"></text>
+                    <view>
+                        <view class="h5">信息登记</view>
+                        <view class="p">提供回收信息就赚钱</view>
+                    </view>
+                </navigator>
+                <navigator url="" open-type="navigate" class="col border-b">
+                    <text class="icon iconfont icon-dengjihuoyuan positive"></text>
+                    <view>
+                        <view class="h5">货源登记</view>
+                        <view class="p">高价直卖拆解企业</view>
+                    </view>
+                </navigator>
+            </view>
+            <view class="row  light-bg row-center  main-list">
+                <navigator url="" open-type="navigate" class="col border-r">
+                    <text class="icon iconfont icon-jiedanshouhuo positive"></text>
+                    <view>
+                        <view class="h5">接单回收</view>
+                        <view class="p">随时随地接单回收</view>
+                    </view>
+                </navigator>
+                <navigator url="" open-type="navigate" class="col">
+                    <text class="icon iconfont icon-yijiedingdan royal"></text>
+                    <view>
+                        <view>已接订单</view>
+                        <view class="p">记得及时和货主联系</view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <view class="card">
+        <view class="row text-center light-bg row-center sub-menu border-b">
+            <navigator url="" open-type="navigate" class="col border-r ">
+                <text class="icon iconfont icon-wenti balanced"></text>
+                <view class="p" class="inline dark"> 我能做什么?</view>
+            </navigator>
+
+            <navigator navigator url="" open-type="navigate" class="col">
+                <text class="icon iconfont icon-question1 balanced"></text>
+                <view class="p" class="inline dark"> 我要做什么?</view>
+            </navigator>
+        </view>
+        <view href="tel:400-700-0097">
+            <image src="../../images/index/kefu.png" class="kefu full-image light-bg" alt="客服电话"></image>
+        </view>
+    </view>
+    <image src="../../images/index/buttom.png" class="kefu-bottom full-image" alt="让回收更简单"></image>
+
 </view>

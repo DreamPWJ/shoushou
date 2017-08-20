@@ -4,7 +4,7 @@
 </view>
 <view>
     <view class="list">
-        <navigator url="register" open-type="navigate" class="item item-positive item-avatar item-icon-right user">
+        <navigator url="" open-type="navigate" class="item item-positive item-avatar item-icon-right user">
             <image src="{{userdata.userfigure||'../../images/head.jpg'}}" alt=""></image>
             <view class="h2 {{(userdata.username==null&&userdata.nickname==null)?'padding-top':''}}">
                 {{userdata.username||userdata.nickname}}
@@ -16,24 +16,24 @@
         <view class="item item-icon-left   order money">
             <text class="icon iconfont icon-moneybag" style="color: #4cd964;"></text>
             <view class="h2 ">我的钱包
-                <navigator url="register" open-type="navigate" class="button button-positive button-outline">提现</navigator>
-                <navigator url="register" open-type="navigate" class="button button-energized  button-outline">充值</navigator>
+                <navigator url="" open-type="navigate" class="button button-positive button-outline">提现</navigator>
+                <navigator url="" open-type="navigate" class="button button-energized  button-outline">充值</navigator>
             </view>
         </view>
         <view class="row row-no-padding light-bg  row-center text-center order-item">
-            <navigator url="register" open-type="navigate" class="item item-icon-right col ">
+            <navigator url="../wallet/wallet" open-type="switchTab" class="item item-icon-right col ">
                 <view>账号余额</view>
                 <view style="color: #f26604">{{orderSum.account||0.00}}</view>
                 <text class="icon iconfont icon-balance " style="color: #f26604"></text>
             </navigator>
-            <navigator url="register" open-type="navigate" class="item   item-icon-right col item-borderless">
+            <navigator url="" open-type="navigate" class="item   item-icon-right col item-borderless">
                 <view>银行卡</view>
                 <view style="color: #f26604">{{orderSum.banknum||0}}张</view>
                 <text class="icon iconfont icon-yinxingqia " style="color: #00ACFF"></text>
             </navigator>
         </view>
         <view class="padding-top"></view>
-        <navigator url="register" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-form" style="color: #11c1f3"></text>
             <view class="h2">我登记的信息及货源</view>
             <text class="icon-accessory iconfont icon-right"></text>
