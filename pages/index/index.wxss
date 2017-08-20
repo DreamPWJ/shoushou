@@ -24,6 +24,7 @@
 }
 
 .total .num {
+    margin-bottom: 0.5rem;
     font-size: 1.8rem;
     height: 1.8rem;
     line-height: 1.8rem;
@@ -51,7 +52,7 @@
     padding: 1rem 0.2rem 1rem 0.2rem;
 }
 
-.main-list navigator .h5,  .main-list navigator .p {
+.main-list navigator .h5, .main-list navigator .p {
     margin: 0.3rem;
 }
 
@@ -73,9 +74,10 @@
     vertical-align: middle;
 }
 
-.kefu{
+.kefu {
     height: 3.6rem;
 }
-.kefu-bottom{
+
+.kefu-bottom {
     height: 2rem;
 }

@@ -56,14 +56,17 @@ function authorization(type, callback, immediately) {
                             wx.setStorageSync('token', data.access_token);//公共接口授权token
                             wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
                         }
-                        callback.call(that)
+                        callback.call(that,data)
 
                     }, {
                         'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 )
+            }else { //没有执行授权
+                callback.call(that)
             }
+
         }
         auth1();
         timePromise1 = setInterval(auth1, 7199000);
@@ -82,19 +85,21 @@ function authorization(type, callback, immediately) {
                             wx.setStorageSync('token', data.access_token);//登录接口授权token
                             wx.setStorageSync('expires_in', new Date());//登录接口授权token 有效时间
                         }
-                        callback.call(that)
+                        callback.call(that,data)
 
                     }, {
                         'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 )
+            }else { //没有执行授权
+                callback.call(that)
             }
+
         }
         auth2();
         timePromise2 = setInterval(auth2, 7199000);
     }
-
 }
 
 /**

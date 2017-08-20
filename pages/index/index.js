@@ -3,22 +3,25 @@
 var app = getApp();
 var util = require('../../utils/util.js');
 Page({
-    data: {
-
-    },
+    data: {},
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        var that = this;
         //接口API授权 type 1.是公共授权  2.登录授权
         if (!wx.getStorageSync("userid")) {
-            util.authorization(1, function () {
+            util.authorization(1, function (data) {
                 //微信授权登录
                 util.wxLogin();
+                //首页统计货量
+                that.getIndexData();
             });
         } else if (wx.getStorageSync("userid")) {
-            util.authorization(2, function () {
+            util.authorization(2, function (data) {
+                //首页统计货量
+                that.getIndexData();
             });
         }
 
@@ -71,6 +74,24 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    /**
+     * 获取首页数据
+     */
+    getIndexData: function () {
+        var that = this;
+        //首页统计货量
+        util.https(app.globalData.api + "/api/util/getsum", "GET", {},
+            function (data) {
+                if (data.code == 1001) {
+                    that.setData({
+                        cargoQuantity: data.data
+                    })
+                } else {
+                    util.toolTip(that, data.message)
+                }
+            }
+        )
     }
 })
 
