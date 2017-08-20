@@ -11,7 +11,7 @@ Page({
         classifyIndex: 0,////选中产品分类标示
         isth: 0,//是否统货
         productList: [],
-        productLists:[]
+        productLists: []
     },
 
     /**
@@ -76,7 +76,7 @@ Page({
         wx.pageScrollTo({
             scrollTop: 0
         })
-        var index = e.currentTarget.dataset.index||0;
+        var index = e.currentTarget.dataset.index || 0;
         this.setData({
             classifyIndex: index,
             classifyDetails: this.data.productLists[index].details
@@ -89,6 +89,7 @@ Page({
     getPiceData: function () {
         var that = this;
         //获取产品品类
+        var indexs = 0;
         util.getProductList(that, function (data) {
             if (data.code == 1001) {
                 that.setData({
@@ -100,15 +101,17 @@ Page({
                     })
                     //根据产品品类及是否统货取产品列表
                     util.getProductListIsth(that, function (datas) {
-                        console.log(datas.data);
                         if (datas.code == 1001) {
-                            var  items = data.data[index];
+                            var items = data.data[indexs];
                             items.details = datas.data;
                             that.data.productLists.push(items);
                         }
-                        if (index == 0) {
-                            that.getClassifyDetails()
+                        if (indexs == 0) {
+                            that.setData({
+                                classifyDetails: datas.data
+                            })
                         }
+                        indexs++;
                     })
                 }
 

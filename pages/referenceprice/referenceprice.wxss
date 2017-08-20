@@ -1,5 +1,20 @@
 /* pages/referenceprice/referenceprice.wxss */
- .col-25 .item {
+/*.row {
+    position: relative;
+}
+
+.col-25 {
+    position: fixed;
+    width: 25%;
+}
+
+.col-75 {
+    position: relative;
+    width: 75%;
+    left: 25%;
+}*/
+
+.col-25 .item {
     text-align: center;
     padding-left: 0;
     padding-right: 0;
@@ -8,9 +23,11 @@
 .col-25 .item .h2 {
     font-size: 0.9rem !important;
 }
-.col-25 .item .iconfont{
+
+.col-25 .item .iconfont {
     font-size: 1.5rem !important;
 }
+
 .classify-selected {
     border-left: 3px solid #00ACFF !important;
     color: #00ACFF;
