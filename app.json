@@ -5,6 +5,7 @@
     "pages/referenceprice/referenceprice",
     "pages/order/order",
     "pages/wallet/wallet",
+    "pages/wallet/recharge",
     "pages/news/news",
     "pages/account/account",
     "pages/account/login",

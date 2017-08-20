@@ -11,23 +11,23 @@
     </view>
     <view class="list">
 
-        <navigator url="register" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="recharge" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-chongzhi" style="color: #11c1f3"></text>
             <view class="h2">充值</view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
-        <navigator url="register" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-tixian" style="color: #33cd5f"></text>
             <view class="h2">提现</view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
         <view class="padding-top"></view>
-        <navigator url="register" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-yinxingqia" style="color: #FFD700"></text>
             <view class="h2">银行卡<text class="item-note">0张</text></view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
-        <navigator url="register" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-jiaoyijilu" style="color: #ef473a"></text>
             <view class="h2">交易记录</view>
             <text class="icon-accessory iconfont icon-right"></text>
