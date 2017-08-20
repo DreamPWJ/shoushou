@@ -13,13 +13,13 @@
             <text class="icon-accessory iconfont icon-right "></text>
         </navigator>
 
-        <navigator url="register" open-type="navigate" class="item item-icon-left   order money">
+        <view class="item item-icon-left   order money">
             <text class="icon iconfont icon-moneybag" style="color: #4cd964;"></text>
             <view class="h2 ">我的钱包
-                <navigator class="button button-positive button-outline">提现</navigator>
-                <navigator class="button button-energized  button-outline">充值</navigator>
+                <navigator url="register" open-type="navigate" class="button button-positive button-outline">提现</navigator>
+                <navigator url="register" open-type="navigate" class="button button-energized  button-outline">充值</navigator>
             </view>
-        </navigator>
+        </view>
         <view class="row row-no-padding light-bg  row-center text-center order-item">
             <navigator url="register" open-type="navigate" class="item item-icon-right col ">
                 <view>账号余额</view>
@@ -38,7 +38,7 @@
             <view class="h2">我登记的信息及货源</view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
-        <navigator url="register" open-type="switchTab" class="item item-icon-left item-icon-right">
+        <navigator url="../wallet/wallet" open-type="switchTab" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-moneybag" style="color: #FFD700"></text>
             <view class="h2">我的钱包
                 <view class="item-note">余额 ：
