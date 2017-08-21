@@ -13,12 +13,12 @@
     color: #585858;
 }
 
-.select-category label .span {
+/*.select-category label .span {
     opacity: 0;
     color: #fff !important;
-}
+}*/
 
-.select-category label view.span::before {
+.select-category label .show-span::before {
     content: '已选';
     position: absolute;
     color: #fff !important;
@@ -30,7 +30,7 @@
     z-index: 2000;
 }
 
-.select-category label view.span::after {
+.select-category label .show-span::after {
     content: '';
     position: absolute;
     width: 0;
@@ -49,12 +49,15 @@
     color: #00ACFF !important;
 }
 
-.border-label {
+.border-label{
+    position: relative;
     width: 90%;
     height: 90%;
+
+}
+.border-label-checked {
     border: 1px solid #00ACFF;
 }
-
 /*.select-category input:checked + label > .span {
     opacity: 1;
 }

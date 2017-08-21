@@ -84,8 +84,7 @@ Page({
         for (var pindex in this.data.productList) {
             for (var index in e.detail.value) {
                 if (pindex === index) {
-                    var checked=this.data.productList[pindex].checked;
-                    this.data.productList[pindex].checked =checked?false: true;
+                    this.data.productList[e.detail.value[index]].checked = true;
                     this.setData({
                         productList: this.data.productList
                     })

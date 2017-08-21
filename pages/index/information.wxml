@@ -10,11 +10,11 @@
                     class="row  row-center row-wrap text-center light-bg select-category padding-top">
         <label  class="checkbox col-25 " wx:for="{{productList}}" wx:for-item="item"
                wx:key="*this" wx:for-index="index" data-index="{{index}}">
-            <view class="{{item.checked?'border-label':''}}">
+            <view class="border-label {{item.checked?'border-label-checked':''}}">
                 <text class="iconfont {{item.imgurl}}"></text>
                 <checkbox hidden value="{{index}}" />
-                <view class="p {{item.checked?'color-p':''}} " style="font-size:85%;">{{item.name}}</view>
-                <view class="span show-span">55</view>
+                <view class="{{item.checked?'color-p':''}} " style="font-size:85%;">{{item.name}}</view>
+                <view class="{{item.checked?'show-span':'span'}}"></view>
             </view>
 
         </label>
