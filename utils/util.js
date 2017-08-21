@@ -13,6 +13,7 @@ function https(url, type, data, callBack, header) {
             title: '加载中',
         })
     }
+    wx.showNavigationBarLoading();
     wx.request({
         url: url,
         method: type,
@@ -56,14 +57,14 @@ function authorization(type, callback, immediately) {
                             wx.setStorageSync('token', data.access_token);//公共接口授权token
                             wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
                         }
-                        callback.call(that,data)
+                        callback.call(that, data)
 
                     }, {
                         'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 )
-            }else { //没有执行授权
+            } else { //没有执行授权
                 callback.call(that)
             }
 
@@ -85,14 +86,14 @@ function authorization(type, callback, immediately) {
                             wx.setStorageSync('token', data.access_token);//登录接口授权token
                             wx.setStorageSync('expires_in', new Date());//登录接口授权token 有效时间
                         }
-                        callback.call(that,data)
+                        callback.call(that, data)
 
                     }, {
                         'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 )
-            }else { //没有执行授权
+            } else { //没有执行授权
                 callback.call(that)
             }
 
@@ -537,7 +538,7 @@ function getProductList(that, callback) {
  * 根据产品品类及是否统货取产品列表
  */
 function getProductListIsth(that, callback) {
-    this.https(app.globalData.api + "/api/product/getpronew", "GET", {grpid:that.data.grpid,isth:that.data.isth},
+    this.https(app.globalData.api + "/api/product/getpronew", "GET", {grpid: that.data.grpid, isth: that.data.isth},
         function (data) {
             callback.call(this, data)
         }
