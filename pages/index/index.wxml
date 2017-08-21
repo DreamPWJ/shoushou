@@ -30,26 +30,26 @@
                     </view>
                 </navigator>
                 <navigator url="information" open-type="navigate" class="col border-b">
-                    <text class="icon iconfont icon-dengjihuoyuan positive"></text>
+                    <text class="icon iconfont icon-jiedanshouhuo positive"></text>
                     <view>
-                        <view class="h5">货源登记</view>
-                        <view class="p">高价直卖拆解企业</view>
+                        <view class="h5">已登记信息</view>
+                        <view class="p">查看登记订单的状态</view>
                     </view>
                 </navigator>
             </view>
             <view class="row  light-bg row-center  main-list">
                 <navigator url="../order/order" open-type="navigate" class="col border-r">
-                    <text class="icon iconfont icon-jiedanshouhuo positive"></text>
+                    <text class="icon iconfont icon-sponsorfill positive"></text>
                     <view>
-                        <view class="h5">接单回收</view>
-                        <view class="p">随时随地接单回收</view>
+                        <view class="h5">信息费收入</view>
+                        <view class="p">随时查看收入明细</view>
                     </view>
                 </navigator>
                 <navigator url="../order/order" open-type="navigate" class="col">
-                    <text class="icon iconfont icon-yijiedingdan royal"></text>
+                    <text class="icon iconfont icon-friendaddfill royal"></text>
                     <view>
-                        <view class="h5">已接订单</view>
-                        <view class="p">记得及时和货主联系</view>
+                        <view class="h5">邀请同行好友</view>
+                        <view class="p">邀请下单有现金奖励</view>
                     </view>
                 </navigator>
             </view>
