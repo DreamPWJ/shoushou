@@ -71,8 +71,31 @@ Page({
      * 用户点击checkbox
      */
     checkboxChange: function (e) {
-        console.log(this.data.productList);
-        console.log('checkbox发生change事件，携带value值为：', e.detail)
+        console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+        if (e.detail.value.length == 0) {
+            for (var pindex in this.data.productList) {
+                this.data.productList[pindex].checked = false;
+                this.setData({
+                    productList: this.data.productList
+                })
+            }
+            return;
+        }
+        for (var pindex in this.data.productList) {
+            for (var index in e.detail.value) {
+                if (pindex === index) {
+                    var checked=this.data.productList[pindex].checked;
+                    this.data.productList[pindex].checked =checked?false: true;
+                    this.setData({
+                        productList: this.data.productList
+                    })
+                }
+
+            }
+
+        }
+
+
     },
     /**
      * 获取参考价格数据
@@ -86,21 +109,21 @@ Page({
                 that.setData({
                     productList: data.data
                 })
-                for (var index in data.data) {
-                    that.setData({
-                        grpid: data.data[index].grpid
-                    })
-                    //根据产品品类及是否统货取产品列表
-                    util.getProductListIsth(that, function (datas) {
-                        if (datas.code == 1001) {
-                            var items = data.data[indexs];
-                            items.details = datas.data;
-                            that.data.productLists.push(items);
-                        }
+                /*                for (var index in data.data) {
+                                    that.setData({
+                                        grpid: data.data[index].grpid
+                                    })
+                                    //根据产品品类及是否统货取产品列表
+                                    util.getProductListIsth(that, function (datas) {
+                                        if (datas.code == 1001) {
+                                            var items = data.data[indexs];
+                                            items.details = datas.data;
+                                            that.data.productLists.push(items);
+                                        }
 
-                        indexs++;
-                    })
-                }
+                                        indexs++;
+                                    })
+                                }*/
 
             } else {
                 util.toolTip(that, data.message)
