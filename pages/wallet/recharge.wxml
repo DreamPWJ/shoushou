@@ -4,7 +4,7 @@
     <view class="list">
         <label class="item item-input">
             <view class="input-label "> 充值金额</view>
-            <input type="digit" id="money" name="money" ng-model="pay.money" placeholder="请输入充值金额"/>
+            <input type="digit" bindinput="bindChange" id="money" name="money"  placeholder="请输入充值金额"/>
         </label>
         <view class="padding-top"></view>
         <view class="item item-divider item-borderless">支付方式</view>
