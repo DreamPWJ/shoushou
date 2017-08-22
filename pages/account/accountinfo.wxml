@@ -1,4 +1,7 @@
 <!--pages/account/accountinfo.wxml-->
+<view class="tool-tip " wx:if="{{popMsg}}">
+    <text class="{{popType}}">{{popMsg}}</text>
+</view>
 <view class="list  ">
     <navigator url="" open-type="navigate" class="item item-avatar item-icon-right  ">
         <image src="{{userdata.userfigure||'../../images/head.jpg'}}" alt=""></image>

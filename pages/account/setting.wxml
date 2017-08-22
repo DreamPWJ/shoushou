@@ -1,4 +1,7 @@
 <!--pages/account/setting.wxml-->
+<view class="tool-tip " wx:if="{{popMsg}}">
+    <text class="{{popType}}">{{popMsg}}</text>
+</view>
 <view>
     <view class="padding-top"></view>
     <view class="list  ">

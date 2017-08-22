@@ -1,4 +1,7 @@
 <!--pages/wallet/recharge.wxml-->
+<view class="tool-tip " wx:if="{{popMsg}}">
+    <text class="{{popType}}">{{popMsg}}</text>
+</view>
 <form bindsubmit="paymentSubmit">
     <view class="padding-top"></view>
     <view class="list">

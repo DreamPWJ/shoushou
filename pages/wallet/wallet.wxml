@@ -1,4 +1,7 @@
 <!--pages/wallet/wallet.wxml-->
+<view class="tool-tip " wx:if="{{popMsg}}">
+    <text class="{{popType}}">{{popMsg}}</text>
+</view>
 <view>
     <view class="row row-center row-no-padding  header">
         <view class="col-75 col-offset-5 light">
