@@ -147,6 +147,10 @@ view, text {
     min-height: 0;
 }
 
+.item-content {
+    padding-right: 16px !important;
+}
+
 .fixed-bottom {
     position: fixed;
     bottom: 0;
@@ -190,6 +194,14 @@ view, text {
     border-left: 4px solid #00ACFF;
     padding: 0 0 0 0.6rem !important;
     margin-left: 0.3rem;
+}
+.right-1 {
+    position: absolute;
+    right: 1rem;
+}
+
+.item-image:not(img) {
+    text-align: left !important;
 }
 .swiper-tab {
     position: fixed;

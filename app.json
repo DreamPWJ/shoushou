@@ -17,7 +17,7 @@
     "pages/logs/logs"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#00ACFF",
     "navigationBarTitleText": "收收",
     "navigationBarTextStyle": "white",

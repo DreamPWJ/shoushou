@@ -19,15 +19,15 @@ Page({
      */
     onLoad: function (options) {
         util.isLoginModal();
-
+        //获取消息列表
+        this.getNewsList(this.data.page);
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        //获取消息列表
-        this.getNewsList(this.data.page);
+
     },
 
     /**
@@ -87,7 +87,8 @@ Page({
         util.https(app.globalData.api + "/api/MessagePush/getlist", "GET", {
                 page: page,//页码
                 size: 5,//条数
-                userid: wx.getStorageSync("userid")//用户id
+                userid: wx.getStorageSync("userid"),//用户id
+                isHideLoad:true
             },
             function (data) {
                 if (that.data.page == 1) {

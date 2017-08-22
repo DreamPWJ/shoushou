@@ -19,4 +19,5 @@
             <view class="p" style="padding-left: 1.1rem; white-space: normal;">{{item.content}}</view>
         </view>
     </view>
+    <view class="padding-top"></view>
 </view>

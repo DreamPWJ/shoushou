@@ -8,7 +8,7 @@ var app = getApp();
  * @param callBack
  */
 function https(url, type, data, callBack, header) {
-    if (!data.isShowLoad) {
+    if (!data.isHideLoad) {
         wx.showLoading({
             title: '加载中',
         })
@@ -315,7 +315,7 @@ function wxLogin() {
  */
 function getUserInfo(callback) {
     var that = this;
-    this.https(app.globalData.api + "/api/user/get/" + wx.getStorageSync("userid"), "GET", {},
+    this.https(app.globalData.api + "/api/user/get/" + wx.getStorageSync("userid"), "GET", {isHideLoad:true},
         function (data) {
             if (data.code == 1001) {
                 wx.setStorageSync("user", data.data);
