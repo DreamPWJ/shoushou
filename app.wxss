@@ -218,7 +218,7 @@ view, text {
     box-sizing: border-box;
     display: inline-block;
     color: #777777;
-    padding: 0.7rem 0.2rem;
+    padding: 0.6rem 0.2rem;
 }
 
 .on {

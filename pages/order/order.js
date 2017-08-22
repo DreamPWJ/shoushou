@@ -113,7 +113,8 @@ Page({
                 State: that.data.currentTab == 0 ? "1,2,3,4,5" : "",//状态 0.已关闭 1.审核不通过 2.未审核 3.审核通过（待接单） 4.已接单 (待收货) 5.已收货（待付款） 6.已付款（待评价） 7.已评价 (可为空)
                 longt: "", //当前经度（获取距离）(可为空)
                 lat: "",//当前纬度（获取距离）(可为空)
-                expiry: ""//小时 取预警数据 订单预警数据（72小时截至马上过期的（expiry=3表示取3小时内）
+                expiry: "",//小时 取预警数据 订单预警数据（72小时截至马上过期的（expiry=3表示取3小时内）
+                isHideLoad:true
             },
             function (data) {
                 if (that.data.currentTab == 0 && that.data.unfpage == 1) {
