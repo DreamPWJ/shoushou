@@ -4,18 +4,48 @@
     <view class="col-35 swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">所有订单</view>
 </view>
 
-<swiper current="{{currentTab}}" class="swiper-box" duration="200"
+<swiper current="{{currentTab}}" class="swiper-box" duration="200" style="height:{{newsList.length*81}}px"
         bindchange="bindChange">
     <!-- 未完成订单 -->
-    <swiper-item>
-        <view class="list">
-            1
+    <swiper-item >
+        <view wx:if="{{isNotData}}" class="isNotDataHint">
+            <view class="iconfont icon-xiaoxi"></view>
+            <text>暂无未完成订单</text>
         </view>
+        <view class="list">
+            <view class="item" wx:for="{{newsList}}" wx:for-item="item" wx:key="*this">
+                <view class="h2">
+                    <text class="iconfont icon-markfill {{item.look==0?'energized':'grey'}} "
+                          style="font-size: 1rem!important;"></text>
+                    {{item.title}}
+                    <text class="status">{{item.look==0?'未读':'已读'}}</text>
+                    <text class="item-note right-1">{{item.createdate }}</text>
+                </view>
+                <view class="p" style="padding-left: 1.1rem; white-space: normal;">{{item.content}}</view>
+            </view>
+        </view>
+        <view class="padding-top"></view>
     </swiper-item>
     <!-- 所有订单 -->
     <swiper-item>
         <view class="list">
-            2
+            <view wx:if="{{isNotData}}" class="isNotDataHint">
+                <view class="iconfont icon-xiaoxi"></view>
+                <text>暂无所有订单</text>
+            </view>
+            <view class="list">
+                <view class="item" wx:for="{{newsList}}" wx:for-item="item" wx:key="*this">
+                    <view class="h2">
+                        <text class="iconfont icon-markfill {{item.look==0?'energized':'grey'}} "
+                              style="font-size: 1rem!important;"></text>
+                        {{item.title}}
+                        <text class="status">{{item.look==0?'未读':'已读'}}</text>
+                        <text class="item-note right-1">{{item.createdate }}</text>
+                    </view>
+                    <view class="p" style="padding-left: 1.1rem; white-space: normal;">{{item.content}}</view>
+                </view>
+            </view>
+            <view class="padding-top"></view>
         </view>
     </swiper-item>
 

@@ -228,7 +228,7 @@ view, text {
 
 .swiper-box {
     display: block;
-    margin-top: 50px;
+    margin-top: 52px;
     width: 100%;
     overflow: hidden;
 }

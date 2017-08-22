@@ -86,7 +86,7 @@ Page({
         var that = this;
         util.https(app.globalData.api + "/api/MessagePush/getlist", "GET", {
                 page: page,//页码
-                size: 5,//条数
+                size: 10,//条数
                 userid: wx.getStorageSync("userid"),//用户id
                 isHideLoad:true
             },
