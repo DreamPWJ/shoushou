@@ -68,29 +68,48 @@ Page({
 
     },
     /**
+     * 获取省市县数据
+     */
+    getAddressPCCList: function (e) {
+        util.getAddressPCCList(this, e.target.dataset.item, 3, function () {
+
+        })
+    },
+    /**
+     * 获取附近地址数据
+     */
+    getCurrentCity: function (e) {
+        util.getCurrentCity(this, 3, function () {
+
+        })
+    },
+    /**
+     * 选择打开附近地址
+     */
+    getAddressPois: function (e) {
+        this.setData({
+            isShowSearch: false,
+            addressname: e.currentTarget.dataset.items.name
+        })
+    },
+    /**
      * 用户点击checkbox
      */
     checkboxChange: function (e) {
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-        if (e.detail.value.length == 0) {
-            for (var pindex in this.data.productList) {
-                this.data.productList[pindex].checked = false;
-                this.setData({
-                    productList: this.data.productList
-                })
-            }
-            return;
-        }
-        for (var pindex in this.data.productList) {
-            for (var index in e.detail.value) {
-                if (pindex === index) {
-                    this.data.productList[e.detail.value[index]].checked = true;
-                    this.setData({
-                        productList: this.data.productList
-                    })
-                }
 
-            }
+        for (var pindex in this.data.productList) {
+            this.data.productList[pindex].checked = false;
+            this.setData({
+                productList: this.data.productList
+            })
+        }
+
+        for (var index in e.detail.value) {
+            this.data.productList[e.detail.value[index]].checked = true;
+            this.setData({
+                productList: this.data.productList
+            })
 
         }
 

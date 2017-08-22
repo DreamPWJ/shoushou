@@ -8,7 +8,6 @@
 <template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>
 <form bindsubmit="organizingdataSubmit" wx:if="{{!(isShowPCC||isShowSearch)}}">
     <view class="list">
-
         <view class="item item-input">
             <text class=" iconfont  icon-changshang placeholder-icon"></text>
             <input type="text" bindinput="bindChange" id="shopname" name="shopname"
@@ -24,8 +23,7 @@
             <input type="text" bindinput="bindChange" id="addrdetail" name="addrdetail"
                    placeholder="详细地址(街道 门牌号等)" value="{{addressname}}"/>
             <view bindtap="getCurrentCity" class="positive padding-horizontal">
-                <text
-                        class="iconfont icon-locationfill"></text>
+                <text class="iconfont icon-locationfill"></text>
             </view>
         </view>
         <view class="item item-input">
