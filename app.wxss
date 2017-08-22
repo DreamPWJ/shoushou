@@ -195,6 +195,7 @@ view, text {
     padding: 0 0 0 0.6rem !important;
     margin-left: 0.3rem;
 }
+
 .right-1 {
     position: absolute;
     right: 1rem;
@@ -203,6 +204,7 @@ view, text {
 .item-image:not(img) {
     text-align: left !important;
 }
+
 .swiper-tab {
     position: fixed;
     z-index: 10000;
@@ -216,7 +218,7 @@ view, text {
     box-sizing: border-box;
     display: inline-block;
     color: #777777;
-    padding: 0.5rem;
+    padding: 0.7rem 0.2rem;
 }
 
 .on {

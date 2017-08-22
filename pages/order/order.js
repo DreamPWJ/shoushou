@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+      currentTab: 0,   // tab切换
   },
 
   /**
@@ -66,4 +66,11 @@ Page({
   onShareAppMessage: function () {
   
   }
+  ,
+    /**
+     * 点击tab切换
+     */
+    swichNav: function (e) {
+        util.swichNav(e, this)
+    }
 })

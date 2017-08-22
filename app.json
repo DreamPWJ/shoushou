@@ -10,6 +10,7 @@
     "pages/account/account",
     "pages/account/login",
     "pages/account/register",
+    "pages/account/accountinfo",
     "pages/account/organizingdata",
     "pages/account/findpassword",
     "pages/account/setting",
@@ -62,7 +63,7 @@
     ]
   },
   "networkTimeout": {
-    "request": 10000,
-    "downloadFile": 10000
+    "request": 60000,
+    "downloadFile": 60000
   }
 }

@@ -4,7 +4,7 @@
 </view>
 <view>
     <view class="list">
-        <navigator url="" open-type="navigate" class="item item-positive item-avatar item-icon-right user">
+        <navigator url="accountinfo" open-type="navigate" class="item item-positive item-avatar item-icon-right user">
             <image src="{{userdata.userfigure||'../../images/head.jpg'}}" alt=""></image>
             <view class="h2 {{(userdata.username==null&&userdata.nickname==null)?'padding-top':''}}">
                 {{userdata.username||userdata.nickname}}
@@ -37,7 +37,7 @@
             </navigator>
         </view>
         <view class="padding-top"></view>
-        <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="../order/order" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-form" style="color: #11c1f3"></text>
             <view class="h2">我登记的信息及货源</view>
             <text class="icon-accessory iconfont icon-right"></text>
