@@ -63,7 +63,7 @@
             <view class="h2">分享给我的朋友</view>
             <text class="icon-accessory iconfont icon-right"></text>
         </button>
-        <navigator url="../util/help" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="setting" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-settings" style="color: #1b6d85"></text>
             <view class="h2">设置</view>
             <text class="icon-accessory iconfont icon-right"></text>
