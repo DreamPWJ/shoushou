@@ -205,8 +205,11 @@ Page({
             //根据会员ID获取会员账号基本信息
             util.getUserInfo(function (data) {
                 //返回上一页
-                wx.navigateBack({
+        /*        wx.navigateBack({
                     delta: 1
+                })*/
+                wx.reLaunch({
+                    url: '../index/index'
                 })
 
             })
