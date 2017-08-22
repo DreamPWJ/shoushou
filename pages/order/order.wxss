@@ -1,0 +1,40 @@
+
+.bhytype:not(:empty) {
+    display: inline;
+    border: 1px solid #33cd5f;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    padding: 1px 2px;
+    color: #33cd5f;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ehytype:not(:empty) {
+    display: inline;
+    border: 1px solid #f26604;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    padding: 1px 2px;
+    color: #f26604;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bhyyy:not(:empty) {
+    display: inline;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    padding: 1px 2px;
+    color: #33cd5f;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.close {
+    padding: 4px;
+}

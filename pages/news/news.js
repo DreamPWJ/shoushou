@@ -10,7 +10,6 @@ Page({
     data: {
         page: 1,
         hasData: true,
-        isNotData:true,
         newsListArr: []
     },
 
