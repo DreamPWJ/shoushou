@@ -30,7 +30,7 @@ function https(url, type, data, callBack, header) {
         },
         complete: function (res) {
             console.log(res);
-            if (res.data.statusCode === 401) {
+            if (res.statusCode === 401) {
                 showToast("收收请求未授权");
             }
             wx.hideLoading();
