@@ -10,6 +10,7 @@ Page({
     data: {
         page: 1,
         hasData: true,
+        isNotData:true,
         newsListArr: []
     },
 
@@ -18,15 +19,15 @@ Page({
      */
     onLoad: function (options) {
         util.isLoginModal();
-        //获取消息列表
-        this.getNewsList(this.data.page);
+
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        //获取消息列表
+        this.getNewsList(this.data.page);
     },
 
     /**
@@ -94,13 +95,14 @@ Page({
                         newsListArr: []
                     })
                 }
+
                 for (var index in data.data.data_list) {
                     that.data.newsListArr.push(data.data.data_list[index]);
                 }
 
                 that.setData({
                     hasData: data.data.page_count == that.data.page ? false : true,
-                    isNotData: (data == null || data.data.data_list == 0) ? true : false,
+                    isNotData: (data.data == null || data.data.data_list == 0) ? true : false,
                     newsList: that.data.newsListArr
                 })
                 that.data.page++;

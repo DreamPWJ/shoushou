@@ -23,15 +23,16 @@ function https(url, type, data, callBack, header) {
             "Authorization": "Bearer " + wx.getStorageSync('token')
         }),
         success: function (res) {
-            console.log(res);
             callBack(res.data);
         },
         fail: function (error) {
-            console.log(error)
-            showToast("收收请求失败")
-
+            showToast("收收请求失败");
         },
-        complete: function () {
+        complete: function (res) {
+            console.log(res);
+            if (res.data.statusCode === 401) {
+                showToast("收收请求未授权");
+            }
             wx.hideLoading();
             wx.stopPullDownRefresh();
             wx.hideNavigationBarLoading();

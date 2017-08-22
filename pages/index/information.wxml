@@ -6,7 +6,7 @@
 </view>
 <template wx:if="{{isShowPCC}}" is="address" data="{{addressinfo}}"/>
 <template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>
-<view>
+<view wx:if="{{!(isShowPCC||isShowSearch)}}">
     <view class="item-divider item-divider-bg item-icon-right border-bottom  padding-top" bindtap="">
         <view class="h2 border-left">选择品类</view>
         <!--        <text class="{true:'ion-ios-arrow-right',false:'ion-ios-arrow-down'}[showme]"

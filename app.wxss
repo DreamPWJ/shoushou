@@ -189,7 +189,7 @@ view, text {
 .border-left {
     border-left: 4px solid #00ACFF;
     padding: 0 0 0 0.6rem !important;
-
+    margin-left: 0.3rem;
 }
 .swiper-tab {
     position: fixed;
