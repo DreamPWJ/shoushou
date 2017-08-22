@@ -56,7 +56,7 @@
         </view>
     </view>
     <view class="row row-center ">
-        <navigator url="../util/help" open-type="navigate" hover-class="none"
+        <navigator url="../util/help?id=25" open-type="navigate" hover-class="none"
                    class="col positive " style="font-size: 0.9rem">什么是用户类型?
         </navigator>
         <radio-group class="radio-group col text-right padding-right" data-current="2" bindchange="radioChange">
