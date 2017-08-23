@@ -518,12 +518,11 @@ function uploadFile(res, that, callback) {
         header: {"authorization": "Bearer " + wx.getStorageSync('token')}, //授权
         success: function (res) {
             console.log(res);
-            var data = res.data;
-            callback.call(this,res.data)
+            var data = JSON.parse(res.data);
+            callback(data)
             //do something
-            var imgsPicAddr=app.globalData.imgUrl + data.data;
             that.setData({
-                imgsPicAddr: [imgsPicAddr]
+                imgsPicAddr: [app.globalData.imgUrl + data.data]
             })
 
             toolTip(that, "上传成功", 1)

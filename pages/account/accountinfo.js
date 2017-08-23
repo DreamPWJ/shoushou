@@ -77,8 +77,8 @@ Page({
         util.uploadActionSheet(this, function (data) {
             util.https(app.globalData.api + "/api/user/set_figure/" + wx.getStorageSync('userid'), "GET", {figure: app.globalData.imgUrl + data.data},
                 function (data) {
-                    wx.redirectTo({
-                        url: 'account'
+                    wx.switchTab({
+                        url: '/pages/account/account'
                     })
                 }
             )
