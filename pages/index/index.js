@@ -81,7 +81,7 @@ Page({
     getIndexData: function () {
         var that = this;
         //首页统计货量
-        util.https(app.globalData.api + "/api/util/getsum", "GET", {},
+        util.https(app.globalData.api + "/api/util/getsum", "GET", {isHideLoad:true},
             function (data) {
                 if (data.code == 1001) {
                     that.setData({

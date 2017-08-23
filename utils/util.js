@@ -52,7 +52,7 @@ function authorization(type, callback, immediately) {
             //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
             if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || wx.getStorageSync("token") == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
                 clearInterval(timePromise2);
-                that.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials'},
+                that.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials',isHideLoad:true},
                     function (data) {
                         if (data.access_token) {
                             wx.setStorageSync('token', data.access_token);//公共接口授权token
@@ -80,7 +80,8 @@ function authorization(type, callback, immediately) {
                 that.https(app.globalData.api + "/token", "POST", {
                         grant_type: 'password',
                         username: wx.getStorageSync("userid"),
-                        password: wx.getStorageSync("usersecret")
+                        password: wx.getStorageSync("usersecret"),
+                        isHideLoad:true
                     },
                     function (data) {
                         if (data.access_token) {
@@ -287,7 +288,8 @@ function wxLogin() {
                     //根据微信Code获取对应的openId
                     that.https(app.globalData.api + "/api/wc/GetOpenid", "GET", {
                             code: res.code,
-                            UserLogID: wx.getStorageSync("userid") || ""
+                            UserLogID: wx.getStorageSync("userid") || "",
+                            isHideLoad:true
                         },
                         function (data) {
                             if (data.code == 1001) {
@@ -556,7 +558,7 @@ function chooseLocation(that, callback) {
  * 获取产品品类
  */
 function getProductList(that, callback) {
-    this.https(app.globalData.api + "/api/product/getgrplist", "GET", {},
+    this.https(app.globalData.api + "/api/product/getgrplist", "GET", {isHideLoad:true},
         function (data) {
             callback.call(this, data)
         }
@@ -567,7 +569,7 @@ function getProductList(that, callback) {
  * 根据产品品类及是否统货取产品列表
  */
 function getProductListIsth(that, callback) {
-    this.https(app.globalData.api + "/api/product/getpronew", "GET", {grpid: that.data.grpid, isth: that.data.isth},
+    this.https(app.globalData.api + "/api/product/getpronew", "GET", {grpid: that.data.grpid, isth: that.data.isth,isHideLoad:true},
         function (data) {
             callback.call(this, data)
         }
