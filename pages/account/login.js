@@ -49,7 +49,7 @@ Page({
         util.authorization(1, function () {
             //微信授权登录
             util.wxLogin();
-        })
+        },true)
     },
 
     /**

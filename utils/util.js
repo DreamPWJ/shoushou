@@ -55,7 +55,7 @@ function authorization(type, callback, immediately) {
     if (type == 1) { //1.是公共授权
         var auth1 = function () {
             //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
-            if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || wx.getStorageSync("token") == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
+            if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token")  || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
                 clearInterval(timePromise2);
                 that.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials', isHideLoad: true},
                     function (data) {

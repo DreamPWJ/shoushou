@@ -12,14 +12,19 @@
     box-sizing: border-box;
 }*/
 
-text, input {
-    font-family: MicroSoft Yahei;
-}
-
 page {
     display: block;
     min-height: 100%;
     background-color: #f8f8f8;
+}
+
+view, text, radio-group, checkbox-group {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+text, input {
+    font-family: MicroSoft Yahei;
 }
 
 .item-note picker {
@@ -30,11 +35,6 @@ page {
 /** 修改默认的navigator点击态 **/
 .navigator-hover {
     color: #f26604;
-}
-
-view, text,radio-group,checkbox-group {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
 }
 
 .isNotDataHint {
@@ -144,7 +144,6 @@ view, text,radio-group,checkbox-group {
     padding-right: 16px !important;
 }
 
-
 .fixed-bottom {
     position: fixed;
     bottom: 0;
@@ -155,7 +154,7 @@ view, text,radio-group,checkbox-group {
 
 .has-bottom-button {
     position: relative;
-    padding-top: 66px!important;
+    padding-top: 66px !important;
     bottom: 66px !important;
 }
 
