@@ -2,6 +2,7 @@
 var app = getApp();
 var util = require('../../utils/util.js');
 import WxValidate from '../../utils/validate';
+
 var inputContent = {};//输入内容
 
 Page({
@@ -83,14 +84,15 @@ Page({
 
         var that = this;
         //微信公众号支付
-        util.https(app.globalData.api + "/api/aop/wxpayGZH", "POST", {   out_trade_no: new Date().getTime(),//订单号
-            subject: "收收充值",//商品名称
-            body: "收收充值详情",//商品详情
-            total_fee: inputContent.money, //总金额
-            userid: wx.getStorageSync("userid"),//用户userid
-            name: wx.getStorageSync('user').username,//用户名
-            openid: wx.getStorageSync("openid") //微信openid
-             },
+        util.https(app.globalData.api + "/api/aop/wxpay_xcx", "POST", {
+                out_trade_no: new Date().getTime(),//订单号
+                subject: "收收充值",//商品名称
+                body: "收收充值详情",//商品详情
+                total_fee: inputContent.money, //总金额
+                userid: wx.getStorageSync("userid"),//用户userid
+                name: wx.getStorageSync('user').username,//用户名
+                openid: wx.getStorageSync("openid") //微信openid
+            },
             function (data) {
                 if (data.code == 1001) {
                     wx.requestPayment({
@@ -116,7 +118,6 @@ Page({
 
             }
         )
-
 
 
     }

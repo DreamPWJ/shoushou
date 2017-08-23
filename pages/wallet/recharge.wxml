@@ -20,7 +20,7 @@
         </radio-group>
     </view>
 
-    <view class="padding light-bg bottom-0">
+    <view class="padding light-bg fixed-bottom">
         <button class="positive-bg light "
                 formType="submit">充值
         </button>

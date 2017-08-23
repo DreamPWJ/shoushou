@@ -6,7 +6,9 @@
 </view>
 <template wx:if="{{isShowPCC}}" is="address" data="{{addressinfo}}"/>
 <!--<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>-->
-<view wx:if="{{!(isShowPCC||isShowSearch)}}">
+
+<form bindsubmit="informationSubmit"  >
+    <view class="has-bottom-button"  wx:if="{{!(isShowPCC||isShowSearch)}}">
     <view class="item-divider light-bg  border-b  item-icon-right border-bottom  padding-top" bindtap="">
         <view class="h2 border-left">选择品类</view>
         <!--        <text class="{true:'ion-ios-arrow-right',false:'ion-ios-arrow-down'}[showme]"
@@ -16,7 +18,7 @@
     <checkbox-group bindchange="checkboxChange"
                     class="row  row-center row-wrap text-center light-bg select-category padding-top">
         <label class="checkbox col-25 " wx:for="{{productList}}" wx:for-item="item"
-               wx:key="*this" wx:for-index="index" data-index="{{index}}">
+               wx:key="*this" wx:for-index="index">
             <view class="border-label {{item.checked?'border-label-checked':''}}">
                 <text class="iconfont {{item.imgurl}}"></text>
                 <checkbox hidden value="{{index}}"/>
@@ -70,13 +72,22 @@
     <view class="item-divider light-bg  border-b  padding-top">
         <view class="h2 border-left">所属厂商(非必选项)</view>
     </view>
-    <radio-group class="radio-group light-bg row row-wrap padding" data-current="1" bindchange="radioChange">
-        <label class="radio col-20 " wx:for="{{manufacteList}}">
-            <radio hidden value="{{item.id}}" color="#00ACFF" checked="{{item.checked}}"/>
-    <!--        {{item.name}}-->
-            <image src="{{imgUrl+item.logurl}}"  class="full-image" style="height: 2rem;"  alt="商标"></image>
-            <view class="{{item.checked?'show-span':'span'}}"></view>
+    <radio-group class="radio-group light-bg row row-wrap row-no-padding " data-current="1" bindchange="radioChange">
+        <label class=" radio col-20  " wx:for="{{manufacteList}}" wx:for-item="item"
+               wx:key="*this" wx:for-index="index">
+            <view class="radio-label  {{item.checked?'border-label-checked':''}}">
+                <radio hidden value="{{index}}" color="#00ACFF" checked="{{item.checked}}"/>
+                <!--        {{item.name}}-->
+                <image src="{{imgUrl+item.logurl}}" class="full-image" alt="商标"></image>
+                <view class=" {{item.checked?'show-span':'span'}}"></view>
+            </view>
         </label>
     </radio-group>
     <view class="padding-top"></view>
-</view>
+    </view>
+    <view class="padding light-bg fixed-bottom">
+        <button class="positive-bg light "
+                formType="submit">提交
+        </button>
+    </view>
+</form>

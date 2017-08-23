@@ -9,7 +9,7 @@ Page({
      */
     data: {
         classifyIndex: 0,////选中产品分类标示
-        isth: 0,//是否统货
+        isth: 0,//是否统货 1是 0否
         productList: [],
         productLists: []
     },

@@ -124,13 +124,6 @@ view, text {
     background-color: #aaa !important;
 }
 
-.bottom-0 {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    box-shadow: 0px 0px 20px #ddd;
-}
-
 .list .item:first-child {
     border: none;
 }
@@ -151,17 +144,19 @@ view, text {
     padding-right: 16px !important;
 }
 
+
 .fixed-bottom {
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 10000 !important;
+    box-shadow: 0px 0px 20px #ddd;
+    z-index: 20000 !important;
 }
 
 .has-bottom-button {
     position: relative;
-    padding-top: 60px;
-    bottom: 60px !important;
+    padding-top: 66px!important;
+    bottom: 66px !important;
 }
 
 .input-label {

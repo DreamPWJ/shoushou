@@ -67,3 +67,36 @@
 .icon-locationfill {
     font-size: 1.3rem;
 }
+
+.radio-label {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    padding: 2px;
+    margin:0.3rem auto 0;
+}
+
+.radio-group label .show-span::before {
+    content: '√';
+    position: absolute;
+    color: #fff !important;
+    font-size: 10px;
+    right: 0.1rem;
+    bottom: -0.1rem;
+    z-index: 2000;
+}
+
+.radio-group label .show-span::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-bottom: 1.2rem solid #00ACFF;
+    border-left: 1.2rem solid transparent;
+    right: 0;
+    bottom: 0;
+}
+
+.radio-group image{
+    height: 2.2rem;
+}

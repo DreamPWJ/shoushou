@@ -7,7 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        isth: 1,//是否统货
+        isth: 1,////是否统货 1是 0否
         productList: [],
         productLists: [],
         activitytype: [  //活动类型
@@ -109,14 +109,14 @@ Page({
      */
     checkboxChange: function (e) {
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-       var that=this;
-        that.data.productList.map(function (item,index) {
-            if(e.detail.value.toString().indexOf(index)!=-1){//选中的
+        var that = this;
+        that.data.productList.map(function (item, index) {
+            if (e.detail.value.toString().indexOf(index) != -1) {//选中的
                 that.data.productList[index].checked = true;
                 that.setData({
                     productList: that.data.productList
                 })
-            }else {
+            } else {
                 that.data.productList[index].checked = false;
                 that.setData({
                     productList: that.data.productList
@@ -131,10 +131,26 @@ Page({
      * radio发生change事件
      */
     radioChange: function (e) {
+        var that = this;
         if (e.target.dataset.current == 0) {
             console.log('活动类型radio发生change事件，携带value值为：', e.detail.value)
         } else if (e.target.dataset.current == 1) {
             console.log('所属厂商类型radio发生change事件，携带value值为：', e.detail.value)
+            that.data.manufacteList.map(function (item, index) {
+                if (index == e.detail.value) {
+                    that.data.manufacteList[index].checked = true;
+                    that.setData({
+                        manufacteList: that.data.manufacteList
+                    })
+                } else {
+                    that.data.manufacteList[index].checked = false;
+                    that.setData({
+                        manufacteList: that.data.manufacteList
+                    })
+                }
+
+            })
+
         }
     },
     /**
