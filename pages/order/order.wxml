@@ -17,8 +17,8 @@
             <view class="list">
                 <navigator url="order" open-type="navigate" class="item " style="padding-right: 10px;"
                            wx:for="{{unfinishedOrderList}}" wx:for-item="item" wx:key="*this">
-                    <view class="h2" class="positive">货主 : {{item.name}} {{item.motel}} 状态 :
-                        <text class="{{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
+                    <view class="h2" class="positive">货主 : {{item.name}} {{item.motel}}
+                        <text class="phytype {{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
                         </text>
                     </view>
                     <view class="p text-wrap" style="margin-right: 4rem;">交易品类 : {{item.category}}
@@ -49,8 +49,8 @@
             <view class="list">
                 <navigator url="order" open-type="navigate" class="item " style="padding-right: 10px;"
                            wx:for="{{orderList}}" wx:for-item="item" wx:key="*this">
-                    <view class="h2" class="positive">货主 : {{item.name}} {{item.motel}} 状态 :
-                        <text class="{{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
+                    <view class="h2" class="positive">货主 : {{item.name}} {{item.motel}}
+                        <text class="phytype {{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
                         </text>
                     </view>
                     <view class="p text-wrap" style="margin-right: 4rem;">交易品类 : {{item.category}}
