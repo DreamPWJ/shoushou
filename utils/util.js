@@ -294,6 +294,7 @@ function wxLogin() {
                     that.https(app.globalData.api + "/api/wc/GetOpenid", "GET", {
                             code: res.code,
                             UserLogID: wx.getStorageSync("userid") || "",
+                            client:"xcx",
                             isHideLoad: true
                         },
                         function (data) {

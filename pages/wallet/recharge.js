@@ -103,8 +103,8 @@ Page({
                         'paySign': data.data.sign,
                         'success': function (res) {
                             console.log(res);
-                            wx.navigateTo({
-                                url: 'wallet'
+                            wx.switchTab({
+                                url: '/pages/wallet/wallet'
                             })
                         },
                         'fail': function (res) {
