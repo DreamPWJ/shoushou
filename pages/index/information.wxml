@@ -38,17 +38,17 @@
             </view>
             <view class="item item-input col-60">
                 <input type="number" bindinput="bindChange" id="motel" name="motel" maxlength="11"
-                       placeholder="手机号"/>
+                       placeholder="手机号码"/>
             </view>
         </view>
 
         <view class="item item-input" bindtap="getAddressPCCList">
             <input type="text" disabled value="{{addresspcd}}"
-                   placeholder="省市县"/>
+                   placeholder="地区信息(省市县)"/>
         </view>
         <view class="item item-input ">
             <input type="text" bindinput="bindChange" id="addrdetail" name="addrdetail"
-                   placeholder="街道 门牌号(必填)" value="{{addressname}}"/>
+                   placeholder="详细信息(街道 门牌号)" value="{{addressname}}"/>
             <view bindtap="chooseLocation" class="positive padding-horizontal">
                 <text class="iconfont icon-locationfill"></text>
             </view>
@@ -59,8 +59,23 @@
     <view class="item-divider light-bg item-icon-right border-b  padding-top">
         <view class="h2 border-left">活动类型</view>
     </view>
+
+    <radio-group class="radio-group light-bg row padding" data-current="0" bindchange="radioChange">
+        <label class="radio col-33 " wx:for="{{activitytype}}">
+            <radio value="{{item.value}}" color="#00ACFF" checked="{{item.checked}}"/>
+            {{item.name}}
+        </label>
+    </radio-group>
     <view class="padding-top"></view>
     <view class="item-divider light-bg item-icon-right border-b  padding-top">
-        <view class="h2 border-left">所属厂商</view>
+        <view class="h2 border-left">所属厂商(非必选项)</view>
     </view>
+    <radio-group class="radio-group light-bg row row-wrap padding" data-current="1" bindchange="radioChange">
+        <label class="radio col-20 " wx:for="{{manufacteList}}">
+            <radio hidden value="{{item.id}}" color="#00ACFF" checked="{{item.checked}}"/>
+    <!--        {{item.name}}-->
+            <image src="{{imgUrl+item.logurl}}"  class="full-image" style="height: 2rem;"  alt="商标"></image>
+        </label>
+    </radio-group>
+    <view class="padding-top"></view>
 </view>

@@ -89,5 +89,9 @@ Page({
                 userdata: data.data
             })
         })
+        //获得我的里面待处理和预警订单数 银行卡以及余额
+        util.getUserSum(that,function (data) {
+
+        })
     }
 })

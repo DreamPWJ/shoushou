@@ -7,7 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+      userSum:{
+        account:'0.00'
+      }
   },
 
   /**
@@ -15,6 +17,10 @@ Page({
    */
   onLoad: function (options) {
       util.isLoginModal();
+      //获得我的里面待处理和预警订单数 银行卡以及余额
+      util.getUserSum(this,function (data) {
+
+      })
   },
 
   /**

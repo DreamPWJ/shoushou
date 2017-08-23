@@ -9,7 +9,11 @@ Page({
     data: {
         isth: 1,//是否统货
         productList: [],
-        productLists: []
+        productLists: [],
+        activitytype: [  //活动类型
+            {value: 0, name: '无', checked: 'true'}, {value: 1, name: '以旧换新'}
+        ],
+        imgUrl:app.globalData.imgUrl+'/'
     },
 
     /**
@@ -95,17 +99,16 @@ Page({
     /**
      * 打开地图选择位置
      */
-    chooseLocation:function (e) {
-       util.chooseLocation(this,function (data) {
+    chooseLocation: function (e) {
+        util.chooseLocation(this, function (data) {
 
-       })
+        })
     },
     /**
      * 用户点击checkbox
      */
     checkboxChange: function (e) {
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-
         for (var pindex in this.data.productList) {
             this.data.productList[pindex].checked = false;
             this.setData({
@@ -122,6 +125,16 @@ Page({
         }
 
 
+    },
+    /**
+     * radio发生change事件
+     */
+    radioChange: function (e) {
+        if (e.target.dataset.current == 0) {
+            console.log('用户类型radio发生change事件，携带value值为：', e.detail.value)
+        } else if (e.target.dataset.current == 1) {
+            console.log('回收商类型radio发生change事件，携带value值为：', e.detail.value)
+        }
     },
     /**
      * 获取参考价格数据
@@ -156,5 +169,22 @@ Page({
             }
 
         })
+
+        //获得所属厂商
+        util.https(app.globalData.api + "/api/dengji/getlistmanufacte", "GET", {
+                ShorteName: '',
+                Name: '',
+                GrpID: ''
+            },
+            function (data) {
+                if (data.code == 1001) {
+                    that.setData({
+                        manufacteList: data.data
+                    })
+                } else {
+                    util.toolTip(that, data.message)
+                }
+            }
+        )
     }
 })

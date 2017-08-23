@@ -574,6 +574,20 @@ function getProductListIsth(that, callback) {
     )
 }
 
+/**
+ * 获得我的里面待处理和预警订单数 银行卡以及余额
+ */
+function getUserSum(that, callback) {
+    this.https(app.globalData.api + "/api/orderreceipt/getsum/" + wx.getStorageSync('userid') + "/" + 24, "GET", {isHideLoad:true},
+        function (data) {
+            that.setData({
+                userSum:data.data
+            })
+            callback.call(this, data)
+        }
+    )
+}
+
 module.exports = {
     https: https,
     authorization: authorization,
@@ -596,5 +610,6 @@ module.exports = {
     getLocation: getLocation,
     chooseLocation: chooseLocation,
     getProductList: getProductList,
-    getProductListIsth: getProductListIsth
+    getProductListIsth: getProductListIsth,
+    getUserSum:getUserSum
 }
