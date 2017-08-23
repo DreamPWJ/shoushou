@@ -93,6 +93,14 @@ Page({
         })
     },
     /**
+     * 打开地图选择位置
+     */
+    chooseLocation:function (e) {
+       util.chooseLocation(this,function (data) {
+
+       })
+    },
+    /**
      * 用户点击checkbox
      */
     checkboxChange: function (e) {

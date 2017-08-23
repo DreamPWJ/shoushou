@@ -1,9 +1,14 @@
 /* pages/index/information.wxss */
+
+.select-category {
+    height: 9.6rem;
+}
+
 .select-category label {
     position: relative;
     display: inline-block;
     margin-bottom: 0.3rem;
-    width: 90%!important;
+    width: 90% !important;
     height: 4rem;
     box-sizing: border-box;
 }
@@ -12,11 +17,6 @@
     font-size: 1.8rem !important;
     color: #585858;
 }
-
-/*.select-category label .span {
-    opacity: 0;
-    color: #fff !important;
-}*/
 
 .select-category label .show-span::before {
     content: '已选';
@@ -49,27 +49,21 @@
     color: #00ACFF !important;
 }
 
-.border-label{
+.border-label {
     position: relative;
     width: 90%;
     height: 90%;
 
 }
+
 .border-label-checked {
     border: 1px solid #00ACFF;
 }
-/*.select-category input:checked + label > .span {
-    opacity: 1;
-}
-
-.select-category input:checked + label > .p {
-    color: #00ACFF !important;
-}
-
-.select-category input:checked + label {
-    border: 1px solid #00ACFF;
-}*/
 
 .item-small {
     padding: 8px 16px !important;
+}
+
+.icon-locationfill {
+    font-size: 1.3rem;
 }

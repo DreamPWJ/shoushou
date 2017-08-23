@@ -315,7 +315,7 @@ function wxLogin() {
  */
 function getUserInfo(callback) {
     var that = this;
-    this.https(app.globalData.api + "/api/user/get/" + wx.getStorageSync("userid"), "GET", {isHideLoad:true},
+    this.https(app.globalData.api + "/api/user/get/" + wx.getStorageSync("userid"), "GET", {isHideLoad: true},
         function (data) {
             if (data.code == 1001) {
                 wx.setStorageSync("user", data.data);
@@ -489,7 +489,7 @@ function uploadActionSheet(that, callback) {
                     }
                 })
             }
-            console.log(res.tapIndex)
+
         },
         fail: function (res) {
             console.log(res.errMsg)
@@ -520,6 +520,34 @@ function uploadFile(res, that) {
             toolTip(that, "上传失败")
         }, complete: function () {
             wx.hideLoading();
+        }
+    })
+}
+
+/**
+ * 获取当前的地理位置、速度。当用户离开小程序后，此接口无法调用；当用户点击“显示在聊天顶部”时，此接口可继续调用
+ */
+function getLocation(that, callback) {
+    wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+            wx.setStorageSync("longitude", res.longitude);//经度
+            wx.setStorageSync("latitude", res.latitude);//纬度
+        }
+    })
+}
+
+/**
+ * 打开地图选择位置
+ */
+function chooseLocation(that, callback) {
+    wx.chooseLocation({
+        success: function (res) {
+            that.setData({
+                addressname: res.name
+            })
+            console.log(res);
+            callback.call(this, res)
         }
     })
 }
@@ -565,6 +593,8 @@ module.exports = {
     getSearchAddress: getSearchAddress,
     uploadActionSheet: uploadActionSheet,
     uploadFile: uploadFile,
+    getLocation: getLocation,
+    chooseLocation: chooseLocation,
     getProductList: getProductList,
     getProductListIsth: getProductListIsth
 }

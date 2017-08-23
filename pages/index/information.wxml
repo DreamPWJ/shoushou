@@ -49,7 +49,7 @@
         <view class="item item-input ">
             <input type="text" bindinput="bindChange" id="addrdetail" name="addrdetail"
                    placeholder="街道 门牌号(必填)" value="{{addressname}}"/>
-            <view bindtap="getCurrentCity" class="positive padding-horizontal">
+            <view bindtap="chooseLocation" class="positive padding-horizontal">
                 <text class="iconfont icon-locationfill"></text>
             </view>
         </view>
