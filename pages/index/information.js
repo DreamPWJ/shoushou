@@ -109,20 +109,21 @@ Page({
      */
     checkboxChange: function (e) {
         console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-        for (var pindex in this.data.productList) {
-            this.data.productList[pindex].checked = false;
-            this.setData({
-                productList: this.data.productList
-            })
-        }
+       var that=this;
+        that.data.productList.map(function (item,index) {
+            if(e.detail.value.toString().indexOf(index)!=-1){//选中的
+                that.data.productList[index].checked = true;
+                that.setData({
+                    productList: that.data.productList
+                })
+            }else {
+                that.data.productList[index].checked = false;
+                that.setData({
+                    productList: that.data.productList
+                })
+            }
 
-        for (var index in e.detail.value) {
-            this.data.productList[e.detail.value[index]].checked = true;
-            this.setData({
-                productList: this.data.productList
-            })
-
-        }
+        })
 
 
     },
@@ -131,9 +132,9 @@ Page({
      */
     radioChange: function (e) {
         if (e.target.dataset.current == 0) {
-            console.log('用户类型radio发生change事件，携带value值为：', e.detail.value)
+            console.log('活动类型radio发生change事件，携带value值为：', e.detail.value)
         } else if (e.target.dataset.current == 1) {
-            console.log('回收商类型radio发生change事件，携带value值为：', e.detail.value)
+            console.log('所属厂商类型radio发生change事件，携带value值为：', e.detail.value)
         }
     },
     /**
@@ -148,21 +149,7 @@ Page({
                 that.setData({
                     productList: data.data
                 })
-                /*                for (var index in data.data) {
-                                    that.setData({
-                                        grpid: data.data[index].grpid
-                                    })
-                                    //根据产品品类及是否统货取产品列表
-                                    util.getProductListIsth(that, function (datas) {
-                                        if (datas.code == 1001) {
-                                            var items = data.data[indexs];
-                                            items.details = datas.data;
-                                            that.data.productLists.push(items);
-                                        }
 
-                                        indexs++;
-                                    })
-                                }*/
 
             } else {
                 util.toolTip(that, data.message)

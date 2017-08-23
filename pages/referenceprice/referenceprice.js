@@ -89,32 +89,29 @@ Page({
     getPiceData: function () {
         var that = this;
         //获取产品品类
-        var indexs = 0;
         util.getProductList(that, function (data) {
             if (data.code == 1001) {
                 that.setData({
                     productList: data.data
                 })
-                for (var index in data.data) {
-                    that.setData({
-                        grpid: data.data[index].grpid
-                    })
+
+                data.data.map( function (item, index) {
+                    that.data.grpid = item.grpid;
                     //根据产品品类及是否统货取产品列表
                     util.getProductListIsth(that, function (datas) {
                         if (datas.code == 1001) {
-                            var items = data.data[indexs];
+                            var items = item;
                             items.details = datas.data;
                             that.data.productLists.push(items);
+                            /*    that.data.productLists.splice(0,items);*/
                         }
-                        if (indexs == 0) {
+                        if (index == 0) {
                             that.setData({
                                 classifyDetails: datas.data
                             })
                         }
-                        indexs++;
                     })
-                }
-
+                })
             } else {
                 util.toolTip(that, data.message)
             }

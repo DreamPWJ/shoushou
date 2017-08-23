@@ -29,13 +29,13 @@ function https(url, type, data, callBack, header) {
             showToast("收收请求失败");
         },
         complete: function (res) {
+            wx.hideNavigationBarLoading();
+            wx.hideLoading();
+            wx.stopPullDownRefresh();
             console.log(res);
             if (res.statusCode === 401) {
                 showToast("收收请求未授权");
             }
-            wx.hideLoading();
-            wx.stopPullDownRefresh();
-            wx.hideNavigationBarLoading();
         }
     })
 }

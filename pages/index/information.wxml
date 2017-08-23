@@ -7,7 +7,7 @@
 <template wx:if="{{isShowPCC}}" is="address" data="{{addressinfo}}"/>
 <!--<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>-->
 <view wx:if="{{!(isShowPCC||isShowSearch)}}">
-    <view class="item-divider item-divider-bg item-icon-right border-bottom  padding-top" bindtap="">
+    <view class="item-divider light-bg  border-b  item-icon-right border-bottom  padding-top" bindtap="">
         <view class="h2 border-left">选择品类</view>
         <!--        <text class="{true:'ion-ios-arrow-right',false:'ion-ios-arrow-down'}[showme]"
                    class="icon  iconfont"></text>-->
@@ -27,7 +27,7 @@
         </label>
     </checkbox-group>
     <view class="padding-top"></view>
-    <view class="item-divider light-bg item-icon-right border-b  padding-top">
+    <view class="item-divider light-bg  border-b  padding-top">
         <view class="h2 border-left">货主联系信息</view>
     </view>
     <view class="">
@@ -56,7 +56,7 @@
 
     </view>
     <view class="padding-top"></view>
-    <view class="item-divider light-bg item-icon-right border-b  padding-top">
+    <view class="item-divider light-bg  border-b  padding-top">
         <view class="h2 border-left">活动类型</view>
     </view>
 
@@ -67,7 +67,7 @@
         </label>
     </radio-group>
     <view class="padding-top"></view>
-    <view class="item-divider light-bg item-icon-right border-b  padding-top">
+    <view class="item-divider light-bg  border-b  padding-top">
         <view class="h2 border-left">所属厂商(非必选项)</view>
     </view>
     <radio-group class="radio-group light-bg row row-wrap padding" data-current="1" bindchange="radioChange">
@@ -75,6 +75,7 @@
             <radio hidden value="{{item.id}}" color="#00ACFF" checked="{{item.checked}}"/>
     <!--        {{item.name}}-->
             <image src="{{imgUrl+item.logurl}}"  class="full-image" style="height: 2rem;"  alt="商标"></image>
+            <view class="{{item.checked?'show-span':'span'}}"></view>
         </label>
     </radio-group>
     <view class="padding-top"></view>
