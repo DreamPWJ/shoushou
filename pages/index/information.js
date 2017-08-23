@@ -13,7 +13,7 @@ Page({
         activitytype: [  //活动类型
             {value: 0, name: '无', checked: 'true'}, {value: 1, name: '以旧换新'}
         ],
-        imgUrl:app.globalData.imgUrl+'/'
+        imgUrl: app.globalData.imgUrl + '/'
     },
 
     /**
@@ -169,7 +169,10 @@ Page({
             }
 
         })
+        //获取当前位置 省市县数据
+        util.getCurrentCity(that, 3, function () {
 
+        })
         //获得所属厂商
         util.https(app.globalData.api + "/api/dengji/getlistmanufacte", "GET", {
                 ShorteName: '',

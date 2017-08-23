@@ -1,11 +1,11 @@
 <!--pages/index/information.wxml-->
 <import src="../util/addresstemplate.wxml"/>
-<import src="../util/searchaddresstemplate.wxml"/>
+<!--<import src="../util/searchaddresstemplate.wxml"/>-->
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <template wx:if="{{isShowPCC}}" is="address" data="{{addressinfo}}"/>
-<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>
+<!--<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>-->
 <view wx:if="{{!(isShowPCC||isShowSearch)}}">
     <view class="item-divider item-divider-bg item-icon-right border-bottom  padding-top" bindtap="">
         <view class="h2 border-left">选择品类</view>
@@ -43,7 +43,7 @@
         </view>
 
         <view class="item item-input" bindtap="getAddressPCCList">
-            <input type="text" disabled value="{{addresspcd}}"
+            <input type="text" disabled value="{{addresspcd||ssx}}"
                    placeholder="地区信息(省市县)"/>
         </view>
         <view class="item item-input ">

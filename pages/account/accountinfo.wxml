@@ -3,13 +3,12 @@
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <view class="list  ">
-    <navigator url="" open-type="navigate" class="item item-avatar item-icon-right  ">
-        <image src="{{userdata.userfigure||'../../images/head.jpg'}}" alt=""></image>
-        <view class="p padding-top">头像</view>
-        <text class="icon-accessory iconfont icon-right "></text>
-    </navigator>
+    <view bindtap="uploadActionSheet" class="item item-avatar-right  ">
+        <image src="{{userdata.userfigure||wxUserInfo.avatarUrl}}" alt=""></image>
+        <view class="h2 padding-top">头像</view>
+    </view>
     <navigator url="" open-type="navigate" class="item item-icon-right">
-        <view class="h2">昵称 <text class="item-note">{{userdata.nickname}}</text></view>
+        <view class="h2">昵称 <text class="item-note">{{userdata.nickname||wxUserInfo.nickName}}</text></view>
         <text class="icon-accessory iconfont icon-right "></text>
     </navigator>
     <navigator url="" open-type="navigate" class="item item-icon-right">

@@ -6,7 +6,13 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        wxUserInfo: wx.getStorageSync("wxUserInfo"),
+        filename: 'User',
+        imageList: [],//本地路径
+        imgsPicAddr: [],//真实服务器图片信息数组
+        uploadtype: 5,//上传媒体操作类型 1.卖货单 2 供货单 3 买货单 4身份证 5 头像
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -62,6 +68,14 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    /**
+     * 上传图片
+     */
+    uploadActionSheet: function (e) {
+        util.uploadActionSheet(this, function () {
+
+        })
     },
     /**
      * 获取我的数据

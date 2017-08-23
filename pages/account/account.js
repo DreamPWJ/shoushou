@@ -7,7 +7,9 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        wxUserInfo: wx.getStorageSync("wxUserInfo")
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -70,10 +72,10 @@ Page({
         return {
             title: '收收分享',
             path: '/pages/account/account',
-            success: function(res) {
+            success: function (res) {
                 // 转发成功
             },
-            fail: function(res) {
+            fail: function (res) {
                 // 转发失败
             }
         }
@@ -90,8 +92,17 @@ Page({
             })
         })
         //获得我的里面待处理和预警订单数 银行卡以及余额
-        util.getUserSum(that,function (data) {
+        util.getUserSum(that, function (data) {
 
         })
+        //获取微信用户信息
+        if (!wx.getStorageSync("wxUserInfo")) {
+            app.getUserInfo(function (data) {
+                that.setData({
+                    wxUserInfo: data
+                })
+            })
+        }
+
     }
 })

@@ -11,7 +11,10 @@ App({
             }
         })
     },
-
+    /**
+     * 获取微信用户信息
+     * @param cb
+     */
     getUserInfo: function (cb) {
         var that = this
         if (this.globalData.userInfo) {
@@ -22,6 +25,7 @@ App({
                 withCredentials: false,
                 success: function (res) {
                     that.globalData.userInfo = res.userInfo
+                    wx.setStorageSync("wxUserInfo", res.userInfo);//用户微信数据
                     typeof cb == "function" && cb(that.globalData.userInfo)
                 }
             })

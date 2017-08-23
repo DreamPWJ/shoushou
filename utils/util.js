@@ -420,9 +420,9 @@ function getAddressPCCList(that, item, level, callback) {
  * 获取当前位置 省市县数据
  */
 function getCurrentCity(that, level, callback) {
-    that.setData({
+/*    that.setData({
         isShowSearch: true
-    })
+    })*/
     this.https("https://restapi.amap.com/v3/geocode/regeo", "GET", {
             key: app.globalData.gaoDeKey,
             location: Number(that.data.handlongitude || wx.getStorageSync("longitude")).toFixed(6) + "," + Number(that.data.handlatitude || wx.getStorageSync("latitude")).toFixed(6),

@@ -5,9 +5,9 @@
 <view>
     <view class="list">
         <navigator url="accountinfo" open-type="navigate" class="item item-positive item-avatar item-icon-right user">
-            <image src="{{userdata.userfigure||'../../images/head.jpg'}}" alt="头像"></image>
-            <view class="h2 {{(userdata.username==null&&userdata.nickname==null)?'padding-top':''}}">
-                {{userdata.username||userdata.nickname}}
+            <image src="{{userdata.userfigure||wxUserInfo.avatarUrl}}" alt="头像"></image>
+            <view class="h2">
+                {{userdata.username||userdata.nickname||wxUserInfo.nickName}}
             </view>
             <view class="p">{{userdata.mobile}}</view>
             <text class="icon-accessory iconfont icon-right "></text>
