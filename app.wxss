@@ -32,7 +32,7 @@ page {
     color: #f26604;
 }
 
-view, text {
+view, text,radio-group,checkbox-group {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
