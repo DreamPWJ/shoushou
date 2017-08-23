@@ -17,24 +17,24 @@ Page({
    */
   onLoad: function (options) {
       util.isLoginModal();
-      //获得我的里面待处理和预警订单数 银行卡以及余额
-      util.getUserSum(this,function (data) {
 
-      })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+      //获得我的里面待处理和预警订单数 银行卡以及余额
+      util.getUserSum(this,function (data) {
+
+      })
   },
 
   /**

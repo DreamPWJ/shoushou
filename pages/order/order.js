@@ -22,8 +22,7 @@ Page({
      */
     onLoad: function (options) {
         util.isLoginModal();
-        //获取消息列表
-        this.getOrderList(this.data.currentTab == 0 ? this.data.unfpage : this.data.page);
+
     },
 
     /**
@@ -37,7 +36,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        //获取消息列表
+        this.getOrderList(this.data.currentTab == 0 ? this.data.unfpage : this.data.page);
     },
 
     /**

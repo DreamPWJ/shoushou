@@ -9,6 +9,20 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
         var that = this;
         //接口API授权 type 1.是公共授权  2.登录授权
         if (!wx.getStorageSync("userid")) {
@@ -24,20 +38,6 @@ Page({
                 that.getIndexData();
             });
         }
-
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
 
     },
 

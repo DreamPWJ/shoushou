@@ -1,23 +1,9 @@
 /* pages/referenceprice/referenceprice.wxss */
-/*.row {
-    position: relative;
-}
 
-.col-25 {
-    position: fixed;
-    width: 25%;
-}
-
-.col-75 {
-    position: relative;
-    width: 75%;
-    left: 25%;
-}*/
 
 .col-25 .item {
     text-align: center;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 10px 0;
 }
 
 .col-25 .item .h2 {

@@ -8,36 +8,41 @@ var app = getApp();
  * @param callBack
  */
 function https(url, type, data, callBack, header) {
-    if (!data.isHideLoad) {
-        wx.showLoading({
-            title: '加载中',
-        })
-    }
-    wx.showNavigationBarLoading();
-    wx.request({
-        url: url,
-        method: type,
-        data: data,
-        header: header ? header : ( {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + wx.getStorageSync('token')
-        }),
-        success: function (res) {
-            callBack(res.data);
-        },
-        fail: function (error) {
-            showToast("收收请求失败");
-        },
-        complete: function (res) {
-            wx.hideNavigationBarLoading();
-            wx.hideLoading();
-            wx.stopPullDownRefresh();
-            console.log(res);
-            if (res.statusCode === 401) {
-                showToast("收收请求未授权");
-            }
+    return new Promise(function (resolve, reject) {
+        if (!data.isHideLoad) {
+            wx.showLoading({
+                title: '加载中',
+            })
         }
+        wx.showNavigationBarLoading();
+        wx.request({
+            url: url,
+            method: type,
+            data: data,
+            header: header ? header : ( {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + wx.getStorageSync('token')
+            }),
+            success: function (res) {
+                resolve(res.data);
+                callBack(res.data);
+            },
+            fail: function (error) {
+                reject(error);
+                showToast("收收请求失败");
+            },
+            complete: function (res) {
+                wx.hideNavigationBarLoading();
+                wx.hideLoading();
+                wx.stopPullDownRefresh();
+                console.log(res);
+                if (res.statusCode === 401) {
+                    showToast("收收请求未授权");
+                }
+            }
+        })
     })
+
 }
 
 /**
@@ -584,9 +589,11 @@ function getProductListIsth(that, callback) {
             isHideLoad: true
         },
         function (data) {
-            callback.call(this, data)
+
         }
-    )
+    ).then(function (data) {
+        callback.call(this, data)
+    })
 }
 
 /**
