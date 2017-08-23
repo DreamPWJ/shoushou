@@ -52,7 +52,7 @@ function authorization(type, callback, immediately) {
             //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
             if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || wx.getStorageSync("token") == "undefined" || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
                 clearInterval(timePromise2);
-                that.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials',isHideLoad:true},
+                that.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials', isHideLoad: true},
                     function (data) {
                         if (data.access_token) {
                             wx.setStorageSync('token', data.access_token);//公共接口授权token
@@ -81,7 +81,7 @@ function authorization(type, callback, immediately) {
                         grant_type: 'password',
                         username: wx.getStorageSync("userid"),
                         password: wx.getStorageSync("usersecret"),
-                        isHideLoad:true
+                        isHideLoad: true
                     },
                     function (data) {
                         if (data.access_token) {
@@ -289,7 +289,7 @@ function wxLogin() {
                     that.https(app.globalData.api + "/api/wc/GetOpenid", "GET", {
                             code: res.code,
                             UserLogID: wx.getStorageSync("userid") || "",
-                            isHideLoad:true
+                            isHideLoad: true
                         },
                         function (data) {
                             if (data.code == 1001) {
@@ -420,9 +420,9 @@ function getAddressPCCList(that, item, level, callback) {
  * 获取当前位置 省市县数据
  */
 function getCurrentCity(that, level, callback) {
-/*    that.setData({
-        isShowSearch: true
-    })*/
+    /*    that.setData({
+            isShowSearch: true
+        })*/
     this.https("https://restapi.amap.com/v3/geocode/regeo", "GET", {
             key: app.globalData.gaoDeKey,
             location: Number(that.data.handlongitude || wx.getStorageSync("longitude")).toFixed(6) + "," + Number(that.data.handlatitude || wx.getStorageSync("latitude")).toFixed(6),
@@ -477,7 +477,7 @@ function uploadActionSheet(that, callback) {
                     sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
                         //上传文件
-                        uploadFile(res, that)
+                        uploadFile(res, that, callback)
                     }
                 })
             } else if (res.tapIndex == 1) { //拍照
@@ -487,7 +487,7 @@ function uploadActionSheet(that, callback) {
                     sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
                     success: function (res) {
                         //上传文件
-                        uploadFile(res, that)
+                        uploadFile(res, that, callback)
                     }
                 })
             }
@@ -502,9 +502,12 @@ function uploadActionSheet(that, callback) {
 /**
  * 上传文件
  */
-function uploadFile(res, that) {
+function uploadFile(res, that, callback) {
     // // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-    var tempFilePaths = res.tempFilePaths
+    var tempFilePaths = res.tempFilePaths;
+    that.setData({
+        imageList: [tempFilePaths]
+    })
     wx.showLoading({title: '正在上传'})
     wx.uploadFile({
         url: app.globalData.api + "/api/util/uploadimg/" + that.data.filename, //仅为示例，非真实的接口地址
@@ -515,9 +518,16 @@ function uploadFile(res, that) {
         header: {"authorization": "Bearer " + wx.getStorageSync('token')}, //授权
         success: function (res) {
             console.log(res);
-            var data = res.data
+            var data = res.data;
+            callback.call(this,res.data)
             //do something
+            var imgsPicAddr=app.globalData.imgUrl + data.data;
+            that.setData({
+                imgsPicAddr: [imgsPicAddr]
+            })
+
             toolTip(that, "上传成功", 1)
+
         }, fail: function (res) {
             toolTip(that, "上传失败")
         }, complete: function () {
@@ -558,7 +568,7 @@ function chooseLocation(that, callback) {
  * 获取产品品类
  */
 function getProductList(that, callback) {
-    this.https(app.globalData.api + "/api/product/getgrplist", "GET", {isHideLoad:true},
+    this.https(app.globalData.api + "/api/product/getgrplist", "GET", {isHideLoad: true},
         function (data) {
             callback.call(this, data)
         }
@@ -569,7 +579,11 @@ function getProductList(that, callback) {
  * 根据产品品类及是否统货取产品列表
  */
 function getProductListIsth(that, callback) {
-    this.https(app.globalData.api + "/api/product/getpronew", "GET", {grpid: that.data.grpid, isth: that.data.isth,isHideLoad:true},
+    this.https(app.globalData.api + "/api/product/getpronew", "GET", {
+            grpid: that.data.grpid,
+            isth: that.data.isth,
+            isHideLoad: true
+        },
         function (data) {
             callback.call(this, data)
         }
@@ -580,10 +594,10 @@ function getProductListIsth(that, callback) {
  * 获得我的里面待处理和预警订单数 银行卡以及余额
  */
 function getUserSum(that, callback) {
-    this.https(app.globalData.api + "/api/orderreceipt/getsum/" + wx.getStorageSync('userid') + "/" + 24, "GET", {isHideLoad:true},
+    this.https(app.globalData.api + "/api/orderreceipt/getsum/" + wx.getStorageSync('userid') + "/" + 24, "GET", {isHideLoad: true},
         function (data) {
             that.setData({
-                userSum:data.data
+                userSum: data.data
             })
             callback.call(this, data)
         }
@@ -613,5 +627,5 @@ module.exports = {
     chooseLocation: chooseLocation,
     getProductList: getProductList,
     getProductListIsth: getProductListIsth,
-    getUserSum:getUserSum
+    getUserSum: getUserSum
 }

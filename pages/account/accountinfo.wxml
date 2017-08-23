@@ -4,7 +4,7 @@
 </view>
 <view class="list  ">
     <view bindtap="uploadActionSheet" class="item item-avatar-right  ">
-        <image src="{{userdata.userfigure||wxUserInfo.avatarUrl}}" alt=""></image>
+        <image src="{{userdata.userfigure||wxUserInfo.avatarUrl}}" binderror="" alt="头像"></image>
         <view class="h2 padding-top">头像</view>
     </view>
     <navigator url="" open-type="navigate" class="item item-icon-right">

@@ -7,7 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        wxUserInfo: wx.getStorageSync("wxUserInfo"),
+        wxUserInfo:wx.getStorageSync("wxUserInfo"),
         filename: 'User',
         imageList: [],//本地路径
         imgsPicAddr: [],//真实服务器图片信息数组
@@ -73,8 +73,15 @@ Page({
      * 上传图片
      */
     uploadActionSheet: function (e) {
-        util.uploadActionSheet(this, function () {
-
+        var that = this;
+        util.uploadActionSheet(this, function (data) {
+            util.https(app.globalData.api + "/api/user/set_figure/" + wx.getStorageSync('userid'), "GET", {figure: app.globalData.imgUrl + data.data},
+                function (data) {
+                    wx.redirectTo({
+                        url: 'account'
+                    })
+                }
+            )
         })
     },
     /**
