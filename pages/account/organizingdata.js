@@ -169,12 +169,21 @@ Page({
                     userid: wx.getStorageSync("userid"),
                     mobile: wx.getStorageSync("user").mobile,
                     shopname: inputContent.shopname,
-                    addrdetail: inputContent.addrdetail,
-                    addrcode: "",
+                    addrdetail: inputContent.addrdetail || that.data.addressname,//地址详情
+                    addrcode: that.data.addressone.ID,
+                    areacode: that.data.addressone.Code,
                     img: that.data.imageList[0],
                 },
                 function (data) {
                     if (data.code == 1001) {
+                        util.getUserInfo(function (data) {
+                            var user = wx.getStorageSync('user');
+                            if (user.certstate.substr(3, 1) != 2) { //没有实名认证
+                                util.toolTip(that, "完善资料提交成功", 1, "/pages/account/realname?status=0");
+                            } else {
+                                util.toolTip(that, "完善资料提交成功", 1, "/pages/index/index");
+                            }
+                        })
 
                     } else {
                         util.toolTip(that, data.message);
