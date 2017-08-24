@@ -112,7 +112,7 @@ Page({
                     function (data) {
                         if (data.code == 1001) {
                             that.getOrderList(1);
-                            util.toolTip(that, '订单关闭成功');
+                            util.toolTip(that, '订单关闭成功', 1);
                         } else {
                             util.toolTip(that, data.message);
                         }
