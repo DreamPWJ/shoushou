@@ -149,6 +149,10 @@ Page({
 
 
         util.wxValidate(e, that, function () {
+            if (that.data.imageList.length == 0) {
+                util.toolTip(that, "请先上传工作证照片后再提交");
+                return;
+            }
             util.https(app.globalData.api + "/api/user/set_info", "POST", {
                     services: [1],
                     userid: wx.getStorageSync("userid"),
@@ -156,7 +160,7 @@ Page({
                     shopname: inputContent.shopname,
                     addrdetail: inputContent.addrdetail,
                     addrcode: "",
-                    img: "",
+                    img: that.data.imageList[0],
                 },
                 function (data) {
                     if (data.code == 1001) {

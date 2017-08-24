@@ -2,10 +2,29 @@
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<form bindsubmit="realnameSubmit">
+    <view class="list has-bottom-button">
+        <view class="item item-input">
+            <text class=" iconfont  icon-my placeholder-icon"></text>
+            <input type="text" bindinput="bindChange" id="name" name="name"
+                   placeholder="真实姓名" maxlength="15"/>
+        </view>
+        <view class="item item-input">
+            <text class=" iconfont  icon-friendadd placeholder-icon"></text>
+            <input type="idcard" bindinput="bindChange" id="idno" name="idno"
+                   placeholder="真实身份证号码"/>
+        </view>
+        <view class="item item-input" bindtap="uploadActionSheet">
+            <text class=" iconfont icon-pic placeholder-icon"></text>
+            <input type="text" disabled placeholder="上传身份证(请参考示例 误传请重新传)"/>
+            <text class="padding-horizontal  iconfont icon-add positive"></text>
+        </view>
     </view>
-</view>
+    <view class="padding light-bg fixed-bottom">
+        <button class="positive-bg light "
+                formType="submit">提交
+        </button>
+    </view>
+</form>
+
 

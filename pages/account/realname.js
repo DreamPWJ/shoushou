@@ -9,7 +9,12 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        filename: 'User',
+        imageList: [],//本地路径
+        imgsPicAddr: [],//真实服务器图片信息数组
+        uploadtype: 4,//上传媒体操作类型 1.卖货单 2 供货单 3 买货单 4身份证 5 头像
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -72,4 +77,59 @@ Page({
     bindChange: function (e) {
         inputContent[e.currentTarget.id] = e.detail.value;
     },
+    /**
+     * 上传图片
+     */
+    uploadActionSheet: function (e) {
+        util.uploadActionSheet(this, function () {
+
+        })
+    },
+    /**
+     * 用户提交实名认证
+     */
+    realnameSubmit: function (e) {
+        var that = this;
+        //验证表单
+        that.WxValidate = new WxValidate({
+                name: {  //验证规则 input name值
+                    required: true
+                },
+                idno: {  //验证规则 input name值
+                    required: true,
+                    idcard: true
+                },
+
+            },
+            {
+                name: { //提示信息
+                    required: "请填写真实姓名",
+                },
+                idno: { //提示信息
+                    required: "请填真实身份证号码",
+                },
+
+            })
+        util.wxValidate(e, that, function () {
+            if (that.data.imageList.length == 0) {
+                util.toolTip(that, "请先上传认证照片后再提交");
+                return;
+            }
+            util.https(app.globalData.api + "/api/user/authenticate_idcard", "POST", {
+                    userid: wx.getStorageSync('userid'),
+                    name: inputContent.name,
+                    idno: inputContent.idno,
+                    frontpic: that.data.imageList[0]
+                },
+                function (data) {
+                    if (data.code == 1001) {
+                        util.toolTip(that, "实名认证提交成功", 1, '/pages/account/accountsecurity')
+                    } else {
+                        util.toolTip(that, data.message)
+                    }
+                }
+            )
+
+        });
+    }
 })

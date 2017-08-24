@@ -2,9 +2,33 @@
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<view>
+    <view class="padding-top"></view>
+    <view class="list">
+        <navigator url="?status={{phonestatus}}" open-type="navigate" class="item item-icon-right">
+            <view class="h2">绑定手机
+                <view class="item-note {{(phonestatus==1||phonestatus==2)?'balanced':'assertive'}}">
+                    {{certstatestatus[phonestatus]}}
+                </view>
+            </view>
+            <text class="icon-accessory iconfont icon-right"></text>
+        </navigator>
+        <navigator url="?status={{emailstatus}}" open-type="navigate" class="item item-icon-right">
+            <view class="h2">绑定邮箱
+                <view class=item-note {{(emailstatus==1||emailstatus==2)?'balanced':'assertive'}}">
+                    {{certstatestatus[emailstatus]}}
+                </view>
+            </view>
+            <text class="icon-accessory iconfont icon-right"></text>
+        </navigator>
+        <navigator url="realname?status={{identitystatus}}" open-type="navigate" class="item item-icon-right">
+            <view class="h2">实名认证
+                <view class="item-note {{(identitystatus==1||identitystatus==2)?'balanced':'assertive'}}">
+                    {{certstatestatus[identitystatus]}}
+                </view>
+            </view>
+            <text class="icon-accessory iconfont icon-right"></text>
+        </navigator>
     </view>
+
 </view>

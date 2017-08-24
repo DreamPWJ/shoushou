@@ -1,10 +1,10 @@
-<!--pages/wallet/recharge.wxml-->
+ <!--pages/wallet/recharge.wxml-->
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <form bindsubmit="paymentSubmit">
     <view class="padding-top"></view>
-    <view class="list">
+    <view class="list has-bottom-button">
         <label class="item item-input">
             <view class="input-label "> 充值金额</view>
             <input type="digit" bindinput="bindChange" id="money" name="money"  placeholder="请输入充值金额"/>
