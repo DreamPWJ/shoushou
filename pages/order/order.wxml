@@ -28,7 +28,7 @@
                         <view class=" {{item.hytype==1?'bhytype':(item.hytype==2?'ehytype':'')}} ">
                             {{item.hytype==1?'废品':(item.hytype==2?'二手':'')}}
                         </view>
-                        <view class="close assertive item-note right-1"
+                        <view catchtap="closeOrder" data-orderno="{{item.djno}}" class="close assertive item-note right-1"
                               wx:if="{{item.state==2||item.state==3}}">
                             <text class="iconfont icon-jian"></text>
                             关闭
@@ -60,7 +60,7 @@
                         <view class=" {{item.hytype==1?'bhytype':(item.hytype==2?'ehytype':'')}} ">
                             {{item.hytype==1?'废品':(item.hytype==2?'二手':'')}}
                         </view>
-                        <view class="close assertive item-note right-1"
+                        <view catchtap="closeOrder" data-orderno="{{item.djno}}" class="close assertive item-note right-1"
                               wx:if="{{item.state==2||item.state==3}}">
                             <text class="iconfont icon-jian"></text>
                             关闭

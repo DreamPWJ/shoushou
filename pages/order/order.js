@@ -102,6 +102,26 @@ Page({
 
     },
     /**
+     * 关闭订单
+     */
+    closeOrder: function (e) {
+        var that = this;
+        util.showModal('收收提示', '您是否要关闭此订单?"是"点击"确定",否则请点击"取消', '确定', '取消', function (res) {
+            if (res.confirm) {
+                util.https(app.globalData.api + "/api/dengji/cancel/" + e.currentTarget.dataset.orderno, "GET", {},
+                    function (data) {
+                        if (data.code == 1001) {
+                            that.getOrderList(1);
+                            util.toolTip(that, '订单关闭成功');
+                        } else {
+                            util.toolTip(that, data.message);
+                        }
+                    }
+                )
+            }
+        })
+    },
+    /**
      * 获取订单列表
      */
     getOrderList: function (page) {
@@ -143,8 +163,8 @@ Page({
                 that.setData({
                     hasUnfData: data.data.page_count == that.data.unfpage ? false : true,
                     hasData: data.data.page_count == that.data.page ? false : true,
-                    isNotunfinishedData: that.data.currentTab == 0 && (data.data == null || data.data.data_list == 0) ? true : false,
-                    isNotData: that.data.currentTab == 1 && (data.data == null || data.data.data_list == 0) ? true : false,
+                    isNotunfinishedData: that.data.currentTab == 0 && (data.data == null || data.data.data_list.length == 0) ? true : false,
+                    isNotData: that.data.currentTab == 1 && (data.data == null || data.data.data_list.length == 0) ? true : false,
                     unfinishedOrderList: that.data.unfinishedOrderListArr,
                     orderList: that.data.orderListArr
                 })

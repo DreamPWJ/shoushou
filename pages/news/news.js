@@ -102,7 +102,7 @@ Page({
 
                 that.setData({
                     hasData: data.data.page_count == that.data.page ? false : true,
-                    isNotData: (data.data == null || data.data.data_list == 0) ? true : false,
+                    isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                     newsList: that.data.newsListArr
                 })
                 that.data.page++;

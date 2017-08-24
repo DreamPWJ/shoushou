@@ -2,3 +2,126 @@
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
+<view class="{{orderDetail.state==2||orderDetail.state==3||orderDetail.state==6?'has-bottom-button':''}}">
+    <view class="list">
+        <view class="item  item-icon-right " style="padding-right: 12px;">
+            {{orderDetail.orno||orderDetail.djno}}
+            <text class="{{orderDetail.strstate?'phytype':''}}">{{orderDetail.strstate}}</text>
+        </view>
+        <view class="orderdetails ">
+            <view class="item border-t">
+                货主 : {{orderDetail.name}}
+            </view>
+            <view class="item">
+                联系电话 : {{orderDetail.motel}}
+            </view>
+            <view class="item text-wrap">
+                联系地址 : {{orderDetail.addrdetail }}({{orderDetail.area.MergerName}})
+            </view>
+            <view class="item">
+                下单时间 : {{orderDetail.addtime}}
+            </view>
+            <view class="item" wx:if="{{orderDetail.orname}}">
+                接单人 : {{orderDetail.type==1?(orderDetail.orname ):orderDetail.orname }}
+            </view>
+            <view wx:if="{{orderDetail.type==2&&orderDetail.ormotel}}" class="item item-icon-right"
+                  href="tel:{{orderDetail.ormotel}}">
+                接单手机号 : {{orderDetail.ormotel}}
+                <text class="icon iconfont icon-phone energized"></text>
+            </view>
+            <view class="item" wx:if="{{orderDetail.type==1&&orderDetail.ormotel}}">
+                接单手机号 : {{orderDetail.ormotel }}
+            </view>
+            <view class="item" wx:if="{{orderDetail.oraddtime!='0001-01-01T00:00:00'}}">
+                接单时间 : {{orderDetail.oraddtime }}
+            </view>
+            <view class="item" wx:if="{{orderDetail.appointtime!='0001-01-01T00:00:00' && orderDetail.isappoint==2}}">
+                预约时间 : {{orderDetail.appointtime }}
+            </view>
+            <view class="item" wx:if="{{orderDetail.state=='8' && orderDetail.nocanceled!=''}}">
+                取消原因 : {{orderDetail.nocanceled}}
+            </view>
+        </view>
+        <view class="padding-top"></view>
+        <view wx:if="{{orderDetail.djdetails}}">
+            <view class="item item-icon-right item-borderless">
+                登记{{orderDetail.type==1?'信息':'货源'}}
+                <view class="inline {{orderDetail.hytype==1?'bhytype':(orderDetail.hytype==2?'ehytype':'')}} ">
+                    {{orderDetail.hytype==1?'废品':(orderDetail.hytype==2?'二手':'')}}
+                </view>
+            </view>
+            <view class="orderdetails">
+                <view class="item text-wrap" wx:for="{{orderDetail.djdetails}}" wx:for-item="item" wx:key="*this">
+                    {{item.proname}} : {{(orderDetail.type==2?item.num:'若干')+item.uname}}
+                </view>
+                <view class="item" wx:if="{{orderDetail.type==2}}">
+                    交货方式 : {{orderDetail.delivery==1?'上门回收':'送货上门'}}
+                </view>
+                <view class="item" wx:if="{{orderDetail.type==1&&orderDetail.acttype==1}}">
+                    活动类型 : 以旧换新
+                </view>
+                <view class="item" wx:if="{{orderDetail.type==1&&orderDetail.shortename}}">
+                    所属厂商 : {{orderDetail.shortename}}
+                </view>
+                <view class="item" wx:if="{{orderDetail.paymentmethod}}">
+                    支付类型 : {{orderDetail.paymentmethod==1?'现金支付':'在线支付'}}
+                </view>
+                <view class="item" wx:if="{{orderDetail.type==1&&orderDetail.order_amount.info_amount}}">
+                    信息费 : {{orderDetail.order_amount.info_amount}}
+                </view>
+            </view>
+        </view>
+        <view class="padding-top"></view>
+        <view wx:if="{{orderDetail.type==2&&orderDetail.details&&orderDetail.details.length!=0}}">
+            <view class=" item item-icon-right item-borderless">
+                回收清单 ( <span class="positive">交易金额 : {{orderDetail.totalprice }}</span> )
+            </view>
+            <view class="orderdetails">
+                <view class="item text-wrap" wx:for="{{orderDetail.djdetails}}" wx:for-item="item" wx:key="*this">
+                    {{item.proname}} : {{item.num+item.uname}} <span wx:if="{{item.price}}">( 回收价 : {{item.price}}元/{{item.uname}}  )</span>
+                </view>
+
+                <view class="item">
+                    回收时间 : {{orderDetail.details[0].addtime }}
+                </view>
+            </view>
+        </view>
+        <view class="padding-top"></view>
+        <view wx:if="{{commentInfo}}">
+            <view class="item item-icon-right item-borderless">
+                客户评价
+                <text class="iconfont icon-favorfill energized " wx:if="{{commentInfo.score>=1}}"></text>
+                <text class="iconfont icon-favorfill energized " wx:if="{{commentInfo.score>=2}}"></text>
+                <text class="iconfont icon-favorfill energized " wx:if="{{commentInfo.score>=3}}"></text>
+                <text class="iconfont icon-favorfill energized " wx:if="{{commentInfo.score>=4}}"></text>
+                <text class="iconfont icon-favorfill energized " wx:if="{{commentInfo.score>=5}}"></text>
+
+            </view>
+            <view class="orderdetails">
+                <view class="item">
+                    服务态度 : {{commentInfo.service==1?"满意":(commentInfo.service==2?"一般":"差")}}
+                </view>
+                <view class="item">
+                    回收价格 : {{commentInfo.tranprice==1?"合理":(commentInfo.tranprice==2?"一般":"低")}}
+                </view>
+                <view class="item">
+                    描述 : {{commentInfo.remark}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="padding-top"></view>
+    <view class="row padding light-bg  fixed-bottom row-horizontal-around"
+          wx:if="{{orderDetail.state==2||orderDetail.state==3||orderDetail.state==6}}">
+        <button catchtap="closeOrder" data-orderno="{{orderDetail.djno}}" class="button  button-assertive  icon iconfont icon-jian col-40  "
+                wx:if="{{orderDetail.state==2||orderDetail.state==3}}">
+            关闭
+        </button>
+        <button class="button button-royal icon iconfont icon-evaluate_fill col-40 "
+
+                wx:if="{{orderDetail.state==6}}">
+            评价
+        </button>
+    </view>
+
+</view>

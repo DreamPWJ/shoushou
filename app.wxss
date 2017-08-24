@@ -152,6 +152,18 @@ text, input {
     z-index: 20000 !important;
 }
 
+.fixed-bottom button {
+    padding: 0 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1rem !important;
+}
+
+.fixed-bottom button.icon:before, .fixed-bottom button.iconfont:before {
+    font-size: 1.2rem !important;
+}
+
 .has-bottom-button {
     position: relative;
     padding-top: 66px !important;
@@ -235,6 +247,10 @@ text, input {
 
 .border-r {
     border-right: 1px solid rgba(221, 221, 221, 0.3);
+}
+
+.border-t {
+    border-top: 1px solid rgba(221, 221, 221, 0.3) !important;
 }
 
 .border-b {

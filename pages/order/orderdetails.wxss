@@ -1,1 +1,49 @@
 /* pages/order/orderdetails.wxss */
+.bhytype:not(:empty) {
+    display: inline;
+    border: 1px solid #33cd5f;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    padding: 2px;
+    color: #33cd5f;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ehytype:not(:empty) {
+    display: inline!important;
+    border: 1px solid #f26604;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    padding: 2px;
+    color: #f26604;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.phytype:not(:empty) {
+    display: inline!important;
+    border: 1px solid #00ACFF;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    padding: 1px 2px;
+    color: #00ACFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.orderdetails .item {
+    font-size: 0.9rem;
+    color: #666;
+    padding: 10px 16px;
+}
+
+.orderdetails .item.item-icon-left {
+    padding-left: 54px;
+}
+
+.orderdetails .item.item-icon-right {
+    padding-right: 54px;
+}
