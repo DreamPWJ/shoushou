@@ -29,20 +29,20 @@
             <view class="h2">充值</view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
-        <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="withdraw" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-tixian" style="color: #33cd5f"></text>
             <view class="h2">提现</view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
         <view class="padding-top"></view>
-        <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="bankcard" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-yinxingqia" style="color: #FFD700"></text>
             <view class="h2">银行卡
                 <text class="item-note">{{userSum.banknum||0}}张</text>
             </view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
-        <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="tradingrecord" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-jiaoyijilu" style="color: #ef473a"></text>
             <view class="h2">交易记录</view>
             <text class="icon-accessory iconfont icon-right"></text>
