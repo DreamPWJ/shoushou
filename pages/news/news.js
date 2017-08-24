@@ -33,7 +33,10 @@ Page({
      */
     onShow: function () {
         //获取消息列表
-        this.getNewsList(this.data.page);
+        this.setData({
+            page: 1
+        })
+        this.getNewsList(1);
     },
 
     /**
@@ -79,6 +82,31 @@ Page({
 
     },
     /**
+     * 设置已读未读
+     */
+    updateNewsLook: function (type, id) {
+        var that = this;
+        util.https(app.globalData.api + "/api/MessagePush/setlook?look=" + type + '&ids=' + id, "POST", {},
+            function (data) {
+                if (data.code != 1001) {
+                    util.toolTip(that, data.message);
+                }
+            }
+        )
+    },
+    /**
+     * 订单详情
+     */
+    newsDetails: function (e) {
+        var item = e.currentTarget.dataset.item;
+        if (item.relateno) {
+            this.updateNewsLook(1, item.id);
+            wx.navigateTo({
+                url: '../order/orderdetails?orderno=' + item.relateno
+            })
+        }
+    },
+    /**
      * 获取消息列表
      */
     getNewsList: function (page) {
@@ -87,7 +115,7 @@ Page({
                 page: page,//页码
                 size: 10,//条数
                 userid: wx.getStorageSync("userid"),//用户id
-                isHideLoad:true
+                isHideLoad: true
             },
             function (data) {
                 if (that.data.page == 1) {

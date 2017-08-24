@@ -8,7 +8,7 @@
         <text>暂无消息</text>
     </view>
     <view class="list">
-        <view class="item" wx:for="{{newsList}}" wx:for-item="item" wx:key="*this">
+        <view bindtap="newsDetails" data-item="{{item}}" class="item" wx:for="{{newsList}}" wx:for-item="item" wx:key="*this">
             <view class="h2">
                 <text class="iconfont icon-markfill {{item.look==0?'energized':'grey'}} "
                       style="font-size: 1rem!important;"></text>
