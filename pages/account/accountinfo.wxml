@@ -7,7 +7,7 @@
         <image src="{{userdata.userfigure||wxUserInfo.avatarUrl}}" binderror="" alt="头像"></image>
         <view class="h2 padding-top">头像</view>
     </view>
-    <navigator url="" open-type="navigate" class="item item-icon-right">
+    <navigator url="updateuser" open-type="navigate" class="item item-icon-right">
         <view class="h2">昵称 <text class="item-note">{{userdata.nickname||wxUserInfo.nickName}}</text></view>
         <text class="icon-accessory iconfont icon-right "></text>
     </navigator>
@@ -21,7 +21,7 @@
         <text class="icon-accessory iconfont icon-right "></text>
     </navigator>
 
-    <navigator url="" open-type="navigate"  class="item item-icon-right {{usertype==1?'item-borderless':''}}">
+    <navigator url="updateuser" open-type="navigate"  class="item item-icon-right {{usertype==1?'item-borderless':''}}">
         <view class="h2">性别 <text class="item-note">{{userdata.sex==0?'保密':(userdata.sex==1?'男':'女')}}</text></view>
         <text class="icon-accessory iconfont icon-right "></text>
     </navigator>

@@ -136,6 +136,9 @@ Page({
         var that = this;
         if (e.target.dataset.current == 0) {
             console.log('活动类型radio发生change事件，携带value值为：', e.detail.value)
+            that.setData({
+                acttype: e.detail.value
+            })
         } else if (e.target.dataset.current == 1) {
             console.log('所属厂商类型radio发生change事件，携带value值为：', e.detail.value)
             that.data.manufacteList.map(function (item, index) {
@@ -198,6 +201,30 @@ Page({
      */
     informationSubmit: function (e) {
         var that = this;
+        if (that.data.acttype == 1) {//当用户选择“以旧换新”时，先判断用户有没有“完善信息”和“实名认证”，如果没有则必须先“完善信息”和“实名认证”
+            var user = wx.getStorageSync('user');
+            if (user.services == null || user.services.length == 0) { //没有完善信息
+                util.showModal('登记提示', '尊敬的用户,您好！选择以旧换新类型必须先完善资料后才能操作！', '完善资料', '暂不完善', function (res) {
+                    if (res.confirm) {
+                        wx.navigateTo({
+                            url: '/pages/account/organizingdata'
+                        })
+                    }
+                })
+                return;
+            }
+            if (user.certstate.substr(3, 1) != 2) { //没有实名认证
+                util.showModal('登记提示', '尊敬的用户,您好！选择以旧换新类型必须先实名认证后才能操作！', '实名认证', '暂不认证', function (res) {
+                    if (res.confirm) {
+                        wx.navigateTo({
+                            url: '/pages/account/realname'
+                        })
+                    }
+                })
+
+                return;
+            }
+        }
         //验证表单
         that.WxValidate = new WxValidate({
                 user: {  //验证规则 input name值
@@ -211,17 +238,21 @@ Page({
                 }
             })
         util.wxValidate(e, that, function () {
-            util.https(app.globalData.api + "/api/dengji/create", "POST", [],
-                function (data) {
-                    if (data.code == 1001) {
-                        util.toolTip(that, "登记信息提交成功", 1, '/pages/order/order')
-                    } else {
-                        util.toolTip(that, data.message)
-                    }
+            console.log(inputContent);
+            var dengji = [];//登记提交数据
+            /*
+                        util.https(app.globalData.api + "/api/dengji/create", "POST", dengji,
+                            function (data) {
+                                if (data.code == 1001) {
+                                    util.toolTip(that, "登记信息提交成功", 1, '/pages/order/order')
+                                } else {
+                                    util.toolTip(that, data.message)
+                                }
 
 
-                }
-            )
+                            }
+                        )
+            */
 
 
         });

@@ -5,7 +5,7 @@
 <view>
     <view class="padding-top"></view>
     <view class="list  ">
-        <navigator url="" open-type="navigate" class="item item-icon-right">
+        <navigator url="accountsecurity" open-type="navigate" class="item item-icon-right">
             <view class="h2">账号安全
                 <text class="item-note">安全等级 : {{securitylevel}}</text>
             </view>
@@ -17,7 +17,7 @@
         <view class="h2">新消息通知</view>
         <text class="icon-accessory iconfont icon-right"></text>
     </navigator>
-    <navigator url="" open-type="navigate" class="item item-icon-right">
+    <navigator url="helpfeedback" open-type="navigate" class="item item-icon-right">
         <view class="h2">帮助与反馈</view>
         <text class="icon-accessory iconfont icon-right"></text>
     </navigator>
