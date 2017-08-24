@@ -68,6 +68,15 @@ Page({
 
     },
     /**
+     * 打电话
+     */
+    makePhoneCall:function (e) {
+        this.setData({
+            phoneNumber:e.currentTarget.dataset.phone
+        })
+        util.makePhoneCall(this)
+    },
+    /**
      * 关闭订单
      */
     closeOrder: function (e) {

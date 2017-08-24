@@ -67,7 +67,7 @@
                 <view class="p" class="inline dark"> 我要做什么?</view>
             </navigator>
         </view>
-        <view href="tel:400-700-0097">
+        <view bindtap="makePhoneCall" data-phone="400-700-0097">
             <image src="../../images/index/kefu.png" class="kefu full-image light-bg" alt="客服电话"></image>
         </view>
     </view>

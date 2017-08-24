@@ -190,7 +190,7 @@ function showModal(title, content, confirmText, cancelText, callback, showCancel
 /**
  * toolTip方法 type 1是提示色 2是警告色
  */
-function toolTip(that, msg, type) {
+function toolTip(that, msg, type, url) {
     //提示字段值
     that.setData(
         {
@@ -198,6 +198,11 @@ function toolTip(that, msg, type) {
             popType: type == 1 ? "tool-tip-message-success" : "tool-tip-message" || "tool-tip-message"
         }
     );
+    if (url) {
+        wx.navigateTo({
+            url: url
+        })
+    }
 }
 
 /**
@@ -445,6 +450,7 @@ function getCurrentCity(that, level, callback) {
                 ssx: (addressComponent.province + addressComponent.city + (level == 2 ? "" : addressComponent.district)),//省市县
                 addrdetail: addressComponent.township + addressComponent.streetNumber.street
             })
+            callback(data)
         }
     )
 }
@@ -612,6 +618,15 @@ function getUserSum(that, callback) {
     )
 }
 
+/**
+ * 打电话
+ */
+function makePhoneCall(that, callback) {
+    wx.makePhoneCall({
+        phoneNumber: that.data.phoneNumber
+    })
+}
+
 module.exports = {
     https: https,
     authorization: authorization,
@@ -635,5 +650,6 @@ module.exports = {
     chooseLocation: chooseLocation,
     getProductList: getProductList,
     /*    getProductListIsth: getProductListIsth,*/
-    getUserSum: getUserSum
+    getUserSum: getUserSum,
+    makePhoneCall: makePhoneCall
 }

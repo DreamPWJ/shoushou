@@ -101,9 +101,13 @@ Page({
         var item = e.currentTarget.dataset.item;
         if (item.relateno) {
             this.updateNewsLook(1, item.id);
-            wx.navigateTo({
-                url: '../order/orderdetails?orderno=' + item.relateno
-            })
+            if (item.receipttype == 2) {
+            } else {
+                wx.navigateTo({
+                    url: '../order/orderdetails?orderno=' + item.relateno
+                })
+            }
+
         }
     },
     /**

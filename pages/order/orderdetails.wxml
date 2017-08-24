@@ -25,11 +25,11 @@
                 接单人 : {{orderDetail.type==1?(orderDetail.orname ):orderDetail.orname }}
             </view>
             <view wx:if="{{orderDetail.type==2&&orderDetail.ormotel}}" class="item item-icon-right"
-                  href="tel:{{orderDetail.ormotel}}">
+                  bindtap="makePhoneCall" data-phone="{{orderDetail.ormotel}}">
                 接单手机号 : {{orderDetail.ormotel}}
                 <text class="icon iconfont icon-phone energized"></text>
             </view>
-            <view class="item" wx:if="{{orderDetail.type==1&&orderDetail.ormotel}}">
+            <view class="item"  wx:if="{{orderDetail.type==1&&orderDetail.ormotel}}">
                 接单手机号 : {{orderDetail.ormotel }}
             </view>
             <view class="item" wx:if="{{orderDetail.oraddtime!='0001-01-01T00:00:00'}}">

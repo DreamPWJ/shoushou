@@ -1,6 +1,9 @@
 // pages/index/information.js
 var app = getApp();
 var util = require('../../utils/util.js');
+import WxValidate from '../../utils/validate';
+
+var inputContent = {};//输入内容
 Page({
 
     /**
@@ -170,7 +173,7 @@ Page({
 
         })
         //获取当前位置 省市县数据
-        util.getCurrentCity(that, 3, function () {
+        util.getCurrentCity(that, 3, function (data) {
 
         })
         //获得所属厂商
@@ -189,5 +192,40 @@ Page({
                 }
             }
         )
+    },
+    /**
+     * 登记信息数据提交
+     */
+    informationSubmit: function (e) {
+        var that = this;
+        //验证表单
+        that.WxValidate = new WxValidate({
+                user: {  //验证规则 input name值
+                    required: true,
+                    tel: true
+                }
+            },
+            {
+                user: { //提示信息
+                    required: "请填写真实手机号码",
+                }
+            })
+        util.wxValidate(e, that, function () {
+            util.https(app.globalData.api + "/api/dengji/create", "POST", [],
+                function (data) {
+                    if (data.code == 1001) {
+                        util.toolTip(that, "登记信息提交成功", 1, '/pages/order/order')
+                    } else {
+                        util.toolTip(that, data.message)
+                    }
+
+
+                }
+            )
+
+
+        });
+
     }
+
 })
