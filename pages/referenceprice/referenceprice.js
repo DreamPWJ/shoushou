@@ -10,8 +10,7 @@ Page({
     data: {
         classifyIndex: 0,////选中产品分类标示
         isth: 0,//是否统货 1是 0否
-        productList: [],
-        productLists: []
+        productList: []
     },
 
     /**
@@ -79,7 +78,7 @@ Page({
         var index = e.currentTarget.dataset.index || 0;
         this.setData({
             classifyIndex: index,
-            classifyDetails: this.data.productLists[index].details
+            classifyDetails: this.data.productList[index].details
         })
 
     },
@@ -95,23 +94,10 @@ Page({
                     productList: data.data
                 })
 
-                data.data.map( function (item, index) {
-                    that.data.grpid = item.grpid;
-                    //根据产品品类及是否统货取产品列表
-                    util.getProductListIsth(that, function (datas) {
-                        if (datas.code == 1001) {
-                            var items = item;
-                            items.details = datas.data;
-                            that.data.productLists.push(items);
-                            /*    that.data.productLists.splice(0,items);*/
-                        }
-                        if (index == 0) {
-                            that.setData({
-                                classifyDetails: datas.data
-                            })
-                        }
-                    })
+                that.setData({
+                    classifyDetails: data.data[0].details
                 })
+
             } else {
                 util.toolTip(that, data.message)
             }

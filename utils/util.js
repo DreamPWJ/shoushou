@@ -55,7 +55,7 @@ function authorization(type, callback, immediately) {
     if (type == 1) { //1.是公共授权
         var auth1 = function () {
             //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
-            if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token")  || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
+            if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
                 clearInterval(timePromise2);
                 that.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials', isHideLoad: true},
                     function (data) {
@@ -294,7 +294,7 @@ function wxLogin() {
                     that.https(app.globalData.api + "/api/wc/GetOpenid", "GET", {
                             code: res.code,
                             UserLogID: wx.getStorageSync("userid") || "",
-                            client:"xcx",
+                            client: "xcx",
                             isHideLoad: true
                         },
                         function (data) {
@@ -573,7 +573,7 @@ function chooseLocation(that, callback) {
  * 获取产品品类
  */
 function getProductList(that, callback) {
-    this.https(app.globalData.api + "/api/product/getgrplist", "GET", {isHideLoad: true},
+    this.https(app.globalData.api + "/api/product/getgrplistnew", "GET", {isth: that.data.isth, isHideLoad: true},
         function (data) {
             callback.call(this, data)
         }
@@ -583,7 +583,8 @@ function getProductList(that, callback) {
 /**
  * 根据产品品类及是否统货取产品列表
  */
-function getProductListIsth(that, callback) {
+
+/*function getProductListIsth(that, callback) {
     this.https(app.globalData.api + "/api/product/getpronew", "GET", {
             grpid: that.data.grpid,
             isth: that.data.isth,
@@ -595,7 +596,7 @@ function getProductListIsth(that, callback) {
     ).then(function (data) {
         callback.call(this, data)
     })
-}
+}*/
 
 /**
  * 获得我的里面待处理和预警订单数 银行卡以及余额
@@ -633,6 +634,6 @@ module.exports = {
     getLocation: getLocation,
     chooseLocation: chooseLocation,
     getProductList: getProductList,
-    getProductListIsth: getProductListIsth,
+    /*    getProductListIsth: getProductListIsth,*/
     getUserSum: getUserSum
 }

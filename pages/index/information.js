@@ -9,7 +9,6 @@ Page({
     data: {
         isth: 1,////是否统货 1是 0否
         productList: [],
-        productLists: [],
         activitytype: [  //活动类型
             {value: 0, name: '无', checked: 'true'}, {value: 1, name: '以旧换新'}
         ],
@@ -159,13 +158,11 @@ Page({
     getInformationData: function () {
         var that = this;
         //获取产品品类
-        var indexs = 0;
         util.getProductList(that, function (data) {
             if (data.code == 1001) {
                 that.setData({
                     productList: data.data
                 })
-
 
             } else {
                 util.toolTip(that, data.message)

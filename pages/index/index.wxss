@@ -66,12 +66,14 @@
 }
 
 .sub-menu navigator {
-    padding: 1rem 0 0 1.2rem;
+    text-align: center;
     color: #585858;
 }
 
 .sub-menu navigator .iconfont {
     vertical-align: middle;
+    font-size: 1.2rem;
+    margin-right: 0.2rem;
 }
 
 .kefu {

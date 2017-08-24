@@ -75,6 +75,9 @@ Page({
         util.https(app.globalData.api + "/api/AboutUs/getaboutus", "GET", {ID:id},
             function (data) {
                 if (data.code == 1001) {
+                    wx.setNavigationBarTitle({
+                        title: data.data.Title
+                    })
                     that.setData({
                         helpdata: data.data
                     })

@@ -1,1 +1,4 @@
 /* pages/util/help.wxss */
+.helpContent,view,img,p{
+    max-width: 100%!important;
+}
