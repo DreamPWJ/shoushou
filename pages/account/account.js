@@ -8,7 +8,11 @@ Page({
      * 页面的初始数据
      */
     data: {
-        wxUserInfo: wx.getStorageSync("wxUserInfo")
+        wxUserInfo: wx.getStorageSync("wxUserInfo"),
+        userSum: {
+            account: '0.00',
+            banknum:0
+        }
     },
 
     /**

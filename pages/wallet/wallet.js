@@ -9,11 +9,12 @@ Page({
     data: {
         userSum: {
             account: '0.00',
-            trzaccount:'0.00'
+            trzaccount: '0.00',
+            banknum: 0
         },
-        walletData:{
-            kyamount:'0.00',
-            djamount:'0.00'
+        walletData: {
+            kyamount: '0.00',
+            djamount: '0.00'
         }
     },
 
@@ -41,7 +42,7 @@ Page({
 
         })
         //个人账户信息
- /*       this.getWalletData();*/
+        /*      this.getWalletData();*/
     },
 
     /**
@@ -82,7 +83,7 @@ Page({
      * 个人账户信息
      */
     getWalletData: function () {
-        var that=this;
+        var that = this;
         util.https(app.globalData.api + "/api/subaccount/get/" + wx.getStorageSync('userid'), "GET", {isHideLoad: true},
             function (data) {
                 that.setData({

@@ -26,12 +26,12 @@
         </view>
         <view class="row row-no-padding light-bg  row-center text-center order-item">
             <navigator url="../wallet/wallet" open-type="switchTab" class="item item-icon-right col ">
-                <view>账号余额</view>
-                <view style="color: #f26604">￥{{userSum.account||0.00}}</view>
+                <text class="text">账号余额</text>
+                <view style="color: #f26604">￥{{userSum.account}}</view>
                 <text class="icon iconfont icon-balance " style="color: #f26604"></text>
             </navigator>
             <navigator url="" open-type="navigate" class="item   item-icon-right col item-borderless">
-                <view>银行卡</view>
+                <text class="text">银行卡</text>
                 <view style="color: #f26604">{{userSum.banknum||0}}张</view>
                 <text class="icon iconfont icon-yinxingqia " style="color: #00ACFF"></text>
             </navigator>
