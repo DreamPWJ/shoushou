@@ -3,7 +3,24 @@
     color: #00ACFF;
     font-size: 1.5rem !important;
 }
-.header{
+
+.header {
     height: 6rem;
     background-color: #00ACFF;
+}
+
+.sub-header .col-50 {
+   margin: 0.3rem 0;
+}
+
+.sub-header .col-50 text {
+    font-size: 0.8rem;
+}
+
+.sub-header .col-50 view {
+    font-size: 1.5rem;
+}
+
+.sub-header .col-50:first-child{
+    border-right: 1px dashed #cdcdcd;
 }

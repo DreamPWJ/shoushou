@@ -24,7 +24,6 @@ Page({
         // 页面初始化 options为页面跳转所带来的参数
 
 
-
     },
 
     /**
@@ -49,7 +48,7 @@ Page({
         util.authorization(1, function () {
             //微信授权登录
             util.wxLogin();
-        },true)
+        }, true)
     },
 
     /**
@@ -153,7 +152,7 @@ Page({
             //用户手机登录
             if (that.data.currentTab == 0) {
                 if (that.data.verifycode != inputContent.verifycode) {
-                    util.toolTip(that,"验证码输入不正确")
+                    util.toolTip(that, "验证码输入不正确")
                     return;
                 }
                 util.https(app.globalData.api + "/api/user/login_mobile", "POST", {
@@ -164,10 +163,10 @@ Page({
                         invitecode: ""
                     },
                     function (data) {
-                        if(data.code==1001){
+                        if (data.code == 1001) {
                             that.loginSucess(data);
-                        }else {
-                            util.toolTip(that,data.message)
+                        } else {
+                            util.toolTip(that, data.message)
                         }
 
 
@@ -182,10 +181,10 @@ Page({
                         invitecode: ""
                     },
                     function (data) {
-                        if(data.code==1001){
+                        if (data.code == 1001) {
                             that.loginSucess(data);
-                        }else {
-                            util.toolTip(that,data.message)
+                        } else {
+                            util.toolTip(that, data.message)
                         }
 
                     }
@@ -203,18 +202,19 @@ Page({
         wx.setStorageSync("usersecret", data.data.usersecret);
         //接口API授权 type 1.是公共授权  2.登录授权
         util.authorization(2, function () {
+            wx.reLaunch({
+                url: '../index/index'
+            })
             //根据会员ID获取会员账号基本信息
             util.getUserInfo(function (data) {
                 //返回上一页
-        /*        wx.navigateBack({
-                    delta: 1
-                })*/
-                wx.reLaunch({
-                    url: '../index/index'
-                })
+                /*        wx.navigateBack({
+                            delta: 1
+                        })*/
+
 
             })
-        },true);
+        }, true);
 
 
     },

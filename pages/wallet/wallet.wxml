@@ -3,17 +3,27 @@
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <view>
-    <view class="row row-center row-no-padding  header">
+    <view class="row row-center   header">
         <view class="col-75 col-offset-5 light">
             <view class="padding-left " style="font-size: 0.8rem!important;">账号总金额</view>
-            <view class="padding-top " style="font-size: 1.8rem!important;">￥{{userSum.account||0.00}}</view>
+            <view class="padding-top " style="font-size: 1.8rem!important;">￥{{userSum.account}}</view>
         </view>
         <view class="col-20 text-center">
             <text class="icon iconfont icon-balance " style="color: #FFD700;font-size: 1.9rem!important;"></text>
         </view>
     </view>
+    <view class="row row-center text-center row-no-padding light-bg  sub-header">
+        <view class="col-50  ">
+            <text>可用余额</text>
+            <view>{{userSum.account}}</view>
+        </view>
+        <view class="col-50 ">
+            <text>待入账金额</text>
+            <view>{{userSum.trzaccount}}</view>
+        </view>
+    </view>
+    <view class="padding-top"></view>
     <view class="list">
-
         <navigator url="recharge" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-chongzhi" style="color: #11c1f3"></text>
             <view class="h2">充值</view>
@@ -27,7 +37,9 @@
         <view class="padding-top"></view>
         <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-yinxingqia" style="color: #FFD700"></text>
-            <view class="h2">银行卡<text class="item-note">0张</text></view>
+            <view class="h2">银行卡
+                <text class="item-note">{{userSum.banknum||0}}张</text>
+            </view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
         <navigator url="" open-type="navigate" class="item item-icon-left item-icon-right">
