@@ -15,7 +15,7 @@
         <view class="h2">手机号码 <text class="item-note">{{userdata.mobile}}</text></view>
         <text class="icon-accessory iconfont icon-right "></text>
     </navigator>
-    <navigator url="" open-type="navigate" class="item item-icon-right">
+    <navigator url="organizingdata" open-type="navigate" class="item item-icon-right">
         <view class="h2">会员类型 <view class="item-note ">{{usertype!=0?servicesstr:''}}  <text class="positive">{{!isOrganizingData?'去完善信息':''}}</text></view>
         </view>
         <text class="icon-accessory iconfont icon-right "></text>

@@ -34,7 +34,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        //获取当前位置 省市县数据
+        util.getCurrentCity(this, 3, function (data) {
 
+        })
     },
 
     /**
@@ -106,6 +109,14 @@ Page({
         this.setData({
             isShowSearch: false,
             addressname: e.currentTarget.dataset.items.name
+        })
+    },
+    /**
+     * 打开地图选择位置
+     */
+    chooseLocation: function (e) {
+        util.chooseLocation(this, function (data) {
+
         })
     },
     /**

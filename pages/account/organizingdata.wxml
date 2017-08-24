@@ -15,14 +15,14 @@
         </view>
         <view class="item item-input" bindtap="getAddressPCCList">
             <text class=" iconfont  icon-location placeholder-icon"></text>
-            <input type="text" disabled value="{{addresspcd}}"
+            <input type="text" disabled value="{{addresspcd||ssx}}"
                    placeholder="单位地址(省市县)"/>
         </view>
         <view class="item item-input">
             <text class=" iconfont  icon-location placeholder-icon"></text>
             <input type="text" bindinput="bindChange" id="addrdetail" name="addrdetail"
                    placeholder="详细地址(街道 门牌号等)" value="{{addressname}}"/>
-            <view bindtap="getCurrentCity" class="positive padding-horizontal">
+            <view bindtap="chooseLocation" class="positive padding-horizontal">
                 <text class="iconfont icon-locationfill"></text>
             </view>
         </view>

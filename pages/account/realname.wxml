@@ -3,16 +3,17 @@
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <form bindsubmit="realnameSubmit">
+    <view class="padding-top"></view>
     <view class="list has-bottom-button">
         <view class="item item-input">
             <text class=" iconfont  icon-my placeholder-icon"></text>
             <input type="text" bindinput="bindChange" id="name" name="name"
-                   placeholder="真实姓名" maxlength="15"/>
+                   placeholder="真实姓名" maxlength="10"/>
         </view>
-        <view class="item item-input">
+        <view class="item item-input padding-vertical">
             <text class=" iconfont  icon-friendadd placeholder-icon"></text>
             <input type="idcard" bindinput="bindChange" id="idno" name="idno"
-                   placeholder="真实身份证号码"/>
+                   placeholder="真实身份证号码" maxlength="18"/>
         </view>
         <view class="item item-input" bindtap="uploadActionSheet">
             <text class=" iconfont icon-pic placeholder-icon"></text>
