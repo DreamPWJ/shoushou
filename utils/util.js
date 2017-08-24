@@ -452,7 +452,18 @@ function getCurrentCity(that, level, callback) {
             })
             callback(data)
         }
-    )
+    ).then(function () {
+        https(app.globalData.api + "/api/addr/getssx", "GET", {
+                ssx: that.data.ssx, level: 3
+            },
+            function (data) {
+                that.setData({
+                    addressone: data.data
+                })
+
+            }
+        )
+    })
 }
 
 /**
@@ -567,7 +578,9 @@ function chooseLocation(that, callback) {
     wx.chooseLocation({
         success: function (res) {
             that.setData({
-                addressname: res.name
+                addressname: res.name,//位置名称
+                latitude:res.latitude,//纬度
+                longitude:res.longitude//经度
             })
             console.log(res);
             callback.call(this, res)

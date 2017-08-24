@@ -11,6 +11,7 @@ Page({
      */
     data: {
         isth: 1,////是否统货 1是 0否
+        acttype:0,// 活动类型 0 无 1以旧换新
         productList: [],
         activitytype: [  //活动类型
             {value: 0, name: '无', checked: 'true'}, {value: 1, name: '以旧换新'}
@@ -159,6 +160,12 @@ Page({
         }
     },
     /**
+     * 获取用户输入
+     */
+    bindChange: function (e) {
+        inputContent[e.currentTarget.id] = e.detail.value;
+    },
+    /**
      * 获取参考价格数据
      */
     getInformationData: function () {
@@ -225,34 +232,90 @@ Page({
                 return;
             }
         }
+
         //验证表单
         that.WxValidate = new WxValidate({
-                user: {  //验证规则 input name值
+                name: {  //验证规则 input name值
+                    required: true
+                },
+                motel: {  //验证规则 input name值
                     required: true,
                     tel: true
+                },
+                addrdetail: {
+                    required: true
                 }
             },
             {
-                user: { //提示信息
+                name: { //提示信息
+                    required: "请填写姓名",
+                },
+                motel: { //提示信息
                     required: "请填写真实手机号码",
+                },
+                addrdetail: { //提示信息
+                    required: "请填写地址详细信息",
                 }
             })
         util.wxValidate(e, that, function () {
-            console.log(inputContent);
-            var dengji = [];//登记提交数据
-            /*
-                        util.https(app.globalData.api + "/api/dengji/create", "POST", dengji,
-                            function (data) {
-                                if (data.code == 1001) {
-                                    util.toolTip(that, "登记信息提交成功", 1, '/pages/order/order')
-                                } else {
-                                    util.toolTip(that, data.message)
-                                }
+            var productList = [];//选中的品类数组
+            var recyclingCategoryName = [];//回收品类名字数组
+            var details = [];//登记信息详情
+            that.data.productList.map(function (item, index) {
+                if (item.checked) {
+                    productList.push(item);
+                    recyclingCategoryName.push(item.name);
+                    item.details.map(function (items) {
+                        details.push({
+                            num: 1,//台数
+                            grpid: items.grpid,//品类ID
+                            proid: items.id,//产品ID
+                            proname: items.name,//产品名称
+                            unit: items.unit//单位ID
+                        })
+                    })
+                }
+            })
+            if (productList.length == 0) {
+                util.toolTip(that, "请选选中品类再提交")
+                return;
+            }
+            var manufactor = [];//厂商 单选
+            that.data.manufacteList.map(function (item) {
+                if (item.checked) {
+                    manufactor.push(item.id);
+                }
+            })
+
+            //登记提交数据
+            var dengji = [{
+                type: 1,//类型 1.	登记信息 2.	登记货源
+                hytype: 0,//物类别 0.未区分 1废料 2二手 (登记信息时为0)
+                userid: wx.getStorageSync('userid'),//登记人userid
+                name:inputContent.name,//姓名
+                motel:inputContent.motel,//手机
+                addrdetail:inputContent.addrdetail||that.data.addressname,//地址详情
+                acttype:that.data.acttype||0,// 活动类型 0 无 1以旧换新
+                longitude: that.data.longitude || that.data.handlongitude || wx.getStorageSync('longitude') || 0,//经度
+                latitude: that.data.latitude || that.data.handlatitude || wx.getStorageSync('longitude') || 0,//纬度
+                category: recyclingCategoryName.join(","),//货物品类 多个用逗号隔开
+                manufactor: manufactor.join(","),//单选 所属厂商
+                addrcode: that.data.addressone.Code,//地址code
+                delivery: 1, //交货方式 1 上门回收(默认) 2 送货上门 登记信息直接用1
+                details: details
+            }];
+            console.log(dengji);
+            util.https(app.globalData.api + "/api/dengji/create", "POST", dengji,
+                function (data) {
+                    if (data.code == 1001) {
+                        util.toolTip(that, "登记信息提交成功", 1, '/pages/order/order')
+                    } else {
+                        util.toolTip(that, data.message)
+                    }
 
 
-                            }
-                        )
-            */
+                }
+            )
 
 
         });
