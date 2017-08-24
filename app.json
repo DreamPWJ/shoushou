@@ -2,8 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/index/information",
+    "pages/index/infofee",
     "pages/referenceprice/referenceprice",
     "pages/order/order",
+    "pages/order/orderdetails",
     "pages/wallet/wallet",
     "pages/wallet/recharge",
     "pages/news/news",

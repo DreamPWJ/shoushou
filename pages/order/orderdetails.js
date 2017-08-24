@@ -1,4 +1,4 @@
-// pages/wallet/wallet.js
+// pages/order/orderdetails.js
 var app = getApp();
 var util = require('../../utils/util.js');
 Page({
@@ -6,21 +6,16 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {
-        userSum: {
-            totalamount:'0.00',
-            account: '0.00',
-            trzaccount: '0.00',
-            banknum: 0
-        }
-    },
+    data: {},
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
         util.isLoginModal();
-
+        this.setData({
+            orderno: options.orderno
+        })
     },
 
     /**
@@ -34,12 +29,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        //获得我的里面待处理和预警订单数 银行卡以及余额
-        util.getUserSum(this, function (data) {
-
-        })
-        //个人账户信息
-        /*      this.getWalletData();*/
+        //获取订单列表详情
+        this.getOrderDetails(this.data.orderno);
     },
 
     /**
@@ -77,17 +68,21 @@ Page({
 
     },
     /**
-     * 个人账户信息
+     * 获取订单列表详情
      */
-    getWalletData: function () {
+    getOrderDetails: function (orderno) {
         var that = this;
-        util.https(app.globalData.api + "/api/subaccount/get/" + wx.getStorageSync('userid'), "GET", {isHideLoad: true},
+        util.https(app.globalData.api + "/api/dengji/getdetail/" + orderno, "GET", {},
             function (data) {
-                that.setData({
-                    walletData: data.data
-                })
-
+                if (data.code == 1001) {
+                    that.setData({
+                        orderDetail: data.data
+                    })
+                } else {
+                    util.toolTip(that, data.message);
+                }
             }
         )
     }
+    ,
 })

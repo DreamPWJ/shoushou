@@ -38,7 +38,7 @@
                 </navigator>
             </view>
             <view class="row  light-bg row-center  main-list">
-                <navigator url="" open-type="navigate" class="col border-r">
+                <navigator url="infofee" open-type="navigate" class="col border-r">
                     <text class="icon iconfont icon-sponsorfill positive"></text>
                     <view>
                         <view class="h5">信息费收入</view>

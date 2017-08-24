@@ -22,7 +22,6 @@ Page({
      */
     onLoad: function (options) {
         util.isLoginModal();
-
     },
 
     /**
@@ -36,8 +35,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        //获取消息列表
-        this.getOrderList(this.data.currentTab == 0 ? this.data.unfpage : this.data.page);
+        this.setData({
+            unfpage: 1,
+            page: 1
+        })
+        //获取订单列表
+        this.getOrderList(1);
     },
 
     /**
@@ -114,7 +117,7 @@ Page({
                 longt: "", //当前经度（获取距离）(可为空)
                 lat: "",//当前纬度（获取距离）(可为空)
                 expiry: "",//小时 取预警数据 订单预警数据（72小时截至马上过期的（expiry=3表示取3小时内）
-                isHideLoad:true
+                isHideLoad: true
             },
             function (data) {
                 if (that.data.currentTab == 0 && that.data.unfpage == 1) {

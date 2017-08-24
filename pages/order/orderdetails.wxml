@@ -1,0 +1,4 @@
+<!--pages/order/orderdetails.wxml-->
+<view class="tool-tip " wx:if="{{popMsg}}">
+    <text class="{{popType}}">{{popMsg}}</text>
+</view>

@@ -1,4 +1,7 @@
 <!--pages/order/order.wxml-->
+<view class="tool-tip " wx:if="{{popMsg}}">
+    <text class="{{popType}}">{{popMsg}}</text>
+</view>
 <view class="swiper-tab row row-no-padding row-horizontal-around border-b">
     <view class="col-33 swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">未完成订单</view>
     <view class="col-33 swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">所有订单</view>
@@ -15,7 +18,7 @@
                 <text>暂无未完成订单</text>
             </view>
             <view class="list">
-                <navigator url="order" open-type="navigate" class="item " style="padding-right: 10px;"
+                <navigator url="orderdetails?orderno={{item.djno}}" open-type="navigate" class="item " style="padding-right: 10px;"
                            wx:for="{{unfinishedOrderList}}" wx:for-item="item" wx:key="*this">
                     <view class="h2" class="positive">货主 : {{item.name}} {{item.motel}}
                         <text class="phytype {{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
@@ -47,7 +50,7 @@
     <swiper-item>
         <scroll-view enable-back-to-top style="height:100%" scroll-y>
             <view class="list">
-                <navigator url="order" open-type="navigate" class="item " style="padding-right: 10px;"
+                <navigator url="orderdetails?orderno={{item.djno}}" open-type="navigate" class="item " style="padding-right: 10px;"
                            wx:for="{{orderList}}" wx:for-item="item" wx:key="*this">
                     <view class="h2" class="positive">货主 : {{item.name}} {{item.motel}}
                         <text class="phytype {{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
