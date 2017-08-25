@@ -151,7 +151,6 @@ Page({
                     })
                 }
                 for (var index in data.data.data_list) {
-
                     if (that.data.currentTab == 0) {//未完成订单
                         that.data.unfinishedOrderListArr.push(data.data.data_list[index]);
                     }
@@ -184,13 +183,16 @@ Page({
      * 滑动切换tab
      */
     bindChange: function (e) {
-        this.setData({
+        var that=this;
+        that.setData({
             currentTab: e.detail.current,
             unfpage: 1,
             page: 1
+        }, function () {
+            that.getOrderList(1);
         });
 
-        this.getOrderList(1);
+
     },
     /**
      * 点击tab切换
