@@ -2,9 +2,56 @@
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<view id="bankcard">
+    <view class="list list-borderless card">
+        <view class="item-p positive-bg ">
+            <radio-group class="radio-group" data-current="0" bindchange="radioChange">
+                <label class="radio padding-left" >
+                    <radio value="0" color="" checked="{{item.checked}}"/>
+                    设为默认
+                </label>
+            </radio-group>
+            <view class="item item-icon-left item-borderless ">
+                <text class="iconfont icon-jiansheyinhang"></text>
+                建设银行
+                <view class=" p">深圳科苑支行</view>
+            </view>
+            <view class="h1 text-right">**** **** **** 686</view>
+
+        </view>
+        <view class="item-p energized-bg ">
+            <radio-group class="radio-group" data-current="0" bindchange="radioChange">
+                <label class="radio padding-left" >
+                    <radio value="0" color="" checked="{{item.checked}}"/>
+                    设为默认
+                </label>
+            </radio-group>
+            <view class="item item-icon-left item-borderless ">
+                <text class="iconfont icon-jiansheyinhang"></text>
+                建设银行
+                <view class=" p">深圳科苑支行</view>
+            </view>
+            <view class="h1 text-right">**** **** **** 686</view>
+        </view>
+        <view class="item-p balanced-bg ">
+            <radio-group class="radio-group" data-current="0" bindchange="radioChange">
+                <label class="radio padding-left" >
+                    <radio value="0" color="" checked="{{item.checked}}"/>
+                    设为默认
+                </label>
+            </radio-group>
+            <view class="item item-icon-left item-borderless ">
+                <text class="iconfont icon-jiansheyinhang"></text>
+                建设银行
+                <view class=" p">深圳科苑支行</view>
+            </view>
+            <view class="h1 text-right">**** **** **** 686</view>
+        </view>
+    </view>
+    <view class="list add">
+        <navigator url="addbankcard" open-type="navigate" class="item item-icon-left add-border-b">
+            <text class="iconfont icon-add"></text>
+            添加银行卡
+        </navigator>
     </view>
 </view>

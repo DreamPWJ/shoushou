@@ -1,1 +1,43 @@
 /* pages/wallet/bankcard.wxss */
+
+page {
+    display: block;
+    min-height: 100%;
+    background-color: #24323c;
+}
+
+.list, .list .item, .item .h2, .item .p {
+    background-color: inherit;
+    color: #fff !important;
+}
+
+.card .item-p {
+    position: relative;
+    border-radius: 0.5rem;
+}
+
+.card .item {
+    margin-top: 0.5rem;
+    background-color: inherit;
+}
+
+.h1 {
+    background-color: inherit;
+    padding: 0.2rem 0.5rem;
+    font-size: 1.3rem;
+}
+
+.add.list, .add.list .item {
+    background-color: #24323c !important;
+}
+
+.add-border-b {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.radio-group {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10000;
+}
