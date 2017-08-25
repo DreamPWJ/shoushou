@@ -7,7 +7,7 @@
         <view class="item-p positive-bg ">
             <radio-group class="radio-group" data-current="0" bindchange="radioChange">
                 <label class="radio padding-left" >
-                    <radio value="0" color="" checked="{{item.checked}}"/>
+                    <radio value="0"  />
                     设为默认
                 </label>
             </radio-group>
@@ -22,7 +22,7 @@
         <view class="item-p energized-bg ">
             <radio-group class="radio-group" data-current="0" bindchange="radioChange">
                 <label class="radio padding-left" >
-                    <radio value="0" color="" checked="{{item.checked}}"/>
+                    <radio value="1" />
                     设为默认
                 </label>
             </radio-group>
@@ -36,7 +36,7 @@
         <view class="item-p balanced-bg ">
             <radio-group class="radio-group" data-current="0" bindchange="radioChange">
                 <label class="radio padding-left" >
-                    <radio value="0" color="" checked="{{item.checked}}"/>
+                    <radio value="2"  />
                     设为默认
                 </label>
             </radio-group>
