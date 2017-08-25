@@ -83,41 +83,56 @@ Page({
     paymentSubmit: function (e) {
 
         var that = this;
-        //微信公众号支付
-        util.https(app.globalData.api + "/api/aop/wxpay_xcx", "POST", {
-                out_trade_no: new Date().getTime(),//订单号
-                subject: "收收充值",//商品名称
-                body: "收收充值详情",//商品详情
-                total_fee: inputContent.money, //总金额
-                userid: wx.getStorageSync("userid"),//用户userid
-                name: wx.getStorageSync('user').username,//用户名
-                openid: wx.getStorageSync("openid") //微信openid
-            },
-            function (data) {
-                if (data.code == 1001) {
-                    wx.requestPayment({
-                        'timeStamp': data.data.timestamp,
-                        'nonceStr': data.data.nonce_str,
-                        'package': data.data.prepay_id,
-                        'signType': 'MD5',
-                        'paySign': data.data.sign,
-                        'success': function (res) {
-                            console.log(res);
-                            wx.switchTab({
-                                url: '/pages/wallet/wallet'
-                            })
-                        },
-                        'fail': function (res) {
-                            console.log(res);
-                        }
-                    })
-
-                } else {
-                    util.toolTip(that, data.message)
+        //验证表单
+        that.WxValidate = new WxValidate({
+                money: {  //验证规则 input name值
+                    required: true,
+                    money: true
                 }
+            },
+            {
+                money: { //提示信息
+                    required: "请填写充值金额",
+                },
 
-            }
-        )
+            })
+        util.wxValidate(e, that, function () {
+            //微信公众号支付
+            util.https(app.globalData.api + "/api/aop/wxpay_xcx", "POST", {
+                    out_trade_no: new Date().getTime(),//订单号
+                    subject: "收收充值",//商品名称
+                    body: "收收充值详情",//商品详情
+                    total_fee: inputContent.money, //总金额
+                    userid: wx.getStorageSync("userid"),//用户userid
+                    name: wx.getStorageSync('user').username,//用户名
+                    openid: wx.getStorageSync("openid") //微信openid
+                },
+                function (data) {
+                    if (data.code == 1001) {
+                        wx.requestPayment({
+                            'timeStamp': data.data.timestamp,
+                            'nonceStr': data.data.nonce_str,
+                            'package': data.data.prepay_id,
+                            'signType': 'MD5',
+                            'paySign': data.data.sign,
+                            'success': function (res) {
+                                console.log(res);
+                                wx.switchTab({
+                                    url: '/pages/wallet/wallet'
+                                })
+                            },
+                            'fail': function (res) {
+                                console.log(res);
+                            }
+                        })
+
+                    } else {
+                        util.toolTip(that, data.message)
+                    }
+
+                }
+            )
+        })
 
 
     }

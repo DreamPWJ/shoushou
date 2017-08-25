@@ -38,23 +38,24 @@ class WxValidate {
     __initDefaults() {
         this.defaults = {
             messages: {
-                required: '这是必填字段。',
-                email: '请输入有效的电子邮件地址。',
-                tel: '请输入11位的手机号码。',
-                url: '请输入有效的网址。',
-                date: '请输入有效的日期。',
-                dateISO: '请输入有效的日期（ISO），例如：2009-06-23，1998/01/22。',
-                number: '请输入有效的数字。',
-                digits: '只能输入数字。',
-                idcard: '请输入18位的有效身份证。',
-                equalTo: this.formatTpl('输入值必须和 {0} 相同。'),
-                contains: this.formatTpl('输入值必须包含 {0}。'),
-                minlength: this.formatTpl('最少要输入 {0} 个字符。'),
+                required: '这是必填字段',
+                email: '请输入有效的电子邮件地址',
+                tel: '请输入11位的手机号码',
+                url: '请输入有效的网址',
+                date: '请输入有效的日期',
+                dateISO: '请输入有效的日期（ISO），例如：2009-06-23，1998/01/22',
+                number: '请输入有效的数字',
+                digits: '只能输入数字',
+                money: '请输入有效的金额',
+                idcard: '请输入18位的有效身份证',
+                equalTo: this.formatTpl('输入值必须和 {0} 相同'),
+                contains: this.formatTpl('输入值必须包含 {0}'),
+                minlength: this.formatTpl('最少要输入 {0} 个字符'),
                 maxlength: this.formatTpl('最多可以输入 {0} 个字符。'),
-                rangelength: this.formatTpl('请输入长度在 {0} 到 {1} 之间的字符。'),
-                min: this.formatTpl('请输入不小于 {0} 的数值。'),
-                max: this.formatTpl('请输入不大于 {0} 的数值。'),
-                range: this.formatTpl('请输入范围在 {0} 到 {1} 之间的数值。'),
+                rangelength: this.formatTpl('请输入长度在 {0} 到 {1} 之间的字符'),
+                min: this.formatTpl('请输入不小于 {0} 的数值'),
+                max: this.formatTpl('请输入不大于 {0} 的数值'),
+                range: this.formatTpl('请输入范围在 {0} 到 {1} 之间的数值'),
             }
         }
     }
@@ -120,6 +121,12 @@ class WxValidate {
              */
             digits(value) {
                 return that.optional(value) || /^\d+$/.test(value)
+            },
+            /**
+             * 验证金额
+             */
+            money(value) {
+                return that.optional(value) || /^(0|[1-9][0-9]{0,9})(\.[0-9]{1,2})?$/.test(value)
             },
             /**
              * 验证身份证号码
@@ -208,7 +215,7 @@ class WxValidate {
     formatTpl(source, params) {
         const that = this
         if (arguments.length === 1) {
-            return function() {
+            return function () {
                 let args = Array.from(arguments)
                 args.unshift(source)
                 return that.formatTpl.apply(this, args)
@@ -223,8 +230,8 @@ class WxValidate {
         if (params.constructor !== Array) {
             params = [params]
         }
-        params.forEach(function(n, i) {
-            source = source.replace(new RegExp("\\{" + i + "\\}", "g"), function() {
+        params.forEach(function (n, i) {
+            source = source.replace(new RegExp("\\{" + i + "\\}", "g"), function () {
                 return n
             })
         })
