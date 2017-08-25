@@ -14,6 +14,7 @@ Page({
         imageList: [],//本地路径
         imgsPicAddr: [],//真实服务器图片信息数组
         uploadtype: 4,//上传媒体操作类型 1.卖货单 2 供货单 3 买货单 4身份证 5 头像
+        imgUrl: app.globalData.api + '/images/realname.png' //实名认证示例图片
     },
 
     /**
@@ -83,6 +84,24 @@ Page({
     uploadActionSheet: function (e) {
         util.uploadActionSheet(this, function () {
 
+        })
+    },
+    /**
+     * 预览图片
+     */
+    previewImage: function (e) {
+        wx.previewImage({
+            current: '', // 当前显示图片的http链接
+            urls: [e.currentTarget.dataset.imgurl] // 需要预览的图片http链接列表
+        })
+    },
+    /**
+     * 删除图片
+     */
+    deleteImg: function () {
+        this.setData({
+            imageList: [],//本地路径
+            imgsPicAddr: [],//真实服务器图片信息数组
         })
     },
     /**

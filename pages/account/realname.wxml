@@ -3,7 +3,6 @@
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <form bindsubmit="realnameSubmit">
-    <view class="padding-top"></view>
     <view class="list has-bottom-button">
         <view class="item item-input">
             <text class=" iconfont  icon-my placeholder-icon"></text>
@@ -20,6 +19,22 @@
             <input type="text" disabled placeholder="上传身份证(请参考示例 误传请重新传)"/>
             <text class="padding-horizontal  iconfont icon-add positive"></text>
         </view>
+
+        <view wx:if="{{imageList.length==0&&status!=2}}" class="row  row-wrap row-horizontal-around  grey">
+            <text class=" shili">实名认证示例</text>
+            <image src="{{imgUrl}}" alt="实名认证示例" bindtap="previewImage" data-imgurl="{{imgUrl}}"
+                   class="full-image padding"></image>
+        </view>
+        <view class="row show-img row-wrap row-horizontal-around">
+            <image wx:for="{{imageList}}" wx:for-item="item" wx:key="*this"  wx:for-index="index" bindtap="previewImage"
+                   data-imgurl="{{imgsPicAddr[index]}}" src="{{item}}" alt="实名认证图片"
+                   class="full-image padding"></image>
+            <text catchtap="deleteImg" wx:if="{{imageList.length>0}}"
+                  class="delete-img iconfont icon-roundclosefill assertive"></text>
+            <image wx:if="{{realname&&status==2}}" bindtap="previewImage" data-imgurl="{{realname.frontpic}}"
+                   src="{{realname.frontpic}}" alt="实名认证图片" class="full-image padding"></image>
+        </view>
+
     </view>
     <view class="padding light-bg fixed-bottom">
         <button class="positive-bg light "

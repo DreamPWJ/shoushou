@@ -1,1 +1,20 @@
 /* pages/account/realname.wxss */
+image {
+    height: 12rem !important;
+}
+
+.show-img {
+    position: relative;
+}
+
+text.delete-img {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    font-size: 1.3rem !important;
+    z-index: 10000;
+}
+
+.shili {
+    font-size: 0.8rem;
+}
