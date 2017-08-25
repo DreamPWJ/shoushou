@@ -144,8 +144,8 @@ Page({
             }
             //提交数据
             var data = {
-                userid: inputContent.account,
-                newpassword: inputContent.password,
+                account: inputContent.account,
+                password: inputContent.password,
                 confirmpassword: inputContent.confirmpassword,
                 code:inputContent.verifycode
             }
