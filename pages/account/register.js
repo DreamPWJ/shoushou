@@ -185,7 +185,7 @@ Page({
                             //根据会员ID获取会员账号基本信息
                             util.getUserInfo(function (data) {
                                 wx.navigateTo({ //完善资料
-                                    url: 'organizingdata'
+                                    url: '/pages/account/organizingdata'
                                 })
                             })
                         }, true);

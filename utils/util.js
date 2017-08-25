@@ -56,12 +56,17 @@ function authorization(type, callback, immediately) {
         var auth1 = function () {
             //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
             if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
-                clearInterval(timePromise2);
+
+                if (timePromise2) {
+                    clearInterval(timePromise2);
+                }
+
                 that.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials', isHideLoad: true},
                     function (data) {
                         if (data.access_token) {
                             wx.setStorageSync('token', data.access_token);//公共接口授权token
                             wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
+                            wx.setStorageSync('tokentype', 1);//授权类型
                         }
                         callback.call(that, data)
 
@@ -81,7 +86,10 @@ function authorization(type, callback, immediately) {
         var auth2 = function () {
             //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
             if (wx.getStorageSync("userid") && (immediately || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
-                clearInterval(timePromise1);
+                if (timePromise1) {
+                    clearInterval(timePromise1);
+                }
+
                 that.https(app.globalData.api + "/token", "POST", {
                         grant_type: 'password',
                         username: wx.getStorageSync("userid"),
@@ -92,6 +100,7 @@ function authorization(type, callback, immediately) {
                         if (data.access_token) {
                             wx.setStorageSync('token', data.access_token);//登录接口授权token
                             wx.setStorageSync('expires_in', new Date());//登录接口授权token 有效时间
+                            wx.setStorageSync('tokentype', 2);//授权类型
                         }
                         callback.call(that, data)
 
@@ -307,6 +316,10 @@ function wxLogin() {
                                 wx.setStorageSync("openid", data.data.OpenId);//微信openid
                                 wx.setStorageSync("userid", data.data.UserLogID);
                                 wx.setStorageSync("usersecret", data.data.usersecret);
+                                //登录授权
+                                that.authorization(2, function (data) {
+
+                                },true);
                                 //根据会员ID获取会员账号基本信息
                                 that.getUserInfo(function () {
 
@@ -579,8 +592,8 @@ function chooseLocation(that, callback) {
         success: function (res) {
             that.setData({
                 addressname: res.name,//位置名称
-                latitude:res.latitude,//纬度
-                longitude:res.longitude//经度
+                latitude: res.latitude,//纬度
+                longitude: res.longitude//经度
             })
             console.log(res);
             callback.call(this, res)
