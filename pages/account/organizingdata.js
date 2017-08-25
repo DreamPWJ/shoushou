@@ -183,16 +183,19 @@ Page({
                 util.toolTip(that, "请先上传工作证照片后再提交");
                 return;
             }
-            util.https(app.globalData.api + "/api/user/set_info", "POST", {
-                    services: [1],
-                    userid: wx.getStorageSync("userid"),
-                    mobile: wx.getStorageSync("user").mobile,
-                    shopname: inputContent.shopname,
-                    addrdetail: inputContent.addrdetail || that.data.addressname,//地址详情
-                    addrcode: that.data.addressone.ID,
-                    areacode: that.data.addressone.Code,
-                    img: that.data.imageList[0],
-                },
+            //完善资料数据
+            var data = {
+                services: [1],
+                userid: wx.getStorageSync("userid"),
+                mobile: wx.getStorageSync("user").mobile,
+                shopname: inputContent.shopname,
+                addrdetail: inputContent.addrdetail || that.data.addressname,//地址详情
+                addrcode: that.data.addressone.ID,
+                areacode: that.data.addressone.Code,
+                img: that.data.imgsPicAddr[0],
+            }
+            console.log(data);
+            util.https(app.globalData.api + "/api/user/set_info", "POST", data,
                 function (data) {
                     if (data.code == 1001) {
                         util.getUserInfo(function (data) {

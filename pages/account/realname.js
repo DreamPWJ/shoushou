@@ -134,12 +134,13 @@ Page({
                 util.toolTip(that, "请先上传认证照片后再提交");
                 return;
             }
-            util.https(app.globalData.api + "/api/user/authenticate_idcard", "POST", {
-                    userid: wx.getStorageSync('userid'),
-                    name: inputContent.name,
-                    idno: inputContent.idno,
-                    frontpic: that.data.imageList[0]
-                },
+            var data={
+                userid: wx.getStorageSync('userid'),
+                name: inputContent.name,
+                idno: inputContent.idno,
+                frontpic: that.data.imgsPicAddr[0]
+            }
+            util.https(app.globalData.api + "/api/user/authenticate_idcard", "POST",data ,
                 function (data) {
                     if (data.code == 1001) {
                         util.toolTip(that, "实名认证提交成功", 1, '/pages/account/accountsecurity')

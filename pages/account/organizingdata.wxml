@@ -1,15 +1,15 @@
 <!--pages/account/organizingdata.wxml-->
 <import src="../util/addresstemplate.wxml"/>
-<import src="../util/searchaddresstemplate.wxml"/>
+<!--<import src="../util/searchaddresstemplate.wxml"/>-->
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <template wx:if="{{isShowPCC}}" is="address" data="{{addressinfo}}"/>
-<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>
+<!--<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>-->
 <form bindsubmit="organizingdataSubmit" wx:if="{{!(isShowPCC||isShowSearch)}}">
-    <view class="list">
+    <view class="list has-bottom-button">
         <view class="item item-input">
-            <text class=" iconfont  icon-changshang placeholder-icon"></text>
+            <text class="iconfont  icon-changshang placeholder-icon"></text>
             <input type="text" bindinput="bindChange" id="shopname" name="shopname"
                    placeholder="工作单位" maxlength="15"/>
         </view>
@@ -19,7 +19,7 @@
                    placeholder="单位地址(省市县)"/>
         </view>
         <view class="item item-input">
-            <text class=" iconfont  icon-location placeholder-icon"></text>
+            <text class=" iconfont  icon-scdizhi placeholder-icon"></text>
             <input type="text" bindinput="bindChange" id="addrdetail" name="addrdetail"
                    placeholder="详细地址(街道 门牌号等)" value="{{addressname}}"/>
             <view bindtap="chooseLocation" class="positive padding-horizontal">
@@ -37,16 +37,22 @@
             <text class="padding-horizontal  iconfont icon-add positive"></text>
         </view>
         <view wx:if="{{imageList.length==0}}" class="row  row-wrap row-horizontal-around  grey">
-            <text class="shili">工作证示例 </text>
+            <text class="shili">工作证示例</text>
             <image src="{{imgUrl}}" alt="工作证示例" bindtap="previewImage" data-imgurl="{{imgUrl}}"
                    class="full-image padding"></image>
         </view>
         <view class="row show-img row-wrap row-horizontal-around">
-            <image wx:for="{{imageList}}" wx:for-item="item" wx:key="*this"  wx:for-index="index" bindtap="previewImage"
+            <image wx:for="{{imageList}}" wx:for-item="item" wx:key="*this" wx:for-index="index" bindtap="previewImage"
                    data-imgurl="{{imgsPicAddr[index]}}" src="{{item}}" alt="工作证图片"
                    class="full-image padding"></image>
             <text catchtap="deleteImg" wx:if="{{imageList.length>0}}"
                   class="delete-img iconfont icon-roundclosefill assertive"></text>
+        </view>
+
+        <view class="padding light-bg fixed-bottom">
+            <button class="positive-bg light "
+                    formType="submit">提交
+            </button>
         </view>
     </view>
     <!--    <view class="list  " style="margin-bottom: 5px;">
@@ -72,9 +78,9 @@
             </view>
         </view>-->
 
-    <view class="padding-horizontal">
-        <button formType="submit" class="positive-bg light " hover-class="button-hover">提交</button>
-    </view>
+    <!--    <view class="padding-horizontal">
+            <button formType="submit" class="positive-bg light " hover-class="button-hover">提交</button>
+        </view>-->
 
 </form>
 

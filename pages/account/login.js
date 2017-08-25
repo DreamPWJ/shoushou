@@ -158,7 +158,7 @@ Page({
                 util.https(app.globalData.api + "/api/user/login_mobile", "POST", {
                         mobile: inputContent.user,
                         code: inputContent.verifycode,
-                        client: 0,
+                        client: 3,
                         openID: wx.getStorageSync("openid"),
                         invitecode: ""
                     },
@@ -176,7 +176,7 @@ Page({
                 util.https(app.globalData.api + "/api/user/login", "POST", {
                         account: inputContent.account,
                         password: inputContent.password,
-                        client: 0,
+                        client: 3,
                         openID: wx.getStorageSync("openid"),
                         invitecode: ""
                     },

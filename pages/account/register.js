@@ -166,27 +166,32 @@ Page({
                 util.toolTip(that, "验证码输入不正确")
                 return;
             }
-            util.https(app.globalData.api + "/api/user/regnew", "POST", {
-                    account: inputContent.user,
-                    password: inputContent.password,
-                    confirmpassword: inputContent.confirmpassword,
-                    code: inputContent.verifycode,
-                    client: 0,
-                    openID: wx.getStorageSync("openid"),
-                    invitecode: inputContent.invitecode,
-                    services: [1]
-                },
+            //注册数据
+            var register = {
+                account: inputContent.user,
+                password: inputContent.password,
+                confirmpassword: inputContent.confirmpassword,
+                code: inputContent.verifycode,
+                client: 3,
+                openID: wx.getStorageSync("openid"),
+                invitecode: inputContent.invitecode,
+                services: [1]
+            }
+            console.log(register);
+            util.https(app.globalData.api + "/api/user/regnew", "POST", register,
                 function (data) {
                     if (data.code == 1001) {
                         wx.setStorageSync("userid", data.data.userid);
                         wx.setStorageSync("usersecret", data.data.usersecret);
+                        util.toolTip(that, "注册成功", 1);
                         //接口API授权 type 1.是公共授权  2.登录授权
                         util.authorization(2, function () {
+                            wx.navigateTo({ //完善资料
+                                url: '/pages/account/organizingdata'
+                            })
                             //根据会员ID获取会员账号基本信息
                             util.getUserInfo(function (data) {
-                                wx.navigateTo({ //完善资料
-                                    url: '/pages/account/organizingdata'
-                                })
+
                             })
                         }, true);
 
