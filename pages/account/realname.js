@@ -21,7 +21,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.setData({
+            status: options.status
+        })
     },
 
     /**
@@ -35,7 +37,28 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        var that = this;
+        //获取实名认证信息
+        if (this.data.status == 2) {
+            wx.setNavigationBarTitle({
+                title: "实名认证信息"
+            })
+            util.https(app.globalData.api + "/api/user/get_identity/" + wx.getStorageSync('userid'), "GET", {},
+                function (data) {
+                    if (data.code == 1001) {
+                        that.setData({
+                            realname: data.data
+                        })
+                    } else {
+                        util.toolTip(that, data.message)
+                    }
+                }
+            )
+        } else if (this.data.status == 1) {
+            wx.setNavigationBarTitle({
+                title: "修改实名认证"
+            })
+        }
     },
 
     /**
@@ -134,13 +157,13 @@ Page({
                 util.toolTip(that, "请先上传认证照片后再提交");
                 return;
             }
-            var data={
+            var data = {
                 userid: wx.getStorageSync('userid'),
                 name: inputContent.name,
                 idno: inputContent.idno,
                 frontpic: that.data.imgsPicAddr[0]
             }
-            util.https(app.globalData.api + "/api/user/authenticate_idcard", "POST",data ,
+            util.https(app.globalData.api + "/api/user/authenticate_idcard", "POST", data,
                 function (data) {
                     if (data.code == 1001) {
                         util.toolTip(that, "实名认证提交成功", 1, '/pages/account/accountsecurity')
