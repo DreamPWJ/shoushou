@@ -1,1 +1,4 @@
 /* pages/account/helpfeedback.wxss */
+textarea{
+    height: 5rem;
+}

@@ -237,11 +237,11 @@ function wxValidate(e, that, callback) {
  * 改变验证码按钮状态
  */
 function verifyCodeBtn(e, that) {
-    if (e.currentTarget.id == 'user' && (/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
+    if ((e.currentTarget.id == 'user' || e.currentTarget.id == 'account') && (/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
         that.setData({
             vcdisabled: false
         })
-    } else if (e.currentTarget.id == 'user' && !(/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
+    } else if ((e.currentTarget.id == 'user' || e.currentTarget.id == 'account') && !(/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
         that.setData({
             vcdisabled: true
         })
@@ -319,7 +319,7 @@ function wxLogin() {
                                 //登录授权
                                 that.authorization(2, function (data) {
 
-                                },true);
+                                }, true);
                                 //根据会员ID获取会员账号基本信息
                                 that.getUserInfo(function () {
 

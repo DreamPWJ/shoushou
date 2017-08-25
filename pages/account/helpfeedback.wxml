@@ -2,10 +2,25 @@
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<form bindsubmit="helpfeedbackSubmit">
+    <view class="has-bottom-button">
+        <view class="padding-top"></view>
+        <view class="list">
+            <view class="item item-input">
+                <input type="text" bindinput="bindChange" id="title" name="title" maxlength="50" placeholder="请输入反馈标题"/>
+            </view>
+            <view class="item item-divider item-borderless">
+                问题描述
+            </view>
+            <view class="item item-input">
+                <textarea bindinput="bindChange" id="content" name="content" placeholder="请输入详细反馈描述"
+                          maxlength="2000"></textarea>
+            </view>
+        </view>
+        <view class="padding light-bg fixed-bottom">
+            <button class="positive-bg light "
+                    formType="submit">提交
+            </button>
+        </view>
     </view>
-</view>
-
+</form>
