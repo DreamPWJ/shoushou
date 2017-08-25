@@ -8,7 +8,7 @@
 <!--<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>-->
 
 <form bindsubmit="informationSubmit">
-    <view class="has-bottom-button" wx:if="{{!(isShowPCC||isShowSearch)}}">
+    <view class="has-bottom-button" hidden="{{isShowPCC}}">
         <view class="item-divider light-bg  border-b  item-icon-right border-bottom  padding-top" bindtap="">
             <view class="h2 border-left">选择品类</view>
             <!--        <text class="{true:'ion-ios-arrow-right',false:'ion-ios-arrow-down'}[showme]"

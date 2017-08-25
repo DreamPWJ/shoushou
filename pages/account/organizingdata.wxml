@@ -6,7 +6,7 @@
 </view>
 <template wx:if="{{isShowPCC}}" is="address" data="{{addressinfo}}"/>
 <!--<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>-->
-<form bindsubmit="organizingdataSubmit" wx:if="{{!(isShowPCC||isShowSearch)}}">
+<form bindsubmit="organizingdataSubmit" hidden="{{isShowPCC}}">
     <view class="list has-bottom-button">
         <view class="item item-input">
             <text class="iconfont  icon-changshang placeholder-icon"></text>

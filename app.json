@@ -21,6 +21,8 @@
     "pages/account/findpassword",
     "pages/account/updateuser",
     "pages/account/accountsecurity",
+    "pages/account/bindingmobile",
+    "pages/account/bindingemail",
     "pages/account/realname",
     "pages/account/helpfeedback",
     "pages/account/setting",

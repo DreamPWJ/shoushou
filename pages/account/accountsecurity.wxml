@@ -5,7 +5,7 @@
 <view>
     <view class="padding-top"></view>
     <view class="list">
-        <navigator url="?status={{phonestatus}}" open-type="navigate" class="item item-icon-right">
+        <navigator url="bindingmobile?status={{phonestatus}}" open-type="navigate" class="item item-icon-right">
             <view class="h2">绑定手机
                 <view class="item-note {{(phonestatus==1||phonestatus==2)?'balanced':'assertive'}}">
                     {{certstatestatus[phonestatus]}}
@@ -13,7 +13,7 @@
             </view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
-        <navigator url="?status={{emailstatus}}" open-type="navigate" class="item item-icon-right">
+        <navigator url="bindingemail?status={{emailstatus}}" open-type="navigate" class="item item-icon-right">
             <view class="h2">绑定邮箱
                 <view class=item-note {{(emailstatus==1||emailstatus==2)?'balanced':'assertive'}}">
                     {{certstatestatus[emailstatus]}}

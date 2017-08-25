@@ -91,8 +91,15 @@ Page({
         var that = this;
         //根据会员ID获取会员账号基本信息
         util.getUserInfo(function (data) {
+            var user=data.data;
+            var certstate = user.certstate;//获取认证状态参数
+            var usertype=wx.getStorageSync('usertype');
             that.setData({
-                userdata: data.data
+                userdata: data.data,
+                usertype:usertype,
+                phonestatus:certstate.substr(0, 1),//手机认证状态码
+                isOrganizingData:user.userext == null ? false : true,//是否完善资料
+                services:usertype == 1?'信息提供者':'回收商'
             })
         })
     }
