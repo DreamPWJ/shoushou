@@ -38,9 +38,9 @@
             <view class="item" wx:if="{{orderDetail.appointtime!='0001-01-01T00:00:00' && orderDetail.isappoint==2}}">
                 预约时间 : {{orderDetail.appointtime }}
             </view>
-            <view class="item" wx:if="{{orderDetail.state=='8' && orderDetail.nocanceled!=''}}">
+ <!--           <view class="item" wx:if="{{orderDetail.state=='8' && orderDetail.nocanceled!=''}}">
                 取消原因 : {{orderDetail.nocanceled}}
-            </view>
+            </view>-->
         </view>
         <view class="padding-top"></view>
         <view wx:if="{{orderDetail.djdetails}}">

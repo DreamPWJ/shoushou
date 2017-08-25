@@ -4,7 +4,7 @@
     border: 1px solid #33cd5f;
     border-radius: 2px;
     font-size: 0.7rem;
-    padding:  2px;
+    padding: 2px;
     color: #33cd5f;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -35,10 +35,24 @@
     white-space: nowrap;
 }
 
+.phytype:not(:empty).balanced {
+    border: 1px solid #33cd5f !important;
+    color: #33cd5f !important;
+}
+
+.phytype:not(:empty).energized {
+    border: 1px solid #f26604 !important;
+    color: #f26604 !important;
+}
+
+.phytype:not(:empty).assertive {
+    border: 1px solid #ef473a !important;
+    color: #ef473a !important;
+}
 
 .close {
     margin-top: -0.6rem;
-    border:1px solid #ef473a ;
+    border: 1px solid #ef473a;
     border-radius: 5px;
-    padding:3px 4px;
+    padding: 3px 4px;
 }
