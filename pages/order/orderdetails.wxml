@@ -88,7 +88,7 @@
         </view>
         <view class="padding-top"></view>
         <view wx:if="{{commentInfo}}">
-            <view class="item item-icon-right item-borderless">
+            <view class="item  item-borderless">
                 客户评价
                 <text class="iconfont icon-favorfill energized " wx:if="{{commentInfo.score>=1}}"></text>
                 <text class="iconfont icon-favorfill energized " wx:if="{{commentInfo.score>=2}}"></text>

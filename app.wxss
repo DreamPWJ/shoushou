@@ -234,7 +234,7 @@ text, input {
 
 .swiper-box {
     display: block;
-    margin-top: 52px;
+    margin-top: 48px;
     width: 100%;
     overflow: hidden;
 }
