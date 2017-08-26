@@ -13,8 +13,8 @@ Page({
         page: 1,
         hasUnfData: true,
         hasData: true,
-        unfinishedOrderListArr: [],
-        orderListArr: []
+        unfinishedOrderList: [],
+        orderList: []
     },
 
     /**
@@ -142,20 +142,20 @@ Page({
             function (data) {
                 if (that.data.currentTab == 0 && that.data.unfpage == 1) {
                     that.setData({
-                        unfinishedOrderListArr: []
+                        unfinishedOrderList: []
                     })
                 }
                 if (that.data.currentTab == 1 && that.data.page == 1) {
                     that.setData({
-                        orderListArr: []
+                        orderList: []
                     })
                 }
                 for (var index in data.data.data_list) {
                     if (that.data.currentTab == 0) {//未完成订单
-                        that.data.unfinishedOrderListArr.push(data.data.data_list[index]);
+                        that.data.unfinishedOrderList.push(data.data.data_list[index]);
                     }
                     if (that.data.currentTab == 1) {//所有订单
-                        that.data.orderListArr.push(data.data.data_list[index]);
+                        that.data.orderList.push(data.data.data_list[index]);
                     }
                 }
 
@@ -164,8 +164,8 @@ Page({
                     hasData: data.data.page_count == that.data.page ? false : true,
                     isNotunfinishedData: that.data.currentTab == 0 && (data.data == null || data.data.data_list.length == 0) ? true : false,
                     isNotData: that.data.currentTab == 1 && (data.data == null || data.data.data_list.length == 0) ? true : false,
-                    unfinishedOrderList: that.data.unfinishedOrderListArr,
-                    orderList: that.data.orderListArr
+                    unfinishedOrderList: that.data.unfinishedOrderList,
+                    orderList: that.data.orderList
                 })
                 if (that.data.currentTab == 0) {//未完成订单
                     that.data.unfpage++;

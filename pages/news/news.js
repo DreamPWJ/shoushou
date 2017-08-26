@@ -10,7 +10,7 @@ Page({
     data: {
         page: 1,
         hasData: true,
-        newsListArr: []
+        newsList: []
     },
 
     /**
@@ -117,25 +117,25 @@ Page({
         var that = this;
         util.https(app.globalData.api + "/api/MessagePush/getlist", "GET", {
                 page: page,//页码
-                size: 10,//条数
+                size:10,//条数
                 userid: wx.getStorageSync("userid"),//用户id
                 isHideLoad: true
             },
             function (data) {
                 if (that.data.page == 1) {
                     that.setData({
-                        newsListArr: []
+                        newsList: []
                     })
                 }
 
                 for (var index in data.data.data_list) {
-                    that.data.newsListArr.push(data.data.data_list[index]);
+                    that.data.newsList.push(data.data.data_list[index]);
                 }
 
                 that.setData({
                     hasData: data.data.page_count == that.data.page ? false : true,
                     isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
-                    newsList: that.data.newsListArr
+                    newsList: that.data.newsList
                 })
                 that.data.page++;
 
