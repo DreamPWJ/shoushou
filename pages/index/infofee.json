@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "信息费收入"
+  "navigationBarTitleText": "信息费收入",
+  "enablePullDownRefresh": true
 }

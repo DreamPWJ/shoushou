@@ -2,10 +2,24 @@
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<view>
+    <view wx:if="{{isNotData}}" class="isNotDataHint">
+        <view class="iconfont icon-xiaoxi"></view>
+        <text>暂无数据</text>
     </view>
+    <view class="list">
+        <view class="item " wx:for="{{tradeList}}" wx:for-item="item" wx:key="*this">
+            <!--  <text class="iconfont icon-moneybag positive"></text>-->
+            <view class="h2">{{item.channel_str}}
+                <view class="inline {{item.state_str=='成功'?'balanced':(item.state_str=='处理中'?'positive':'assertive')}}">
+                    {{item.state_str}}
+                </view>
+                <view class="item-note">{{item.createtime}}</view>
+                <view class="right-1 money {{item.flag==1?'assertive':'balanced'}}  ">{{item.flag==1?'-':''}}{{item.amount}}
+                </view>
+            </view>
+            <view class="p">余额 : {{item.preamount}}</view>
+        </view>
+    </view>
+    <view class="padding-top"></view>
 </view>
-

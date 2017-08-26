@@ -1,1 +1,4 @@
 /* pages/index/infofee.wxss */
+.money{
+    font-size: 1.2rem;
+}

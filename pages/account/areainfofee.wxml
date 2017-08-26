@@ -3,8 +3,10 @@
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
 <view class="text-center  padding">
-    <view class="isNotDataHint">
+
+    <view wx:if="{{areaInfoFee==null||areaInfoFee.length==0}}" class="isNotDataHint">
         <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+        <text>很抱歉，当前地区暂未开通</text>
     </view>
+
 </view>
