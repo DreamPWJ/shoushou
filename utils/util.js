@@ -12,6 +12,7 @@ function https(url, type, data, callBack, header) {
         if (!data.isHideLoad) {
             wx.showLoading({
                 title: '加载中',
+                mask:true //防止触摸穿透
             })
         }
         wx.showNavigationBarLoading();
