@@ -68,6 +68,14 @@ function authorization(type, callback, immediately) {
                             wx.setStorageSync('token', data.access_token);//公共接口授权token
                             wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
                             wx.setStorageSync('tokentype', 1);//授权类型
+                        } else {
+                            that.showModal('收收提示', '登陆过期，请重新登陆', '登录', '取消', function (res) {
+                                if (res.confirm) {
+                                    wx.navigateTo({
+                                        url: '/pages/account/login'
+                                    })
+                                }
+                            })
                         }
                         callback.call(that, data)
 
@@ -352,7 +360,9 @@ function getUserInfo(callback) {
                 if (services == null || services.length == 0) {//旧会员 完善信息
                     that.showModal('收收提示', '尊敬的用户,您好！旧会员需完善资料后才能进行更多的操作！', '完善资料', '暂不完善', function (res) {
                         if (res.confirm) {
-                            console.log('用户点击确定')
+                            wx.navigateTo({
+                                url: '/pages/account/organizingdata'
+                            })
                         }
                     })
 
