@@ -60,12 +60,12 @@
         <view class="row text-center light-bg row-center sub-menu border-b">
             <navigator url="../util/help?id=23" open-type="navigate" class="col border-r ">
                 <text class="icon iconfont icon-wenti balanced"></text>
-                <view class="p" class="inline dark"> 我能做什么?</view>
+                <view  class="h5 inline dark"> 我能做什么?</view>
             </navigator>
 
             <navigator navigator url="../util/help?id=24" open-type="navigate" class="col">
                 <text class="icon iconfont icon-question1 balanced"></text>
-                <view class="p" class="inline dark"> 我要做什么?</view>
+                <view class="h5 inline dark"> 我要做什么?</view>
             </navigator>
         </view>
         <view bindtap="makePhoneCall" data-phone="400-700-0097">

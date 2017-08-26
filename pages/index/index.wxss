@@ -57,14 +57,16 @@
 }
 
 .main-list navigator, .main-list button {
-    padding: 1rem 0.2rem 1rem 0.2rem;
+    padding: 1rem 0.2rem;
 }
 
-.main-list navigator .h5, .main-list navigator .p, .main-list button .h5, .main-list button .p {
+.main-list navigator .h5, .main-list button .h5 {
     margin: 0.3rem;
+    font-size: 15px !important;
 }
 
 .main-list navigator .p, .main-list button .p {
+    margin-top: 0.2rem;
     font-size: 0.7rem !important;
     color: #888888;
 }
@@ -75,12 +77,16 @@
 
 .main-list button {
     background-color: #fff !important;
-    line-height:normal !important;
+    line-height: normal !important;
 }
 
 .sub-menu navigator {
     text-align: center;
     color: #585858;
+}
+
+.sub-menu .h5 {
+    font-size: 15px !important;
 }
 
 .sub-menu navigator .iconfont {
