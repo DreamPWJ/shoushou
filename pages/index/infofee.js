@@ -118,7 +118,12 @@ Page({
                 that.setData({
                     hasData: data.data.page_count == that.data.page ? false : true,
                     isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
-                    tradeList: that.data.tradeList
+                    tradeList: that.data.tradeList.map(function (item) {
+                        item.amount=util.formatMoney(item.amount,2);
+                        item.preamount=util.formatMoney(item.preamount,2);
+                        item.createtime= new Date(item.createtime).Format("yyyy-MM-dd hh:mm")
+                    return item
+                    })
                 })
                 that.data.page++;
             }
