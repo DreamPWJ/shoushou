@@ -121,7 +121,7 @@ Page({
                     tradeList: that.data.tradeList.map(function (item) {
                         item.amount=util.formatMoney(item.amount,2);
                         item.preamount=util.formatMoney(item.preamount,2);
-                        item.createtime= new Date(item.createtime).Format("yyyy-MM-dd hh:mm")
+                        item.createtime= new Date(item.createtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
                     return item
                     })
                 })

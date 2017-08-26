@@ -161,7 +161,11 @@ Page({
                     that.setData({
                         hasUnfData: data.data.page_count == that.data.unfpage ? false : true,
                         isNotunfinishedData: (data.data == null || data.data.data_list.length == 0) ? true : false,
-                        unfinishedOrderList: that.data.unfinishedOrderList,
+                        unfinishedOrderList: that.data.unfinishedOrderList.map(function (item) {
+                            item.addtime= new Date(item.addtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                            item.oraddtime= new Date(item.oraddtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                            return item
+                        }),
                         orderList: []
                     })
                     that.data.unfpage++;
@@ -171,7 +175,11 @@ Page({
                         hasData: data.data.page_count == that.data.page ? false : true,
                         isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                         unfinishedOrderList: [],
-                        orderList: that.data.orderList
+                        orderList: that.data.orderList.map(function (item) {
+                            item.addtime= new Date(item.addtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                            item.oraddtime= new Date(item.oraddtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                            return item
+                        })
                     })
                     that.data.page++;
                 }
