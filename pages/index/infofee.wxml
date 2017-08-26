@@ -10,7 +10,7 @@
     <view class="list">
         <view class="item " wx:for="{{tradeList}}" wx:for-item="item" wx:key="*this">
             <!--  <text class="iconfont icon-moneybag positive"></text>-->
-            <view class="h2">{{item.channel_str}}
+            <view class="h2"> <rich-text nodes="{{item.channel_str}}" class="inline" type="text"></rich-text>
                 <view class="inline {{item.state_str=='成功'?'balanced':(item.state_str=='处理中'?'positive':'assertive')}}">
                     {{item.state_str}}
                 </view>
