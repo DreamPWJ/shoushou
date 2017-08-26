@@ -10,6 +10,27 @@ App({
                 wx.setStorageSync("latitude", res.latitude);//纬度
             }
         })
+        //监听网络状态变化
+        wx.onNetworkStatusChange(function (res) {
+            console.log(res.isConnected)
+            console.log(res.networkType)
+
+            if (res.isConnected) {
+                if (res.networkType == '2g')
+                    wx.showToast({
+                        title: "您当前的网络是2G网络，为了不影响您的使用，请切换到4G或wifi网络再使用",
+                        icon: "loading",
+                        duration: 2000
+                    })
+            } else {
+                wx.showToast({
+                    title: "网络异常 请刷新重试",
+                    icon: "loading",
+                    duration: 2000
+                })
+            }
+
+        })
     },
     /**
      * 获取微信用户信息
