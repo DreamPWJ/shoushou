@@ -42,7 +42,7 @@
             </view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
-        <navigator url="tradingrecord" open-type="navigate" class="item item-icon-left item-icon-right">
+        <navigator url="../index/infofee?channel=0" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-jiaoyijilu" style="color: #ef473a"></text>
             <view class="h2">交易记录</view>
             <text class="icon-accessory iconfont icon-right"></text>

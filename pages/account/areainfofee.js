@@ -1,7 +1,6 @@
-// pages/wallet/tradingrecord.js
+// pages/account/areainfofee.js
 var app = getApp();
 var util = require('../../utils/util.js');
-
 Page({
 
   /**

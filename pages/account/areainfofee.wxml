@@ -1,4 +1,4 @@
-<!--pages/wallet/tradingrecord.wxml-->
+<!--pages/account/areainfofee.wxml-->
 <view class="tool-tip " wx:if="{{popMsg}}">
     <text class="{{popType}}">{{popMsg}}</text>
 </view>
