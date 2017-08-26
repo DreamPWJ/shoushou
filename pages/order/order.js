@@ -159,18 +159,22 @@ Page({
                     }
                 }
 
-                that.setData({
-                    hasUnfData: data.data.page_count == that.data.unfpage ? false : true,
-                    hasData: data.data.page_count == that.data.page ? false : true,
-                    isNotunfinishedData: that.data.currentTab == 0 && (data.data == null || data.data.data_list.length == 0) ? true : false,
-                    isNotData: that.data.currentTab == 1 && (data.data == null || data.data.data_list.length == 0) ? true : false,
-                    unfinishedOrderList: that.data.unfinishedOrderList,
-                    orderList: that.data.orderList
-                })
                 if (that.data.currentTab == 0) {//未完成订单
+                    that.setData({
+                        hasUnfData: data.data.page_count == that.data.unfpage ? false : true,
+                        isNotunfinishedData: (data.data == null || data.data.data_list.length == 0) ? true : false,
+                        unfinishedOrderList: that.data.unfinishedOrderList,
+                        orderList: []
+                    })
                     that.data.unfpage++;
                 }
                 if (that.data.currentTab == 1) {//所有订单
+                    that.setData({
+                        hasData: data.data.page_count == that.data.page ? false : true,
+                        isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
+                        unfinishedOrderList: [],
+                        orderList: that.data.orderList
+                    })
                     that.data.page++;
                 }
                 console.log(that.data);
@@ -183,7 +187,7 @@ Page({
      * 滑动切换tab
      */
     bindChange: function (e) {
-        var that=this;
+        var that = this;
         that.setData({
             currentTab: e.detail.current,
             unfpage: 1,
