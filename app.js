@@ -31,6 +31,13 @@ App({
             }
 
         })
+        //同步获取系统信息
+        try {
+            var res = wx.getSystemInfoSync()
+            wx.setStorageSync("systeminfo", res);//系统信息
+        } catch (e) {
+            // Do something when catch error
+        }
     },
     /**
      * 获取微信用户信息
