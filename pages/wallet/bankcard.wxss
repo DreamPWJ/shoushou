@@ -17,7 +17,7 @@ page {
 }
 
 .card .item {
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
     background-color: inherit;
 }
 
@@ -36,11 +36,16 @@ page {
 }
 
 .radio-group {
+    position: relative;
+}
+
+.radio {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 0.5rem;
+    right: 0.5rem;
     z-index: 10000;
 }
-radio{
 
+.icon-add {
+    font-size: 1.3rem !important;
 }

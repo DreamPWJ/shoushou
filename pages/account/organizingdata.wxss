@@ -18,3 +18,7 @@ text.delete-img {
 .shili {
     font-size: 0.8rem;
 }
+
+.icon-locationfill,.icon-add{
+    font-size: 1.2rem !important;
+}

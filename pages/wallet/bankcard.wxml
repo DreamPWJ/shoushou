@@ -4,49 +4,47 @@
 </view>
 <view id="bankcard">
     <view class="list list-borderless card">
-        <view class="item-p positive-bg ">
-            <radio-group class="radio-group" data-current="0" bindchange="radioChange">
-                <label class="radio padding-left" >
-                    <radio value="0"  />
+        <radio-group class="radio-group" data-current="0" bindchange="radioChange">
+            <view class="item-p positive-bg ">
+                <label class="radio ">
+                    <radio value="0"/>
                     设为默认
                 </label>
-            </radio-group>
-            <view class="item item-icon-left item-borderless ">
-                <text class="iconfont icon-jiansheyinhang"></text>
-                建设银行
-                <view class=" p">深圳科苑支行</view>
-            </view>
-            <view class="h1 text-right">**** **** **** 686</view>
+                <view class="item item-icon-left item-borderless ">
+                    <text class="iconfont icon-jiansheyinhang"></text>
+                    建设银行
+                    <view class=" p">深圳科苑支行</view>
+                </view>
+                <view class="h1 text-right">**** **** **** 686</view>
 
-        </view>
-        <view class="item-p energized-bg ">
-            <radio-group class="radio-group" data-current="0" bindchange="radioChange">
-                <label class="radio padding-left" >
-                    <radio value="1" />
+            </view>
+            <view class="item-p energized-bg ">
+
+                <label class="radio ">
+                    <radio value="1"/>
                     设为默认
                 </label>
-            </radio-group>
-            <view class="item item-icon-left item-borderless ">
-                <text class="iconfont icon-jiansheyinhang"></text>
-                建设银行
-                <view class=" p">深圳科苑支行</view>
+                <view class="item item-icon-left item-borderless ">
+                    <text class="iconfont icon-jiansheyinhang"></text>
+                    建设银行
+                    <view class=" p">深圳科苑支行</view>
+                </view>
+                <view class="h1 text-right">**** **** **** 686</view>
             </view>
-            <view class="h1 text-right">**** **** **** 686</view>
-        </view>
-        <view class="item-p balanced-bg ">
-            <radio-group class="radio-group" data-current="0" bindchange="radioChange">
-                <label class="radio padding-left" >
-                    <radio value="2"  />
+            <view class="item-p balanced-bg ">
+                <label class="radio ">
+                    <radio value="2"/>
                     设为默认
                 </label>
-            </radio-group>
-            <view class="item item-icon-left item-borderless ">
-                <text class="iconfont icon-jiansheyinhang"></text>
-                建设银行
-                <view class=" p">深圳科苑支行</view>
+
+                <view class="item item-icon-left item-borderless ">
+                    <text class="iconfont icon-jiansheyinhang"></text>
+                    建设银行
+                    <view class=" p">深圳科苑支行</view>
+                </view>
+                <view class="h1 text-right">**** **** **** 686</view>
             </view>
-            <view class="h1 text-right">**** **** **** 686</view>
-        </view>
+        </radio-group>
     </view>
     <view class="list add">
         <navigator url="addbankcard" open-type="navigate" class="item item-icon-left add-border-b">
