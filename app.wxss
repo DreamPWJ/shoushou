@@ -282,7 +282,7 @@ button::after {
 
 .tool-tip {
     position: fixed;
-    z-index: 10000;
+    z-index: 20000;
     top: 15px;
     width: 100%;
     text-align: center;

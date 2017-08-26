@@ -32,11 +32,13 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        //获取消息列表
-        this.setData({
+        var that = this;
+        that.setData({
             page: 1
+        }, function () {
+            //获取消息列表
+            that.getNewsList(1);
         })
-        this.getNewsList(1);
     },
 
     /**
@@ -57,11 +59,14 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-        this.setData({
+        var that = this;
+        that.setData({
             page: 1
+        }, function () {
+            //获取消息列表
+            that.getNewsList(1);
         })
-        //获取消息列表
-        this.getNewsList(this.data.page);
+
     },
 
     /**
@@ -117,7 +122,7 @@ Page({
         var that = this;
         util.https(app.globalData.api + "/api/MessagePush/getlist", "GET", {
                 page: page,//页码
-                size:10,//条数
+                size: 10,//条数
                 userid: wx.getStorageSync("userid"),//用户id
                 isHideLoad: true
             },

@@ -35,12 +35,15 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.setData({
+        var that = this;
+        that.setData({
             unfpage: 1,
             page: 1
+        }, function () {
+            //获取订单列表
+            that.getOrderList(1);
         })
-        //获取订单列表
-        this.getOrderList(1);
+
     },
 
     /**
@@ -62,18 +65,7 @@ Page({
      */
     onPullDownRefresh: function () {
 
-        /*        if (this.data.currentTab == 0) {
-                    this.setData({
-                        unfpage: 1
-                    })
-                }
-                if (this.data.currentTab == 1) {
-                    this.setData({
-                        page: 1
-                    })
-                }
-                //获取订单列表
-                this.getOrderList(this.data.currentTab == 0 ? this.data.unfpage : this.data.page);*/
+
     },
 
     /**
@@ -111,7 +103,14 @@ Page({
                 util.https(app.globalData.api + "/api/dengji/cancel/" + e.currentTarget.dataset.orderno, "GET", {},
                     function (data) {
                         if (data.code == 1001) {
-                            that.getOrderList(1);
+                            that.setData({
+                                unfpage: 1,
+                                page: 1
+                            }, function () {
+                                //获取订单列表
+                                that.getOrderList(1);
+                            })
+
                             util.toolTip(that, '订单关闭成功', 1);
                         } else {
                             util.toolTip(that, data.message);
