@@ -12,7 +12,7 @@ function https(url, type, data, callBack, header) {
         if (!data.isHideLoad) {
             wx.showLoading({
                 title: '加载中',
-                mask:true //防止触摸穿透
+                mask: true //防止触摸穿透
             })
         }
         wx.showNavigationBarLoading();
@@ -56,7 +56,7 @@ function authorization(type, callback, immediately) {
     if (type == 1) { //1.是公共授权
         var auth1 = function () {
             //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
-            if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199))) {
+            if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) >= 7199))) {
 
                 if (timePromise2) {
                     clearInterval(timePromise2);
@@ -86,7 +86,7 @@ function authorization(type, callback, immediately) {
     } else if (type == 2) {  //2.登录授权
         var auth2 = function () {
             //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
-            if (wx.getStorageSync("userid") && (immediately || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) > 7199)) {
+            if (wx.getStorageSync("userid") && (immediately || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) >= 7199)) {
                 if (timePromise1) {
                     clearInterval(timePromise1);
                 }
@@ -545,7 +545,9 @@ function uploadFile(res, that, callback) {
     that.setData({
         imageList: [tempFilePaths]
     })
-    wx.showLoading({title: '正在上传'})
+    wx.showLoading({
+        title: '正在上传', mask: true //防止触摸穿透
+    })
     wx.uploadFile({
         url: app.globalData.api + "/api/util/uploadimg/" + that.data.filename, //仅为示例，非真实的接口地址
         filePath: tempFilePaths[0],//要上传文件资源的路径
