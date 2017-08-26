@@ -32,10 +32,10 @@
             <view class="item"  wx:if="{{orderDetail.type==1&&orderDetail.ormotel}}">
                 接单手机号 : {{orderDetail.ormotel }}
             </view>
-            <view class="item" wx:if="{{orderDetail.oraddtime!='0001-01-01T00:00:00'}}">
+            <view class="item" wx:if="{{orderDetail.oraddtime!='2001-01-01 00:00'}}">
                 接单时间 : {{orderDetail.oraddtime }}
             </view>
-            <view class="item" wx:if="{{orderDetail.appointtime!='0001-01-01T00:00:00' && orderDetail.isappoint==2}}">
+            <view class="item" wx:if="{{orderDetail.appointtime!='2001-01-01 00:00' && orderDetail.isappoint==2}}">
                 预约时间 : {{orderDetail.appointtime }}
             </view>
  <!--           <view class="item" wx:if="{{orderDetail.state=='8' && orderDetail.nocanceled!=''}}">

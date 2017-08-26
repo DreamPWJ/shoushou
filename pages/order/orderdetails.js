@@ -105,6 +105,9 @@ Page({
         util.https(app.globalData.api + "/api/dengji/getdetail/" + orderno, "GET", {},
             function (data) {
                 if (data.code == 1001) {
+                    data.data.addtime= new Date(data.data.addtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                    data.data.oraddtime= new Date(data.data.oraddtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                    data.data.appointtime= new Date(data.data.appointtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
                     that.setData({
                         orderDetail: data.data
                     })
