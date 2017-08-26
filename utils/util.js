@@ -110,6 +110,14 @@ function authorization(type, callback, immediately) {
                             wx.setStorageSync('token', data.access_token);//登录接口授权token
                             wx.setStorageSync('expires_in', new Date());//登录接口授权token 有效时间
                             wx.setStorageSync('tokentype', 2);//授权类型
+                        } else {
+                            that.showModal('收收提示', '登陆过期，请重新登陆', '登录', '取消', function (res) {
+                                if (res.confirm) {
+                                    wx.navigateTo({
+                                        url: '/pages/account/login'
+                                    })
+                                }
+                            })
                         }
                         callback.call(that, data)
 
@@ -481,9 +489,13 @@ function getCurrentCity(that, level, callback) {
                 ssx: that.data.ssx, level: 3
             },
             function (data) {
-                that.setData({
-                    addressone: data.data
-                })
+                if (data.code == 1001) {
+                    that.setData({
+                        addressone: data.data
+                    })
+                } else {
+                    toolTip(that, data.message)
+                }
 
             }
         )
@@ -507,6 +519,59 @@ function getSearchAddress(that, addrname, callback) {
             })
         }
     )
+}
+
+
+/**
+ * 获取当前的地理位置、速度。当用户离开小程序后，此接口无法调用；当用户点击“显示在聊天顶部”时，此接口可继续调用
+ */
+function getLocation(that, callback) {
+    wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+            wx.setStorageSync("longitude", res.longitude);//经度
+            wx.setStorageSync("latitude", res.latitude);//纬度
+        }
+    })
+}
+
+/**
+ * 打开地图选择位置
+ */
+function chooseLocation(that, callback) {
+    wx.chooseLocation({
+        success: function (res) {
+            var address = res.address.toString();
+            var end = Number(address.indexOf("区") == -1 ? address.indexOf("县") : address.indexOf("区")) + 1;
+            var ssx = address.substring(0, end);
+            if (that.data.ssx.indexOf(ssx) == -1) {//不是同一个省市县地区
+                that.setData({
+                    ssx: address.substring(0, end)
+                })
+                https(app.globalData.api + "/api/addr/getssx", "GET", {
+                        ssx: ssx, level: 3
+                    },
+                    function (data) {
+                        if (data.code == 1001) {
+                            that.setData({
+                                addressone: data.data
+                            })
+                        } else {
+                            toolTip(that, data.message)
+                        }
+
+                    }
+                )
+            }
+            that.setData({
+                addressname: res.name,//位置名称
+                latitude: res.latitude,//纬度
+                longitude: res.longitude,//经度
+            })
+            console.log(res);
+            callback.call(this, res)
+        }
+    })
 }
 
 /**
@@ -585,36 +650,6 @@ function uploadFile(res, that, callback) {
 }
 
 /**
- * 获取当前的地理位置、速度。当用户离开小程序后，此接口无法调用；当用户点击“显示在聊天顶部”时，此接口可继续调用
- */
-function getLocation(that, callback) {
-    wx.getLocation({
-        type: 'wgs84',
-        success: function (res) {
-            wx.setStorageSync("longitude", res.longitude);//经度
-            wx.setStorageSync("latitude", res.latitude);//纬度
-        }
-    })
-}
-
-/**
- * 打开地图选择位置
- */
-function chooseLocation(that, callback) {
-    wx.chooseLocation({
-        success: function (res) {
-            that.setData({
-                addressname: res.name,//位置名称
-                latitude: res.latitude,//纬度
-                longitude: res.longitude//经度
-            })
-            console.log(res);
-            callback.call(this, res)
-        }
-    })
-}
-
-/**
  * 获取产品品类
  */
 function getProductList(that, callback) {
@@ -683,10 +718,10 @@ module.exports = {
     getAddressPCCList: getAddressPCCList,
     getCurrentCity: getCurrentCity,
     getSearchAddress: getSearchAddress,
-    uploadActionSheet: uploadActionSheet,
-    uploadFile: uploadFile,
     getLocation: getLocation,
     chooseLocation: chooseLocation,
+    uploadActionSheet: uploadActionSheet,
+    uploadFile: uploadFile,
     getProductList: getProductList,
     /*    getProductListIsth: getProductListIsth,*/
     getUserSum: getUserSum,
