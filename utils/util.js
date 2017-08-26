@@ -169,11 +169,30 @@ function formatMoney(s, n) {
     s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";
     var l = s.split(".")[0].split("").reverse(),
         r = s.split(".")[1];
-   var t = "";
+    var t = "";
     for (var i = 0; i < l.length; i++) {
         t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");
     }
     return t.split("").reverse().join("") + "." + r;
+}
+
+/**
+ * 隐藏部分信息 如手机  188****2302  潘**
+ */
+function hidePartInfo(str, type) {
+    if (!str) {
+        return;
+    }
+    if (type == 'name') { //姓名信息
+        return str.replace(str.length >= 3 ? str.substr(1, 2) : str.substr(1, 1), str.length >= 3 ? '**' : '*');
+    }
+    if (type == 'phone') { //手机信息
+        return str.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+    }
+    if (type == 'address') { //地址信息
+        return str.replace(str.substring(str.lastIndexOf(','), str.length), '*****');
+    }
+
 }
 
 /**
@@ -724,6 +743,9 @@ function getProductList(that, callback) {
 function getUserSum(that, callback) {
     this.https(app.globalData.api + "/api/orderreceipt/getsum/" + wx.getStorageSync('userid') + "/" + 24, "GET", {isHideLoad: true},
         function (data) {
+            data.data.totalamount=formatMoney(data.data.totalamount,2)
+            data.data.account=formatMoney(data.data.account,2)
+            data.data.trzaccount=formatMoney(data.data.trzaccount,2)
             that.setData({
                 userSum: data.data
             })
@@ -745,6 +767,7 @@ module.exports = {
     https: https,
     authorization: authorization,
     formatMoney: formatMoney,
+    hidePartInfo: hidePartInfo,
     isLogin: isLogin,
     isLoginModal: isLoginModal,
     showToast: showToast,
