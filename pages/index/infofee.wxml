@@ -14,11 +14,15 @@
                 <view class="inline {{item.state_str=='成功'?'balanced':(item.state_str=='处理中'?'positive':'assertive')}}">
                     {{item.state_str}}
                 </view>
-                <view class="item-note">{{item.createtime}}</view>
-                <view class="right-1 money {{item.flag==1?'assertive':'balanced'}}  ">{{item.flag==1?'-':''}}{{item.amount}}
+
+                <view class="item-note money {{item.flag==1?'assertive':'balanced'}}  ">
+                    {{item.flag==1?'-':'+'}}{{item.amount}}
                 </view>
             </view>
-            <view class="p">余额 : {{item.preamount}}</view>
+            <view class="p padding-top">
+                {{item.createtime}}
+                <text class="right-1">余额 : {{item.preamount}}</text>
+            </view>
         </view>
     </view>
     <view class="padding-top"></view>
