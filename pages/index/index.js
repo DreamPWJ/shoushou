@@ -72,15 +72,28 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
-
+    onShareAppMessage: function (res) {
+        if (res.from === 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title: '收收好友分享',
+            path: '/pages/index/index',
+            success: function (res) {
+                // 转发成功
+            },
+            fail: function (res) {
+                // 转发失败
+            }
+        }
     },
     /**
      * 打电话
      */
-    makePhoneCall:function (e) {
+    makePhoneCall: function (e) {
         this.setData({
-            phoneNumber:e.currentTarget.dataset.phone
+            phoneNumber: e.currentTarget.dataset.phone
         })
         util.makePhoneCall(this)
     },
@@ -90,7 +103,7 @@ Page({
     getIndexData: function () {
         var that = this;
         //首页统计货量
-        util.https(app.globalData.api + "/api/util/getsum", "GET", {isHideLoad:true},
+        util.https(app.globalData.api + "/api/util/getsum", "GET", {isHideLoad: true},
             function (data) {
                 if (data.code == 1001) {
                     that.setData({

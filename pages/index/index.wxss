@@ -44,25 +44,38 @@
     height: 1.6rem;
 }
 
+.main.card {
+    margin-top: -1rem;
+}
+
+.sub-main.card {
+    margin-top: -0.5rem;
+}
+
 .main-list {
     text-align: center;
 }
 
-.main-list navigator {
+.main-list navigator, .main-list button {
     padding: 1rem 0.2rem 1rem 0.2rem;
 }
 
-.main-list navigator .h5, .main-list navigator .p {
+.main-list navigator .h5, .main-list navigator .p, .main-list button .h5, .main-list button .p {
     margin: 0.3rem;
 }
 
-.main-list navigator .p {
+.main-list navigator .p, .main-list button .p {
     font-size: 0.7rem !important;
     color: #888888;
 }
 
-.main-list navigator .iconfont {
+.main-list navigator .iconfont, .main-list button .iconfont {
     font-size: 2.2rem !important;
+}
+
+.main-list button {
+    background-color: #fff !important;
+    line-height:normal !important;
 }
 
 .sub-menu navigator {
