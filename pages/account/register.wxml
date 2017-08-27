@@ -21,7 +21,7 @@
                    placeholder="确认密码 (请保持与上面的密码一致)"/>
         </view>
         <view class="item item-input">
-            <text class=" iconfont  icon-cascades placeholder-icon"></text>
+            <text class=" iconfont  icon-safe placeholder-icon"></text>
             <input type="number" bindinput="bindChange" id="verifycode" name="verifycode" placeholder="验证码"
                    maxlength="6"/>
             <button bindtap="getVerifyCode" disabled="{{vcdisabled}}"

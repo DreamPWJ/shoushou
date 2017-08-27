@@ -67,6 +67,11 @@
             <view class="h2">关于收收</view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
+        <button open-type="contact" class="item item-icon-left item-icon-right">
+            <text class="icon iconfont icon-kefu " ></text>
+            <view class="h2">联系客服</view>
+            <text class="icon-accessory iconfont icon-right"></text>
+        </button>
         <button open-type="share" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-share" style="color: #4cae4c"></text>
             <view class="h2">分享给我的朋友</view>

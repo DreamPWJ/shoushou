@@ -24,7 +24,7 @@
             </view>
 
             <view class="item item-input">
-                <text class=" iconfont  icon-unlock placeholder-icon"></text>
+                <text class=" iconfont  icon-safe placeholder-icon"></text>
                 <input type="number" bindinput="bindChange" id="verifycode" name="verifycode" placeholder="验证码"/>
                 <button bindtap="getVerifyCode" disabled="{{vcdisabled}}"
                         class="positive-bg light verify-code col-30 button-small" hover-class="button-hover">
