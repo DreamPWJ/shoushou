@@ -26,7 +26,7 @@
                         <view class=" {{item.hytype==1?'bhytype':(item.hytype==2?'ehytype':'')}} ">
                             {{item.hytype==1?'废品':(item.hytype==2?'二手':'')}}
                         </view>
-                        <view catchtap="closeOrder" data-orderno="{{item.djno}}" class="close assertive item-note right-1"
+                        <view catchtap="closeOrder" data-orderno="{{item.djno}}" class="close assertive  right-1"
                               wx:if="{{item.state==2||item.state==3}}">
                             <text class="iconfont icon-jian"></text>
                             关闭
@@ -58,10 +58,15 @@
                         <view class=" {{item.hytype==1?'bhytype':(item.hytype==2?'ehytype':'')}} ">
                             {{item.hytype==1?'废品':(item.hytype==2?'二手':'')}}
                         </view>
-                        <view catchtap="closeOrder" data-orderno="{{item.djno}}" class="close assertive item-note right-1"
+                      <view catchtap="closeOrder" data-orderno="{{item.djno}}" class="close assertive  right-1"
                               wx:if="{{item.state==2||item.state==3}}">
                             <text class="iconfont icon-jian"></text>
                             关闭
+                        </view>
+                        <view catchtap="evaluate" data-items="{{item}}" class="evaluate energized   right-1"
+                              wx:if="{{item.state==6}}">
+                            <text class="iconfont icon-evaluate_fill"></text>
+                            评论
                         </view>
                     </view>
                     <view class="p text-wrap " wx:if="{{item.state<=3}}">下单时间 : {{item.addtime }}

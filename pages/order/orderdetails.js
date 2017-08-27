@@ -98,6 +98,15 @@ Page({
         })
     },
     /**
+     * 去评论
+     */
+    evaluate: function (e) {
+        var items = e.currentTarget.dataset.items;
+        wx.navigateTo({
+            url: "/pages/order/evaluate?no="+items.djno+'&type='+items.type
+        })
+    },
+    /**
      * 获取订单列表详情
      */
     getOrderDetails: function (orderno) {

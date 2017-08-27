@@ -115,8 +115,7 @@
                 wx:if="{{orderDetail.state==2||orderDetail.state==3}}">
             关闭
         </button>
-        <button class="button button-royal icon iconfont icon-evaluate_fill col-40 "
-
+        <button catchtap="evaluate" data-items="{{orderDetail}}" class="button button-energized icon iconfont icon-evaluate_fill col-40 "
                 wx:if="{{orderDetail.state==6}}">
             评价
         </button>

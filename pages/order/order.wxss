@@ -56,3 +56,9 @@
     border-radius: 5px;
     padding: 3px 4px;
 }
+.evaluate{
+    margin-top: -0.6rem;
+    border: 1px solid #f26604;
+    border-radius: 5px;
+    padding: 3px 4px;
+}

@@ -6,6 +6,7 @@
     "pages/referenceprice/referenceprice",
     "pages/order/order",
     "pages/order/orderdetails",
+    "pages/order/evaluate",
     "pages/wallet/wallet",
     "pages/wallet/recharge",
     "pages/wallet/withdraw",

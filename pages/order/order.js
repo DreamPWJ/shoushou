@@ -121,6 +121,15 @@ Page({
         })
     },
     /**
+     * 去评论
+     */
+    evaluate: function (e) {
+        var items = e.currentTarget.dataset.items;
+        wx.navigateTo({
+            url: "/pages/order/evaluate?no="+items.djno+'&type='+items.type
+        })
+    },
+    /**
      * 获取订单列表
      */
     getOrderList: function (page) {
@@ -164,7 +173,7 @@ Page({
                         hasUnfData: data.data.page_count == that.data.unfpage ? false : true,
                         isNotunfinishedData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                         unfinishedOrderList: that.data.unfinishedOrderList.map(function (item) {
-                            item.orname=item.type==1?util.hidePartInfo(item.orname,'name'):item.orname
+                            item.orname = item.type == 1 ? util.hidePartInfo(item.orname, 'name') : item.orname
                             item.addtime = new Date(item.addtime.replace(/T/g, " ")).Format("yyyy-MM-dd HH:mm")
                             item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ")).Format("yyyy-MM-dd")
                             return item
@@ -179,7 +188,7 @@ Page({
                         isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                         unfinishedOrderList: [],
                         orderList: that.data.orderList.map(function (item) {
-                            item.orname=item.type==1&&item.orname?util.hidePartInfo(item.orname,'name'):item.orname
+                            item.orname = item.type == 1 && item.orname ? util.hidePartInfo(item.orname, 'name') : item.orname
                             item.addtime = new Date(item.addtime.replace(/T/g, " ")).Format("yyyy-MM-dd HH:mm")
                             item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ")).Format("yyyy-MM-dd")
                             return item
