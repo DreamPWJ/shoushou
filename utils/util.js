@@ -8,41 +8,55 @@ var app = getApp();
  * @param callBack
  */
 function https(url, type, data, callBack, header) {
-    return new Promise(function (resolve, reject) {
-        if (!data.isHideLoad) {
-            wx.showLoading({
-                title: '加载中',
-                mask: true //防止触摸穿透
-            })
-        }
-        wx.showNavigationBarLoading();
-        wx.request({
-            url: url,
-            method: type,
-            data: data,
-            header: header ? header : ( {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + wx.getStorageSync('token')
-            }),
-            success: function (res) {
-                resolve(res.data);
-                callBack(res.data);
-            },
-            fail: function (error) {
-                reject(error);
-                showToast("收收请求失败");
-            },
-            complete: function (res) {
-                wx.hideNavigationBarLoading();
-                wx.hideLoading();
-                wx.stopPullDownRefresh();
-                console.log(res);
-                if (res.statusCode === 401) {
-                    showToast("收收请求未授权");
-                }
+    var promiseFun = function () {
+        return new Promise(function (resolve, reject) {
+            if (!data.isHideLoad) {
+                wx.showLoading({
+                    title: '加载中',
+                    mask: true //防止触摸穿透
+                })
             }
+            wx.showNavigationBarLoading();
+            wx.request({
+                url: url,
+                method: type,
+                data: data,
+                header: header ? header : ( {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + wx.getStorageSync('token')
+                }),
+                success: function (res) {
+                    resolve(res.data);
+                    callBack(res.data);
+                },
+                fail: function (error) {
+                    reject(error);
+                    showToast("收收请求失败");
+                },
+                complete: function (res) {
+                    wx.hideNavigationBarLoading();
+                    wx.hideLoading();
+                    wx.stopPullDownRefresh();
+                    console.log(res);
+                    if (res.statusCode === 401) {
+                        showToast("收收请求未授权");
+                    }
+                }
+            })
         })
-    })
+    }
+
+    //接口API授权 type 1.是公共授权  2.登录授权
+    if (!wx.getStorageSync("userid")) {
+        authorization(1, function (data) {
+            promiseFun();
+        });
+    } else if (wx.getStorageSync("userid")) {
+        authorization(2, function (data) {
+            promiseFun();
+        });
+    }
+
 
 }
 
@@ -56,14 +70,22 @@ function authorization(type, callback, immediately) {
     if (type == 1) { //1.是公共授权
         var auth1 = function () {
             //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
+            immediately = wx.getStorageSync("token") ? immediately : true
             if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) >= 7199))) {
 
                 if (timePromise2) {
                     clearInterval(timePromise2);
                 }
-
-                that.https(app.globalData.api + "/token", "POST", {grant_type: 'client_credentials', isHideLoad: true},
-                    function (data) {
+                wx.request({
+                    url: app.globalData.api + "/token",
+                    method: "POST",
+                    data: {grant_type: 'client_credentials', isHideLoad: true},
+                    header: {
+                        'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (res) {
+                        var data = res.data;
                         if (data.access_token) {
                             wx.setStorageSync('token', data.access_token);//公共接口授权token
                             wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
@@ -79,11 +101,14 @@ function authorization(type, callback, immediately) {
                         }
                         callback.call(that, data)
 
-                    }, {
-                        'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    fail: function (error) {
+                        showToast("收收授权请求失败");
+                    },
+                    complete: function (res) {
                     }
-                )
+                })
+
             } else { //没有执行授权
                 callback.call(that)
             }
@@ -94,22 +119,30 @@ function authorization(type, callback, immediately) {
     } else if (type == 2) {  //2.登录授权
         var auth2 = function () {
             //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
+            immediately = wx.getStorageSync("expires_in") ? immediately : true
             if (wx.getStorageSync("userid") && (immediately || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) >= 7199)) {
                 if (timePromise1) {
                     clearInterval(timePromise1);
                 }
-
-                that.https(app.globalData.api + "/token", "POST", {
+                wx.request({
+                    url: app.globalData.api + "/token",
+                    method: "POST",
+                    data: {
                         grant_type: 'password',
                         username: wx.getStorageSync("userid"),
                         password: wx.getStorageSync("usersecret"),
                         isHideLoad: true
                     },
-                    function (data) {
+                    header: {
+                        'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (res) {
+                        var data = res.data;
                         if (data.access_token) {
-                            wx.setStorageSync('token', data.access_token);//登录接口授权token
-                            wx.setStorageSync('expires_in', new Date());//登录接口授权token 有效时间
-                            wx.setStorageSync('tokentype', 2);//授权类型
+                            wx.setStorageSync('token', data.access_token);//公共接口授权token
+                            wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
+                            wx.setStorageSync('tokentype', 1);//授权类型
                         } else {
                             that.showModal('收收提示', '登陆过期，请重新登陆', '登录', '取消', function (res) {
                                 if (res.confirm) {
@@ -121,11 +154,14 @@ function authorization(type, callback, immediately) {
                         }
                         callback.call(that, data)
 
-                    }, {
-                        'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    fail: function (error) {
+                        showToast("收收授权请求失败");
+                    },
+                    complete: function (res) {
                     }
-                )
+                })
+
             } else { //没有执行授权
                 callback.call(that)
             }
@@ -743,9 +779,9 @@ function getProductList(that, callback) {
 function getUserSum(that, callback) {
     this.https(app.globalData.api + "/api/orderreceipt/getsum/" + wx.getStorageSync('userid') + "/" + 24, "GET", {isHideLoad: true},
         function (data) {
-            data.data.totalamount=formatMoney(data.data.totalamount,2)
-            data.data.account=formatMoney(data.data.account,2)
-            data.data.trzaccount=formatMoney(data.data.trzaccount,2)
+            data.data.totalamount = formatMoney(data.data.totalamount, 2)
+            data.data.account = formatMoney(data.data.account, 2)
+            data.data.trzaccount = formatMoney(data.data.trzaccount, 2)
             that.setData({
                 userSum: data.data
             })
