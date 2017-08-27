@@ -11,7 +11,9 @@ Page({
      */
     data: {
         evaluateinfo: {
-            star: 5
+            star: 5,
+            serviceArr: [{value: 1, name: '满意', checked: true}, {value: 2, name: '一般'}, {value: 3, name: '差'}],
+            tranpriceArr: [{value: 1, name: '合理', checked: true}, {value: 2, name: '一般'}, {value: 3, name: '低'}]
         }
     },
 
@@ -19,7 +21,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.setData({
+            no: options.no,
+            type: options.type
+        })
     },
 
     /**
@@ -71,6 +76,22 @@ Page({
 
     },
     /**
+     * radio发生change事件
+     */
+    radioChange: function (e) {
+        if (e.target.dataset.current == 0) {
+            console.log('radio1发生change事件，携带value值为：', e.detail.value)
+            this.setData({
+                'evaluateinfo.service': e.detail.value,
+            })
+        } else if (e.target.dataset.current == 1) {
+            console.log('radio2发生change事件，携带value值为：', e.detail.value)
+            this.setData({
+                'evaluateinfo.tranprice': e.detail.value
+            })
+        }
+    },
+    /**
      * 获取用户输入
      */
     bindChange: function (e) {
@@ -81,9 +102,7 @@ Page({
      */
     evaluatestar: function (e) {
         this.setData({
-            evaluateinfo: {
-                star: e.currentTarget.dataset.start
-            }
+            'evaluateinfo.star': e.currentTarget.dataset.start
         })
     },
     /**
@@ -111,11 +130,12 @@ Page({
                 type: that.data.type,//订单类型 1-	登记信息 2-	登记货源
                 userid: wx.getStorageSync('userid'),//评论人
                 score: that.data.evaluateinfo.star,//综合评分 1．1颗星 5. 5颗星（默认）
-                service: that.data.evaluateinfo.service,//服务态度 1．	满意（默认） 2．	一般3．	差
-                tranprice: that.data.evaluateinfo.tranprice,//交易价格 1．	合理（默认） 2．	一般3．	差
+                service: that.data.evaluateinfo.service || 1,//服务态度 1．	满意（默认） 2．	一般3．	差
+                tranprice: that.data.evaluateinfo.tranprice || 1,//交易价格 1．	合理（默认） 2．	一般3．	差
                 updatetime: "",//最后修改时间
                 remark: inputContent.remark || ""
             }
+
             util.https(app.globalData.api + "/api/dengji/comment", "POST", data,
                 function (data) {
                     if (data.code == 1001) {

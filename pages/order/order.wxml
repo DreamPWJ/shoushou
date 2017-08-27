@@ -35,8 +35,8 @@
                     <view class="p text-wrap " wx:if="{{item.state<=3}}">下单时间 : {{item.addtime }}
                     </view>
                     <view class="p text-wrap " wx:if="{{item.state>=4}}">
-                        <text class="balanced">接单人 : {{item.orname}}</text>
-                        接单时间 :{{item.oraddtime }}
+                        <text class="balanced inline">接单人 : {{item.orname}}</text>
+                        接单时间 : {{item.oraddtime }}
                     </view>
                 </navigator>
 
@@ -72,9 +72,9 @@
                     <view class="p text-wrap " wx:if="{{item.state<=3}}">下单时间 : {{item.addtime }}
                     </view>
                     <view class="p text-wrap " wx:if="{{item.state>=4}}">
-                        <text class="balanced">接单人 : {{item.orname}}
+                        <text class="balanced inline">接单人 : {{item.orname}}
                         </text>
-                        接单时间 :{{item.oraddtime }}
+                        接单时间 : {{item.oraddtime }}
                     </view>
                 </navigator>
 
