@@ -21,7 +21,7 @@
             </view>
             <view class="item">
                 服务态度
-                <radio-group class="radio-group inline row row-horizontal-around" data-current="0" bindchange="radioChange">
+                <radio-group class="radio-group inline  " data-current="0" bindchange="radioChange">
                     <label class="radio " wx:for="{{evaluateinfo.serviceArr}}" wx:for-item="item" wx:key="*this">
                         <radio value="{{item.value}}" color="#00ACFF" checked="{{item.checked}}"/>
                         {{item.name}}
@@ -30,7 +30,7 @@
             </view>
             <view class="item">
                 交易价格
-                <radio-group class="radio-group inline row row-horizontal-around" data-current="1" bindchange="radioChange">
+                <radio-group class="radio-group inline  " data-current="1" bindchange="radioChange">
                     <label class="radio " wx:for="{{evaluateinfo.tranpriceArr}}" wx:for-item="item" wx:key="*this">
                         <radio value="{{item.value}}" color="#00ACFF" checked="{{item.checked}}"/>
                         {{item.name}}

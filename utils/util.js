@@ -8,54 +8,54 @@ var app = getApp();
  * @param callBack
  */
 function https(url, type, data, callBack, header) {
-    var promiseFun = function () {
-        return new Promise(function (resolve, reject) {
-            if (!data.isHideLoad) {
-                wx.showLoading({
-                    title: '加载中',
-                    mask: true //防止触摸穿透
-                })
-            }
-            wx.showNavigationBarLoading();
-            wx.request({
-                url: url,
-                method: type,
-                data: data,
-                header: header ? header : ( {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + wx.getStorageSync('token')
-                }),
-                success: function (res) {
-                    resolve(res.data);
-                    callBack(res.data);
-                },
-                fail: function (error) {
-                    reject(error);
-                    showToast("收收请求失败");
-                },
-                complete: function (res) {
-                    wx.hideNavigationBarLoading();
-                    wx.hideLoading();
-                    wx.stopPullDownRefresh();
-                    console.log(res);
-                    if (res.statusCode === 401) {
-                        showToast("收收请求未授权");
-                    }
-                }
+    var promiseFun = function (resolve, reject) {
+        if (!data.isHideLoad) {
+            wx.showLoading({
+                title: '加载中',
+                mask: true //防止触摸穿透
             })
+        }
+        wx.showNavigationBarLoading();
+        wx.request({
+            url: url,
+            method: type,
+            data: data,
+            header: header ? header : ( {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + wx.getStorageSync('token')
+            }),
+            success: function (res) {
+                resolve(res.data);
+                callBack(res.data);
+            },
+            fail: function (error) {
+                reject(error);
+                showToast("收收请求失败");
+            },
+            complete: function (res) {
+                wx.hideNavigationBarLoading();
+                wx.hideLoading();
+                wx.stopPullDownRefresh();
+                console.log(res);
+                if (res.statusCode === 401) {
+                    showToast("收收请求未授权");
+                }
+            }
+
         })
     }
-
-    //接口API授权 type 1.是公共授权  2.登录授权
-    if (!wx.getStorageSync("userid")) {
-        authorization(1, function (data) {
-            promiseFun();
-        });
-    } else if (wx.getStorageSync("userid")) {
-        authorization(2, function (data) {
-            promiseFun();
-        });
-    }
+    return new Promise(function (resolve, reject) {
+        //接口API授权 type 1.是公共授权  2.登录授权
+        if (!wx.getStorageSync("userid")) {
+            authorization(1, function (data) {
+                promiseFun(resolve, reject);
+            });
+        } else if (wx.getStorageSync("userid")) {
+            authorization(2, function (data) {
+                promiseFun(resolve, reject);
+            });
+        }
+    })
 
 
 }
