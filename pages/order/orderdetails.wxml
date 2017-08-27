@@ -84,7 +84,6 @@
                 </view>
             </view>
         </view>
-        <view class="padding-top"></view>
         <view wx:if="{{commentInfo}}">
             <view class="item  item-borderless">
                 客户评价
