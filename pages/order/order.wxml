@@ -66,7 +66,7 @@
                         <view catchtap="evaluate" data-items="{{item}}" class="evaluate energized   right-1"
                               wx:if="{{item.state==6}}">
                             <text class="iconfont icon-evaluate_fill"></text>
-                            评论
+                            评价
                         </view>
                     </view>
                     <view class="p text-wrap " wx:if="{{item.state<=3}}">下单时间 : {{item.addtime }}
