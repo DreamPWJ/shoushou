@@ -15,10 +15,10 @@
             <text>可用余额</text>
             <view>{{userSum.account}}</view>
         </view>
-        <view class="col-50 ">
+        <navigator url="credited" open-type="navigate"  class="col-50 ">
             <text>待入账金额</text>
             <view>{{userSum.trzaccount}}</view>
-        </view>
+        </navigator>
     </view>
     <view class="padding-top"></view>
     <view class="list">

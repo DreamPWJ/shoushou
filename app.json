@@ -12,6 +12,7 @@
     "pages/wallet/withdraw",
     "pages/wallet/bankcard",
     "pages/wallet/addbankcard",
+    "pages/wallet/credited",
     "pages/news/news",
     "pages/account/account",
     "pages/account/login",

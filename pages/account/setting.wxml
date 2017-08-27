@@ -10,25 +10,25 @@
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
 
-    <view class="padding-top"></view>
-    <navigator url="../news/news" open-type="switchTab" class="item item-icon-right ">
-        <view class="h2">新消息通知</view>
-        <text class="icon-accessory iconfont icon-right"></text>
-    </navigator>
-    <navigator url="helpfeedback" open-type="navigate" class="item item-icon-right">
-        <view class="h2">帮助与反馈</view>
-        <text class="icon-accessory iconfont icon-right"></text>
-    </navigator>
-    <navigator url="" open-type="navigate" class="item ">
-        <view class="h2">当前版本号
-            <text class="item-note">{{version}}</text>
-        </view>
-    </navigator>
-    <view class="padding">
-        <navigator url="login" open-type="reLaunch" class="button button-light  button-full  " style="color:red;">
-            退出登录
+        <view class="padding-top"></view>
+        <navigator url="../news/news" open-type="switchTab" class="item item-icon-right ">
+            <view class="h2">新消息通知</view>
+            <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
-    </view>
+        <navigator url="helpfeedback" open-type="navigate" class="item item-icon-right">
+            <view class="h2">帮助与反馈</view>
+            <text class="icon-accessory iconfont icon-right"></text>
+        </navigator>
+        <view class="item ">
+            <view class="h2">当前版本号
+                <text class="item-note">{{version}}</text>
+            </view>
+        </view>
+        <view class="padding">
+            <navigator url="login" open-type="reLaunch" class="button button-light  button-full  " style="color:red;">
+                退出登录
+            </navigator>
+        </view>
     </view>
 
 </view>
