@@ -104,6 +104,7 @@ Page({
             page: page,//页码
             size: 10,//条数
             channel: that.data.channel == 0 ? "" : that.data.channel,
+            isHideLoad:true
         }
         util.https(app.globalData.api + "/api/subaccount/get_tradelist/" + wx.getStorageSync('userid'), "GET", data,
             function (data) {

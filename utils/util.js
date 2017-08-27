@@ -545,7 +545,7 @@ function getCurrentCity(that, level, callback) {
         }
     ).then(function () {
         https(app.globalData.api + "/api/addr/getssx", "GET", {
-                ssx: that.data.ssx, level: 3
+                ssx: that.data.ssx, level: level
             },
             function (data) {
                 if (data.code == 1001) {
