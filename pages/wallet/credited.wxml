@@ -1,9 +1,30 @@
 <!--pages/wallet/credited.wxml-->
 <include src="../util/tooltip.wxml"/>
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<view>
+    <view wx:if="{{isNotData}}" class="isNotDataHint">
+        <view class="iconfont icon-xiaoxi"></view>
+        <text>暂无待入账金额</text>
     </view>
+    <view class="list">
+        <navigator url="../order/orderdetails?orderno={{item.djno}}" open-type="navigate" class="item "
+                   style="padding-right: 10px;"
+                   wx:for="{{creditedList}}" wx:for-item="item" wx:key="*this">
+            <view class="h2" class="positive"> {{item.name}} {{item.motel}}
+                <text class="phytype {{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
+                </text>
+            </view>
+            <view class="p text-wrap" style="margin-right: 4rem;">交易品类 : {{item.category}}
+                <!--           <view class=" {{item.hytype==1?'bhytype':(item.hytype==2?'ehytype':'')}} ">
+                               {{item.hytype==1?'废品':(item.hytype==2?'二手':'')}}
+                           </view>-->
+            </view>
+            <view class="p text-wrap ">
+                <text class="assertive">预计信息费 : {{item.yjinfomoney }} 元</text>
+                <text class="padding-left">登记时间 : {{item.addtime }}</text>
+            </view>
+
+        </navigator>
+    </view>
+    <view class="padding-top"></view>
 </view>
 

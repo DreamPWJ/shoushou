@@ -1,1 +1,51 @@
 /* pages/wallet/credited.wxss */
+.bhytype:not(:empty) {
+    display: inline;
+    border: 1px solid #33cd5f;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    padding: 2px;
+    color: #33cd5f;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ehytype:not(:empty) {
+    display: inline;
+    border: 1px solid #f26604;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    padding: 2px;
+    color: #f26604;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.phytype:not(:empty) {
+    display: inline;
+    border: 1px solid #00ACFF;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    padding: 1px 2px;
+    color: #00ACFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.phytype:not(:empty).balanced {
+    border: 1px solid #33cd5f !important;
+    color: #33cd5f !important;
+}
+
+.phytype:not(:empty).energized {
+    border: 1px solid #f26604 !important;
+    color: #f26604 !important;
+}
+
+.phytype:not(:empty).assertive {
+    border: 1px solid #ef473a !important;
+    color: #ef473a !important;
+}
