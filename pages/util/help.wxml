@@ -1,4 +1,5 @@
 <!--pages/util/help.wxml-->
+<include src="../util/tooltip.wxml"/>
 <view>
     <view class="list">
         <view class="item item-body item-image ">
