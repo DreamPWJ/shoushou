@@ -1,7 +1,5 @@
 <!--pages/account/accountsecurity.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <view>
     <view class="padding-top"></view>
     <view class="list">

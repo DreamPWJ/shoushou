@@ -1,7 +1,5 @@
 <!--pages/account/updateuser.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <view class="text-center  padding">
     <view class="isNotDataHint">
         <view class="iconfont icon-mark"></view>

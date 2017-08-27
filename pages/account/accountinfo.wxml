@@ -1,7 +1,5 @@
 <!--pages/account/accountinfo.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <view class="list  ">
     <view bindtap="uploadActionSheet" class="item item-avatar-right  ">
         <image src="{{userdata.userfigure||wxUserInfo.avatarUrl}}" binderror="" alt="头像"></image>

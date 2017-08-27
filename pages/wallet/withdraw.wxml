@@ -1,10 +1,17 @@
 <!--pages/wallet/withdraw.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<include src="../util/tooltip.wxml"/>
+<form bindsubmit="withdrawSubmit">
+
+    <view class="list card ">
+        <label class="item item-input">
+            <view class="input-label "> 提现金额</view>
+            <input type="digit" bindinput="bindChange" id="money" name="money" placeholder="请输入提现金额"/>
+        </label>
     </view>
-</view>
+
+    <view class="padding light-bg fixed-bottom">
+        <button class="positive-bg light "
+                formType="submit">提现
+        </button>
+    </view>
+</form>

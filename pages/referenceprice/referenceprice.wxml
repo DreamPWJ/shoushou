@@ -1,7 +1,5 @@
 <!--pages/referenceprice/referenceprice.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <view>
     <view class="row row-no-padding ">
         <view class="col-25 stable-bg">

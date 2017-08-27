@@ -1,9 +1,7 @@
 <!--pages/account/organizingdata.wxml-->
 <import src="../util/addresstemplate.wxml"/>
 <!--<import src="../util/searchaddresstemplate.wxml"/>-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <template wx:if="{{isShowPCC}}" is="address" data="{{addressinfo}}"/>
 <!--<template wx:if="{{isShowSearch}}" is="searchaddress" data="{{addresspois}}"/>-->
 <form bindsubmit="organizingdataSubmit" hidden="{{isShowPCC}}">

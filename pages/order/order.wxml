@@ -1,7 +1,5 @@
 <!--pages/order/order.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <view class="swiper-tab row row-no-padding row-horizontal-around border-b">
     <view class="col-33 swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">未完成订单</view>
     <view class="col-33 swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">所有订单</view>

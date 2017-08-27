@@ -1,7 +1,5 @@
 <!--index.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <view id="index">
     <view class="topbj light text-center">
         <view class="total ">

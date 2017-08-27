@@ -1,7 +1,5 @@
 <!--pages/account/areainfofee.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <view class="text-center  padding">
 
     <view wx:if="{{areaInfoFee==null||areaInfoFee.length==0}}" class="isNotDataHint">

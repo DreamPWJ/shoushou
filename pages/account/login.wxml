@@ -1,7 +1,5 @@
 <!--pages/account/login.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <form bindsubmit="loginSubmit">
     <view class="list card margin-top">
 

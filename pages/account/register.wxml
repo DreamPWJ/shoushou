@@ -1,7 +1,5 @@
 <!--pages/account/register.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <form bindsubmit="registerSubmit">
     <view class="list card ">
         <view class="item item-input">

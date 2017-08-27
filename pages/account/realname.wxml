@@ -1,7 +1,5 @@
 <!--pages/account/realname.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <form bindsubmit="realnameSubmit">
     <view class="list has-bottom-button">
         <view class="item item-input">

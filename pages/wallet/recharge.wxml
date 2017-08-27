@@ -1,13 +1,11 @@
- <!--pages/wallet/recharge.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<!--pages/wallet/recharge.wxml-->
+<include src="../util/tooltip.wxml"/>
 <form bindsubmit="paymentSubmit">
     <view class="padding-top"></view>
     <view class="list has-bottom-button">
         <label class="item item-input">
             <view class="input-label "> 充值金额</view>
-            <input type="digit" bindinput="bindChange" id="money" name="money"  placeholder="请输入充值金额"/>
+            <input type="digit" bindinput="bindChange" id="money" name="money" placeholder="请输入充值金额"/>
         </label>
         <view class="padding-top"></view>
         <view class="item item-divider item-borderless">支付方式</view>

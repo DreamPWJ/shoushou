@@ -1,7 +1,5 @@
 <!--pages/account/account.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <view>
     <view class="list">
         <navigator url="accountinfo" open-type="navigate" class="item item-positive item-avatar item-icon-right user">

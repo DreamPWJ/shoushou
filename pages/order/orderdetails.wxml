@@ -1,7 +1,5 @@
 <!--pages/order/orderdetails.wxml-->
-<view class="tool-tip " wx:if="{{popMsg}}">
-    <text class="{{popType}}">{{popMsg}}</text>
-</view>
+<include src="../util/tooltip.wxml"/>
 <view class="{{orderDetail.state==2||orderDetail.state==3||orderDetail.state==6?'has-bottom-button':''}}">
     <view class="list">
         <view class="item  item-icon-right " style="padding-right: 12px;">
