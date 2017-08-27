@@ -90,14 +90,6 @@ function authorization(type, callback, immediately) {
                             wx.setStorageSync('token', data.access_token);//公共接口授权token
                             wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
                             wx.setStorageSync('tokentype', 1);//授权类型
-                        } else {
-                            that.showModal('收收提示', '登陆过期，请重新登陆', '登录', '取消', function (res) {
-                                if (res.confirm) {
-                                    wx.navigateTo({
-                                        url: '/pages/account/login'
-                                    })
-                                }
-                            })
                         }
                         callback.call(that, data)
 
@@ -142,7 +134,7 @@ function authorization(type, callback, immediately) {
                         if (data.access_token) {
                             wx.setStorageSync('token', data.access_token);//公共接口授权token
                             wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
-                            wx.setStorageSync('tokentype', 1);//授权类型
+                            wx.setStorageSync('tokentype', 2);//授权类型
                         } else {
                             that.showModal('收收提示', '登陆过期，请重新登陆', '登录', '取消', function (res) {
                                 if (res.confirm) {
