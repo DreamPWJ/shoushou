@@ -1,1 +1,14 @@
 /* pages/wallet/withdraw.wxss */
+.bank navigator {
+    padding-top: 5px;
+}
+
+.yue, .input-label {
+    font-size: 0.9rem !important;
+}
+
+.tishi {
+    font-size: 0.8rem !important;
+    padding:12px;
+    text-align: center;
+}

@@ -9,7 +9,13 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        userSum: {
+            totalamount: '0.00',
+            account: '0.00',
+            trzaccount: '0.00',
+        }
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -29,7 +35,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        //获得我的里面待处理和预警订单数 银行卡以及余额
+        util.getUserSum(this, function (data) {
 
+        })
     },
 
     /**
@@ -73,21 +82,30 @@ Page({
         inputContent[e.currentTarget.id] = e.detail.value;
     },
     /**
+     * 全部提现
+     */
+    allWithdrawal: function () {
+        this.setData({
+            allmoney: this.data.userSum.account
+        })
+    },
+    /**
      * 用户提现
      */
     withdrawSubmit: function (e) {
-
         var that = this;
         //验证表单
         that.WxValidate = new WxValidate({
                 money: {  //验证规则 input name值
                     required: true,
-                    money: true
+                    money: true,
+                    max: that.data.userSum.account,
                 }
             },
             {
                 money: { //提示信息
                     required: "请填写提现金额",
+                    max: "提现金额不能超过可用金额"
                 },
 
             })
@@ -96,11 +114,11 @@ Page({
             util.https(app.globalData.api + "/api/subaccount/cash", "POST", {
                     userbankid: "", //银行id
                     userid: wx.getStorageSync("userid"),//用户userid
-                    amount: inputContent.money, //金额
+                    amount: that.data.allmoney||inputContent.money, //金额
                 },
                 function (data) {
                     if (data.code == 1001) {
-                        util.toolTip(that, "工作日24小时之内到账", 1);
+                        util.toolTip(that, "提现成功", 1);
                         wx.switchTab({
                             url: '/pages/wallet/wallet'
                         })
