@@ -3,7 +3,7 @@
 page {
     display: block;
     min-height: 100%;
-    background-color: #24323c;
+    background-color: #212f3c;
 }
 
 .list, .list .item, .item .h2, .item .p {
@@ -28,7 +28,7 @@ page {
 }
 
 .add.list, .add.list .item {
-    background-color: #24323c !important;
+    background-color: #212f3c !important;
 }
 
 .add-border-b {

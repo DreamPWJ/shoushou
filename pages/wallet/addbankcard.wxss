@@ -1,1 +1,8 @@
 /* pages/wallet/addbankcard.wxss */
+.switch {
+    padding: 8px 16px !important;
+}
+
+.switch .p {
+    padding-top: 7px;
+}

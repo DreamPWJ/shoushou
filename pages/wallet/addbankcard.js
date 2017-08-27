@@ -89,6 +89,12 @@ Page({
 
     },
     /**
+     * switch触发
+     */
+    switchChange: function (e) {
+        console.log('switch 发生 change 事件，携带值为', e.detail.value)
+    },
+    /**
      * 用户提交
      */
     addbankcardSubmit: function (e) {

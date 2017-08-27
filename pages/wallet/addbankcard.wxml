@@ -28,7 +28,10 @@
                     hover-class="button-hover">{{paracont}}
             </button>
         </view>
-
+        <view class="item switch ">
+            <view class="p inline ">是否默认</view>
+            <switch color="#00ACFF" class="item-note" checked bindchange="switchChange"/>
+        </view>
         <view class="padding light-bg fixed-bottom">
             <button class="positive-bg light "
                     formType="submit">添加
