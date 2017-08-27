@@ -1,9 +1,38 @@
 <!--pages/order/evaluate.wxml-->
 <include src="../util/tooltip.wxml"/>
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<form bindsubmit="evaluateSubmit">
+    <view class="has-bottom-button">
+        <view class="list">
+            <view class="item ">
+                综合评价
+                <view class="inline   evaluate-star">
+                    <text class="iconfont icon-favorfill  {{evaluateinfo.star>=1?'energized':'grey'}}"
+                          catchtap="evaluatestar" data-start="1"></text>
+                    <text class="iconfont icon-favorfill  {{evaluateinfo.star>=2?'energized':'grey'}}"
+                          catchtap="evaluatestar" data-start="2"></text>
+                    <text class="iconfont icon-favorfill  {{evaluateinfo.star>=3?'energized':'grey'}}"
+                          catchtap="evaluatestar" data-start="3"></text>
+                    <text class="iconfont icon-favorfill  {{evaluateinfo.star>=4?'energized':'grey'}}"
+                          catchtap="evaluatestar" data-start="4"></text>
+                    <text class="iconfont icon-favorfill  {{evaluateinfo.star>=5?'energized':'grey'}}"
+                          catchtap="evaluatestar" data-start="5"></text>
+
+                </view>
+            </view>
+            <view class="item item-divider item-borderless">
+                评价内容
+            </view>
+            <view class="item item-input">
+                <textarea bindinput="bindChange" id="remark" name="remark" placeholder="请填写评价内容"
+                          maxlength="2000"></textarea>
+            </view>
+        </view>
+        <view class="padding light-bg fixed-bottom">
+            <button class="positive-bg light "
+                    formType="submit">提交
+            </button>
+        </view>
     </view>
-</view>
+</form>
+
 

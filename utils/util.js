@@ -312,9 +312,17 @@ function toolTip(that, msg, type, url) {
         }
     );
     if (url) {
-        wx.navigateTo({
-            url: url
-        })
+        if (url == 'back') {
+            //返回上一页
+            wx.navigateBack({
+                delta: 1
+            })
+        } else {
+            wx.navigateTo({
+                url: url
+            })
+        }
+
     }
 }
 

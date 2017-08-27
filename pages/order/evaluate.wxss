@@ -1,1 +1,10 @@
 /* pages/order/evaluate.wxss */
+
+.evaluate-star .iconfont{
+    font-size: 1.3rem!important;
+    margin-left: 0.6rem;
+}
+
+textarea{
+    height: 5rem;
+}
