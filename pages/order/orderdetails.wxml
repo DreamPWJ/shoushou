@@ -67,14 +67,14 @@
                     支付类型 : {{orderDetail.paymentmethod==1?'现金支付':'在线支付'}}
                 </view>
                 <view class="item" wx:if="{{orderDetail.type==1&&orderDetail.order_amount.info_amount}}">
-                    信息费 : {{orderDetail.order_amount.info_amount}}
+                    信息费 : ￥ {{orderDetail.order_amount.info_amount}}
                 </view>
             </view>
         </view>
         <view class="padding-top"></view>
         <view wx:if="{{orderDetail.type==2&&orderDetail.details&&orderDetail.details.length!=0}}">
             <view class=" item item-icon-right item-borderless">
-                回收清单 ( <span class="positive">交易金额 : {{orderDetail.totalprice }}</span> )
+                回收清单 ( <span class="positive">交易金额 : ￥ {{orderDetail.totalprice }}</span> )
             </view>
             <view class="orderdetails">
                 <view class="item text-wrap" wx:for="{{orderDetail.djdetails}}" wx:for-item="item" wx:key="*this">

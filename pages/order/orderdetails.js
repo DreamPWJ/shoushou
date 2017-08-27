@@ -105,17 +105,21 @@ Page({
         util.https(app.globalData.api + "/api/dengji/getdetail/" + orderno, "GET", {},
             function (data) {
                 if (data.code == 1001) {
-                    data.data.addtime= new Date(data.data.addtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
-                    data.data.oraddtime= new Date(data.data.oraddtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
-                    data.data.appointtime= new Date(data.data.appointtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                    var  detail=data.data;
+                    detail.orname=detail.type==1&&detail.orname?util.hidePartInfo(detail.orname,'name'):detail.orname
+                    detail.ormotel=detail.type==1&&detail.ormotel?util.hidePartInfo(detail.ormotel,'phone'):detail.ormotel
+                    detail.addtime= new Date(detail.addtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                    detail.oraddtime= new Date(detail.oraddtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                    detail.appointtime= new Date(detail.appointtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
                     that.setData({
-                        orderDetail: data.data
+                        orderDetail: detail
                     })
                 } else {
                     util.toolTip(that, data.message);
                 }
             }
         ).then(function () {
+            //获取评论内容
             util.https(app.globalData.api + "/api/dengji", "GET", {djno: that.data.orderDetail.djno},
                 function (data) {
                     that.setData({

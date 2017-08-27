@@ -136,7 +136,9 @@ Page({
                 longt: "", //当前经度（获取距离）(可为空)
                 lat: "",//当前纬度（获取距离）(可为空)
                 expiry: "",//小时 取预警数据 订单预警数据（72小时截至马上过期的（expiry=3表示取3小时内）
+                isHideLoad: page == 1 ? false : true
             },
+
             function (data) {
                 if (that.data.currentTab == 0 && that.data.unfpage == 1) {
                     that.setData({
@@ -162,8 +164,9 @@ Page({
                         hasUnfData: data.data.page_count == that.data.unfpage ? false : true,
                         isNotunfinishedData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                         unfinishedOrderList: that.data.unfinishedOrderList.map(function (item) {
-                            item.addtime= new Date(item.addtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
-                            item.oraddtime= new Date(item.oraddtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                            item.orname=item.type==1?util.hidePartInfo(item.orname,'name'):item.orname
+                            item.addtime = new Date(item.addtime.replace(/T/g, " ")).Format("yyyy-MM-dd HH:mm")
+                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ")).Format("yyyy-MM-dd")
                             return item
                         }),
                         orderList: []
@@ -176,8 +179,9 @@ Page({
                         isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                         unfinishedOrderList: [],
                         orderList: that.data.orderList.map(function (item) {
-                            item.addtime= new Date(item.addtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
-                            item.oraddtime= new Date(item.oraddtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                            item.orname=item.type==1&&item.orname?util.hidePartInfo(item.orname,'name'):item.orname
+                            item.addtime = new Date(item.addtime.replace(/T/g, " ")).Format("yyyy-MM-dd HH:mm")
+                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ")).Format("yyyy-MM-dd")
                             return item
                         })
                     })
