@@ -32,7 +32,22 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        var user = wx.getStorageSync('user');
+        if (user.certstate.substr(3, 1) != 2) { //没有实名认证
+            util.showModal('收收提示', '尊敬的用户,您好！为了您的账户安全，请先进行实名认证！', '实名认证', '暂不认证', function (res) {
+                if (res.confirm) {
+                    wx.navigateTo({
+                        url: '/pages/account/realname'
+                    })
+                } else if (res.cancel) {
+                    //返回上一页
+                    wx.navigateBack({
+                        delta: 1
+                    })
+                }
+            })
+            return;
+        }
     },
 
     /**
@@ -93,6 +108,9 @@ Page({
      */
     switchChange: function (e) {
         console.log('switch 发生 change 事件，携带值为', e.detail.value)
+        this.setData({
+            isdefault: e.detail.value ? 1 : 0
+        })
     },
     /**
      * 用户提交
@@ -154,14 +172,19 @@ Page({
             }
             //提交数据
             var data = {
-                account: inputContent.account,
-                password: inputContent.password,
-                confirmpassword: inputContent.confirmpassword,
+                id: 0, 	// id
+                bankname: inputContent.bankname,	//银行名称
+                userid: wx.getStorageSync("userid"),	//用户id
+                branchname: inputContent.branchname,	//支行名称
+                accountno: inputContent.accountno,	//银行帐号
+                accountname: "",	//开户人名称
+                isdefault: that.data.isdefault || 1, 	//是否默认0-	否（默认值）1-	是
+                serviceid: "",
                 code: inputContent.verifycode
             }
             console.log(data);
 
-            util.https(app.globalData.api + "/api/bank/get_cardinfo/", "POST", data,
+            util.https(app.globalData.api + "/api/bank/add", "POST", data,
                 function (data) {
                     if (data.code == 1001) {
                         util.toolTip(that, "添加银行卡成功", 1, '/pages/wallet/bankcard');
