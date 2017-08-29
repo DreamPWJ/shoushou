@@ -251,7 +251,7 @@ Page({
                     required: "请填写姓名",
                 },
                 motel: { //提示信息
-                    required: "请填写真实手机号码",
+                    required: "请填写手机号码",
                 },
                 addrdetail: { //提示信息
                     required: "请填写地址详细信息",

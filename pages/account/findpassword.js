@@ -116,7 +116,7 @@ Page({
             },
             {
                 account: { //提示信息
-                    required: "请填写真实手机号码",
+                    required: "请填写手机号码",
                 },
                 verifycode: { //提示信息
                     required: "请填写验证码"

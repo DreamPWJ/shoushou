@@ -19,7 +19,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+       this.setData({
+           status:options.status //认证状态
+       })
     },
 
     /**
@@ -82,11 +84,64 @@ Page({
      */
     getVerifyCode: function (e) {
         var that = this;
-        util.getVerifyCode(inputContent['user'], this, function (data) {
+        util.getVerifyCode(inputContent['account'], this, function (data) {
             that.setData({
-                verifycode: data.data
+                verifycode: data.data,
+                verifyphone: inputContent['account']
             })
         })
 
     },
+    /**
+     * 用户提交
+     */
+    bindingmobileSubmit: function (e) {
+        var that = this;
+        //验证表单
+        that.WxValidate = new WxValidate({
+                account: {  //验证规则 input name值
+                    required: true,
+                    tel: true
+                },
+                verifycode: {
+                    required: true,
+                },
+
+            },
+            {
+                account: { //提示信息
+                    required: "请填写手机号码",
+                },
+                verifycode: { //提示信息
+                    required: "请填写验证码"
+                },
+
+            })
+
+
+        util.wxValidate(e, that, function () {
+            if (that.data.verifycode != inputContent.verifycode) {
+                util.toolTip(that, "验证码输入不正确")
+                return;
+            }
+            if (that.data.verifyphone != inputContent.account) {
+                util.toolTip(that, "验证码与手机号码不匹配")
+                return;
+            }
+
+            util.https(app.globalData.api + "/api/user/authenticate_mobile/" + wx.getStorageSync('userid'), "GET", {
+                    mobile: inputContent.account	//新用户号码
+                },
+                function (data) {
+                    if (data.code == 1001) {
+                        util.toolTip(that, "绑定手机号成功", 1, 'back');
+                    } else {
+                        util.toolTip(that, data.message);
+                    }
+                }
+            )
+        })
+
+
+    }
 })
