@@ -69,16 +69,24 @@ Page({
      */
     getAreaInfoFee: function () {
         var that = this;
-        util.https(app.globalData.api + "/api/util/getinformationlist", "GET", {areaname: "深圳市"},
-            function (data) {
-                if (data.code == 1001) {
-                    that.setData({
-                        areaInfoFee:data.data
-                    })
-                } else {
-                    util.toolTip(that, data.message);
+        //获取当前位置 省市县数据
+        util.getCurrentCity(that, 3, function (data) {
+            wx.setNavigationBarTitle({
+                title: that.data.city.replace("市", "地区") + "信息费标准"
+            })
+            util.https(app.globalData.api + "/api/util/getinformationlist", "GET", {areaname: that.data.city},
+                function (data) {
+                    if (data.code == 1001) {
+                        that.setData({
+                            areaInfoFee: data.data,
+                            isNotData: (data.data == null || data.data.length == 0) ? true : false,
+                        })
+                    } else {
+                        util.toolTip(that, data.message);
+                    }
                 }
-            }
-        )
+            )
+        })
+
     }
 })
