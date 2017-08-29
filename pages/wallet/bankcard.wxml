@@ -3,7 +3,7 @@
 <view id="bankcard">
     <view class="list list-borderless card">
         <radio-group class="radio-group" data-current="0" bindchange="radioChange">
-            <view class="item-p  " style="background-color: {{item.bgcolor}}" wx:for="{{bankCardList}}"
+            <view bindtap="selectBank" data-item="{{item}}" class="item-p  " style="background-color: {{item.bgcolor}}" wx:for="{{bankCardList}}"
                   wx:for-item="item" wx:key="*this">
                 <label class="radio ">
                     <radio value="{{item.id}}" checked="{{item.isdefault==1}}"/>

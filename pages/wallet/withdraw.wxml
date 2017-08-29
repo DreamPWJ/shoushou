@@ -10,11 +10,14 @@
             </navigator>
         </view>
         <label class="item item-input item-stacked-label">
-            <view class="input-label "> 提现金额</view>
-            <input type="digit" bindinput="bindChange" id="money" name="money" value="{{allmoney}}"  placeholder="请输入提现金额(大于3元)"/>
+            <view class="input-label "> 提现金额
+                <text wx:if="{{inputmoney}}" class="{{inputmoney<100?'energized':'balanced'}}">{{inputmoney<100?'自动扣除3元手续费':'免手续费'}}</text>
+            </view>
+            <input type="digit" bindinput="bindChange" id="money" name="money" value="{{allmoney}}"
+                   placeholder="请输入提现金额(大于3元)"/>
         </label>
-        <view class="padding yue">当前可用金额 {{userSum.account}}元 ,
-            <text bindtap="allWithdrawal" class="positive">全部提现</text>
+        <view class="padding yue">当前可用金额 {{userSum.account}}元
+            <text wx:if="{{userSum.account!='0.00'}}" bindtap="allWithdrawal" class="positive">全部提现</text>
         </view>
     </view>
 

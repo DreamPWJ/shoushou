@@ -37,26 +37,42 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+
+        var that = this;
         //获得我的里面待处理和预警订单数 银行卡以及余额
-        util.getUserSum(this, function (data) {
+        util.getUserSum(that, function (data) {
 
         })
-        var that = this;
-        //获取默认银行卡
-        util.https(app.globalData.api + "/api/bank/get_defualt/" + wx.getStorageSync('userid'), "GET", {},
-            function (data) {
-                if (data.code == 1001) {
-                    var defaultBank = data.data;
-                    that.setData({
-                        defaultBank: defaultBank,
-                        showBank: defaultBank.bankname + "(" + defaultBank.accountno.substring(defaultBank.accountno.length - 4) + ")"
-                    })
-                } else {
-                    util.toolTip(that, data.message)
-                }
+        var selectBank = that.data.selectBank;//上一个银行列表返回数据
+        that.setData({
+            selectBank: selectBank
+        }, function () {
+            if (that.data.selectBank) {
+                var defaultBank = that.data.selectBank;
+                that.setData({
+                    defaultBank: defaultBank,
+                    showBank: defaultBank.bankname + "(" + defaultBank.accountno.substring(defaultBank.accountno.length - 4) + ")"
+                })
+            } else {
+                //获取默认银行卡
+                util.https(app.globalData.api + "/api/bank/get_defualt/" + wx.getStorageSync('userid'), "GET", {},
+                    function (data) {
+                        if (data.code == 1001) {
+                            var defaultBank = data.data;
+                            that.setData({
+                                defaultBank: defaultBank,
+                                showBank: defaultBank.bankname + "(" + defaultBank.accountno.substring(defaultBank.accountno.length - 4) + ")"
+                            })
+                        } else {
+                            util.toolTip(that, data.message)
+                        }
 
+                    }
+                )
             }
-        )
+        })
+
+
     },
 
     /**
@@ -98,27 +114,34 @@ Page({
      */
     bindChange: function (e) {
         inputContent[e.currentTarget.id] = e.detail.value;
+        this.setData({
+            inputmoney: e.detail.value,
+            allmoney: undefined
+        })
     },
     /**
      * 全部提现
      */
     allWithdrawal: function () {
         this.setData({
-            allmoney: this.data.userSum.account
+            allmoney: this.data.userSum.account,
+            inputmoney: this.data.userSum.account
         })
     },
     /**
      * 用户提现
      */
     withdrawSubmit: function (e) {
+
         var that = this;
+        console.log(that.data.userSum.account);
         //验证表单
         that.WxValidate = new WxValidate({
                 money: {  //验证规则 input name值
                     required: true,
                     money: true,
                     min: 3,
-                    max: that.data.userSum.account,
+                    max: Number(that.data.userSum.account),
                 }
             },
             {
