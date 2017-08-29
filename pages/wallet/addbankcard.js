@@ -187,7 +187,7 @@ Page({
             util.https(app.globalData.api + "/api/bank/add", "POST", data,
                 function (data) {
                     if (data.code == 1001) {
-                        util.toolTip(that, "添加银行卡成功", 1, '/pages/wallet/bankcard','redirect');
+                        util.toolTip(that, "添加银行卡成功", 1, 'back');
                     } else {
                         util.toolTip(that, data.message);
                     }

@@ -106,7 +106,7 @@ Page({
             util.https(app.globalData.api + "/api/AboutUs/addincollect", "POST", data,
                 function (data) {
                     if (data.code == 1001) {
-                        util.toolTip(that, "提交反馈成功", 1, '/pages/account/setting','redirect')
+                        util.toolTip(that, "提交反馈成功", 1, 'back')
                     } else {
                         util.toolTip(that, data.message)
                     }
