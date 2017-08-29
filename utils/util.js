@@ -362,11 +362,11 @@ function wxValidate(e, that, callback) {
  * 改变验证码按钮状态
  */
 function verifyCodeBtn(e, that) {
-    if ((e.currentTarget.id == 'user' || e.currentTarget.id == 'account') && (/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
+    if (((e.currentTarget.id == 'user' || e.currentTarget.id == 'account') && (/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) || ((e.currentTarget.id == 'email') && (/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(e.detail.value)))) {
         that.setData({
             vcdisabled: false
         })
-    } else if ((e.currentTarget.id == 'user' || e.currentTarget.id == 'account') && !(/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) {
+    } else if (((e.currentTarget.id == 'user' || e.currentTarget.id == 'account') && !(/^1(3|4|5|7|8)\d{9}$/.test(e.detail.value))) || ((e.currentTarget.id == 'email') && !(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(e.detail.value)))) {
         that.setData({
             vcdisabled: true
         })
@@ -397,13 +397,24 @@ function getVerifyCode(account, that, callback) {
         }
     }, 1000, 122);
 
-    this.https(app.globalData.api + "/api/util/send_sms_validcode/" + account, "GET", {},
-        function (data) {
-            if (data.code == 1001) {
-                callback.call(this, data)
+    if ((/^1(3|4|5|7|8)\d{9}$/.test(account))) {//手机号
+        this.https(app.globalData.api + "/api/util/send_sms_validcode/" + account, "GET", {},
+            function (data) {
+                if (data.code == 1001) {
+                    callback.call(this, data)
+                }
             }
-        }
-    )
+        )
+    } else { //邮箱
+        this.https(app.globalData.api + "/api/util/send_email_validcode", "GET", {email: account},
+            function (data) {
+                if (data.code == 1001) {
+                    callback.call(this, data)
+                }
+            }
+        )
+    }
+
 }
 
 /**

@@ -1,8 +1,28 @@
 <!--pages/account/bindingemail.wxml-->
 <include src="../util/tooltip.wxml"/>
-<view class="text-center  padding">
-    <view class="isNotDataHint">
-        <view class="iconfont icon-mark"></view>
-        <text>收收小程序版正在开发中</text>
+<form bindsubmit="bindingemailSubmit">
+    <view class="list card ">
+        <view class="item item-input">
+            <text class=" iconfont icon-my placeholder-icon"></text>
+            <input type="text" bindinput="bindChange" id="email" name="email" placeholder="电子邮箱"/>
+        </view>
+        <view class="item item-input">
+            <text class=" iconfont  icon-safe placeholder-icon"></text>
+            <input type="number" bindinput="bindChange" id="verifycode" name="verifycode" placeholder="验证码"
+                   maxlength="6"/>
+            <button bindtap="getVerifyCode" disabled="{{vcdisabled}}"
+                    class="positive-bg light verify-code col-30 button-small"
+                    hover-class="button-hover">{{paracont}}
+            </button>
+        </view>
+
+
     </view>
-</view>
+
+    <view class="padding-horizontal">
+        <button formType="submit" class="positive-bg light " hover-class="button-hover">
+            {{status==1||status==2?'修改':'确认'}}绑定
+        </button>
+    </view>
+
+</form>
