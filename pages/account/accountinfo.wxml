@@ -25,12 +25,12 @@
         <text wx:if="{{!isOrganizingData}}" class="icon-accessory iconfont icon-right "></text>
     </navigator>
 
-    <view class="item  ">
+    <navigator url="updateuser" open-type="navigate" class="item  item-icon-right">
         <view class="h2">性别
-            <text class="item-note">{{wxUserInfo.gender==0?'未知':(wxUserInfo.gender==1?'男':'女')}}</text>
+            <text class="item-note">{{userdata.sex==0?'保密':(userdata.sex==1?'男':'女')}}</text>
         </view>
-        <!--   <text class="icon-accessory iconfont icon-right "></text>-->
-    </view>
+        <text class="icon-accessory iconfont icon-right "></text>
+    </navigator>
     <view class="item  ">
         <view class="h2">所在地区
             <text class="item-note">{{userdata.addr||''}}</text>

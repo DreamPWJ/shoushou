@@ -9,7 +9,9 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+        sexArr: [{value: 0, name: '保密', checked: true}, {value: 1, name: '男'}, {value: 2, name: '女'}]
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -67,9 +69,36 @@ Page({
 
     },
     /**
-     * 获取用户输入
+     * radio发生change事件
      */
-    bindChange: function (e) {
-        inputContent[e.currentTarget.id] = e.detail.value;
+    radioChange: function (e) {
+        console.log('用户类型radio发生change事件，携带value值为：', e.detail.value)
+        this.setData({
+            sex: e.detail.value
+        })
     },
+    /**
+     * 用户提交
+     */
+    updateuserSubmit: function (e) {
+        var that = this;
+        //验证表单
+        that.WxValidate = new WxValidate(
+        )
+
+        util.wxValidate(e, that, function () {
+            util.https(app.globalData.api + "/api/user/modify_sex/" + wx.getStorageSync('userid') + "/" + (that.data.sex || 0), "POST", {
+                },
+                function (data) {
+                    if (data.code == 1001) {
+                        util.toolTip(that, "绑定邮箱成功", 1, 'back');
+                    } else {
+                        util.toolTip(that, data.message);
+                    }
+                }
+            )
+        })
+
+
+    }
 })
