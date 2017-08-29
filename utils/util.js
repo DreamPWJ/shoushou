@@ -220,7 +220,9 @@ function hidePartInfo(str, type) {
     if (type == 'address') { //地址信息
         return str.replace(str.substring(str.lastIndexOf(','), str.length), '*****');
     }
-
+    if (type == 'bankcard') { //银行卡
+        return str ? str.replace(/(\d{8})\d{4}(\d{4})/, '$1****$2').replace(/\s/g,'').replace(/(\d{4})/g,"$1 ").replace("****","**** ") : str;
+    }
 }
 
 /**
@@ -405,7 +407,7 @@ function getVerifyCode(account, that, callback) {
                 }
             }
         )
-    } else if((/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(account))){ //邮箱
+    } else if ((/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(account))) { //邮箱
         this.https(app.globalData.api + "/api/util/send_email_validcode", "GET", {email: account},
             function (data) {
                 if (data.code == 1001) {

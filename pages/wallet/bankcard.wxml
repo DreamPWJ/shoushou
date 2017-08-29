@@ -3,45 +3,20 @@
 <view id="bankcard">
     <view class="list list-borderless card">
         <radio-group class="radio-group" data-current="0" bindchange="radioChange">
-            <view class="item-p positive-bg ">
+            <view class="item-p  " style="background-color: {{item.bgcolor}}" wx:for="{{bankCardList}}"
+                  wx:for-item="item" wx:key="*this">
                 <label class="radio ">
-                    <radio value="0"/>
+                    <radio value="{{item.id}}" checked="{{item.isdefault==1}}"/>
                     设为默认
                 </label>
                 <view class="item item-icon-left item-borderless ">
-                    <text class="iconfont icon-jiansheyinhang"></text>
-                    建设银行
-                    <view class=" p">深圳科苑支行</view>
+                    <text class="iconfont {{item.logo}}"></text>
+                    <view class="h2">{{item.bankname}}</view>
+                    <view class="p">{{item.branchname}}</view>
                 </view>
-                <view class="h1 text-right">**** **** **** 686</view>
-
+                <view class="h1 text-right">{{item.accountno}}</view>
             </view>
-            <view class="item-p energized-bg ">
 
-                <label class="radio ">
-                    <radio value="1"/>
-                    设为默认
-                </label>
-                <view class="item item-icon-left item-borderless ">
-                    <text class="iconfont icon-jiansheyinhang"></text>
-                    建设银行
-                    <view class=" p">深圳科苑支行</view>
-                </view>
-                <view class="h1 text-right">**** **** **** 686</view>
-            </view>
-            <view class="item-p balanced-bg ">
-                <label class="radio ">
-                    <radio value="2"/>
-                    设为默认
-                </label>
-
-                <view class="item item-icon-left item-borderless ">
-                    <text class="iconfont icon-jiansheyinhang"></text>
-                    建设银行
-                    <view class=" p">深圳科苑支行</view>
-                </view>
-                <view class="h1 text-right">**** **** **** 686</view>
-            </view>
         </radio-group>
     </view>
     <view class="list add">

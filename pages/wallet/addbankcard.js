@@ -13,6 +13,7 @@ Page({
         paracont: "获取验证码",//验证码文字
         vcdisabled: true,//验证码按钮状态
         verifycode: "",//返回的验证码,
+        isdefault: 1 //默认
     },
     /**
      * 生命周期函数--监听页面加载
@@ -228,7 +229,7 @@ Page({
                 branchname: inputContent.branchname,	//支行名称
                 accountno: inputContent.accountno,	//银行帐号
                 accountname: that.data.accountname,	//开户人名称
-                isdefault: that.data.isdefault || 1, 	//是否默认0-	否（默认值）1-	是
+                isdefault: that.data.isdefault, 	//是否默认0-	否（默认值）1-	是
                 serviceid: that.data.serviceid,
                 code: inputContent.verifycode
             }
