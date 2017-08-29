@@ -191,7 +191,6 @@ Page({
                 shopname: inputContent.shopname,
                 addrdetail: inputContent.addrdetail || that.data.addressname,//地址详情
                 addrcode: that.data.addressone.ID,
-                areacode: that.data.addressone.Code,
                 img: that.data.imgsPicAddr[0],
             }
             console.log(data);
