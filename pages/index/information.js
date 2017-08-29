@@ -277,7 +277,7 @@ Page({
                 }
             })
             if (productList.length == 0) {
-                util.toolTip(that, "请选选中品类再提交")
+                util.toolTip(that, "请选择品类再提交")
                 return;
             }
             var manufactor = [];//厂商 单选

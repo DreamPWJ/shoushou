@@ -91,7 +91,7 @@ Page({
         var that = this;
         util.https(app.globalData.api + "/api/dengji/getlistyj/" + page + "/" + 10, "GET", {
                 userid: wx.getStorageSync("userid"),//用户id
-                isHideLoad: true
+                isHideLoad: page == 1 ? false : true
             },
             function (data) {
                 if (that.data.page == 1) {

@@ -173,7 +173,7 @@ Page({
                     required: "请填写详细地址"
                 },
                 user: { //提示信息
-                    required: "请填写真实手机号码",
+                    required: "请填写联系电话",
                 }
             })
 
@@ -198,12 +198,13 @@ Page({
                 function (data) {
                     if (data.code == 1001) {
                         util.getUserInfo(function (data) {
-                            var user = wx.getStorageSync('user');
-                            if (user.certstate.substr(3, 1) != 2) { //没有实名认证
-                                util.toolTip(that, "完善资料提交成功", 1, "/pages/account/realname?status=0",'redirect');
-                            } else {
-                                util.toolTip(that, "完善资料提交成功", 1, "/pages/index/index",'redirect');
-                            }
+                            util.toolTip(that, "完善资料提交成功", 1, "back");
+                            /*            var user = wx.getStorageSync('user');
+                                        if (user.certstate.substr(3, 1) != 2) { //没有实名认证
+                                            util.toolTip(that, "完善资料提交成功", 1, "/pages/account/realname?status=0",'redirect');
+                                        } else {
+                                            util.toolTip(that, "完善资料提交成功", 1, "/pages/index/index",'redirect');
+                                        }*/
                         })
 
                     } else {

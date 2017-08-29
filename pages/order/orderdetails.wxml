@@ -20,7 +20,7 @@
                 下单时间 : {{orderDetail.addtime}}
             </view>
             <view class="item" wx:if="{{orderDetail.orname}}">
-                接单人 : {{orderDetail.type==1?(orderDetail.orname ):orderDetail.orname }}
+                接单人 : {{orderDetail.orname || ''}}
             </view>
             <view wx:if="{{orderDetail.type==2&&orderDetail.ormotel}}" class="item item-icon-right"
                   bindtap="makePhoneCall" data-phone="{{orderDetail.ormotel}}">

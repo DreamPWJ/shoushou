@@ -183,12 +183,13 @@ Page({
                     if (data.code == 1001) {
                         wx.setStorageSync("userid", data.data.userid);
                         wx.setStorageSync("usersecret", data.data.usersecret);
-                        util.toolTip(that, "注册成功", 1);
+
                         //接口API授权 type 1.是公共授权  2.登录授权
                         util.authorization(2, function () {
-                            wx.navigateTo({ //完善资料
-                                url: '/pages/account/organizingdata'
-                            })
+                            util.toolTip(that, "注册成功", 1, "/pages/index/index", 'reLaunch');//直接登录
+                            /*           wx.navigateTo({ //完善资料
+                                           url: '/pages/account/organizingdata'
+                                       })*/
                             //根据会员ID获取会员账号基本信息
                             util.getUserInfo(function (data) {
 

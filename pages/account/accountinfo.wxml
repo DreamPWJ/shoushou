@@ -33,7 +33,7 @@
     </view>
     <view class="item  ">
         <view class="h2">所在地区
-            <text class="item-note">{{userdata.addr}}</text>
+            <text class="item-note">{{userdata.addr||''}}</text>
         </view>
     </view>
 
