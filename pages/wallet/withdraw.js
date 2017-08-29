@@ -14,7 +14,9 @@ Page({
             totalamount: '0.00',
             account: '0.00',
             trzaccount: '0.00',
-        }
+
+        },
+        showBank: "请添加银行"
     },
 
     /**
@@ -39,6 +41,22 @@ Page({
         util.getUserSum(this, function (data) {
 
         })
+        var that = this;
+        //获取默认银行卡
+        util.https(app.globalData.api + "/api/bank/get_defualt/" + wx.getStorageSync('userid'), "GET", {},
+            function (data) {
+                if (data.code == 1001) {
+                    var defaultBank = data.data;
+                    that.setData({
+                        defaultBank: defaultBank,
+                        showBank: defaultBank.bankname + "(" + defaultBank.accountno.substring(defaultBank.accountno.length - 4) + ")"
+                    })
+                } else {
+                    util.toolTip(that, data.message)
+                }
+
+            }
+        )
     },
 
     /**
@@ -99,12 +117,14 @@ Page({
                 money: {  //验证规则 input name值
                     required: true,
                     money: true,
+                    min: 3,
                     max: that.data.userSum.account,
                 }
             },
             {
                 money: { //提示信息
                     required: "请填写提现金额",
+                    min: "提现金额要大于3元",
                     max: "提现金额不能超过可用金额"
                 },
 
@@ -112,9 +132,9 @@ Page({
         util.wxValidate(e, that, function () {
             //提现
             util.https(app.globalData.api + "/api/subaccount/cash", "POST", {
-                    userbankid: "", //银行id
+                    userbankid: that.data.defaultBank.id, //银行id
                     userid: wx.getStorageSync("userid"),//用户userid
-                    amount: that.data.allmoney||inputContent.money, //金额
+                    amount: that.data.allmoney || inputContent.money, //金额
                 },
                 function (data) {
                     if (data.code == 1001) {

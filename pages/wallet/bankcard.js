@@ -170,9 +170,17 @@ Page({
      */
     radioChange: function (e) {
         var that = this;
-        if (e.target.dataset.current == 0) {
-            console.log('活动类型radio发生change事件，携带value值为：', e.detail.value)
-        }
+        //设置默认银行
+        util.https(app.globalData.api + "/api/bank/setdefault/" + e.detail.value, "GET", {},
+            function (data) {
+                if (data.code == 1001) {
+
+                } else {
+                    util.toolTip(that, data.message)
+                }
+
+            }
+        )
     },
     /**
      * 获取自己的银行卡列表

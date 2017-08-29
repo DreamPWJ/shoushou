@@ -6,12 +6,12 @@
         <view class="row row-center padding bank">
             <view class="col-40">到账银行卡</view>
             <navigator url="bankcard" open-type="navigate" class="col-60 positive ">
-                建设银行(5258)
+                {{showBank}}
             </navigator>
         </view>
         <label class="item item-input item-stacked-label">
             <view class="input-label "> 提现金额</view>
-            <input type="digit" bindinput="bindChange" id="money" name="money" value="{{allmoney}}" focus placeholder="请输入提现金额"/>
+            <input type="digit" bindinput="bindChange" id="money" name="money" value="{{allmoney}}"  placeholder="请输入提现金额(大于3元)"/>
         </label>
         <view class="padding yue">当前可用金额 {{userSum.account}}元 ,
             <text bindtap="allWithdrawal" class="positive">全部提现</text>
@@ -24,7 +24,7 @@
         </button>
     </view>
 
-    <view class=" tishi">
+    <view class=" tishi grey">
         <text class="iconfont icon-guanyuwomen"></text>
         手续费：3元/笔，100以上免手续费
         <view> 提现后工作日24小时之内到账</view>
