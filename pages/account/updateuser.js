@@ -10,14 +10,16 @@ Page({
      * 页面的初始数据
      */
     data: {
-        sexArr: [{value: 0, name: '保密', checked: true}, {value: 1, name: '男'}, {value: 2, name: '女'}]
+        sexArr: [{value: 0, name: '保密'}, {value: 1, name: '男'}, {value: 2, name: '女'}]
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.setData({
+            sex:options.sex
+        })
     },
 
     /**

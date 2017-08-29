@@ -25,7 +25,7 @@
         <text wx:if="{{!isOrganizingData}}" class="icon-accessory iconfont icon-right "></text>
     </navigator>
 
-    <navigator url="updateuser" open-type="navigate" class="item  item-icon-right">
+    <navigator url="updateuser?sex={{userdata.sex}}" open-type="navigate" class="item  item-icon-right">
         <view class="h2">性别
             <text class="item-note">{{userdata.sex==0?'保密':(userdata.sex==1?'男':'女')}}</text>
         </view>
