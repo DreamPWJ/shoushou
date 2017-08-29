@@ -104,7 +104,8 @@ Page({
         var that = this;
         util.getVerifyCode(inputContent['user'], this, function (data) {
             that.setData({
-                verifycode: data.data
+                verifycode: data.data,
+                verifyphone: inputContent['user'] //验证的手机号
             })
         })
 
@@ -164,6 +165,10 @@ Page({
             }
             if (that.data.verifycode != inputContent.verifycode) {
                 util.toolTip(that, "验证码输入不正确")
+                return;
+            }
+            if (that.data.verifyphone != inputContent.user) {
+                util.toolTip(that, "验证码与手机号码不匹配")
                 return;
             }
             //注册数据
