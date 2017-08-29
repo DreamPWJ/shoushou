@@ -11,7 +11,7 @@ Page({
      */
     data: {
         isth: 1,////是否统货 1是 0否
-        acttype:0,// 活动类型 0 无 1以旧换新
+        acttype: 0,// 活动类型 0 无 1以旧换新
         productList: [],
         activitytype: [  //活动类型
             {value: 0, name: '无', checked: 'true'}, {value: 1, name: '以旧换新'}
@@ -292,10 +292,10 @@ Page({
                 type: 1,//类型 1.	登记信息 2.	登记货源
                 hytype: 0,//物类别 0.未区分 1废料 2二手 (登记信息时为0)
                 userid: wx.getStorageSync('userid'),//登记人userid
-                name:inputContent.name,//姓名
-                motel:inputContent.motel,//手机
-                addrdetail:inputContent.addrdetail||that.data.addressname,//地址详情
-                acttype:that.data.acttype||0,// 活动类型 0 无 1以旧换新
+                name: inputContent.name,//姓名
+                motel: inputContent.motel,//手机
+                addrdetail: inputContent.addrdetail || that.data.addressname,//地址详情
+                acttype: that.data.acttype || 0,// 活动类型 0 无 1以旧换新
                 longitude: that.data.longitude || that.data.handlongitude || wx.getStorageSync('longitude') || 0,//经度
                 latitude: that.data.latitude || that.data.handlatitude || wx.getStorageSync('longitude') || 0,//纬度
                 category: recyclingCategoryName.join(","),//货物品类 多个用逗号隔开

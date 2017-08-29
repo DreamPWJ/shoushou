@@ -301,9 +301,10 @@ function showModal(title, content, confirmText, cancelText, callback, showCancel
 }
 
 /**
- * toolTip方法 type 1是提示色 2是警告色
+ * toolTip方法 type 1是提示色 2是警告色,
+ * navigationType 导航类型  navigate  redirect reLaunch back switchTab
  */
-function toolTip(that, msg, type, url) {
+function toolTip(that, msg, type, url, navigationType) {
     //提示字段值
     that.setData(
         {
@@ -316,6 +317,18 @@ function toolTip(that, msg, type, url) {
             //返回上一页
             wx.navigateBack({
                 delta: 1
+            })
+        } else if (navigationType == 'redirect') {
+            wx.redirectTo({
+                url: url
+            })
+        } else if (navigationType == 'reLaunch') {
+            wx.reLaunch({
+                url: url
+            })
+        } else if (navigationType == 'switchTab') {
+            wx.switchTab({
+                url: url
             })
         } else {
             wx.navigateTo({

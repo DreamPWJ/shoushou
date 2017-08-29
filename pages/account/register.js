@@ -15,7 +15,7 @@ Page({
         vcdisabled: true,//验证码按钮状态
         verifycode: "",//返回的验证码
         usertype: [  //用户类型
-            {value: 1, name: '信息供应者', checked: 'true'},
+            {value: 1, name: '信息提供者', checked: 'true'},
             /*         {value: 2, name: '回收商'}*/
         ],
         utitem: [ //用户类型数组
