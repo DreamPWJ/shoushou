@@ -200,9 +200,9 @@ Page({
                         util.getUserInfo(function (data) {
                             var user = wx.getStorageSync('user');
                             if (user.certstate.substr(3, 1) != 2) { //没有实名认证
-                                util.toolTip(that, "完善资料提交成功", 1, "/pages/account/realname?status=0");
+                                util.toolTip(that, "完善资料提交成功", 1, "/pages/account/realname?status=0",'redirect');
                             } else {
-                                util.toolTip(that, "完善资料提交成功", 1, "/pages/index/index");
+                                util.toolTip(that, "完善资料提交成功", 1, "/pages/index/index",'redirect');
                             }
                         })
 

@@ -154,7 +154,7 @@ Page({
             util.https(app.globalData.api + "/api/user/find_password", "POST", data,
                 function (data) {
                     if (data.code == 1001) {
-                        util.toolTip(that, "新密码设置成功", 1, '/pages/account/login');
+                        util.toolTip(that, "新密码设置成功", 1, '/pages/account/login','redirect');
                     } else {
                         util.toolTip(that, data.message);
                     }

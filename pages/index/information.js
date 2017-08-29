@@ -308,7 +308,7 @@ Page({
             util.https(app.globalData.api + "/api/dengji/create", "POST", dengji,
                 function (data) {
                     if (data.code == 1001) {
-                        util.toolTip(that, "登记信息提交成功", 1, '/pages/order/order')
+                        util.toolTip(that, "登记信息提交成功", 1, '/pages/order/order', 'redirect')
                     } else {
                         util.toolTip(that, data.message)
                     }
