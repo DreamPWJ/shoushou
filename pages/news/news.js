@@ -141,7 +141,7 @@ Page({
                     hasData: data.data.page_count == that.data.page ? false : true,
                     isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                     newsList: that.data.newsList.map(function (item) {
-                    item.createdate= new Date(item.createdate.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                    item.createdate= new Date(item.createdate.replace(/T/g," ").replace(/-/g,"/")).Format("yyyy-MM-dd HH:mm")
                     return item
                 })
                 })

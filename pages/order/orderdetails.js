@@ -117,9 +117,9 @@ Page({
                     var  detail=data.data;
                     detail.orname=detail.type==1&&detail.orname?util.hidePartInfo(detail.orname,'name'):detail.orname
                     detail.ormotel=detail.type==1&&detail.ormotel?util.hidePartInfo(detail.ormotel,'phone'):detail.ormotel
-                    detail.addtime= new Date(detail.addtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
-                    detail.oraddtime= new Date(detail.oraddtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
-                    detail.appointtime= new Date(detail.appointtime.replace(/T/g," ")).Format("yyyy-MM-dd HH:mm")
+                    detail.addtime= new Date(detail.addtime.replace(/T/g," ").replace(/-/g,"/")).Format("yyyy-MM-dd HH:mm")
+                    detail.oraddtime= new Date(detail.oraddtime.replace(/T/g," ").replace(/-/g,"/")).Format("yyyy-MM-dd HH:mm")
+                    detail.appointtime= new Date(detail.appointtime.replace(/T/g," ").replace(/-/g,"/")).Format("yyyy-MM-dd HH:mm")
                     that.setData({
                         orderDetail: detail
                     })

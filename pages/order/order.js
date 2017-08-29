@@ -174,8 +174,8 @@ Page({
                         isNotunfinishedData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                         unfinishedOrderList: that.data.unfinishedOrderList.map(function (item) {
                             item.orname = item.type == 1 ? util.hidePartInfo(item.orname, 'name') : item.orname
-                            item.addtime = new Date(item.addtime.replace(/T/g, " ")).Format("yyyy-MM-dd HH:mm")
-                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ")).Format("yyyy-MM-dd")
+                            item.addtime = new Date(item.addtime.replace(/T/g, " ").replace(/-/g,"/")).Format("yyyy-MM-dd HH:mm")
+                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ").replace(/-/g,"/")).Format("yyyy-MM-dd")
                             return item
                         }),
                         orderList: []
@@ -189,8 +189,8 @@ Page({
                         unfinishedOrderList: [],
                         orderList: that.data.orderList.map(function (item) {
                             item.orname = item.type == 1 && item.orname ? util.hidePartInfo(item.orname, 'name') : item.orname
-                            item.addtime = new Date(item.addtime.replace(/T/g, " ")).Format("yyyy-MM-dd HH:mm")
-                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ")).Format("yyyy-MM-dd")
+                            item.addtime = new Date(item.addtime.replace(/T/g, " ").replace(/-/g,"/")).Format("yyyy-MM-dd HH:mm")
+                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ").replace(/-/g,"/")).Format("yyyy-MM-dd")
                             return item
                         })
                     })
