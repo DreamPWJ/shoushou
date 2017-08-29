@@ -4,10 +4,10 @@
     <view class="list has-bottom-button">
         <view class="item item-input">
             <input type="number" bindinput="bindChange" id="accountno" name="accountno" maxlength="20"
-                   placeholder="银行卡号"/>
+                   placeholder="银行卡号" bindblur="getBankinfo" />
         </view>
         <view class="item item-input">
-            <input type="text" bindinput="bindChange" id="bankname" name="bankname" maxlength="15" placeholder="银行名称"/>
+            <input type="text" bindinput="bindChange" id="bankname" name="bankname" maxlength="10" placeholder="银行名称"/>
         </view>
         <view class="item item-input">
             <input type="text" bindinput="bindChange" id="branchname" name="branchname" maxlength="15"

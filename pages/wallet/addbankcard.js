@@ -96,11 +96,43 @@ Page({
      */
     getVerifyCode: function (e) {
         var that = this;
-        util.getVerifyCode(inputContent['account'], this, function (data) {
-            that.setData({
-                verifycode: data.data
+// 获取用户个人实名认证信息
+        var personsign = {};
+        util.https(app.globalData.api + "/api/user/get_identity/" + wx.getStorageSync('userid'), "GET", {},
+            function (data) {
+                if (data.data != null) {
+                    personsign = {
+                        cardno: inputContent.accountno,
+                        idno: data.data.idno,
+                        mobile: inputContent.account,
+                        name: data.data.name
+                    }
+                    that.setData({
+                        accountname: data.data.name
+                    })
+                } else {
+                    util.toolTip(that, "为了您的账户安全，实名认证后再添加银行卡");
+                }
+            }
+        ).then(function () {
+//发送实名认证码，返回实名认证服务id
+            util.https(app.globalData.api + "/api/user/authenticate_sign", "POST", personsign,
+                function (data) {
+                    if (data.data.errCode == "0") {
+                        that.setData({
+                            serviceid: data.data.serviceId,
+                        })
+                    } else {
+                        util.toolTip(that, "发送认证短信失败，请核实银行卡信息");
+                    }
+                }
+            ).then(function () {
+                util.getVerifyCode("", that, function (data) {
+
+                })
             })
         })
+
 
     },
     /**
@@ -111,6 +143,27 @@ Page({
         this.setData({
             isdefault: e.detail.value ? 1 : 0
         })
+
+    },
+    /**
+     * 焦点失去 根据输入的银行卡号获取银行信息
+     */
+    getBankinfo: function () {
+        /*        var that = this;
+                if (inputContent.accountno && inputContent.accountno.length > 15) {
+                    util.https(app.globalData.api + "/api/bank/get_cardinfo/" + inputContent.accountno, "GET", {},
+                        function (data) {
+                            if (data.code == 1001) {
+                                var issname=data.data.issname;
+                                that.setData({
+                                    bankname: issname? issname : ""
+                                })
+                            } else {
+                                util.toolTip(that, data.message);
+                            }
+                        }
+                    )
+                }*/
     },
     /**
      * 用户提交
@@ -166,10 +219,7 @@ Page({
 
 
         util.wxValidate(e, that, function () {
-            if (that.data.verifycode != inputContent.verifycode) {
-                util.toolTip(that, "验证码输入不正确")
-                return;
-            }
+
             //提交数据
             var data = {
                 id: 0, 	// id
@@ -177,9 +227,9 @@ Page({
                 userid: wx.getStorageSync("userid"),	//用户id
                 branchname: inputContent.branchname,	//支行名称
                 accountno: inputContent.accountno,	//银行帐号
-                accountname: "",	//开户人名称
+                accountname: that.data.accountname,	//开户人名称
                 isdefault: that.data.isdefault || 1, 	//是否默认0-	否（默认值）1-	是
-                serviceid: "",
+                serviceid: that.data.serviceid,
                 code: inputContent.verifycode
             }
             console.log(data);

@@ -405,7 +405,7 @@ function getVerifyCode(account, that, callback) {
                 }
             }
         )
-    } else { //邮箱
+    } else if((/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(account))){ //邮箱
         this.https(app.globalData.api + "/api/util/send_email_validcode", "GET", {email: account},
             function (data) {
                 if (data.code == 1001) {
