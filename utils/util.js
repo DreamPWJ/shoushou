@@ -614,7 +614,7 @@ function getCurrentCity(that, level, callback) {
         function (data) {
             var addressComponent = data.regeocode.addressComponent;
             that.setData({
-                city: addressComponent.city,
+                city: addressComponent.city||addressComponent.province,
                 addresspois: data.regeocode.pois,
                 ssx: (addressComponent.province + addressComponent.city + (level == 2 ? "" : addressComponent.district)),//省市县
                 addrdetail: addressComponent.township + addressComponent.streetNumber.street
