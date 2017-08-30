@@ -9,7 +9,7 @@ Page({
      */
     data: {
         page: 1,
-        hasData: true,
+        hasData: false,
         bankCardList: [],
         bankJsonArr: [{"name": "花旗银行", "logo": "icon-huaqiyinhang", "color": "#2f2267"}, {
             "name": "杭州银行",

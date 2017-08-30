@@ -9,7 +9,7 @@ Page({
      */
     data: {
         page: 1,
-        hasData: true,
+        hasData: false,
         newsList: []
     },
 

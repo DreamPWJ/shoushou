@@ -11,8 +11,8 @@ Page({
         currentTab: 0,   // tab切换
         unfpage: 1,
         page: 1,
-        hasUnfData: true,
-        hasData: true,
+        hasUnfData: false,
+        hasData: false,
         unfinishedOrderList: [],
         orderList: []
     },

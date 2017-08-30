@@ -47,6 +47,10 @@
     <!-- 所有订单 -->
     <swiper-item>
         <scroll-view enable-back-to-top style="height:100%" scroll-y>
+            <view wx:if="{{isNotData}}" class="isNotDataHint">
+                <view class="iconfont icon-xiaoxi"></view>
+                <text>暂无所有订单</text>
+            </view>
             <view class="list">
                 <navigator url="orderdetails?orderno={{item.djno}}" open-type="navigate" class="item " style="padding-right: 10px;"
                            wx:for="{{orderList}}" wx:for-item="item" wx:key="*this">
