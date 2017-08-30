@@ -145,7 +145,7 @@ function authorization(type, callback, immediately) {
                             wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
                             wx.setStorageSync('tokentype', 2);//授权类型
                         } else {
-                            that.showModal('收收提示', '登陆过期，请重新登陆', '登录', '取消', function (res) {
+                            that.showModal('收收提示', '登录过期，请重新登录', '登录', '取消', function (res) {
                                 if (res.confirm) {
                                     wx.navigateTo({
                                         url: '/pages/account/login'
@@ -324,28 +324,32 @@ function toolTip(that, msg, type, url, navigationType) {
         }
     );
     if (url) {
-        if (url == 'back') {
-            //返回上一页
-            wx.navigateBack({
-                delta: 1
-            })
-        } else if (navigationType == 'redirect') {
-            wx.redirectTo({
-                url: url
-            })
-        } else if (navigationType == 'reLaunch') {
-            wx.reLaunch({
-                url: url
-            })
-        } else if (navigationType == 'switchTab') {
-            wx.switchTab({
-                url: url
-            })
-        } else {
-            wx.navigateTo({
-                url: url
-            })
-        }
+        /*   showToast(msg);*/
+        setTimeout(function () { //切换页面之前为了显示提示信息
+            if (url == 'back') {
+                //返回上一页
+                wx.navigateBack({
+                    delta: 1
+                })
+            } else if (navigationType == 'redirect') {
+                wx.redirectTo({
+                    url: url
+                })
+            } else if (navigationType == 'reLaunch') {
+                wx.reLaunch({
+                    url: url
+                })
+            } else if (navigationType == 'switchTab') {
+                wx.switchTab({
+                    url: url
+                })
+            } else {
+                wx.navigateTo({
+                    url: url
+                })
+            }
+        }, 800);
+
 
     }
 }

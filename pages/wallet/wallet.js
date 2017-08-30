@@ -19,7 +19,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        util.isLoginModal();
+
 
     },
 
@@ -34,6 +34,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        util.isLoginModal();
         //获得我的里面待处理和预警订单数 银行卡以及余额
         util.getUserSum(this, function (data) {
 

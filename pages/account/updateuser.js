@@ -93,7 +93,7 @@ Page({
                 },
                 function (data) {
                     if (data.code == 1001) {
-                        util.toolTip(that, "绑定邮箱成功", 1, 'back');
+                        util.toolTip(that, "性别修改成功", 1, 'back');
                     } else {
                         util.toolTip(that, data.message);
                     }

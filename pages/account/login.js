@@ -47,7 +47,7 @@ Page({
         //接口API授权 type 1.是公共授权  2.登录授权
         util.authorization(1, function () {
             //微信授权登录
-            util.wxLogin();
+          /*  util.wxLogin();*/
         }, true)
     },
 

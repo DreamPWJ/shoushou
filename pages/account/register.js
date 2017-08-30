@@ -43,7 +43,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        //获取当前位置 省市县数据
+        util.getCurrentCity(this, 2, function (data) {
 
+        })
     },
 
     /**
@@ -133,7 +136,7 @@ Page({
                     required: true,
                 },
                 invitecode: {
-                    required: true,
+                    required:that.data.addressone.isinvitecode=="0"? true:false,
                 }
             },
             {
@@ -180,7 +183,8 @@ Page({
                 client: 3,
                 openID: wx.getStorageSync("openid"),
                 invitecode: inputContent.invitecode,
-                services: [1]
+                services: [1],
+                areacode:that.data.addressone.ID
             }
             console.log(register);
             util.https(app.globalData.api + "/api/user/regnew", "POST", register,

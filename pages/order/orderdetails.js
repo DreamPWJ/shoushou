@@ -12,7 +12,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        util.isLoginModal();
+
         this.setData({
             orderno: options.orderno
         })
@@ -29,6 +29,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        util.isLoginModal();
         //获取订单列表详情
         this.getOrderDetails(this.data.orderno);
     },

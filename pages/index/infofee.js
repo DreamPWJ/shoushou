@@ -16,7 +16,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        util.isLoginModal();
         this.setData({
             channel: options.channel||0
         })
@@ -34,6 +33,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        util.isLoginModal();
         var that = this;
         if (that.data.channel == 0) {
             wx.setNavigationBarTitle({
