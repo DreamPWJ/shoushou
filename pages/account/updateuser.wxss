@@ -1,1 +1,4 @@
 /* pages/account/updateuser.wxss */
+.radio:not(:last-of-type){
+    border-bottom: 1px solid rgba(221, 221, 221, 0.3) !important;
+}

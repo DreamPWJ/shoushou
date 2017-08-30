@@ -7,7 +7,7 @@
                   wx:for-item="item" wx:key="*this">
                 <label class="radio ">
                     <radio value="{{item.id}}" checked="{{item.isdefault==1}}"/>
-                    设为默认
+                    {{item.isdefault==0?'设为':''}}默认
                 </label>
                 <view class="item item-icon-left item-borderless ">
                     <text class="iconfont {{item.logo}}"></text>

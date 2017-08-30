@@ -10,7 +10,7 @@
     <view class="padding-top"></view>
     <view class="list light-bg list-borderless ">
         <radio-group class="radio-group" data-current="0" bindchange="radioChange">
-            <label class="radio block padding border-b" wx:for="{{sexArr}}" wx:for-item="item" wx:key="*this">
+            <label class="radio block padding " wx:for="{{sexArr}}" wx:for-item="item" wx:key="*this">
                 <radio value="{{item.value}}" color="#00ACFF" checked="{{sex==item.value}}"/>
                 {{item.name}}
             </label>

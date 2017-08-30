@@ -221,7 +221,7 @@ function hidePartInfo(str, type) {
         return str.replace(str.substring(str.lastIndexOf(','), str.length), '*****');
     }
     if (type == 'bankcard') { //银行卡
-        return str ? str.replace(/(\d{8})\d{4}(\d{4})/, '$1****$2').replace(/\s/g,'').replace(/(\d{4})/g,"$1 ").replace("****","**** ") : str;
+        return "**** **** **** " + str.substring(str.length - 4, str.length);
     }
 }
 
