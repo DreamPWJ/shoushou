@@ -30,7 +30,7 @@ function https(url, type, data, callBack, header) {
             },
             fail: function (error) {
                 reject(error);
-                showToast("收收请求失败");
+                showToast("请求失败");
             },
             complete: function (res) {
                 wx.hideNavigationBarLoading();
@@ -38,7 +38,7 @@ function https(url, type, data, callBack, header) {
                 wx.stopPullDownRefresh();
                 console.log(res);
                 if (res.statusCode === 401) {
-                    showToast("收收请求未授权");
+                    showToast("请求未授权");
                 }
                 //错误日志统一处理 保存到服务器数据库
                 if (res.data&&res.data.code&& res.data.code != 1001) {
@@ -104,7 +104,7 @@ function authorization(type, callback, immediately) {
 
                     },
                     fail: function (error) {
-                        showToast("收收授权请求失败");
+                        showToast("授权请求失败");
                     },
                     complete: function (res) {
                     }
@@ -157,7 +157,7 @@ function authorization(type, callback, immediately) {
 
                     },
                     fail: function (error) {
-                        showToast("收收授权请求失败");
+                        showToast("授权请求失败");
                     },
                     complete: function (res) {
                     }
