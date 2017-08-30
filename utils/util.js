@@ -40,6 +40,15 @@ function https(url, type, data, callBack, header) {
                 if (res.statusCode === 401) {
                     showToast("收收请求未授权");
                 }
+                //错误日志统一处理 保存到服务器数据库
+                if (res.data.code != 1001) {
+                    getErrorlog({
+                        url: url,
+                        content: "微信小程序日志原因:" + res.data.message + ", 接口参数:" + JSON.stringify(data)
+                    }, function (data) {
+                        console.log(data);
+                    })
+                }
             }
 
         })
@@ -779,6 +788,31 @@ function getProductList(that, callback) {
             callback.call(this, data)
         }
     )
+}
+
+/**
+ * 错误信息收集 传到服务器
+ */
+function getErrorlog(data, callback) {
+    var that = this;
+    wx.request({
+        url: app.globalData.api + "/api/util/errorlog",
+        method: "POST",
+        data: {
+            key: wx.getStorageSync('userid') || "",
+            url: data.url,
+            content: data.content,
+            isHideLoad: true
+        },
+        header: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + wx.getStorageSync('token')
+        },
+        success: function (res) {
+            var data = res.data;
+            callback.call(that, data)
+        }
+    })
 }
 
 /**
