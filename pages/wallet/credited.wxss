@@ -4,7 +4,7 @@
     border: 1px solid #33cd5f;
     border-radius: 2px;
     font-size: 0.7rem;
-    padding:0 2px;
+    padding:1px 2px 0;
     color: #33cd5f;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -16,7 +16,7 @@
     border: 1px solid #f26604;
     border-radius: 2px;
     font-size: 0.7rem;
-    padding:0 2px;
+    padding:1px 2px 0;
     color: #f26604;
     overflow: hidden;
     text-overflow: ellipsis;
