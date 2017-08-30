@@ -114,6 +114,22 @@ Page({
 
     },
     /**
+     * 用户是否存在
+     */
+    isUserExist: function () {
+        var that = this;
+        util.https(app.globalData.api + "/api/user/exist/" + inputContent.user, "GET", {},
+            function (data) {
+                if (data.code == 1001) {
+                    util.toolTip(that, "注册账号已存在,请重新输入");
+                    that.setData({
+                        vcdisabled: true
+                    })
+                }
+            }
+        )
+    },
+    /**
      * 注册提交
      */
     registerSubmit: function (e) {
@@ -136,7 +152,7 @@ Page({
                     required: true,
                 },
                 invitecode: {
-                    required:that.data.addressone.isinvitecode=="0"? true:false,
+                    required: that.data.addressone.isinvitecode == "0" ? true : false,
                 }
             },
             {
@@ -184,7 +200,7 @@ Page({
                 openID: wx.getStorageSync("openid"),
                 invitecode: inputContent.invitecode,
                 services: [1],
-                areacode:that.data.addressone.ID
+                areacode: that.data.addressone.ID
             }
             console.log(register);
             util.https(app.globalData.api + "/api/user/regnew", "POST", register,

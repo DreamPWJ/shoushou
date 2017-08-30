@@ -4,7 +4,7 @@
     <view class="list card ">
         <view class="item item-input">
             <text class=" iconfont icon-my placeholder-icon"></text>
-            <input type="number" bindinput="bindChange" id="user" name="user" maxlength="11" placeholder="手机号码"/>
+            <input type="number" bindinput="bindChange" bindblur="isUserExist" id="user" name="user" maxlength="11" placeholder="手机号码"/>
         </view>
 
         <view class="item item-input">
@@ -39,7 +39,7 @@
             <text class="h3"> 用户类型</text>
             <view class="inline ">
                 <radio-group class="radio-group" data-current="0" bindchange="radioChange">
-                    <label class="radio padding-left" wx:for="{{usertype}}">
+                    <label class="radio padding-left" wx:for="{{usertype}}" wx:for-item="item" wx:key="*this">
                         <radio value="{{item.value}}" color="#00ACFF" checked="{{item.checked}}"/>
                         {{item.name}}
                     </label>

@@ -41,7 +41,7 @@ function https(url, type, data, callBack, header) {
                     showToast("收收请求未授权");
                 }
                 //错误日志统一处理 保存到服务器数据库
-                if (res.data && res.data.code != 1001) {
+                if (res.data&&res.data.code&& res.data.code != 1001) {
                     getErrorlog({
                         url: url,
                         content: "微信小程序日志原因:" + res.data.message + ", 接口参数:" + JSON.stringify(data)
