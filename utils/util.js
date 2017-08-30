@@ -41,7 +41,7 @@ function https(url, type, data, callBack, header) {
                     showToast("请求未授权");
                 }
                 //错误日志统一处理 保存到服务器数据库
-                if (res.data&&res.data.code&& res.data.code != 1001) {
+                if (res.data && res.data.code && res.data.code != 1001) {
                     getErrorlog({
                         url: url,
                         content: "微信小程序日志原因:" + res.data.message + ", 接口参数:" + JSON.stringify(data)
@@ -234,12 +234,6 @@ function hidePartInfo(str, type) {
     }
 }
 
-/**
- * 是否登录
- */
-function isLogin() {
-    return wx.getStorageSync("userid") ? true : false;
-}
 
 /**
  * 是否登录提示
@@ -272,6 +266,9 @@ function isLoginModal(isShow) {
                 url: '/pages/account/login'
             })
         }
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -464,9 +461,15 @@ function wxLogin() {
                         },
                         function (data) {
                             if (data.code == 1001) {
-                                wx.setStorageSync("openid", data.data.OpenId);//微信openid
-                                wx.setStorageSync("userid", data.data.UserLogID);
-                                wx.setStorageSync("usersecret", data.data.usersecret);
+                                if (data.data.OpenId != null && data.data.OpenId != "") {
+                                    wx.setStorageSync("openid", data.data.OpenId);//微信openid
+                                }
+                                if (data.data.UserLogID != null && data.data.UserLogID != "") {
+                                    wx.setStorageSync("userid", data.data.UserLogID);
+                                }
+                                if (data.data.usersecret != null && data.data.usersecret != "") {
+                                    wx.setStorageSync("usersecret", data.data.usersecret);
+                                }
                                 //登录授权
                                 that.authorization(2, function (data) {
 
@@ -819,23 +822,6 @@ function getErrorlog(data, callback) {
     })
 }
 
-/**
- * 根据产品品类及是否统货取产品列表
- */
-
-/*function getProductListIsth(that, callback) {
-    this.https(app.globalData.api + "/api/product/getpronew", "GET", {
-            grpid: that.data.grpid,
-            isth: that.data.isth,
-            isHideLoad: true
-        },
-        function (data) {
-
-        }
-    ).then(function (data) {
-        callback.call(this, data)
-    })
-}*/
 
 /**
  * 获得我的里面待处理和预警订单数 银行卡以及余额
@@ -868,7 +854,6 @@ module.exports = {
     authorization: authorization,
     formatMoney: formatMoney,
     hidePartInfo: hidePartInfo,
-    isLogin: isLogin,
     isLoginModal: isLoginModal,
     showToast: showToast,
     showModal: showModal,
@@ -887,7 +872,6 @@ module.exports = {
     uploadActionSheet: uploadActionSheet,
     uploadFile: uploadFile,
     getProductList: getProductList,
-    /*    getProductListIsth: getProductListIsth,*/
     getUserSum: getUserSum,
     makePhoneCall: makePhoneCall
 }

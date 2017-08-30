@@ -32,7 +32,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        util.isLoginModal();
+        //是否登录
+        if(util.isLoginModal()) return;
         var that = this;
         that.setData({
             page: 1

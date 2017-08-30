@@ -29,7 +29,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        util.isLoginModal();
+        //是否登录
+        if(util.isLoginModal()) return;
         //获取订单列表详情
         this.getOrderDetails(this.data.orderno);
     },
