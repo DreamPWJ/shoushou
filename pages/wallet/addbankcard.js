@@ -150,21 +150,20 @@ Page({
      * 焦点失去 根据输入的银行卡号获取银行信息
      */
     getBankinfo: function () {
-        /*        var that = this;
-                if (inputContent.accountno && inputContent.accountno.length > 15) {
-                    util.https(app.globalData.api + "/api/bank/get_cardinfo/" + inputContent.accountno, "GET", {},
-                        function (data) {
-                            if (data.code == 1001) {
-                                var issname=data.data.issname;
-                                that.setData({
-                                    bankname: issname? issname : ""
-                                })
-                            } else {
-                                util.toolTip(that, data.message);
-                            }
-                        }
-                    )
-                }*/
+        var that = this;
+        if (inputContent.accountno && inputContent.accountno.length > 15) {
+            util.https(app.globalData.api + "/api/bank/get_cardinfo/" + inputContent.accountno, "GET", {},
+                function (data) {
+                    if (data.code == 1001) {
+                        that.setData({
+                            bankname:data.data.issname
+                        })
+                    } else {
+                        util.toolTip(that, data.message);
+                    }
+                }
+            )
+        }
     },
     /**
      * 用户提交
@@ -224,7 +223,7 @@ Page({
             //提交数据
             var data = {
                 id: 0, 	// id
-                bankname: inputContent.bankname,	//银行名称
+                bankname:that.data.bankname||inputContent.bankname,	//银行名称
                 userid: wx.getStorageSync("userid"),	//用户id
                 branchname: inputContent.branchname,	//支行名称
                 accountno: inputContent.accountno,	//银行帐号

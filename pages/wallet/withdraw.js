@@ -123,9 +123,10 @@ Page({
      * 全部提现
      */
     allWithdrawal: function () {
+        var allmoney=this.data.userSum.account.replace(/,/g,'');
         this.setData({
-            allmoney: this.data.userSum.account,
-            inputmoney: this.data.userSum.account
+            allmoney: allmoney,
+            inputmoney: allmoney
         })
     },
     /**
@@ -134,14 +135,13 @@ Page({
     withdrawSubmit: function (e) {
 
         var that = this;
-        console.log(that.data.userSum.account);
         //验证表单
         that.WxValidate = new WxValidate({
                 money: {  //验证规则 input name值
                     required: true,
                     money: true,
                     min: 3,
-                    max: Number(that.data.userSum.account),
+                    max: Number(that.data.userSum.account.replace(/,/g,'')),
                 }
             },
             {

@@ -19,7 +19,7 @@
                class="item {{isOrganizingData?'':'item-icon-right'}}">
         <view class="h2">会员类型
             <view class="item-note ">{{usertype!=0?services:''}}
-                <text class="positive">{{!isOrganizingData?'去完善信息':''}}</text>
+                <text wx:if="{{!isOrganizingData}}" class="positive">去完善信息</text>
             </view>
         </view>
         <text wx:if="{{!isOrganizingData}}" class="icon-accessory iconfont icon-right "></text>
@@ -27,7 +27,7 @@
 
     <navigator url="updateuser?sex={{userdata.sex}}" open-type="navigate" class="item  item-icon-right">
         <view class="h2">性别
-            <text class="item-note">{{userdata.sex==0?'保密':(userdata.sex==1?'男':'女')}}</text>
+            <text class="item-note">{{userdata.sex==0?'保密':(userdata.sex==1?'男':(userdata.sex==2?'女':''))}}</text>
         </view>
         <text class="icon-accessory iconfont icon-right "></text>
     </navigator>

@@ -7,7 +7,7 @@
                    placeholder="银行卡号" bindblur="getBankinfo" />
         </view>
         <view class="item item-input">
-            <input type="text" bindinput="bindChange" id="bankname" name="bankname" maxlength="10" placeholder="银行名称"/>
+            <input type="text" bindinput="bindChange" id="bankname" name="bankname" value="{{bankname}}" disabled="{{bankname}}" maxlength="10" placeholder="银行名称"/>
         </view>
         <view class="item item-input">
             <input type="text" bindinput="bindChange" id="branchname" name="branchname" maxlength="15"

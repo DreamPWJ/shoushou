@@ -295,6 +295,7 @@ button::after {
 }
 
 .tool-tip-message {
+    display: inline-block;
     background-color: #ef473a;
     color: #ffffff;
     text-align: center;
@@ -305,6 +306,7 @@ button::after {
 }
 
 .tool-tip-message-success {
+    display: inline-block;
     background-color: #00ACFF;
     color: #ffffff;
     text-align: center;
