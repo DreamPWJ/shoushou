@@ -12,9 +12,6 @@ App({
         })
         //监听网络状态变化
         wx.onNetworkStatusChange(function (res) {
-            console.log(res.isConnected)
-            console.log(res.networkType)
-
             if (res.isConnected) {
                 if (res.networkType == '2g')
                     wx.showToast({
@@ -65,6 +62,6 @@ App({
         imgUrl: "http://f.boolv.com",//图片服务地址
         mobApi: "https://s.boolv.com",//手机服务地址
         gaoDeKey: '972cafdc2472d8f779c5274db770ac22',//高德web API服务key
-        version: '0.3.0' //当前版本号
+        version: '0.5.0' //当前版本号
     }
 })

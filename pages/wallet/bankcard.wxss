@@ -24,7 +24,7 @@ page {
 .h1 {
     background-color: inherit;
     padding: 0.2rem 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 .add.list, .add.list .item {
@@ -48,4 +48,13 @@ page {
 
 .icon-add {
     font-size: 1.3rem !important;
+}
+
+.bank-logo-bg {
+    position: absolute;
+    top: 1%;
+    right: 28%;
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.1);
+    z-index: 9999;
 }

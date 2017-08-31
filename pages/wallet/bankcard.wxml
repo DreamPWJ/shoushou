@@ -15,6 +15,7 @@
                     <view class="p">{{item.branchname}}</view>
                 </view>
                 <view class="h1 text-right">{{item.accountno}}</view>
+                <text class="bank-logo-bg iconfont {{item.logo}}"></text>
             </view>
 
         </radio-group>
