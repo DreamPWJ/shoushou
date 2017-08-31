@@ -105,7 +105,7 @@ Page({
                 }
 
                 that.setData({
-                    hasData: data.data.page_count == that.data.page ? false : true,
+                    hasData: data.data.page_count <= that.data.page ? false : true,
                     isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                     creditedList: that.data.creditedList.map(function (item) {
                         item.addtime = new Date(item.addtime.replace(/T/g, " ").replace(/-/g,"/")).Format("yyyy-MM-dd")

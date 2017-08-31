@@ -14,7 +14,8 @@ Page({
         hasUnfData: false,
         hasData: false,
         unfinishedOrderList: [],
-        orderList: []
+        orderList: [],
+        swiperBoxHeight: wx.getStorageSync('systeminfo').windowHeight-48
     },
 
     /**
@@ -36,7 +37,7 @@ Page({
      */
     onShow: function () {
         //是否登录
-        if(util.isLoginModal()) return;
+        if (util.isLoginModal()) return;
 
         var that = this;
         that.setData({
@@ -129,7 +130,7 @@ Page({
     evaluate: function (e) {
         var items = e.currentTarget.dataset.items;
         wx.navigateTo({
-            url: "/pages/order/evaluate?no="+items.djno+'&type='+items.type
+            url: "/pages/order/evaluate?no=" + items.djno + '&type=' + items.type
         })
     },
     /**
@@ -137,7 +138,7 @@ Page({
      */
     getOrderList: function (page) {
         var that = this;
-        util.https(app.globalData.api + "/api/dengji/getlist/" + page + "/" + 10, "GET", {
+        util.https(app.globalData.api + "/api/dengji/getlist/" + page + "/" + 8, "GET", {
                 DJNo: "",//登记单号(可为空)
                 Type: "",//类型1.登记信息 2.登记货源(可为空)
                 ORuserid: "",//接单人
@@ -173,12 +174,12 @@ Page({
 
                 if (that.data.currentTab == 0) {//未完成订单
                     that.setData({
-                        hasUnfData: data.data.page_count == that.data.unfpage ? false : true,
+                        hasUnfData: data.data.page_count <= that.data.unfpage ? false : true,
                         isNotunfinishedData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                         unfinishedOrderList: that.data.unfinishedOrderList.map(function (item) {
                             item.orname = item.type == 1 ? util.hidePartInfo(item.orname, 'name') : item.orname
-                            item.addtime = new Date(item.addtime.replace(/T/g, " ").replace(/-/g,"/")).Format("yyyy-MM-dd HH:mm")
-                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ").replace(/-/g,"/")).Format("yyyy-MM-dd")
+                            item.addtime = new Date(item.addtime.replace(/T/g, " ").replace(/-/g, "/")).Format("yyyy-MM-dd HH:mm")
+                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ").replace(/-/g, "/")).Format("yyyy-MM-dd")
                             return item
                         }),
                         orderList: []
@@ -187,13 +188,13 @@ Page({
                 }
                 if (that.data.currentTab == 1) {//所有订单
                     that.setData({
-                        hasData: data.data.page_count == that.data.page ? false : true,
+                        hasData: data.data.page_count <= that.data.page ? false : true,
                         isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                         unfinishedOrderList: [],
                         orderList: that.data.orderList.map(function (item) {
                             item.orname = item.type == 1 && item.orname ? util.hidePartInfo(item.orname, 'name') : item.orname
-                            item.addtime = new Date(item.addtime.replace(/T/g, " ").replace(/-/g,"/")).Format("yyyy-MM-dd HH:mm")
-                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ").replace(/-/g,"/")).Format("yyyy-MM-dd")
+                            item.addtime = new Date(item.addtime.replace(/T/g, " ").replace(/-/g, "/")).Format("yyyy-MM-dd HH:mm")
+                            item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ").replace(/-/g, "/")).Format("yyyy-MM-dd")
                             return item
                         })
                     })

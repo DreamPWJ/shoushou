@@ -225,7 +225,7 @@ Page({
                 }
 
                 that.setData({
-                    hasData: data.data.page_count == that.data.page ? false : true,
+                    hasData: data.data.page_count <= that.data.page ? false : true,
                     isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                     bankCardList: that.data.bankCardList.map(function (item) {
                         item.logo = "icon-yinhang";

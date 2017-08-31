@@ -6,7 +6,7 @@
 </view>
 
 <swiper current="{{currentTab}}" class="swiper-box" duration="200"
-        style="height:{{(currentTab==0?unfinishedOrderList.length:orderList.length)*125}}px"
+        style="height:{{((currentTab==0?unfinishedOrderList.length:orderList.length)*125)||swiperBoxHeight}}px"
         bindchange="bindChange">
     <!-- 未完成订单 -->
     <swiper-item>
