@@ -16,7 +16,7 @@
                     hover-class="button-hover">{{paracont}}
             </button>
         </view>
-        <view wx:if="{{addressone.isinvitecode == '1'}}" class="item item-input">
+        <view wx:if="{{addressone.isinvitecode == 0}}" class="item item-input">
             <text class=" iconfont  icon-cascades placeholder-icon"></text>
             <input type="number" bindinput="bindChange" id="invitecode" name="invitecode" placeholder="邀请码"
                    maxlength="6"/>
