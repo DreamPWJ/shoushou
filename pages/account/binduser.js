@@ -96,7 +96,7 @@ Page({
      * 用户是否存在
      */
     isUserExist: function () {
-        var that = this;
+/*        var that = this;
         util.https(app.globalData.api + "/api/user/exist/" + inputContent.user, "GET", {},
             function (data) {
                 if (data.code == 1001) {
@@ -106,7 +106,7 @@ Page({
                     })
                 }
             }
-        )
+        )*/
     },
     /**
      * 绑定提交

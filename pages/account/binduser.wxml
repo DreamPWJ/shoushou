@@ -4,7 +4,7 @@
     <view class="list card ">
         <view class="item item-input">
             <text class=" iconfont icon-my placeholder-icon"></text>
-            <input type="number" bindinput="bindChange" bindblur="isUserExist" id="user" name="user" maxlength="11" placeholder="手机号码"/>
+            <input type="number" bindinput="bindChange"  id="user" name="user" maxlength="11" placeholder="手机号码"/>
         </view>
 
         <view class="item item-input">
