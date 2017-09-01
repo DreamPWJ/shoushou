@@ -2,22 +2,22 @@
 <include src="../util/tooltip.wxml"/>
 <view>
     <view class="row row-center   header">
-        <view class="col-75 col-offset-5 light">
+        <view class="col-80 col-offset-5 light">
             <view  style="font-size: 0.8rem!important;">账号总金额(元)</view>
-            <view class="padding-top " style="font-size: 2.5rem!important;">{{userSum.totalamount}}</view>
+            <view class="padding-top nowrap" style="font-size: 2.5rem!important;">{{userSum.totalamount}}</view>
         </view>
-        <view class="col-20 text-center">
+        <view class="col-15 text-center">
             <text class="icon iconfont icon-balance " style="color: #FFD700;font-size: 1.9rem!important;"></text>
         </view>
     </view>
     <view class="row row-center text-center row-no-padding light-bg  sub-header">
         <view class="col-50  ">
             <text>可用余额(元)</text>
-            <view>{{userSum.account}}</view>
+            <view class="nowrap">{{userSum.account}}</view>
         </view>
         <navigator url="credited" open-type="navigate"  class="col-50 ">
             <text>待入账金额(元)</text>
-            <view>{{userSum.trzaccount}}</view>
+            <view class="nowrap">{{userSum.trzaccount}}</view>
         </navigator>
     </view>
     <view class="padding-top"></view>

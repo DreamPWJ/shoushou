@@ -478,6 +478,8 @@ function wxLogin() {
                                 that.getUserInfo(function () {
 
                                 });
+                            } else {
+                                showToast(data.message)
                             }
 
                         })
