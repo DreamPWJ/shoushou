@@ -43,11 +43,11 @@ Page({
         wx.removeStorageSync("user");
         wx.removeStorageSync("token");
         wx.removeStorageSync("expires_in");
-/*        wx.removeStorageSync("openid");*/
+        /*        wx.removeStorageSync("openid");*/
         //接口API授权 type 1.是公共授权  2.登录授权
         util.authorization(1, function () {
             //微信授权登录
-          /*  util.wxLogin();*/
+            util.wxLogin();
         }, true)
     },
 
