@@ -448,7 +448,7 @@ function swichNav(e, that) {
 function wxLogin() {
     var that = this;
     //调用接口获取登录凭证（code）进而换取用户登录态信息，包括用户的唯一标识（openid）
-    if (!wx.getStorageSync("openid")) { //初次授权登录 获取openid
+    if (!(wx.getStorageSync("openid")&&wx.getStorageSync("userid"))) { //微信授权登录 获取openid
         wx.login({
             success: function (res) {
                 if (res.code) {
@@ -470,14 +470,17 @@ function wxLogin() {
                                 if (data.data.usersecret != null && data.data.usersecret != "") {
                                     wx.setStorageSync("usersecret", data.data.usersecret);
                                 }
-                                //登录授权
-                                that.authorization(2, function (data) {
+                                if (wx.getStorageSync("userid")) {//如果已登录
+                                    //登录授权
+                                    that.authorization(2, function (data) {
 
-                                }, true);
-                                //根据会员ID获取会员账号基本信息
-                                that.getUserInfo(function () {
+                                    }, true);
+                                    //根据会员ID获取会员账号基本信息
+                                    that.getUserInfo(function () {
 
-                                });
+                                    });
+                                }
+
                             } else {
                                 showToast(data.message)
                             }
