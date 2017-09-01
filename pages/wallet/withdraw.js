@@ -63,8 +63,6 @@ Page({
                                 defaultBank: defaultBank,
                                 showBank: defaultBank.bankname + "(" + defaultBank.accountno.substring(defaultBank.accountno.length - 4) + ")"
                             })
-                        } else {
-                            util.toolTip(that, data.message)
                         }
 
                     }
@@ -123,7 +121,7 @@ Page({
      * 全部提现
      */
     allWithdrawal: function () {
-        var allmoney=this.data.userSum.account.replace(/,/g,'');
+        var allmoney = this.data.userSum.account.replace(/,/g, '');
         this.setData({
             allmoney: allmoney,
             inputmoney: allmoney
@@ -135,13 +133,18 @@ Page({
     withdrawSubmit: function (e) {
 
         var that = this;
+        if (!that.data.defaultBank) {
+            util.toolTip(that, "没有添加银行卡");
+            return;
+        }
+
         //验证表单
         that.WxValidate = new WxValidate({
                 money: {  //验证规则 input name值
                     required: true,
                     money: true,
                     min: 3,
-                    max: Number(that.data.userSum.account.replace(/,/g,'')),
+                    max: Number(that.data.userSum.account.replace(/,/g, '')),
                 }
             },
             {
