@@ -5,7 +5,7 @@
 }
 
 .header {
-    height: 6rem;
+    height: 7rem;
     background-color: #00ACFF;
 }
 
