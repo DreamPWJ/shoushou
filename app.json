@@ -17,6 +17,7 @@
     "pages/account/account",
     "pages/account/login",
     "pages/account/register",
+    "pages/account/binduser",
     "pages/account/areainfofee",
     "pages/account/accountinfo",
     "pages/account/organizingdata",
