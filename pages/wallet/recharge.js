@@ -81,8 +81,11 @@ Page({
      * 用户支付
      */
     paymentSubmit: function (e) {
-
         var that = this;
+        if (inputContent.money == 0) {
+            util.toolTip(that, "充值金额不能为零")
+            return;
+        }
         //验证表单
         that.WxValidate = new WxValidate({
                 money: {  //验证规则 input name值

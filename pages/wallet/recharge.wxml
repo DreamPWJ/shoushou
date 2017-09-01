@@ -2,7 +2,7 @@
 <include src="../util/tooltip.wxml"/>
 <form bindsubmit="paymentSubmit">
     <view class="padding-top"></view>
-    <view class="list has-bottom-button">
+    <view class="list ">
         <label class="item item-input">
             <view class="input-label "> 充值金额</view>
             <input type="digit" bindinput="bindChange" id="money" name="money" placeholder="请输入充值金额"/>
@@ -18,7 +18,7 @@
         </radio-group>
     </view>
 
-    <view class="padding light-bg fixed-bottom">
+    <view class="padding ">
         <button class="positive-bg light "
                 formType="submit">充值
         </button>

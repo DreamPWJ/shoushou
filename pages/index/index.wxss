@@ -7,7 +7,11 @@
 .new-topbj {
     background-color: #00A0FE;
     background-size: cover;
-    padding-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+}
+
+swiper {
+    height: 10rem;
 }
 
 .slide-image {
@@ -16,9 +20,9 @@
 
 .new-topbj .sub-total {
     position: relative;
-    margin-top: -0.3rem;
-    background: -webkit-linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+    margin-top: -1rem;
+    /*    background: -webkit-linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));*/
     background-color: rgba(255, 255, 255, 0.1) !important;
     background-size: cover;
     padding: 10px 5px;
@@ -31,7 +35,7 @@
 }
 
 .new-topbj .total .num {
-    font-size: 1.4rem !important;
+    font-size: 1.3rem !important;
 }
 
 .new-topbj .sub-total .p:first-child {
