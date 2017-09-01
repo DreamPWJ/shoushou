@@ -3,7 +3,15 @@
 var app = getApp();
 var util = require('../../utils/util.js');
 Page({
-    data: {},
+    data: {
+        imgUrls: [
+            '../../images/index/banner.jpg'
+        ],
+        indicatorDots: false,
+        autoplay: true,
+        interval: 3000,
+        duration: 500
+    },
 
     /**
      * 生命周期函数--监听页面加载
