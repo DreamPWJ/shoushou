@@ -54,8 +54,8 @@
         <button formType="submit" hover-class="button-hover" class="positive-bg light ">登录</button>
     </view>
     <view class="row row-horizontal-center  margin-top">
-        <navigator url="register" open-type="navigate" hover-class="none"
-                   class="col-30 positive text-right padding-right  border-r">注册收收
+        <navigator url="binduser" open-type="navigate" hover-class="none"
+                   class="col-30 positive text-right padding-right  border-r">绑定账号
         </navigator>
         <navigator url="findpassword" open-type="navigate" hover-class="none" class="col-30 padding-left">忘记密码
         </navigator>

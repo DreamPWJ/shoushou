@@ -448,7 +448,7 @@ function swichNav(e, that) {
 function wxLogin() {
     var that = this;
     //调用接口获取登录凭证（code）进而换取用户登录态信息，包括用户的唯一标识（openid）
-    if (!(wx.getStorageSync("openid")&&wx.getStorageSync("userid"))) { //微信授权登录 获取openid
+    if (!(wx.getStorageSync("openid") && wx.getStorageSync("userid"))) { //微信授权登录 获取openid
         wx.login({
             success: function (res) {
                 if (res.code) {
@@ -479,6 +479,10 @@ function wxLogin() {
                                     that.getUserInfo(function () {
 
                                     });
+                                } else { //绑定账号
+                                    wx.navigateTo({
+                                        url: '/pages/account/binduser'
+                                    })
                                 }
 
                             } else {
@@ -510,9 +514,7 @@ function getUserInfo(callback) {
                 if (services == null || services.length == 0) {//旧会员 完善信息
                     that.showModal('收收提示', '尊敬的用户,您好！旧会员需完善资料后才能进行更多的操作！', '完善资料', '暂不完善', function (res) {
                         if (res.confirm) {
-                            wx.navigateTo({
-                                url: '/pages/account/organizingdata'
-                            })
+
                         }
                     })
 

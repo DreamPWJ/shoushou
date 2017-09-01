@@ -1,4 +1,3 @@
-
 var app = getApp();
 var util = require('../../utils/util.js');
 import WxValidate from '../../utils/validate';
@@ -13,15 +12,6 @@ Page({
         paracont: "获取验证码",//验证码文字
         vcdisabled: true,//验证码按钮状态
         verifycode: "",//返回的验证码
-        usertype: [  //用户类型
-            {value: 1, name: '信息提供者', checked: 'true'},
-            /*         {value: 2, name: '回收商'}*/
-        ],
-        utitem: [ //用户类型数组
-            {value: 2, name: '上门回收者'},
-            {value: 3, name: '货场'},
-            {value: 4, name: '二手商家'},
-        ]
     },
 
     /**
@@ -83,16 +73,6 @@ Page({
 
     },
     /**
-     * radio发生change事件
-     */
-    radioChange: function (e) {
-        if (e.target.dataset.current == 0) {
-            console.log('用户类型radio发生change事件，携带value值为：', e.detail.value)
-        } else if (e.target.dataset.current == 1) {
-            console.log('回收商类型radio发生change事件，携带value值为：', e.detail.value)
-        }
-    },
-    /**
      * 获取用户输入
      */
     bindChange: function (e) {
@@ -120,7 +100,7 @@ Page({
         util.https(app.globalData.api + "/api/user/exist/" + inputContent.user, "GET", {},
             function (data) {
                 if (data.code == 1001) {
-                    util.toolTip(that, "注册账号已存在,请重新输入");
+                    util.toolTip(that, "账号已存在,请重新输入");
                     that.setData({
                         vcdisabled: true
                     })
@@ -129,23 +109,15 @@ Page({
         )
     },
     /**
-     * 注册提交
+     * 绑定提交
      */
-    registerSubmit: function (e) {
+    binduserSubmit: function (e) {
         var that = this;
         //验证表单
         that.WxValidate = new WxValidate({
                 user: {  //验证规则 input name值
                     required: true,
                     tel: true
-                },
-                password: {
-                    required: true,
-                    minlength: 6
-                },
-                confirmpassword: {
-                    required: true,
-                    minlength: 6
                 },
                 verifycode: {
                     required: true,
@@ -158,14 +130,6 @@ Page({
                 user: { //提示信息
                     required: "请填写手机号码",
                 },
-                password: { //提示信息
-                    required: "请填写密码",
-                    minlength: "密码至少输入6个字符"
-                },
-                confirmpassword: { //提示信息
-                    required: "请填写确认密码",
-                    minlength: "确认密码至少输入6个字符"
-                },
                 verifycode: { //提示信息
                     required: "请填写验证码"
                 },
@@ -177,10 +141,7 @@ Page({
 
         util.wxValidate(e, that, function () {
             /*     console.log(wx.getSystemInfoSync().platform);*/
-            if (inputContent.confirmpassword != inputContent.password) {
-                util.toolTip(that, "两次输入的密码不一致")
-                return;
-            }
+
             if (that.data.verifycode != inputContent.verifycode) {
                 util.toolTip(that, "验证码输入不正确")
                 return;
@@ -192,8 +153,8 @@ Page({
             //注册数据
             var register = {
                 account: inputContent.user,
-                password: inputContent.password,
-                confirmpassword: inputContent.confirmpassword,
+                password: "",
+                confirmpassword: "",
                 code: inputContent.verifycode,
                 client: 3,
                 openID: wx.getStorageSync("openid"),
@@ -202,7 +163,7 @@ Page({
                 areacode: that.data.addressone.ID
             }
             console.log(register);
-            util.https(app.globalData.api + "/api/user/regnew", "POST", register,
+            util.https(app.globalData.api + "/api/user/bind_user", "POST", register,
                 function (data) {
                     if (data.code == 1001) {
                         wx.setStorageSync("userid", data.data.userid);
@@ -210,10 +171,7 @@ Page({
 
                         //接口API授权 type 1.是公共授权  2.登录授权
                         util.authorization(2, function () {
-                            util.toolTip(that, "注册成功", 1, "/pages/index/index", 'reLaunch');//直接登录
-                            /*           wx.navigateTo({ //完善资料
-                                           url: '/pages/account/organizingdata'
-                                       })*/
+                            util.toolTip(that, "绑定成功", 1, "/pages/index/index", 'reLaunch');//直接登录
                             //根据会员ID获取会员账号基本信息
                             util.getUserInfo(function (data) {
 
