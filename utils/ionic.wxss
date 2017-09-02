@@ -213,7 +213,7 @@
 
 .item.item-positive {
     border-color: #008acc;
-    background-color: #00ACFF;
+    background-color: #00A0FE;
     color: #fff;
 }
 
@@ -1315,11 +1315,11 @@ a.item:hover, a.item:focus {
 }
 
 .positive, a.positive {
-    color: #00ACFF;
+    color: #00A0FE;
 }
 
 .positive-bg {
-    background-color: #00ACFF;
+    background-color: #00A0FE;
 }
 
 .positive-border {
@@ -1821,7 +1821,7 @@ input[type="color"] {
 
 .button.button-positive {
     border-color: transparent;
-    background-color: #00ACFF;
+    background-color: #00A0FE;
     color: #fff;
 }
 
@@ -1839,7 +1839,7 @@ input[type="color"] {
     border-color: transparent;
     background: none;
     box-shadow: none;
-    color: #00ACFF;
+    color: #00A0FE;
 }
 
 .button.button-positive.button-icon {
@@ -1848,14 +1848,14 @@ input[type="color"] {
 }
 
 .button.button-positive.button-outline {
-    border-color: #00ACFF;
+    border-color: #00A0FE;
     background: transparent;
-    color: #00ACFF;
+    color: #00A0FE;
 }
 
 .button.button-positive.button-outline.active,
 .button.button-positive.button-outline.activated {
-    background-color: #00ACFF;
+    background-color: #00A0FE;
     box-shadow: none;
     color: #fff;
 }

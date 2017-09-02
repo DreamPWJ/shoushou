@@ -6,7 +6,7 @@
 
 .header {
     height: 7rem;
-    background-color: #00ACFF;
+    background-color: #00A0FE;
 }
 
 .sub-header .col-50 {

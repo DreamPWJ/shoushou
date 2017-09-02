@@ -229,7 +229,7 @@ Page({
                     isNotData: (data.data == null || data.data.data_list.length == 0) ? true : false,
                     bankCardList: that.data.bankCardList.map(function (item) {
                         item.logo = "icon-yinhang";
-                        item.bgcolor = "#00ACFF";
+                        item.bgcolor = "#00A0FE";
                         item.accountno = util.hidePartInfo(item.accountno, "bankcard")
                         that.data.bankJsonArr.map(function (items) {
                             if (items.name.indexOf(item.bankname) != -1 || item.bankname.indexOf(items.name) != -1) {
