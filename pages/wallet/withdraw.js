@@ -164,10 +164,10 @@ Page({
                 },
                 function (data) {
                     if (data.code == 1001) {
-                        util.toolTip(that, "提现成功", 1);
-                        wx.switchTab({
-                            url: '/pages/wallet/wallet'
-                        })
+                        util.toolTip(that, "提现成功", 1, 'back');
+                        /*          wx.switchTab({
+                                      url: '/pages/wallet/wallet'
+                                  })*/
                     } else {
                         util.toolTip(that, data.message)
                     }
