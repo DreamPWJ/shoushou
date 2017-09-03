@@ -16,15 +16,15 @@
                     hover-class="button-hover">{{paracont}}
             </button>
         </view>
-        <view wx:if="{{addressone.isinvitecode == 0}}" class="item item-input">
+        <view  class="item item-input">
             <text class=" iconfont  icon-cascades placeholder-icon"></text>
-            <input type="number" bindinput="bindChange" id="invitecode" name="invitecode" placeholder="邀请码"
+            <input type="number" bindinput="bindChange" id="invitecode" name="invitecode" placeholder="邀请码{{addressone.isinvitecode == 1?'(选填)':''}}"
                    maxlength="6"/>
         </view>
     </view>
 
     <view class="padding-horizontal">
-        <button formType="submit" class="positive-bg light " hover-class="button-hover">绑定</button>
+        <button formType="submit" class="positive-bg light " hover-class="button-hover">登录</button>
     </view>
 
 </form>

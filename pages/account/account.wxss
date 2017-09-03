@@ -6,7 +6,7 @@
 }
 
 .user {
-    height: 2.5rem !important;
+    height: 2.6rem !important;
 }
 
 .user .h2, .user .p, .user .icon-right {

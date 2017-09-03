@@ -15,15 +15,15 @@ App({
             if (res.isConnected) {
                 if (res.networkType == '2g')
                     wx.showToast({
-                        title: "当前2G网络 为了不影响您的使用 请切换到4G或wifi",
+                        title: "当前2G网络 为了不影响您使用 请切换4G或wifi",
                         icon: "loading",
-                        duration: 2000
+                        duration: 2500
                     })
             } else {
                 wx.showToast({
-                    title: "网络无法连接 请刷新重试",
+                    title: "网络无法连接 请检查网络设置",
                     icon: "loading",
-                    duration: 2000
+                    duration: 2500
                 })
             }
 
@@ -62,6 +62,6 @@ App({
         imgUrl: "http://f.boolv.com",//图片服务地址
         mobApi: "https://s.boolv.com",//手机服务地址
         gaoDeKey: '972cafdc2472d8f779c5274db770ac22',//高德web API服务key
-        version: '0.7.6' //当前版本号
+        version: '0.7.9' //当前版本号
     }
 })
