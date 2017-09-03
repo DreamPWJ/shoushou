@@ -12,6 +12,7 @@ Page({
         paracont: "获取验证码",//验证码文字
         vcdisabled: true,//验证码按钮状态
         verifycode: "",//返回的验证码
+        isUserExist:false
     },
 
     /**
@@ -96,17 +97,20 @@ Page({
      * 用户是否存在
      */
     isUserExist: function () {
-/*        var that = this;
-        util.https(app.globalData.api + "/api/user/exist/" + inputContent.user, "GET", {},
+        var that = this;
+        util.https(app.globalData.api + "/api/user/exist/" + inputContent.user, "GET", {isHideLoad: true},
             function (data) {
                 if (data.code == 1001) {
-                    util.toolTip(that, "账号已存在,请重新输入");
                     that.setData({
-                        vcdisabled: true
+                        isUserExist: true
                     })
+                    /*           util.toolTip(that, "账号已存在,请重新输入");
+                               that.setData({
+                                   vcdisabled: true
+                               })*/
                 }
             }
-        )*/
+        )
     },
     /**
      * 绑定提交
@@ -123,7 +127,7 @@ Page({
                     required: true,
                 },
                 invitecode: {
-                    required: that.data.addressone.isinvitecode == "0" ? true : false,
+                    required:that.data.isUserExist?false:(that.data.addressone.isinvitecode == "0" ? true : false),
                 }
             },
             {
