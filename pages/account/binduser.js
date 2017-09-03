@@ -175,7 +175,7 @@ Page({
 
                         //接口API授权 type 1.是公共授权  2.登录授权
                         util.authorization(2, function () {
-                            util.toolTip(that, "绑定成功", 1, "/pages/index/index", 'reLaunch');//直接登录
+                            util.toolTip(that, "登录成功", 1, "/pages/index/index", 'reLaunch');//直接登录
                             //根据会员ID获取会员账号基本信息
                             util.getUserInfo(function (data) {
 
