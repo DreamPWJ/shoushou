@@ -198,6 +198,7 @@ text, input {
 
 .item-small {
     padding: 8px 16px !important;
+    min-height: 36px;
 }
 
 .border-left {

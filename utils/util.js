@@ -318,7 +318,7 @@ function toolTip(that, msg, type, url, navigationType) {
     that.setData(
         {
             popMsg: msg,
-            popType: type == 1 ? "tool-tip-message-success" : "tool-tip-message" || "tool-tip-message"
+            popType: type == 1 ? "tool-tip-message-success" : "tool-tip-message"
         }
     );
     if (url) {
