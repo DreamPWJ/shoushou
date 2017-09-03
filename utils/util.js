@@ -270,6 +270,7 @@ function isLoginModal(isShow) {
     } else {
         return false;
     }
+    return true;
 }
 
 

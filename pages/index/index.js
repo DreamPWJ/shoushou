@@ -86,7 +86,7 @@ Page({
             console.log(res.target)
         }
         return {
-            title: '收收好友分享',
+            title: '收收同行好友邀请',
             path: '/pages/index/index',
             success: function (res) {
                 // 转发成功

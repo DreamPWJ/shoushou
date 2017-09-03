@@ -40,7 +40,7 @@
             <view class="h2">我登记的信息及货源</view>
             <text class="icon-accessory iconfont icon-right"></text>
         </navigator>
-        <navigator url="../wallet/wallet" open-type="switchTab" class="item item-icon-left item-icon-right">
+<!--        <navigator url="../wallet/wallet" open-type="switchTab" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-moneybag" style="color: #FFD700"></text>
             <view class="h2">我的钱包
                 <view class="item-note">余额 ：
@@ -48,7 +48,7 @@
                 </view>
             </view>
             <text class="icon-accessory iconfont icon-right"></text>
-        </navigator>
+        </navigator>-->
         <navigator url="../news/news" open-type="switchTab" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-mark" style="color: #0ab66a"></text>
             <view class="h2">消息</view>

@@ -11,7 +11,7 @@ Page({
         wxUserInfo: wx.getStorageSync("wxUserInfo"),
         userSum: {
             account: '0.00',
-            banknum:0
+            banknum: 0
         }
     },
 
@@ -34,7 +34,7 @@ Page({
      */
     onShow: function () {
         //是否登录
-        if(util.isLoginModal()) return;
+        if (util.isLoginModal()) return;
         this.getAccountData();
     },
 
@@ -75,8 +75,8 @@ Page({
             console.log(res.target)
         }
         return {
-            title: '收收分享',
-            path: '/pages/account/account',
+            title: '提供回收信息赚现金,首次下单额外奖励',
+            path: '/pages/index/index',
             success: function (res) {
                 // 转发成功
             },

@@ -37,7 +37,7 @@
 .orderdetails .item {
     font-size: 0.9rem;
     color: #666;
-    padding: 10px 16px;
+    padding: 8px 16px;
 }
 
 .orderdetails .item.item-icon-left {

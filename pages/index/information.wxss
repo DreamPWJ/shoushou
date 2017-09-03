@@ -60,9 +60,7 @@
     border: 1px solid #00ACFF;
 }
 
-.item-small {
-    padding: 8px 16px !important;
-}
+
 
 .icon-locationfill {
     font-size: 1.5rem;

@@ -196,6 +196,10 @@ text, input {
     color: #585858 !important;
 }
 
+.item-small {
+    padding: 8px 16px !important;
+}
+
 .border-left {
     border-left: 4px solid #00ACFF;
     padding: 0 0 0 0.6rem !important;

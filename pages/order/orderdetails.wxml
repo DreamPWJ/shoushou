@@ -2,7 +2,7 @@
 <include src="../util/tooltip.wxml"/>
 <view class="{{orderDetail.state==2||orderDetail.state==3||orderDetail.state==6?'has-bottom-button':''}}">
     <view class="list">
-        <view class="item  item-icon-right " style="padding-right: 12px;">
+        <view class="item  item-small  item-icon-right ">
             {{orderDetail.orno||orderDetail.djno}}
             <text class="{{orderDetail.strstate?'phytype':''}}">{{orderDetail.strstate}}</text>
         </view>
