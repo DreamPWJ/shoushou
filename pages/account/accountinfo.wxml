@@ -31,10 +31,10 @@
         </view>
         <text class="icon-accessory iconfont icon-right "></text>
     </navigator>
-    <view class="item  ">
+<!--    <view class="item  ">
         <view class="h2">所在地区
             <text class="item-note">{{userdata.addr||''}}</text>
         </view>
-    </view>
+    </view>-->
 
 </view>
