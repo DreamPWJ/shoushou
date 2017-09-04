@@ -143,7 +143,7 @@
 }
 
 .item h2, .item .h2 {
-    margin: 0 0 2px 0;
+    margin: 0 0 3px 0;
     font-size: 16px;
     font-weight: normal;
 }
@@ -166,7 +166,7 @@
 .item p, .item .p {
     color: #666;
     font-size: 14px;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
 }
 
 .item h1:last-child, .item h2:last-child, .item h3:last-child,

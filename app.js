@@ -62,6 +62,6 @@ App({
         imgUrl: "http://f.boolv.com",//图片服务地址
         mobApi: "https://s.boolv.com",//手机服务地址
         gaoDeKey: '972cafdc2472d8f779c5274db770ac22',//高德web API服务key
-        version: '0.8.0' //当前版本号
+        version: '0.8.3' //当前版本号
     }
 })

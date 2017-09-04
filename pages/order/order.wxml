@@ -18,7 +18,7 @@
             <view class="list">
                 <navigator url="orderdetails?orderno={{item.djno}}" open-type="navigate" class="item " style="padding-right: 10px;"
                            wx:for="{{unfinishedOrderList}}" wx:for-item="item" wx:key="*this">
-                    <view class="h2" class="positive">货主 : {{item.name}} {{item.motel}}
+                    <view class="h2 positive" >货主 : {{item.name}} {{item.motel}}
                         <text class="phytype {{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
                         </text>
                     </view>
@@ -54,7 +54,7 @@
             <view class="list">
                 <navigator url="orderdetails?orderno={{item.djno}}" open-type="navigate" class="item " style="padding-right: 10px;"
                            wx:for="{{orderList}}" wx:for-item="item" wx:key="*this">
-                    <view class="h2" class="positive">货主 : {{item.name}} {{item.motel}}
+                    <view class="h2 positive" >货主 : {{item.name}} {{item.motel}}
                         <text class="phytype {{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
                         </text>
                     </view>
