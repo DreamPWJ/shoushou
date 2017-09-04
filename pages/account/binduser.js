@@ -12,7 +12,7 @@ Page({
         paracont: "获取验证码",//验证码文字
         vcdisabled: true,//验证码按钮状态
         verifycode: "",//返回的验证码
-        isUserExist:false
+        isUserExist: false
     },
 
     /**
@@ -140,7 +140,7 @@ Page({
                     required: true,
                 },
                 invitecode: {
-                    required:that.data.isUserExist?false:(that.data.addressone.isinvitecode == "0" ? true : false),
+                    required: that.data.isUserExist ? false : (that.data.addressone.isinvitecode == "0" ? true : false),
                 }
             },
             {
@@ -188,11 +188,11 @@ Page({
 
                         //接口API授权 type 1.是公共授权  2.登录授权
                         util.authorization(2, function () {
-                            util.toolTip(that, "登录成功", 1, "/pages/index/index", 'reLaunch');//直接登录
                             //根据会员ID获取会员账号基本信息
                             util.getUserInfo(function (data) {
 
                             })
+                            util.toolTip(that, "登录成功", 1, "/pages/index/index", 'reLaunch');//直接登录
                         }, true);
 
                     } else {

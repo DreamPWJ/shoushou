@@ -73,103 +73,87 @@ function https(url, type, data, callBack, header) {
  * 接口API授权 type 1.是公共授权  2.登录授权  immediately立刻执行授权
  */
 function authorization(type, callback, immediately) {
-    var timePromise1 = undefined;
-    var timePromise2 = undefined;
     var that = this;
     if (type == 1) { //1.是公共授权
-        var auth1 = function () {
-            //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
-            immediately = wx.getStorageSync("token") ? immediately : true
-            if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) >= 7199))) {
-
-                if (timePromise2) {
-                    clearInterval(timePromise2);
-                }
-                wx.request({
-                    url: app.globalData.api + "/token",
-                    method: "POST",
-                    data: {grant_type: 'client_credentials', isHideLoad: true},
-                    header: {
-                        'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    success: function (res) {
-                        var data = res.data;
-                        if (data.access_token) {
-                            wx.setStorageSync('token', data.access_token);//公共接口授权token
-                            wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
-                            wx.setStorageSync('tokentype', 1);//授权类型
-                        }
-                        callback.call(that, data)
-
-                    },
-                    fail: function (error) {
-                        showToast("授权请求失败");
-                    },
-                    complete: function (res) {
+        //获取公共接口授权token  公共接口授权token两个小时失效  超过两个小时重新请求
+        immediately = wx.getStorageSync("token") ? immediately : true
+        if (!wx.getStorageSync("userid") && (immediately || (!wx.getStorageSync("token") || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) >= 7199))) {
+            wx.request({
+                url: app.globalData.api + "/token",
+                method: "POST",
+                data: {grant_type: 'client_credentials', isHideLoad: true},
+                header: {
+                    'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (res) {
+                    var data = res.data;
+                    if (data.access_token) {
+                        wx.setStorageSync('token', data.access_token);//公共接口授权token
+                        wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
+                        wx.setStorageSync('tokentype', 1);//授权类型
                     }
-                })
+                    callback.call(that, data)
 
-            } else { //没有执行授权
-                callback.call(that)
-            }
+                },
+                fail: function (error) {
+                    showToast("授权请求失败");
+                },
+                complete: function (res) {
+                }
+            })
 
+        } else { //没有执行授权
+            callback.call(that)
         }
-        auth1();
-        timePromise1 = setInterval(auth1, 7199000);
+
     } else if (type == 2) {  //2.登录授权
-        var auth2 = function () {
-            //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
-            immediately = wx.getStorageSync("expires_in") ? immediately : true
-            if (wx.getStorageSync("userid") && (immediately || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) >= 7199)) {
-                if (timePromise1) {
-                    clearInterval(timePromise1);
-                }
-                wx.request({
-                    url: app.globalData.api + "/token",
-                    method: "POST",
-                    data: {
-                        grant_type: 'password',
-                        username: wx.getStorageSync("userid"),
-                        password: wx.getStorageSync("usersecret"),
-                        isHideLoad: true
-                    },
-                    header: {
-                        'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    success: function (res) {
-                        var data = res.data;
-                        if (data.access_token) {
-                            wx.setStorageSync('token', data.access_token);//公共接口授权token
-                            wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
-                            wx.setStorageSync('tokentype', 2);//授权类型
-                        } else {
-                            that.showModal('收收提示', '登录过期，请重新登录', '登录', '取消', function (res) {
-                                if (res.confirm) {
-                                    wx.navigateTo({
-                                        url: '/pages/account/login'
-                                    })
-                                }
-                            })
-                        }
-                        callback.call(that, data)
 
-                    },
-                    fail: function (error) {
-                        showToast("授权请求失败");
-                    },
-                    complete: function (res) {
+        //获取登录接口授权token  登录接口授权token两个小时失效  超过两个小时重新请求
+        immediately = wx.getStorageSync("expires_in") ? immediately : true
+        if (wx.getStorageSync("userid") && (immediately || ((new Date().getTime() - new Date(wx.getStorageSync("expires_in")).getTime()) / 1000) >= 7199)) {
+            wx.request({
+                url: app.globalData.api + "/token",
+                method: "POST",
+                data: {
+                    grant_type: 'password',
+                    username: wx.getStorageSync("userid"),
+                    password: wx.getStorageSync("usersecret"),
+                    isHideLoad: true
+                },
+                header: {
+                    'Authorization': 'Basic MTcwNjE0MDAwMTozNzliYjljNi1kNTYwLTQzMjUtYTQxMi0zMmIyMjRlMjg3NDc=',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (res) {
+                    var data = res.data;
+                    if (data.access_token) {
+                        wx.setStorageSync('token', data.access_token);//公共接口授权token
+                        wx.setStorageSync('expires_in', new Date());//公共接口授权token 有效时间
+                        wx.setStorageSync('tokentype', 2);//授权类型
+                    } else {
+                        that.showModal('收收提示', '登录过期，请重新登录', '登录', '取消', function (res) {
+                            if (res.confirm) {
+                                wx.navigateTo({
+                                    url: '/pages/account/login'
+                                })
+                            }
+                        })
                     }
-                })
+                    callback.call(that, data)
 
-            } else { //没有执行授权
-                callback.call(that)
-            }
+                },
+                fail: function (error) {
+                    showToast("授权请求失败");
+                },
+                complete: function (res) {
+                }
+            })
 
+        } else { //没有执行授权
+            callback.call(that)
         }
-        auth2();
-        timePromise2 = setInterval(auth2, 7199000);
+
     }
 }
 

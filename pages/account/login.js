@@ -202,9 +202,6 @@ Page({
         wx.setStorageSync("usersecret", data.data.usersecret);
         //接口API授权 type 1.是公共授权  2.登录授权
         util.authorization(2, function () {
-            wx.reLaunch({
-                url: '../index/index'
-            })
             //根据会员ID获取会员账号基本信息
             util.getUserInfo(function (data) {
                 //返回上一页
@@ -213,6 +210,9 @@ Page({
                         })*/
 
 
+            })
+            wx.reLaunch({
+                url: '/pages/index/index'
             })
         }, true);
 
