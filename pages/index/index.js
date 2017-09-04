@@ -86,7 +86,7 @@ Page({
             console.log(res.target)
         }
         return {
-            title: '收收同行好友邀请',
+            title: '提供回收信息赚现金,首次下单额外奖励',
             path: '/pages/index/index',
             success: function (res) {
                 // 转发成功

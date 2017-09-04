@@ -55,7 +55,7 @@
     </view>
     <view class="row row-horizontal-center  margin-top">
         <navigator url="binduser" open-type="navigate" hover-class="none"
-                   class="col-30 positive text-right padding-right  border-r">绑定账号
+                   class="col-30 positive text-right padding-right  border-r">绑定注册
         </navigator>
         <navigator url="findpassword" open-type="navigate" hover-class="none" class="col-30 padding-left">忘记密码
         </navigator>
