@@ -15,7 +15,7 @@ Page({
         hasData: false,
         unfinishedOrderList: [],
         orderList: [],
-        swiperBoxHeight: wx.getStorageSync('systeminfo').windowHeight-48
+        swiperBoxHeight: wx.getStorageSync('systeminfo').windowHeight - 48
     },
 
     /**
@@ -183,6 +183,20 @@ Page({
                             return item
                         }),
                         orderList: []
+                    }, function () {
+                        if (!that.data.itemHeight) {
+                            wx.createSelectorQuery().select('.item').fields({
+                                dataset: true,
+                                size: true,
+                                scrollOffset: true,
+                                properties: ['scrollX', 'scrollY']
+                            }, function (res) {
+                                that.setData({
+                                    itemHeight: res? res.height : 0
+                                })
+                            }).exec()
+                        }
+
                     })
                     that.data.unfpage++;
                 }
@@ -197,6 +211,20 @@ Page({
                             item.oraddtime = new Date(item.oraddtime.replace(/T/g, " ").replace(/-/g, "/")).Format("yyyy-MM-dd")
                             return item
                         })
+                    }, function () {
+                        if (!that.data.itemHeight) {
+                            wx.createSelectorQuery().select('.item').fields({
+                                dataset: true,
+                                size: true,
+                                scrollOffset: true,
+                                properties: ['scrollX', 'scrollY']
+                            }, function (res) {
+                                that.setData({
+                                    itemHeight: res? res.height : 0
+                                })
+                            }).exec()
+                        }
+
                     })
                     that.data.page++;
                 }
