@@ -190,10 +190,10 @@ Page({
                 mobile: wx.getStorageSync("user").mobile,
                 shopname: inputContent.shopname,
                 addrdetail: inputContent.addrdetail || that.data.addressname,//地址详情
-                addrcode: that.data.addressone.ID,
+                addrcode: that.data.addressone?that.data.addressone.ID:0,
                 img: that.data.imgsPicAddr[0],
             }
-            console.log(data);
+
             util.https(app.globalData.api + "/api/user/set_info", "POST", data,
                 function (data) {
                     if (data.code == 1001) {

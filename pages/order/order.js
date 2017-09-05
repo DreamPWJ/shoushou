@@ -200,7 +200,6 @@ Page({
                     })
                     that.data.page++;
                 }
-                console.log(that.data);
 
             }
         )

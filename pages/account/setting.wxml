@@ -25,7 +25,7 @@
             </view>
         </view>
         <view class="padding">
-            <navigator url="login" open-type="reLaunch" class="button button-light  button-full  " style="color:red;">
+            <navigator url="binduser" open-type="reLaunch" class="button button-light  button-full  " style="color:red;">
                 退出登录
             </navigator>
         </view>

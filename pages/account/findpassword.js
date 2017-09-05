@@ -149,7 +149,6 @@ Page({
                 confirmpassword: inputContent.confirmpassword,
                 code:inputContent.verifycode
             }
-            console.log(data);
 
             util.https(app.globalData.api + "/api/user/find_password", "POST", data,
                 function (data) {

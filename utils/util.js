@@ -135,7 +135,7 @@ function authorization(type, callback, immediately) {
                         that.showModal('收收提示', '登录过期，请重新登录', '登录', '取消', function (res) {
                             if (res.confirm) {
                                 wx.navigateTo({
-                                    url: '/pages/account/login'
+                                    url: '/pages/account/binduser'
                                 })
                             }
                         })
@@ -234,9 +234,8 @@ function isLoginModal(isShow) {
                 success: function (res) {
                     if (res.confirm) {
                         wx.navigateTo({
-                            url: '/pages/account/login'
+                            url: '/pages/account/binduser'
                         })
-                        console.log('用户点击确定');
                     } else if (res.cancel) {
                         //返回上一页
                         wx.navigateBack({
@@ -247,7 +246,7 @@ function isLoginModal(isShow) {
             })
         } else {
             wx.navigateTo({
-                url: '/pages/account/login'
+                url: '/pages/account/binduser'
             })
         }
         return true;
@@ -477,7 +476,7 @@ function wxLogin() {
                         })
 
                 } else {
-                    console.log('获取微信用户登录状态失败！' + res.errMsg);
+                    console.log('获取微信用户登录状态失败:' + res.errMsg);
                 }
             }
         });
@@ -699,7 +698,6 @@ function chooseLocation(that, callback) {
                 latitude: res.latitude,//纬度
                 longitude: res.longitude,//经度
             })
-            console.log(res);
             callback.call(this, res)
         }
     })
@@ -762,7 +760,6 @@ function uploadFile(res, that, callback) {
         },
         header: {"authorization": "Bearer " + wx.getStorageSync('token')}, //授权
         success: function (res) {
-            console.log(res);
             var data = JSON.parse(res.data);
             callback(data)
             //do something

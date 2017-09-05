@@ -192,7 +192,6 @@ Page({
      */
     selectBank: function (e) {
         var arr = getCurrentPages();//获取栈中全部页面的, 然后把数据写入相应页面
-        console.log(arr);
         if (arr[arr.length - 2]&&arr[arr.length - 2].route == 'pages/wallet/withdraw') {
             //返回上一页
             wx.navigateBack({

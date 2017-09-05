@@ -140,7 +140,6 @@ Page({
      * switch触发
      */
     switchChange: function (e) {
-        console.log('switch 发生 change 事件，携带值为', e.detail.value)
         this.setData({
             isdefault: e.detail.value ? 1 : 0
         })
@@ -232,7 +231,6 @@ Page({
                 serviceid: that.data.serviceid,
                 code: inputContent.verifycode
             }
-            console.log(data);
 
             util.https(app.globalData.api + "/api/bank/add", "POST", data,
                 function (data) {

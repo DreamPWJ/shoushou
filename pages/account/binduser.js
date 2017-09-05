@@ -33,6 +33,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        var that=this;
         //删除记住用户信息
         wx.removeStorageSync("userid");
         wx.removeStorageSync("usersecret");
@@ -45,7 +46,7 @@ Page({
             //微信授权登录
             util.wxLogin();
             //获取当前位置 省市县数据
-            util.getCurrentCity(this, 2, function (data) {
+            util.getCurrentCity(that, 2, function (data) {
 
             })
         }, true)
@@ -140,7 +141,7 @@ Page({
                     required: true,
                 },
                 invitecode: {
-                    required: that.data.isUserExist ? false : (that.data.addressone.isinvitecode == "0" ? true : false),
+                    required: that.data.isUserExist ? false : (that.data.addressone&&that.data.addressone.isinvitecode == "0" ? true : false),
                 }
             },
             {
@@ -177,7 +178,7 @@ Page({
                 openID: wx.getStorageSync("openid"),
                 invitecode: inputContent.invitecode,
                 services: [1],
-                areacode: that.data.addressone.ID
+                areacode:that.data.addressone?that.data.addressone.ID:0
             }
             console.log(register);
             util.https(app.globalData.api + "/api/user/bind_user", "POST", register,
@@ -192,7 +193,10 @@ Page({
                             util.getUserInfo(function (data) {
 
                             })
-                            util.toolTip(that, "登录成功", 1, "/pages/index/index", 'reLaunch');//直接登录
+                            wx.reLaunch({
+                                url: '/pages/index/index'
+                            })
+                           /* util.toolTip(that, "登录成功", 1, "/pages/index/index", 'reLaunch');*///直接登录
                         }, true);
 
                     } else {

@@ -80,12 +80,10 @@ Page({
      */
     radioChange: function (e) {
         if (e.target.dataset.current == 0) {
-            console.log('radio1发生change事件，携带value值为：', e.detail.value)
             this.setData({
                 'evaluateinfo.service': e.detail.value,
             })
         } else if (e.target.dataset.current == 1) {
-            console.log('radio2发生change事件，携带value值为：', e.detail.value)
             this.setData({
                 'evaluateinfo.tranprice': e.detail.value
             })

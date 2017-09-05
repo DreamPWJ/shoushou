@@ -112,7 +112,6 @@ Page({
      * 用户点击checkbox
      */
     checkboxChange: function (e) {
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value)
         var that = this;
         that.data.productList.map(function (item, index) {
             if (e.detail.value.toString().indexOf(index) != -1) {//选中的
@@ -137,12 +136,10 @@ Page({
     radioChange: function (e) {
         var that = this;
         if (e.target.dataset.current == 0) {
-            console.log('活动类型radio发生change事件，携带value值为：', e.detail.value)
             that.setData({
                 acttype: e.detail.value
             })
         } else if (e.target.dataset.current == 1) {
-            console.log('所属厂商类型radio发生change事件，携带value值为：', e.detail.value)
             that.data.manufacteList.map(function (item, index) {
                 if (index == e.detail.value) {
                     that.data.manufacteList[index].checked = true;
@@ -301,11 +298,11 @@ Page({
                 latitude: that.data.latitude || that.data.handlatitude || wx.getStorageSync('longitude') || 0,//纬度
                 category: recyclingCategoryName.join(","),//货物品类 多个用逗号隔开
                 manufactor: manufactor.join(","),//单选 所属厂商
-                addrcode: that.data.addressone.ID,//地址code
+                addrcode: that.data.addressone?that.data.addressone.ID:0,//地址code
                 delivery: 1, //交货方式 1 上门回收(默认) 2 送货上门 登记信息直接用1
                 details: details
             }];
-            console.log(dengji);
+
             util.https(app.globalData.api + "/api/dengji/create", "POST", dengji,
                 function (data) {
                     if (data.code == 1001) {
