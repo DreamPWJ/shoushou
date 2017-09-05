@@ -463,11 +463,12 @@ function wxLogin() {
                                     that.getUserInfo(function () {
 
                                     });
-                                } /*else { //绑定账号
-                                    wx.navigateTo({
-                                        url: '/pages/account/binduser'
-                                    })
-                                }*/
+                                }
+                                /*else { //绑定账号
+                                                                   wx.navigateTo({
+                                                                       url: '/pages/account/binduser'
+                                                                   })
+                                                               }*/
 
                             } else {
                                 showToast(data.message)
@@ -616,7 +617,7 @@ function getCurrentCity(that, level, callback) {
                     addrdetail: addressComponent.township + addressComponent.streetNumber.street
                 })
                 https(app.globalData.api + "/api/addr/getssx", "GET", {
-                        ssx: ssx, level: level
+                        ssx: ssx, level: level, isHideLoad: true
                     },
                     function (data) {
                         if (data.code == 1001) {
