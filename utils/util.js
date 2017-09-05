@@ -609,27 +609,26 @@ function getCurrentCity(that, level, callback) {
             that.setData({
                 city: addressComponent.city.length == 0 ? addressComponent.province : addressComponent.city,
                 addresspois: data.regeocode.pois,
-                ssx: (addressComponent.province + addressComponent.city + (level == 2 ? "" : addressComponent.district)),//省市县
+                ssx: (addressComponent.province + addressComponent.city.length == 0?"":addressComponent.city + (level == 2 ? "" : addressComponent.district)),//省市县
                 addrdetail: addressComponent.township + addressComponent.streetNumber.street
+            }, function () {
+                https(app.globalData.api + "/api/addr/getssx", "GET", {
+                        ssx: that.data.ssx, level: level
+                    },
+                    function (data) {
+                        if (data.code == 1001) {
+                            that.setData({
+                                addressone: data.data
+                            })
+                        } else {
+                            toolTip(that, data.message)
+                        }
+                    }
+                )
             })
             callback(data)
         }
-    ).then(function () {
-        https(app.globalData.api + "/api/addr/getssx", "GET", {
-                ssx: that.data.ssx, level: level
-            },
-            function (data) {
-                if (data.code == 1001) {
-                    that.setData({
-                        addressone: data.data
-                    })
-                } else {
-                    toolTip(that, data.message)
-                }
-
-            }
-        )
-    })
+    )
 }
 
 /**
