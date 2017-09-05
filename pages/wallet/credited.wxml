@@ -9,7 +9,7 @@
         <navigator url="../order/orderdetails?orderno={{item.djno}}" open-type="navigate" class="item "
                    style="padding-right: 10px;"
                    wx:for="{{creditedList}}" wx:for-item="item" wx:key="*this">
-            <view class="h2" class="positive"> {{item.name}} {{item.motel}}
+            <view class="h2 positive" > {{item.name}} {{item.motel}}
                 <text class="phytype {{item.state>=4?'balanced':(item.state>=6?'energized':'')}} "> {{item.strstate}}
                 </text>
             </view>
