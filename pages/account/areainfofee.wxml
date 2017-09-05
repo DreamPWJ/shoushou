@@ -10,7 +10,7 @@
         <view class="item" wx:for="{{areaInfoFee}}" wx:for-item="item" wx:key="*this">
             <view class="h2"> {{item.grpname}}</view>
             <view class=" nowrap right-1" style="top: 0.7rem;">
-                <text class="positive " style="font-size: 1.1rem;">{{usertype==1?item.provider_cost*1:(item.platform_cost*1+item.provider_cost*1) }}</text>
+                <text class="positive " style="font-size: 1.1rem;">{{usertype==2?(item.platform_cost*1+item.provider_cost*1):(item.provider_cost*1) }}</text>
                 元/台
             </view>
         </view>

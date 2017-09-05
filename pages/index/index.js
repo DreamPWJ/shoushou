@@ -36,7 +36,7 @@ Page({
         if (!wx.getStorageSync("userid")) {
             util.authorization(1, function (data) {
                 //微信授权登录
-                util.wxLogin();
+                util.wxLogin(true);
                 //首页统计货量
                 that.getIndexData();
             });

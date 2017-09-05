@@ -427,9 +427,9 @@ function swichNav(e, that) {
 }
 
 /**
- * 微信授权登录
+ * 微信授权登录  islogin true是同时自动登录 false 只获取微信openid
  */
-function wxLogin() {
+function wxLogin(islogin) {
     var that = this;
     //调用接口获取登录凭证（code）进而换取用户登录态信息，包括用户的唯一标识（openid）
     if (!(wx.getStorageSync("openid") && wx.getStorageSync("userid"))) { //微信授权登录 获取openid
@@ -448,27 +448,29 @@ function wxLogin() {
                                 if (data.data.OpenId != null && data.data.OpenId != "") {
                                     wx.setStorageSync("openid", data.data.OpenId);//微信openid
                                 }
-                                if (data.data.UserLogID != null && data.data.UserLogID != "") {
-                                    wx.setStorageSync("userid", data.data.UserLogID);
-                                }
-                                if (data.data.usersecret != null && data.data.usersecret != "") {
-                                    wx.setStorageSync("usersecret", data.data.usersecret);
-                                }
-                                if (wx.getStorageSync("userid")) {//如果已登录
-                                    //登录授权
-                                    that.authorization(2, function (data) {
+                                if(islogin){ //自动登录
+                                    if (data.data.UserLogID != null && data.data.UserLogID != "") {
+                                        wx.setStorageSync("userid", data.data.UserLogID);
+                                    }
+                                    if (data.data.usersecret != null && data.data.usersecret != "") {
+                                        wx.setStorageSync("usersecret", data.data.usersecret);
+                                    }
+                                    if (wx.getStorageSync("userid")) {//如果已登录
+                                        //登录授权
+                                        that.authorization(2, function (data) {
 
-                                    }, true);
-                                    //根据会员ID获取会员账号基本信息
-                                    that.getUserInfo(function () {
+                                        }, true);
+                                        //根据会员ID获取会员账号基本信息
+                                        that.getUserInfo(function () {
 
-                                    });
+                                        });
+                                    }
+                                    /*else { //绑定账号
+                                                                       wx.navigateTo({
+                                                                           url: '/pages/account/binduser'
+                                                                       })
+                                                                   }*/
                                 }
-                                /*else { //绑定账号
-                                                                   wx.navigateTo({
-                                                                       url: '/pages/account/binduser'
-                                                                   })
-                                                               }*/
 
                             } else {
                                 showToast(data.message)
