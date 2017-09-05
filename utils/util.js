@@ -44,7 +44,7 @@ function https(url, type, data, callBack, header) {
                 if (res.data && res.data.code && res.data.code != 1001) {
                     getErrorlog({
                         url: url,
-                        content: "微信小程序日志原因:" + res.data.message + ", 接口参数:" + JSON.stringify(data)
+                        content: "微信小程序日志错误原因:" + res.data.message + ", 接口传入参数:" + JSON.stringify(data)
                     }, function (data) {
                         console.log(data);
                     })
@@ -463,11 +463,11 @@ function wxLogin() {
                                     that.getUserInfo(function () {
 
                                     });
-                                } else { //绑定账号
+                                } /*else { //绑定账号
                                     wx.navigateTo({
                                         url: '/pages/account/binduser'
                                     })
-                                }
+                                }*/
 
                             } else {
                                 showToast(data.message)
@@ -602,18 +602,21 @@ function getCurrentCity(that, level, callback) {
             radius: 3000,//	查询POI的半径范围。取值范围：0~3000,单位：米
             extensions: 'all',//返回结果控制
             batch: false, //batch=true为批量查询。batch=false为单点查询
-            roadlevel: 0 //可选值：1，当roadlevel=1时，过滤非主干道路，仅输出主干道路数据
+            roadlevel: 0, //可选值：1，当roadlevel=1时，过滤非主干道路，仅输出主干道路数据
+            isHideLoad: true
         },
         function (data) {
-            var addressComponent = data.regeocode.addressComponent;
-            that.setData({
-                city: addressComponent.city.length == 0 ? addressComponent.province : addressComponent.city,
-                addresspois: data.regeocode.pois,
-                ssx: (addressComponent.province + addressComponent.city.length == 0?"":addressComponent.city + (level == 2 ? "" : addressComponent.district)),//省市县
-                addrdetail: addressComponent.township + addressComponent.streetNumber.street
-            }, function () {
+            if (data.infocode == 10000) {
+                var addressComponent = data.regeocode.addressComponent;
+                var ssx = (addressComponent.province + addressComponent.city.length == 0 ? "" : addressComponent.city + (level == 2 ? "" : addressComponent.district))//省市县
+                that.setData({
+                    city: addressComponent.city.length == 0 ? addressComponent.province : addressComponent.city,
+                    addresspois: data.regeocode.pois,
+                    ssx: ssx,//省市县
+                    addrdetail: addressComponent.township + addressComponent.streetNumber.street
+                })
                 https(app.globalData.api + "/api/addr/getssx", "GET", {
-                        ssx: that.data.ssx, level: level
+                        ssx: ssx, level: level
                     },
                     function (data) {
                         if (data.code == 1001) {
@@ -625,7 +628,10 @@ function getCurrentCity(that, level, callback) {
                         }
                     }
                 )
-            })
+            } else {
+                toolTip(that, "获取当前位置信息失败")
+            }
+
             callback(data)
         }
     )
