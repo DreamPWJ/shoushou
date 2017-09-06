@@ -14,7 +14,7 @@ Page({
         acttype: 0,// 活动类型 0 无 1以旧换新
         productList: [],
         activitytype: [  //活动类型
-            {value: 0, name: '无', checked: 'true'}, {value: 1, name: '以旧换新'}
+            {value: 0, name: '无', checked: true}, {value: 1, name: '以旧换新'}
         ],
         imgUrl: app.globalData.imgUrl + '/'
     },
@@ -38,7 +38,7 @@ Page({
      */
     onShow: function () {
         //是否登录
-        if(util.isLoginModal()) return;
+        if (util.isLoginModal()) return;
     },
 
     /**
@@ -136,7 +136,15 @@ Page({
     radioChange: function (e) {
         var that = this;
         if (e.target.dataset.current == 0) {
+            that.data.activitytype.map(function (item, index) {
+                if (index == e.detail.value) {
+                    that.data.activitytype[index].checked = true;
+                } else {
+                    that.data.activitytype[index].checked = false;
+                }
+            })
             that.setData({
+                activitytype: that.data.activitytype,
                 acttype: e.detail.value
             })
         } else if (e.target.dataset.current == 1) {
@@ -298,7 +306,7 @@ Page({
                 latitude: that.data.latitude || that.data.handlatitude || wx.getStorageSync('longitude') || 0,//纬度
                 category: recyclingCategoryName.join(","),//货物品类 多个用逗号隔开
                 manufactor: manufactor.join(","),//单选 所属厂商
-                addrcode: that.data.addressone?that.data.addressone.ID:0,//地址code
+                addrcode: that.data.addressone ? that.data.addressone.ID : 0,//地址code
                 delivery: 1, //交货方式 1 上门回收(默认) 2 送货上门 登记信息直接用1
                 details: details
             }];
