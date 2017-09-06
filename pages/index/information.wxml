@@ -61,7 +61,7 @@
         </view>
 
         <radio-group class="radio-group light-bg row padding" data-current="0" bindchange="radioChange">
-            <label class="radio col-33 " wx:for="{{activitytype}}">
+            <label class="radio col-33 " wx:for="{{activitytype}}" wx:key="*this">
                 <radio value="{{item.value}}" color="#00ACFF" checked="{{item.checked}}"/>
                 {{item.name}}
             </label>

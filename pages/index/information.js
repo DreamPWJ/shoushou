@@ -116,18 +116,14 @@ Page({
         that.data.productList.map(function (item, index) {
             if (e.detail.value.toString().indexOf(index) != -1) {//选中的
                 that.data.productList[index].checked = true;
-                that.setData({
-                    productList: that.data.productList
-                })
+
             } else {
                 that.data.productList[index].checked = false;
-                that.setData({
-                    productList: that.data.productList
-                })
             }
-
         })
-
+        that.setData({
+            productList: that.data.productList
+        })
 
     },
     /**
@@ -151,18 +147,15 @@ Page({
             that.data.manufacteList.map(function (item, index) {
                 if (index == e.detail.value) {
                     that.data.manufacteList[index].checked = true;
-                    that.setData({
-                        manufacteList: that.data.manufacteList
-                    })
+
                 } else {
                     that.data.manufacteList[index].checked = false;
-                    that.setData({
-                        manufacteList: that.data.manufacteList
-                    })
                 }
 
             })
-
+            that.setData({
+                manufacteList: that.data.manufacteList
+            })
         }
     },
     /**
