@@ -134,7 +134,7 @@ function authorization(type, callback, immediately) {
                     } else {
                         that.showModal('收收提示', '登录过期，请重新登录', '登录', '取消', function (res) {
                             if (res.confirm) {
-                                wx.navigateTo({
+                                wx.redirectTo({
                                     url: '/pages/account/binduser'
                                 })
                             }
@@ -233,7 +233,7 @@ function isLoginModal(isShow) {
                 confirmText: "登录",
                 success: function (res) {
                     if (res.confirm) {
-                        wx.navigateTo({
+                        wx.redirectTo({
                             url: '/pages/account/binduser'
                         })
                     } else if (res.cancel) {
@@ -245,7 +245,7 @@ function isLoginModal(isShow) {
                 }
             })
         } else {
-            wx.navigateTo({
+            wx.redirectTo({
                 url: '/pages/account/binduser'
             })
         }
