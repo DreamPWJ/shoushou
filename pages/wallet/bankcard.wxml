@@ -20,7 +20,7 @@
 
         </radio-group>
     </view>
-    <view class="list add">
+    <view class="list add"  wx:if="{{bankCardList.length<5}}">
         <navigator url="addbankcard" open-type="navigate" class="item item-icon-left add-border-b">
             <text class="iconfont icon-add"></text>
             添加银行卡

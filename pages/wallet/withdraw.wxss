@@ -12,3 +12,69 @@
     padding:12px;
     text-align: center;
 }
+
+.pop-model{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  visibility: hidden;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,.4);
+  opacity:0;
+}
+.pop-model.showing{
+  visibility:  visible;
+  transition:.1s opacity linear;
+  opacity:1;
+}
+.pop-model .popup{
+  text-align:center;
+  background-color:#fff;
+  border-radius:0.5rem;
+  pointer-events:auto;
+  visibility: hidden;
+}
+.pop-model.showing .popup{
+  animation-name:superScaleIn;
+  animation-duration:.2s;
+  -webkit-animation:mymove infinite;
+  -webkit-animation-duration:.2s;
+  animation-timing-function:ease-in-out;
+  -webkit-animation-timing-function:ease-in-out;
+  animation-fill-mode:both;
+  -webkit-animation-fill-mode:both;
+  visibility: visible;
+}
+
+.pop-model .popup .popup-head{
+  position: relative;
+  padding:30rpx;
+  color:#585858 !important;
+  text-align:center;
+  font-weight: bold;
+  border-bottom: 1px #ccc solid;
+  padding-left: 56rpx;
+}
+.pop-model .popup-body{
+  padding: 0 20rpx;
+}
+.pop-model .list .item{
+  border-left: none;
+  border-right: none;
+}
+.popup-head .icon-close{
+  position: absolute;
+  left: 20rpx;
+  color: #aaa;
+  display: flex;
+  align-items:center;
+  padding-top: 8rpx;
+}
+

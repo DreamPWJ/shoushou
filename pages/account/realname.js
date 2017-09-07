@@ -166,6 +166,8 @@ Page({
             util.https(app.globalData.api + "/api/user/authenticate_idcard", "POST", data,
                 function (data) {
                     if (data.code == 1001) {
+                      //更新用户信息
+                      util.getUserInfo()
                         util.toolTip(that, "实名认证提交成功", 1, 'back')
                     } else {
                         util.toolTip(that, data.message)

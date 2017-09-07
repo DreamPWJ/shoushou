@@ -59,14 +59,14 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-
+      
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-
+      
     },
 
     /**
@@ -143,7 +143,7 @@ Page({
                     required: true,
                 },
                 invitecode: {
-                    required: that.data.isUserExist ? false : (that.data.addressone&&that.data.addressone.isinvitecode == "0" ? true : false),
+                  required: that.data.isUserExist ? false : (that.data.addressone && that.data.addressone.isinvitecode == "1" ? false : true ),
                 }
             },
             {

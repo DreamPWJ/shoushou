@@ -22,11 +22,11 @@
     </view>
     <view class="padding-top"></view>
     <view class="list">
-        <navigator url="recharge" open-type="navigate" class="item item-icon-left item-icon-right">
+        <!--<navigator url="recharge" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-chongzhi" style="color: #11c1f3"></text>
             <view class="h2">充值</view>
             <text class="icon-accessory iconfont icon-right"></text>
-        </navigator>
+        </navigator>-->
         <navigator url="withdraw" open-type="navigate" class="item item-icon-left item-icon-right">
             <text class="icon iconfont icon-tixian" style="color: #33cd5f"></text>
             <view class="h2">提现</view>

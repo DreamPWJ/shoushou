@@ -1,35 +1,58 @@
 <!--pages/wallet/withdraw.wxml-->
-<include src="../util/tooltip.wxml"/>
+<include src="../util/tooltip.wxml" />
 <form bindsubmit="withdrawSubmit">
-
-    <view class="list card ">
-        <view class="row row-center padding bank">
-            <view class="col-40">到账银行卡</view>
-            <navigator url="bankcard" open-type="navigate" class="col-60 positive ">
-                {{showBank}}
-            </navigator>
-        </view>
-        <label class="item item-input item-stacked-label">
+  <view class="list card ">
+    <!--<view class="row row-center padding bank">
+      <view class="col-40">提现到</view>
+      <navigator url="bankcard" open-type="navigate" class="col-60 positive ">
+        {{showBank}}
+      </navigator>
+    </view>-->
+    <label class="item item-input item-stacked-label">
             <view class="input-label "> 提现金额
                 <text wx:if="{{inputmoney}}" class="{{inputmoney<100?'energized':'balanced'}}">{{inputmoney<100?'自动扣除3元手续费':'免手续费'}}</text>
             </view>
             <input type="digit" bindinput="bindChange" id="money" name="money" value="{{allmoney}}"
-                   placeholder="请输入提现金额(大于3元)"/>
+                   placeholder="请输入提现金额(大于10元)"/>
         </label>
-        <view class="padding yue">当前可用金额 {{userSum.account}}元
-            <text wx:if="{{userSum.account!='0.00'}}" bindtap="allWithdrawal" class="positive">全部提现</text>
-        </view>
+    <view class="padding yue">当前可用金额 {{userSum.account}}元
+      <text wx:if="{{userSum.account!='0.00'}}" bindtap="allWithdrawal" class="positive">全部提现</text>
     </view>
+  </view>
 
-    <view class="padding-horizontal">
-        <button class="positive-bg light "
-                formType="submit">提现
+  <view class="padding-horizontal">
+    <button class="positive-bg light " formType="submit">提现
         </button>
-    </view>
+  </view>
 
-    <view class=" tishi grey">
-        <text class="iconfont icon-guanyuwomen"></text>
-        手续费：3元/笔，100以上免手续费
-        <view> 提现后工作日24小时之内到账</view>
+  <view class=" tishi grey">
+    <text class="iconfont icon-guanyuwomen"></text> 手续费：3元/笔，100以上免手续费
+    <view> 提现后工作日24小时之内到账</view>
+  </view>
+  <!-- 弹窗现在提现方式 -->
+  <view class='pop-model {{showChoosePay?"showing":"" }}' id='pay-model'>
+    <view class='popup'>
+      <view class='popup-head'>
+        <text class="iconfont icon-close" bindtap='closePop'></text> 选择提现方式
+      </view>
+      <view class='popup-body'>
+        <view class='list'>
+          <view class='item item-icon-left item-icon-right' data-channel='3' bindtap='choosePay'>
+            <text class="icon iconfont icon-weixin2" style="color: green"></text>
+            <view>微信钱包</view>
+            <text class="icon-accessory iconfont icon-right"></text>
+          </view>
+          <view class='item item-icon-left item-icon-right' wx:for='{{banklist}}' data-id='{{item.id}}' data-showBank='{{item.showBank}}' data-channel='1' bindtap='choosePay'>
+            <text class="icon iconfont {{item.logo}}" style="color: {{item.bgcolor}}"></text>
+            <view>{{item.showBank}}</view>
+            <text class="icon-accessory iconfont icon-right"></text>
+          </view>
+           <navigator url='addbankcard' wx:if="{{banklist.length<5}}" class='item item-icon-left item-icon-right'>
+            <text class="iconfont icon-add"></text>
+            <view> 添加新卡提现</view>
+          </navigator>
+        </view>        
+      </view>
     </view>
+  </view>
 </form>
