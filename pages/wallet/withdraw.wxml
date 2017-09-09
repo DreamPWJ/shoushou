@@ -37,11 +37,11 @@
       </view>
       <view class='popup-body'>
         <view class='list'>
-          <view class='item item-icon-left item-icon-right' data-channel='3' bindtap='choosePay'>
+          <!--<view class='item item-icon-left item-icon-right' data-channel='3' bindtap='choosePay'>
             <text class="icon iconfont icon-weixin2" style="color: green"></text>
             <view>微信钱包</view>
             <text class="icon-accessory iconfont icon-right"></text>
-          </view>
+          </view>-->
           <view class='item item-icon-left item-icon-right' wx:for='{{banklist}}' data-id='{{item.id}}' data-showBank='{{item.showBank}}' data-channel='1' bindtap='choosePay'>
             <text class="icon iconfont {{item.logo}}" style="color: {{item.bgcolor}}"></text>
             <view>{{item.showBank}}</view>
