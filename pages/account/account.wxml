@@ -14,12 +14,12 @@
         <view class="item item-icon-left   order money">
             <text class="icon iconfont icon-moneybag" style="color: #4cd964;"></text>
             <view class="h2 ">我的钱包
-                <!--<navigator url="../wallet/withdraw" open-type="navigate" class="button button-positive button-outline">
+                <navigator url="../wallet/withdraw" open-type="navigate" class="button button-positive button-outline">
                     提现
-                </navigator>-->
-                <navigator url="../wallet/recharge" open-type="navigate"
-                           class="button button-energized  button-outline">充值
                 </navigator>
+                <!--<navigator url="../wallet/recharge" open-type="navigate"
+                           class="button button-energized  button-outline">充值
+                </navigator>-->
             </view>
         </view>
         <view class="row row-no-padding light-bg  row-center text-center order-item">
