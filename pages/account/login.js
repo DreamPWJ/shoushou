@@ -162,7 +162,8 @@ Page({
                         code: inputContent.verifycode,
                         client: 3,
                         openID: wx.getStorageSync("openid"),
-                        invitecode: ""
+                        invitecode: "",
+                        open_plat:"xcx" //平台
                     },
                     function (data) {
                         if (data.code == 1001) {

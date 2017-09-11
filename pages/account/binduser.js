@@ -180,9 +180,9 @@ Page({
                 openID: wx.getStorageSync("openid"),
                 invitecode: inputContent.invitecode,
                 services: [1],
-                areacode:that.data.addressone?that.data.addressone.ID:0
+                areacode:that.data.addressone?that.data.addressone.ID:0,
+                open_plat:"xcx" //平台
             }
-            console.log(register);
             util.https(app.globalData.api + "/api/user/bind_user", "POST", register,
                 function (data) {
                     if (data.code == 1001) {

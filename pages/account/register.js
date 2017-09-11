@@ -200,7 +200,8 @@ Page({
                 openID: wx.getStorageSync("openid"),
                 invitecode: inputContent.invitecode,
                 services: [1],
-                areacode: that.data.addressone.ID
+                areacode: that.data.addressone.ID,
+                open_plat: "xcx" //平台
             }
             console.log(register);
             util.https(app.globalData.api + "/api/user/regnew", "POST", register,
