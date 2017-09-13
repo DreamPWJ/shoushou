@@ -114,7 +114,7 @@ Page({
      */
     isUserExist: function () {
         var that = this;
-        util.https(app.globalData.api + "/api/user/exist/" + inputContent.user, "GET", {isHideLoad: true},
+        util.https(app.globalData.api + "/api/user/get_isinvite?account=" + inputContent.user, "GET", {isHideLoad: true},
             function (data) {
                 if (data.code == 1001) {
                     that.setData({
