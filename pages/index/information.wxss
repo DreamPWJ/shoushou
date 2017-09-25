@@ -75,7 +75,7 @@
 }
 
 .radio-group label .show-span::before {
-    content: '√';
+    content: '\2713';
     position: absolute;
     color: #fff !important;
     font-size: 10px;
