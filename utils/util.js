@@ -669,6 +669,17 @@ function getLocation(that, callback) {
         success: function (res) {
             wx.setStorageSync("longitude", res.longitude);//经度
             wx.setStorageSync("latitude", res.latitude);//纬度
+        },
+        fail: function (res) {
+            wx.showModal({
+                title: '提示',
+                content: '获取定位失败，请确认是否开启定位功能',
+                success: function (res) {
+                    wx.authorize({
+                        scope: 'scope.userLocation',
+                    })
+                }
+            })
         }
     })
 }
