@@ -3,7 +3,7 @@
 <view id="index">
     <view class="new-topbj">
         <swiper indicator-dots="{{indicatorDots}}"
-                autoplay="{{autoplay}}" indicator-active-color="rgba(0, 0, 0, .6)" interval="{{interval}}" duration="{{duration}}">
+                autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
             <block wx:for="{{imgUrls}}" wx:for-item="item" wx:key="*this">
                 <swiper-item>
                     <image src="{{item}}" class="slide-image full-image"/>
